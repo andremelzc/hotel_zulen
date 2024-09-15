@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class InicioSesion {
     
-    public boolean verificarValidezPersonal(String usu, String contra) {
+    public boolean verificarValidezPersonal(String usu, String contra, String fun) {
         boolean validez = false;
         try {
             CSVReader reader = new CSVReader(new FileReader("personales.csv"));
@@ -30,9 +30,9 @@ public class InicioSesion {
 
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    if ("1".equals(nextLine[3]) && usu.equals(nextLine[4]) && contra.equals(nextLine[5]) ) {
+                    if ("1".equals(nextLine[3]) && usu.equals(nextLine[4]) && contra.equals(nextLine[5]) && fun.equals(nextLine[6]) ) {
                         System.out.println("Bienvenido:");
-                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2]+ "    " + nextLine[4]+ "    " + nextLine[5]);
+                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2]+ "    " + nextLine[4]+ "    " + nextLine[5]+ "    " + nextLine[6]);
                         System.out.println("-----------------------------");
                         validez = true;
                     }

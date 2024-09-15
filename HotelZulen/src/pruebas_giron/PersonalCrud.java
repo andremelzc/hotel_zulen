@@ -89,7 +89,7 @@ public class PersonalCrud {
     public boolean buscarPersonal(int id_buscar) {
         boolean find = false;
         try {
-            CSVReader reader = new CSVReader(new FileReader("personal.csv"));
+            CSVReader reader = new CSVReader(new FileReader("personales.csv"));
             String[] nextLine;
             try {
                 while ((nextLine = reader.readNext()) != null) {
@@ -122,7 +122,7 @@ public class PersonalCrud {
         Scanner sc = new Scanner(System.in);
         boolean find = false;
         try {
-            CSVReader lector = new CSVReader(new FileReader("personal.csv"));
+            CSVReader lector = new CSVReader(new FileReader("personales.csv"));
             try {
                 //Se lee toda la información
                 allData = lector.readAll();
@@ -158,7 +158,7 @@ public class PersonalCrud {
         }
 
         //Abrimos otro para sobre escribir
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("personal.csv"))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("personales.csv"))) {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {
@@ -171,7 +171,7 @@ public class PersonalCrud {
         List<String[]> allData = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         try {
-            CSVReader lector = new CSVReader(new FileReader("personal.csv"));
+            CSVReader lector = new CSVReader(new FileReader("personales.csv"));
             try {
                 //Se lee toda la información
                 allData = lector.readAll();
@@ -196,7 +196,7 @@ public class PersonalCrud {
         }
 
         //Abrimos otro para sobre escribir
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("personal.csv"))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("personales.csv"))) {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {

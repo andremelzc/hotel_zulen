@@ -35,11 +35,13 @@ public class newMain {
             System.out.println("------------------");
             System.out.println("1. Ingrese su Usuario");
             String nombre = sc.nextLine();
-            System.out.println("2. Ingrese su Contraseña");
+            System.out.println("2. Ingrese su Contrasena");
             String contra = sc.nextLine();
+            System.out.println("2. Ingrese su Funcion");
+            String fun = sc.nextLine();
             
             //Verificar condicion entonces puede acceder al menu de Opciones
-            ingresa = isesion.verificarValidezPersonal(nombre, contra);
+            ingresa = isesion.verificarValidezPersonal(nombre, contra, fun);
             
             if(ingresa){
                 do {
