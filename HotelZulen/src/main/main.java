@@ -8,8 +8,7 @@ package main;
  *
  * @author PC
  */
-import pruebas_giron.Personal;
-import pruebas_giron.PersonalCrud;
+
 import java.io.IOException;
 import java.util.Scanner;
 import pruebitas_andre.*;

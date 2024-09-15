@@ -32,8 +32,8 @@ public class InicioSesion {
                 while ((nextLine = reader.readNext()) != null) {
                     if ("1".equals(nextLine[3]) && usu.equals(nextLine[4]) && contra.equals(nextLine[5]) && fun.equals(nextLine[6]) ) {
                         System.out.println("Bienvenido:");
-                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2]+ "    " + nextLine[4]+ "    " + nextLine[5]+ "    " + nextLine[6]);
-                        System.out.println("-----------------------------");
+                        System.out.println(" Ha ingresado como " +  nextLine[6]+", "+ nextLine[1] + " " + nextLine[2]);
+                        
                         validez = true;
                     }
 
@@ -47,5 +47,14 @@ public class InicioSesion {
             Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     return validez;
+    }
+    public boolean verificarTipoIngresado(String tipo){
+        boolean valido = false;
+            if(tipo.equalsIgnoreCase("Admin")|| tipo.equalsIgnoreCase("Huesped")|| tipo.equalsIgnoreCase("Recepcionista")){
+                valido = true;
+            }else{
+                System.out.println("Tipo no Valido; se admite 'Admin' 'Huesped' o 'Recepcionista' intentelo otra vez o escriba salir");
+            }
+        return valido;
     }
 }

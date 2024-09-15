@@ -29,7 +29,7 @@ public class newMain {
         boolean flag = true;//Melendez lógica
         do{ 
             boolean ingresa = false;
-            
+            boolean tipo = false;
             System.out.println("------------------");
             System.out.println(" INICIO DE SESION ");
             System.out.println("------------------");
@@ -37,8 +37,14 @@ public class newMain {
             String nombre = sc.nextLine();
             System.out.println("2. Ingrese su Contrasena");
             String contra = sc.nextLine();
-            System.out.println("2. Ingrese su Funcion");
-            String fun = sc.nextLine();
+            String fun;
+            do{
+               System.out.println("3. Ingrese su Funcion");
+               fun = sc.nextLine();
+               tipo = isesion.verificarTipoIngresado(fun);
+               //Si el usuario se equivoco ingreso usuario o contraseña mal escribe salir
+            }while(!tipo);
+            
             
             //Verificar condicion entonces puede acceder al menu de Opciones
             ingresa = isesion.verificarValidezPersonal(nombre, contra, fun);
