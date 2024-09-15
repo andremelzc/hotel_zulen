@@ -50,6 +50,7 @@ public class main {
                     break;
                 case 4:
                     reservacion.asignarReservacion(sc);
+                    System.out.println("\n4");
                     break;
                 case 5:
                     flag = false;
