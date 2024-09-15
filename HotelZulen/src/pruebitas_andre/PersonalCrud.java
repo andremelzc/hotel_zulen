@@ -86,7 +86,7 @@ public class PersonalCrud {
         }
     }
 
-    public void buscarPersonal(int id_buscar) {
+    public boolean buscarPersonal(int id_buscar) {
         boolean find = false;
         try {
             CSVReader reader = new CSVReader(new FileReader("personal.csv"));
@@ -114,6 +114,7 @@ public class PersonalCrud {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return find;
     }
 
     public void actualizarPersonal(int id_actualizar) {
@@ -132,7 +133,7 @@ public class PersonalCrud {
                         System.out.println("-----------------------------");
                         System.out.println(row[0] + "  " + row[1] + "  " + row[2]);
                         System.out.println("-----------------------------");
-                        System.out.println("\nNuevos Datos");
+                        System.out.println("Nuevos Datos");
                         System.out.println("-----------------------------");
                         System.out.println("Nombre: ");
                         row[1] = sc.nextLine();

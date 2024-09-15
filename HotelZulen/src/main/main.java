@@ -20,6 +20,8 @@ public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PersonalCrud personal = new PersonalCrud();
+        Reservación reservacion = new Reservación();
+        
         main obj = new main();
 
         boolean flag = true;
@@ -31,7 +33,8 @@ public class main {
             System.out.println("1. CRUD personal");
             System.out.println("2. CRUD huesped");
             System.out.println("3. CRUD habitacion");
-            System.out.println("4. Salir");
+            System.out.println("4. Asignar habitacion");
+            System.out.println("5. Salir");
             System.out.println("------------------");
             System.out.println("Que desea hacer?");
             int op = sc.nextInt();
@@ -39,13 +42,16 @@ public class main {
 
             switch (op) {
                 case 1:
-                    obj.menuPersonal();
+                    obj.menuPersonal(sc);
                     break;
                 case 2:
                     break;
                 case 3:
                     break;
                 case 4:
+                    reservacion.asignarReservacion(sc);
+                    break;
+                case 5:
                     flag = false;
                     System.out.println("Saliendo...");
                     break;
@@ -53,8 +59,7 @@ public class main {
         } while (flag);
     }
 
-    public void menuPersonal() {
-        Scanner sc = new Scanner(System.in);
+    public void menuPersonal(Scanner sc) {
         PersonalCrud personalCrud = new PersonalCrud();
         boolean flagPersonal = true;
         do {
@@ -123,5 +128,7 @@ public class main {
             }
         } while (flagPersonal);
     }
+
+
 
 }
