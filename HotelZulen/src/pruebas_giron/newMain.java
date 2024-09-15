@@ -1,4 +1,4 @@
-package main;
+package pruebas_giron;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -8,13 +8,13 @@ package main;
  *
  * @author PC
  */
-import pruebas_giron.Personal;
-import pruebas_giron.PersonalCrud;
+
+
 import java.io.IOException;
 import java.util.Scanner;
-import pruebitas_andre.*;
+//import pruebas_giron.*; //En caso se use fuera de este package
 
-public class main {
+public class newMain {
 
     /**
      * @param args the command line arguments
@@ -22,46 +22,71 @@ public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PersonalCrud personal = new PersonalCrud();
-        Reservación reservacion = new Reservación();
-        
-        main obj = new main();
-
-        boolean flag = true;
-
-        do {
+        //Reservación reservacion = new Reservación(); //Esto es de Melendez
+        InicioSesion isesion = new InicioSesion();
+        newMain obj = new newMain();
+        boolean sesion = true;
+        boolean flag = true;//Melendez lógica
+        do{ 
+            boolean ingresa = false;
+            
             System.out.println("------------------");
-            System.out.println("Menu de opciones");
+            System.out.println(" INICIO DE SESION ");
             System.out.println("------------------");
-            System.out.println("1. CRUD personal");
-            System.out.println("2. CRUD huesped");
-            System.out.println("3. CRUD habitacion");
-            System.out.println("4. Asignar habitacion");
-            System.out.println("5. Salir");
-            System.out.println("------------------");
-            System.out.println("Que desea hacer?");
-            int op = sc.nextInt();
-            sc.nextLine(); //Limpiar el buffer
+            System.out.println("1. Ingrese su Usuario");
+            String nombre = sc.nextLine();
+            System.out.println("2. Ingrese su Contraseña");
+            String contra = sc.nextLine();
+            
+            //Verificar condicion entonces puede acceder al menu de Opciones
+            ingresa = isesion.verificarValidezPersonal(nombre, contra);
+            
+            if(ingresa){
+                do {
+                    System.out.println("------------------");
+                    System.out.println("Menu de opciones");
+                    System.out.println("------------------");
+                    System.out.println("1. CRUD personal");
+                    System.out.println("2. CRUD huesped");
+                    System.out.println("3. CRUD habitacion");
+                    System.out.println("4. Asignar habitacion");
+                    System.out.println("5. Salir");
+                    System.out.println("------------------");
+                    System.out.println("Que desea hacer?");
+                    int op = sc.nextInt();
+                    sc.nextLine(); //Limpiar el buffer
 
-            switch (op) {
-                case 1:
-                    obj.menuPersonal(sc);
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    reservacion.asignarReservacion(sc);
-                    System.out.println("\n4");
-                    break;
-                case 5:
-                    flag = false;
-                    System.out.println("Saliendo...");
-                    break;
+                    switch (op) {
+                        case 1:
+                            obj.menuPersonal(sc);
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            //reservacion.asignarReservacion(sc); //Esto es de Melendez
+                            System.out.println("\n4");
+                            break;
+                        case 5:
+                            flag = false;
+                            System.out.println("Saliendo...");
+                            break;
+                        }
+                    } while (flag);
             }
-        } while (flag);
-    }
-
+            
+            System.out.println("Si desea cerrar la sesion, ingrese 'salir' para terminar la Ejecucion");
+            String desicion = sc.nextLine();
+            if(desicion.equalsIgnoreCase("salir")){
+                sesion = false;
+            }
+            
+        }while(sesion);
+        
+        
+    }//Fin del main
+    
     public void menuPersonal(Scanner sc) {
         PersonalCrud personalCrud = new PersonalCrud();
         boolean flagPersonal = true;
@@ -89,7 +114,13 @@ public class main {
                     String nombre = sc.nextLine();
                     System.out.println("Apellido: ");
                     String apellido = sc.nextLine();
-                    Personal nuevoPersonal = new Personal(nombre, apellido);
+                    //Agregado de mi parte para verificar el inicio
+                    System.out.println("Usuario: ");
+                    String usuario = sc.nextLine();
+                    System.out.println("Contrasena: ");
+                    String contrasena = sc.nextLine();
+                    
+                    Personal nuevoPersonal = new Personal(nombre, apellido,usuario,contrasena);
                     personalCrud.agregarPersonal(nuevoPersonal);
                     System.out.println("-----------------------------\n");
                     break;
