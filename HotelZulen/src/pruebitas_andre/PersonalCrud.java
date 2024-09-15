@@ -5,6 +5,10 @@
 package pruebitas_andre;
 
 import com.opencsv.CSVWriter;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -28,10 +32,9 @@ public class PersonalCrud {
     }
 
     public void escribirCSV() {
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("jefe.csv",true))){
-            System.out.println("holaaaa");
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("jefe.csv", true))) {
             for (Personal personal : listaPersonal) {
-                String[] datos = {personal.getNombre(), personal.getApellido()};
+                String[] datos = {String.valueOf(numeroLineas()+1), personal.getNombre(), personal.getApellido()};
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
@@ -39,4 +42,20 @@ public class PersonalCrud {
         }
     }
 
+    public int numeroLineas() {
+        int numero = 0;
+        try (CSVReader lector = new CSVReader(new FileReader("jefe.csv"))) {
+            try {
+                while ((lector.readNext()) != null) {
+                    numero++;
+                }
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, "Error al leer el archivo CSV", ex);
+        }
+
+        return numero;
+    }
 }
