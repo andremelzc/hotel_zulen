@@ -22,11 +22,11 @@ public class Personal {
     String usuario;
     String contrasena;
     String funcion;
-    
-    public Personal(){
-        
+
+    public Personal() {
+
     }
-    
+
     public Personal(String nombre, String apellido, int DNI, int telefono, String direccion, int ID, String usuario, String contrasena, String funcion) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -37,6 +37,11 @@ public class Personal {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.funcion = funcion;
+    }
+
+    public Personal(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
 
     public void setFuncion(String funcion) {
@@ -79,8 +84,4 @@ public class Personal {
         return funcion;
     }
 
-    public String[] getArray(){
-        String[] datos = {nombre, apellido};
-        return datos;
-    }
 }

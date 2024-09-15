@@ -52,6 +52,7 @@ public class main {
 
     public void menuPersonal() {
         Scanner sc = new Scanner(System.in);
+        PersonalCrud personalCrud = new PersonalCrud();
         boolean flagPersonal = true;
         do {
             System.out.println("1. Agregar personal");
@@ -65,6 +66,12 @@ public class main {
 
             switch (opPersonal) {
                 case 1:
+                    System.out.println("Nombre: ");
+                    String nombre = sc.nextLine();
+                    System.out.println("Apellido: ");
+                    String apellido = sc.nextLine();
+                    Personal nuevoPersonal = new Personal(nombre,apellido);
+                    personalCrud.agregarPersonal(nuevoPersonal);
                     break;
                 case 2:
                     break;
