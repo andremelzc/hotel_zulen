@@ -171,6 +171,4 @@ public class newMain {
         } while (flagPersonal);
     }
 
-
-
 }
