@@ -161,7 +161,7 @@ public class PersonalCrud {
         }
 
         //Abrimos otro para sobre escribir
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("HotelZulen/personal.csv"))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("personal.csv"))) {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {
