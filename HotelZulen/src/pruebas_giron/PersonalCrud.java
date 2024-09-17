@@ -34,7 +34,7 @@ public class PersonalCrud {
     }
 
     public void escribirCSV() {
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("personales.csv", true))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("HotelZulen/personales.csv", true))) {
             for (Personal personal : listaPersonal) {
                 String[] datos = {String.valueOf(numeroLineas() + 1), personal.getNombre(), personal.getApellido(), "1", personal.getUsuario(), personal.contrasena}; //El 1 significa que la cuenta está activa 
                 escritor.writeNext(datos);
@@ -46,7 +46,7 @@ public class PersonalCrud {
 
     public int numeroLineas() {
         int numero = 0;
-        try (CSVReader lector = new CSVReader(new FileReader("personales.csv"))) {
+        try (CSVReader lector = new CSVReader(new FileReader("HotelZulen/personales.csv"))) {
             try {
                 while ((lector.readNext()) != null) {
                     numero++;
@@ -63,7 +63,7 @@ public class PersonalCrud {
 
     public void leerTodoPersonal() {
         try {
-            CSVReader reader = new CSVReader(new FileReader("personales.csv"));
+            CSVReader reader = new CSVReader(new FileReader("HotelZulen/personales.csv"));
             String[] nextLine;
             System.out.println("-----------------------------");
             System.out.println("ID Nombre   Apellido");
@@ -89,7 +89,7 @@ public class PersonalCrud {
     public boolean buscarPersonal(int id_buscar) {
         boolean find = false;
         try {
-            CSVReader reader = new CSVReader(new FileReader("personales.csv"));
+            CSVReader reader = new CSVReader(new FileReader("HotelZulen/personales.csv"));
             String[] nextLine;
             try {
                 while ((nextLine = reader.readNext()) != null) {
@@ -122,7 +122,7 @@ public class PersonalCrud {
         Scanner sc = new Scanner(System.in);
         boolean find = false;
         try {
-            CSVReader lector = new CSVReader(new FileReader("personales.csv"));
+            CSVReader lector = new CSVReader(new FileReader("HotelZulen/personales.csv"));
             try {
                 //Se lee toda la información
                 allData = lector.readAll();
@@ -158,7 +158,7 @@ public class PersonalCrud {
         }
 
         //Abrimos otro para sobre escribir
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("personales.csv"))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("HotelZulen/personales.csv"))) {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {
@@ -171,7 +171,7 @@ public class PersonalCrud {
         List<String[]> allData = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         try {
-            CSVReader lector = new CSVReader(new FileReader("personales.csv"));
+            CSVReader lector = new CSVReader(new FileReader("HotelZulen/personales.csv"));
             try {
                 //Se lee toda la información
                 allData = lector.readAll();
@@ -196,7 +196,7 @@ public class PersonalCrud {
         }
 
         //Abrimos otro para sobre escribir
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("personales.csv"))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("HotelZulen/personales.csv"))) {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {

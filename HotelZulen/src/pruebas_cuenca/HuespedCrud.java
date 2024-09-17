@@ -1,72 +1,62 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package pruebitas_andre;
+package pruebas_cuenca;
 
-import com.opencsv.CSVWriter;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import java.io.File;
+public class HuespedCrud {
 
+    List<Huesped> listaHuesped = new ArrayList<>();
 
-/**
- * @author PC
- */
-public class PersonalCrud {
-
-    List<Personal> listaPersonal = new ArrayList<>();
-
-    public void agregarPersonal(Personal personal) {
-        listaPersonal.add(personal);
+    public void agregarHuesped(Huesped huesped) {
+        listaHuesped.add(huesped);
         System.out.println("-----------------------------");
-        System.out.println("Personal agregado: " + personal.getNombre() + " " + personal.getApellido());
+        System.out.println("Huesped agregado: " + huesped.getNombre() + " " + huesped.getApellido());
         escribirCSV();
     }
 
     public void escribirCSV() {
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("personal.csv", true))) {
-            for (Personal personal : listaPersonal) {
-                String[] datos = {String.valueOf(numeroLineas() + 1), personal.getNombre(), personal.getApellido(), "1"}; //El 1 significa que la cuenta está activa 
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("HotelZulen/huespedes.csv", true))) {
+            for (Huesped huesped : listaHuesped) {
+                String[] datos = {String.valueOf(numeroLineas() + 1), huesped.getNombre(), huesped.getApellido(), "1", huesped.getUsuario(), huesped.getContrasena(), Integer.toString(huesped.getIDHabitacion()), huesped.getIncioHuesped().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), huesped.getFinHuesped().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) };   //El 1 significa que la cuenta está activa
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public int numeroLineas() {
         int numero = 0;
-        try (CSVReader lector = new CSVReader(new FileReader("personal.csv"))) {
+        try (CSVReader lector = new CSVReader(new FileReader("HotelZulen/huespedes.csv"))) {
             try {
                 while ((lector.readNext()) != null) {
                     numero++;
                 }
             } catch (CsvValidationException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (IOException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, "Error al leer el archivo CSV", ex);
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, "Error al leer el archivo CSV", ex);
         }
 
         return numero;
     }
 
-    public void leerTodoPersonal() {
+    public void leerTodoHuesped() {
         try {
-            CSVReader reader = new CSVReader(new FileReader("personal.csv"));
+            CSVReader reader = new CSVReader(new FileReader("HotelZulen/huespedes.csv"));
             String[] nextLine;
             System.out.println("-----------------------------");
             System.out.println("ID Nombre   Apellido");
@@ -80,19 +70,19 @@ public class PersonalCrud {
 
                 }
             } catch (IOException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             } catch (CsvValidationException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public boolean buscarPersonal(int id_buscar) {
+    public boolean buscarHuesped(int id_buscar) {
         boolean find = false;
         try {
-            CSVReader reader = new CSVReader(new FileReader("personal.csv"));
+            CSVReader reader = new CSVReader(new FileReader("HotelZulen/huespedes.csv"));
             String[] nextLine;
             try {
                 while ((nextLine = reader.readNext()) != null) {
@@ -107,25 +97,25 @@ public class PersonalCrud {
 
                 }
                 if (!find) {
-                    System.out.println("No se encontro algun personal con dicho ID");
+                    System.out.println("No se encontro algun huesped con dicho ID");
                 }
             } catch (IOException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             } catch (CsvValidationException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
         return find;
     }
 
-    public void actualizarPersonal(int id_actualizar) {
+    public void actualizarHuesped(int id_actualizar) {
         List<String[]> allData = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         boolean find = false;
         try {
-            CSVReader lector = new CSVReader(new FileReader("personal.csv"));
+            CSVReader lector = new CSVReader(new FileReader("HotelZulen/huespedes.csv"));
             try {
                 //Se lee toda la información
                 allData = lector.readAll();
@@ -147,34 +137,34 @@ public class PersonalCrud {
                 }
                 if (!find) {
                     System.out.println("-----------------------------");
-                    System.out.println("No se encontro algun personal con dicho ID");
+                    System.out.println("No se encontro algun huesped con dicho ID");
                 }
                 lector.close();
             } catch (IOException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             } catch (CsvException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Abrimos otro para sobre escribir
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("HotelZulen/personal.csv"))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("HotelZulen/huespedes.csv"))) {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public void eliminarPersonal(int id_eliminar) {
+    public void eliminarHuesped(int id_eliminar) {
         List<String[]> allData = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         try {
-            CSVReader lector = new CSVReader(new FileReader("personal.csv"));
+            CSVReader lector = new CSVReader(new FileReader("HotelZulen/huespedes.csv"));
             try {
                 //Se lee toda la información
                 allData = lector.readAll();
@@ -189,21 +179,22 @@ public class PersonalCrud {
                 }
                 lector.close();
             } catch (IOException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             } catch (CsvException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Abrimos otro para sobre escribir
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("personal.csv"))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("HotelZulen/huespedes.csv"))) {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
