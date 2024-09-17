@@ -25,7 +25,7 @@ public class InicioSesion {
     public boolean verificarValidezPersonal(String usu, String contra, String fun) {
         boolean validez = false;
         try {
-            CSVReader reader = new CSVReader(new FileReader("HotelZulen/personales.csv"));
+            CSVReader reader = new CSVReader(new FileReader("personales.csv"));
             String[] nextLine;
 
             try {
