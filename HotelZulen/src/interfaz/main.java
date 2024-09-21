@@ -8,8 +8,6 @@ package interfaz;
  *
  * @author PC
  */
-
-
 import servicio.HabitacionCrud;
 import servicio.HuespedCrud;
 import servicio.PersonalCrud;
@@ -18,11 +16,11 @@ import modelo.Personal;
 import modelo.Huesped;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-
 //import pruebas_giron.*; //En caso se use fuera de este package
-
 public class main {
 
     /**
@@ -36,7 +34,7 @@ public class main {
         main obj = new main();
         boolean sesion = true;
         boolean flag = true;//Melendez lógica
-        do{ 
+        do {
             boolean ingresa = false;
             boolean tipo = false;
             System.out.println("------------------");
@@ -47,19 +45,18 @@ public class main {
             System.out.println("2. Ingrese su Contrasena");
             String contra = sc.nextLine();
             String fun;
-            do{
-               System.out.println("3. Ingrese su Funcion");
-               fun = sc.nextLine();
-               tipo = isesion.verificarTipoIngresado(fun);
-               //Si el usuario se equivoco ingreso usuario o contraseña mal escribe salir
-            }while(!tipo);
-            
-            
+            do {
+                System.out.println("3. Ingrese su Funcion");
+                fun = sc.nextLine();
+                tipo = isesion.verificarTipoIngresado(fun);
+                //Si el usuario se equivoco ingreso usuario o contraseña mal escribe salir
+            } while (!tipo);
+
             //Verificar condicion entonces puede acceder al menu de Opciones
             ingresa = isesion.verificarValidezPersonal(nombre, contra, fun);
             System.out.println("\n");
-            
-            if(ingresa){
+
+            if (ingresa) {
                 do {
                     System.out.println("------------------");
                     System.out.println("Menu de opciones");
@@ -92,21 +89,20 @@ public class main {
                             flag = false;
                             System.out.println("Saliendo...");
                             break;
-                        }
-                    } while (flag);
+                    }
+                } while (flag);
             }
-            
+
             System.out.println("Si desea cerrar la sesion, ingrese 'salir' para terminar la Ejecucion");
             String desicion = sc.nextLine();
-            if(desicion.equalsIgnoreCase("salir")){
+            if (desicion.equalsIgnoreCase("salir")) {
                 sesion = false;
             }
-            
-        }while(sesion);
-        
-        
+
+        } while (sesion);
+
     }//Fin del main
-    
+
     public void menuPersonal(Scanner sc) {
         PersonalCrud personalCrud = new PersonalCrud();
         boolean flagPersonal = true;
@@ -127,40 +123,54 @@ public class main {
 
             switch (opPersonal) {
                 case 1:
+                    boolean flag_salir = false;
+                    int sumador_id = 1;
+                    
                     System.out.println("\n-----------------------------");
                     System.out.println("Agregando personal");
                     System.out.println("-----------------------------");
-                    //Nombre
-                    System.out.println("Nombre: ");
-                    String nombre = sc.nextLine();
-                    //Apellido
-                    System.out.println("Apellido: ");
-                    String apellido = sc.nextLine();
-                    //DNI
-                    System.out.println("DNI");
-                    int dni = sc.nextInt();
-                    //Telefono
-                    System.out.println("Telefono");
-                    int telefono = sc.nextInt();
-                    //Direccion y limpiamos buffer
-                    sc.nextLine();
-                    System.out.println("Dirección");
-                    String direccion = sc.nextLine();
-                    
-                    //Agregado de mi parte para verificar el inicio
-                    System.out.println("Usuario: ");
-                    String usuario = sc.nextLine();
-                    //Contraseña
-                    System.out.println("Contrasena: ");
-                    String contrasena = sc.nextLine();
-                    //Funcion
-                    System.out.println("Funcion");
-                    String funcion = sc.nextLine();
-                    
-                    //Agregamos el dni en el slot 6, por ahora
-                    Personal nuevoPersonal = new Personal(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, funcion, Integer.parseInt("1"));
-                    personalCrud.agregarPersonal(nuevoPersonal);
-                    System.out.println("-----------------------------\n");
+                    do {
+                        //Nombre
+                        System.out.println("Nombre: ");
+                        String nombre = sc.nextLine();
+                        //Apellido
+                        System.out.println("Apellido: ");
+                        String apellido = sc.nextLine();
+                        //DNI
+                        System.out.println("DNI");
+                        int dni = sc.nextInt();
+                        //Telefono
+                        System.out.println("Telefono");
+                        int telefono = sc.nextInt();
+                        //Direccion y limpiamos buffer
+                        sc.nextLine();
+                        System.out.println("Dirección");
+                        String direccion = sc.nextLine();
+
+                        //Agregado de mi parte para verificar el inicio
+                        System.out.println("Usuario: ");
+                        String usuario = sc.nextLine();
+                        //Contraseña
+                        System.out.println("Contrasena: ");
+                        String contrasena = sc.nextLine();
+                        //Funcion
+                        System.out.println("Funcion");
+                        String funcion = sc.nextLine();
+                        //Agregamos el dni en el slot 1, por ahora, luego es reemplazado por el id
+                        Personal nuevoPersonal = new Personal(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, funcion, Integer.parseInt("1"));
+                        //Agregamos a la lista
+                        personalCrud.agregarPersonal(nuevoPersonal, sumador_id);
+                        System.out.println("-----------------------------");
+                        System.out.println("Quieres agregar otro?");
+                        String op_seguir = sc.nextLine();
+                        
+                        if("no".equals(op_seguir) || "No".equals(op_seguir) || "NO".equals(op_seguir)){
+                            flag_salir=true;
+                        }
+                        sumador_id++;
+                    } while (!flag_salir);
+                    personalCrud.escribirCSV();
+
                     break;
                 case 2:
                     System.out.println("\n-----------------------------");
@@ -200,7 +210,7 @@ public class main {
             }
         } while (flagPersonal);
     }
-    
+
     public void menuHuesped(Scanner sc) {
         HuespedCrud huespedCrud = new HuespedCrud();
         boolean flagHuesped = true;
@@ -364,6 +374,4 @@ public class main {
         } while (flagHabitacion);
     }
 
-
-    
 }

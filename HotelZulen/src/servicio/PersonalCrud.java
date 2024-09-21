@@ -28,12 +28,11 @@ public class PersonalCrud {
     //Coleccion del personal
     List<Personal> listaPersonal = new ArrayList<>();
 
-    public void agregarPersonal(Personal personal) {
-        personal.setID(numeroLineas() + 1);
+    public void agregarPersonal(Personal personal, int contador) {
+        personal.setID(numeroLineas() + contador);
         listaPersonal.add(personal);
         System.out.println("-----------------------------");
         System.out.println("Personal agregado: " + personal.getNombre() + " " + personal.getApellido());
-        escribirCSV();
     }
 
     public void escribirCSV() {
@@ -73,9 +72,9 @@ public class PersonalCrud {
             System.out.println("-----------------------------");
             try {
                 while ((nextLine = reader.readNext()) != null) {
+                    
                     if ("1".equals(nextLine[9])) {
-                        System.out.println(nextLine[0]+"\t"+ nextLine[1]+"\t"+nextLine[2]+"\t"+nextLine[3]+"\t"+nextLine[4]+"\t"+nextLine[5]+"\t"+nextLine[6]+"\t"+nextLine[7]+"\t\t"+nextLine[8]+"\t"+nextLine[9]);
-                        System.out.println("-----------------------------");
+                        System.out.println(nextLine[0]+"\t"+ nextLine[1]+"\t"+nextLine[2]+"\t\t"+nextLine[3]+"\t"+nextLine[4]+"\t"+nextLine[5]+"\t"+nextLine[6]+"\t"+nextLine[7]+"\t\t"+nextLine[8]+"\t"+nextLine[9]);
                     }
 
                 }
