@@ -40,7 +40,7 @@ public class main {
             boolean ingresa = false;
             boolean tipo = false;
             System.out.println("------------------");
-            System.out.println(" INICIO DE SESION ");
+            System.out.println(" Inicio de sesion ");
             System.out.println("------------------");
             System.out.println("1. Ingrese su Usuario");
             String nombre = sc.nextLine();
@@ -57,6 +57,7 @@ public class main {
             
             //Verificar condicion entonces puede acceder al menu de Opciones
             ingresa = isesion.verificarValidezPersonal(nombre, contra, fun);
+            System.out.println("\n");
             
             if(ingresa){
                 do {
@@ -129,17 +130,35 @@ public class main {
                     System.out.println("\n-----------------------------");
                     System.out.println("Agregando personal");
                     System.out.println("-----------------------------");
+                    //Nombre
                     System.out.println("Nombre: ");
                     String nombre = sc.nextLine();
+                    //Apellido
                     System.out.println("Apellido: ");
                     String apellido = sc.nextLine();
+                    //DNI
+                    System.out.println("DNI");
+                    int dni = sc.nextInt();
+                    //Telefono
+                    System.out.println("Telefono");
+                    int telefono = sc.nextInt();
+                    //Direccion y limpiamos buffer
+                    sc.nextLine();
+                    System.out.println("Dirección");
+                    String direccion = sc.nextLine();
+                    
                     //Agregado de mi parte para verificar el inicio
                     System.out.println("Usuario: ");
                     String usuario = sc.nextLine();
+                    //Contraseña
                     System.out.println("Contrasena: ");
                     String contrasena = sc.nextLine();
+                    //Funcion
+                    System.out.println("Funcion");
+                    String funcion = sc.nextLine();
                     
-                    Personal nuevoPersonal = new Personal(nombre, apellido,usuario,contrasena);
+                    //Agregamos el dni en el slot 6, por ahora
+                    Personal nuevoPersonal = new Personal(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, funcion, Integer.parseInt("1"));
                     personalCrud.agregarPersonal(nuevoPersonal);
                     System.out.println("-----------------------------\n");
                     break;

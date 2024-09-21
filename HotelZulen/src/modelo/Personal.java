@@ -12,31 +12,32 @@ import java.util.List;
  * @author PC
  */
 public class Personal {
-
+    int ID;
     String nombre;
     String apellido;
     int DNI;
     int telefono;
     String direccion;
-    int ID;
     String usuario;
     String contrasena;
     String funcion;
+    int estado;
 
     public Personal() {
 
     }
 
-    public Personal(String nombre, String apellido, int DNI, int telefono, String direccion, int ID, String usuario, String contrasena, String funcion) {
+    public Personal(int ID, String nombre, String apellido, int DNI, int telefono, String direccion, String usuario, String contrasena, String funcion, int estado) {
+        this.ID = ID;
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.ID = ID;
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.funcion = funcion;
+        this.estado = estado;
     }
 
     public Personal(String nombre, String apellido) {
@@ -50,11 +51,48 @@ public class Personal {
         this.usuario = usuario;
         this.contrasena = contrasena;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
     
     public void setFuncion(String funcion) {
         this.funcion = funcion;
     }
 
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+    
+    
     public String getNombre() {
         return nombre;
     }
@@ -91,4 +129,9 @@ public class Personal {
         return funcion;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+    
+    
 }
