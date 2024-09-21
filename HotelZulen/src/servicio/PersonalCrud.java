@@ -68,21 +68,21 @@ public class PersonalCrud {
         try {
             CSVReader reader = new CSVReader(new FileReader("personal.csv"));
             String[] nextLine;
-            System.out.println("---------------------------------------------------------------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------------------------");
             System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n",
                     "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña", "Funcion");
-            System.out.println("---------------------------------------------------------------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------------------------");
             try {
                 while ((nextLine = reader.readNext()) != null) {
 
                     if ("1".equals(nextLine[9])) {
-                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n", nextLine[0], nextLine[1], nextLine[2], nextLine[3], 
+                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n", nextLine[0], nextLine[1], nextLine[2], nextLine[3],
                                 nextLine[4], nextLine[5], nextLine[6], nextLine[7], nextLine[8]);
 
                     }
 
                 }
-                System.out.println("---------------------------------------------------------------------------------------------------------------------");
+                System.out.println("--------------------------------------------------------------------------------------");
             } catch (IOException ex) {
                 Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
             } catch (CsvValidationException ex) {
@@ -102,17 +102,16 @@ public class PersonalCrud {
                 while ((nextLine = reader.readNext()) != null) {
 
                     if (id_buscar == Integer.parseInt(nextLine[0]) && "1".equals(nextLine[9])) {
-                        System.out.println("---------------------------------------------------------------------------------------------------------------------");
-                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n",
-                    "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña", "Funcion");
-                        System.out.println("---------------------------------------------------------------------------------------------------------------------");
-                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n", nextLine[0], nextLine[1], nextLine[2], nextLine[3], 
-                                nextLine[4], nextLine[5], nextLine[6], nextLine[7], nextLine[8]);
-                        System.out.println("---------------------------------------------------------------------------------------------------------------------\n");
+                        System.out.println("--------------------------------------------------------------------------------------");
+                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %s%n",
+                                "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Funcion");
+                        System.out.println("--------------------------------------------------------------------------------------");
+                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %s%n", nextLine[0], nextLine[1], nextLine[2], nextLine[3],
+                                nextLine[4], nextLine[5], nextLine[8]);
+                        System.out.println("--------------------------------------------------------------------------------------\n");
                         find = true;
-                    }
-                    else if (id_buscar == Integer.parseInt(nextLine[0]) && "0".equals(nextLine[9])){
-                        
+                    } else if (id_buscar == Integer.parseInt(nextLine[0]) && "0".equals(nextLine[9])) {
+
                     }
 
                 }
@@ -131,6 +130,7 @@ public class PersonalCrud {
     }
 
     public void actualizarPersonal(int id_actualizar) {
+        //Usamos una colección
         List<String[]> allData = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         boolean find = false;
@@ -139,19 +139,42 @@ public class PersonalCrud {
             try {
                 //Se lee toda la información
                 allData = lector.readAll();
-                for (String[] row : allData) {
-                    if (id_actualizar == Integer.parseInt(row[0]) && "1".equals(row[3])) {
-                        System.out.println("-----------------------------");
-                        System.out.println("ID Nombre   Apellido");
-                        System.out.println("-----------------------------");
-                        System.out.println(row[0] + "  " + row[1] + "  " + row[2]);
-                        System.out.println("-----------------------------");
+                for (String[] nextLine : allData) {
+                    if (id_actualizar == Integer.parseInt(nextLine[0]) && "1".equals(nextLine[9])) {
+                        System.out.println("--------------------------------------------------------------------------------------");
+                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %s%n",
+                                "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Funcion");
+                        System.out.println("--------------------------------------------------------------------------------------");
+                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %s%n", nextLine[0], nextLine[1], nextLine[2], nextLine[3],
+                                nextLine[4], nextLine[5], nextLine[8]);
+                        System.out.println("--------------------------------------------------------------------------------------");
                         System.out.println("Nuevos Datos");
-                        System.out.println("-----------------------------");
+                        System.out.println("--------------------------------------------------------------------------------------");
+                        //Nombre
                         System.out.println("Nombre: ");
-                        row[1] = sc.nextLine();
+                        nextLine[1] = sc.nextLine();
+                        //Apellido
                         System.out.println("Apellido: ");
-                        row[2] = sc.nextLine();
+                        nextLine[2] = sc.nextLine();
+                        //DNI
+                        System.out.println("DNI");
+                        nextLine[3] = String.valueOf(sc.nextInt());
+                        //Telefono
+                        System.out.println("Telefono");
+                        nextLine[4] = String.valueOf(sc.nextInt());
+                        //Direccion y limpiamos buffer
+                        sc.nextLine();
+                        System.out.println("Dirección");
+                        nextLine[5] = sc.nextLine();
+                        //Agregado de mi parte para verificar el inicio
+                        System.out.println("Usuario: ");
+                        nextLine[6] = sc.nextLine();
+                        //Contraseña
+                        System.out.println("Contrasena: ");
+                        nextLine[7] = sc.nextLine();
+                        //Funcion
+                        System.out.println("Funcion");
+                        nextLine[8] = sc.nextLine();
                         find = true;
                     }
                 }
@@ -171,7 +194,7 @@ public class PersonalCrud {
         }
 
         //Abrimos otro para sobre escribir
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("personales.csv"))) {
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("personal.csv"))) {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {

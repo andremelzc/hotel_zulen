@@ -25,7 +25,7 @@ public class InicioSesion {
 
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    if ("1".equals(nextLine[3]) && usu.equals(nextLine[4]) && contra.equals(nextLine[5]) && fun.equals(nextLine[6]) ) {
+                    if ("1".equals(nextLine[9]) && usu.equals(nextLine[6]) && contra.equals(nextLine[7]) && fun.equals(nextLine[8]) ) {
                         System.out.println("Bienvenido:");
                         System.out.println(" Ha ingresado como " +  nextLine[6]+", "+ nextLine[1] + " " + nextLine[2]);
                         
