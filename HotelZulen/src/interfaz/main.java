@@ -164,11 +164,14 @@ public class main {
                         System.out.println("Quieres agregar otro?");
                         String op_seguir = sc.nextLine();
                         
+                        //Si la respuesta es no, se sale del do-while
                         if("no".equals(op_seguir) || "No".equals(op_seguir) || "NO".equals(op_seguir)){
                             flag_salir=true;
                         }
                         sumador_id++;
                     } while (!flag_salir);
+                    
+                    //Escrimos en el csv
                     personalCrud.escribirCSV();
 
                     break;
@@ -185,7 +188,6 @@ public class main {
                     System.out.println("ID a buscar: ");
                     int id_buscar = sc.nextInt();
                     personalCrud.buscarPersonal(id_buscar);
-                    System.out.println("-----------------------------\n");
                     break;
                 case 4:
                     System.out.println("\n-----------------------------");

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package servicio;
+
 import modelo.Personal;
 
 import com.opencsv.CSVWriter;
@@ -24,7 +25,7 @@ import java.util.logging.Logger;
  * @author PC
  */
 public class PersonalCrud {
-    
+
     //Coleccion del personal
     List<Personal> listaPersonal = new ArrayList<>();
 
@@ -67,17 +68,21 @@ public class PersonalCrud {
         try {
             CSVReader reader = new CSVReader(new FileReader("personal.csv"));
             String[] nextLine;
-            System.out.println("-----------------------------");
-            System.out.println("ID\tNombre\tApellido\tDNI\t\tTelefono\tDireccion\t\tUsuario\t\tContraseña\tFuncion\t\tEstado");
-            System.out.println("-----------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n",
+                    "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña", "Funcion");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------");
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    
+
                     if ("1".equals(nextLine[9])) {
-                        System.out.println(nextLine[0]+"\t"+ nextLine[1]+"\t"+nextLine[2]+"\t\t"+nextLine[3]+"\t"+nextLine[4]+"\t"+nextLine[5]+"\t"+nextLine[6]+"\t"+nextLine[7]+"\t\t"+nextLine[8]+"\t"+nextLine[9]);
+                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n", nextLine[0], nextLine[1], nextLine[2], nextLine[3], 
+                                nextLine[4], nextLine[5], nextLine[6], nextLine[7], nextLine[8]);
+
                     }
 
                 }
+                System.out.println("---------------------------------------------------------------------------------------------------------------------");
             } catch (IOException ex) {
                 Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
             } catch (CsvValidationException ex) {
@@ -96,12 +101,18 @@ public class PersonalCrud {
             try {
                 while ((nextLine = reader.readNext()) != null) {
 
-                    if (id_buscar == Integer.parseInt(nextLine[0]) && "1".equals(nextLine[3])) {
-                        System.out.println("-----------------------------");
-                        System.out.println("ID Nombre   Apellido");
-                        System.out.println("-----------------------------");
-                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2]);
+                    if (id_buscar == Integer.parseInt(nextLine[0]) && "1".equals(nextLine[9])) {
+                        System.out.println("---------------------------------------------------------------------------------------------------------------------");
+                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n",
+                    "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña", "Funcion");
+                        System.out.println("---------------------------------------------------------------------------------------------------------------------");
+                        System.out.printf("%-4s %-10s %-10s %-12s %-10s %-20s %-15s %-15s %s%n", nextLine[0], nextLine[1], nextLine[2], nextLine[3], 
+                                nextLine[4], nextLine[5], nextLine[6], nextLine[7], nextLine[8]);
+                        System.out.println("---------------------------------------------------------------------------------------------------------------------\n");
                         find = true;
+                    }
+                    else if (id_buscar == Integer.parseInt(nextLine[0]) && "0".equals(nextLine[9])){
+                        
                     }
 
                 }
