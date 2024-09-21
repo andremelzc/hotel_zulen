@@ -125,7 +125,7 @@ public class main {
                 case 1:
                     boolean flag_salir = false;
                     int sumador_id = 1;
-                    
+
                     System.out.println("\n-----------------------------");
                     System.out.println("Agregando personal");
                     System.out.println("-----------------------------");
@@ -137,25 +137,74 @@ public class main {
                         System.out.println("Apellido: ");
                         String apellido = sc.nextLine();
                         //DNI
-                        System.out.println("DNI");
-                        int dni = sc.nextInt();
+                        boolean flag_dni = false;
+                        int dni;
+                        do {
+                            System.out.println("DNI");
+                            dni = sc.nextInt();
+                            if (String.valueOf(dni).length() == 8) {
+                                flag_dni = true;
+                            }
+                            if (!flag_dni) {
+                                System.out.println("-----------------------------");
+                                System.out.println("Ingrese un DNI correcto");
+                                System.out.println("-----------------------------");
+                            }
+                        } while (!flag_dni);
+
                         //Telefono
-                        System.out.println("Telefono");
-                        int telefono = sc.nextInt();
+                        boolean flag_telefono = false;
+                        int telefono;
+                        do {
+                            System.out.println("Telefono");
+                            telefono = sc.nextInt();
+                            if (String.valueOf(telefono).length() == 9) {
+                                flag_telefono = true;
+                            }
+                            if (!flag_telefono) {
+                                System.out.println("-----------------------------");
+                                System.out.println("Ingrese un telefono correcto");
+                                System.out.println("-----------------------------");
+                            }
+                        } while (!flag_telefono);
                         //Direccion y limpiamos buffer
                         sc.nextLine();
                         System.out.println("Dirección");
                         String direccion = sc.nextLine();
-
                         //Agregado de mi parte para verificar el inicio
-                        System.out.println("Usuario: ");
-                        String usuario = sc.nextLine();
+                        String usuario;
+                        boolean flag_usuario = false;
+                        do {
+                            System.out.println("Usuario: ");
+                            usuario = sc.nextLine();
+                            if(personalCrud.existePersonalUsuaro(usuario)){
+                                flag_usuario=true;
+                                System.out.println("-----------------------------");
+                                System.out.println("Ingrese un usuario no existente");
+                                System.out.println("-----------------------------");
+                            }else{
+                                flag_usuario=false;
+                            }
+                        } while (flag_usuario);
                         //Contraseña
                         System.out.println("Contrasena: ");
                         String contrasena = sc.nextLine();
                         //Funcion
-                        System.out.println("Funcion");
-                        String funcion = sc.nextLine();
+                        boolean flag_funcion = false;
+                        String funcion;
+                        do {
+                            System.out.println("Funcion");
+                            funcion = sc.nextLine();
+                            if ("Administrador".equals(funcion) || "Recepcionista".equals(funcion) || "Ama de LLaves".equals(funcion) || "Jefe de Cocina".equals(funcion)) {
+                                flag_funcion = true;
+                            }
+                            if (!flag_funcion) {
+                                System.out.println("-----------------------------");
+                                System.out.println("Funcion no existente, vuelva a ingresar");
+                                System.out.println("-----------------------------");
+                            }
+                        } while (!flag_funcion);
+
                         //Agregamos el dni en el slot 1, por ahora, luego es reemplazado por el id
                         Personal nuevoPersonal = new Personal(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, funcion, Integer.parseInt("1"));
                         //Agregamos a la lista
@@ -163,14 +212,14 @@ public class main {
                         System.out.println("-----------------------------");
                         System.out.println("Quieres agregar otro?");
                         String op_seguir = sc.nextLine();
-                        
+
                         //Si la respuesta es no, se sale del do-while
-                        if("no".equals(op_seguir) || "No".equals(op_seguir) || "NO".equals(op_seguir)){
-                            flag_salir=true;
+                        if ("no".equals(op_seguir) || "No".equals(op_seguir) || "NO".equals(op_seguir)) {
+                            flag_salir = true;
                         }
                         sumador_id++;
                     } while (!flag_salir);
-                    
+
                     //Escrimos en el csv
                     personalCrud.escribirCSV();
 
