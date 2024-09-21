@@ -1,6 +1,4 @@
-package pruebas_cuenca;
-
-import pruebas_giron.Personal;
+package modelo;
 
 public class Habitacion {
 

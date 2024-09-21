@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pruebas_giron;
+package servicio;
+import modelo.Personal;
 
 import com.opencsv.CSVWriter;
 import com.opencsv.CSVReader;
@@ -36,7 +37,7 @@ public class PersonalCrud {
     public void escribirCSV() {
         try (CSVWriter escritor = new CSVWriter(new FileWriter("personales.csv", true))) {
             for (Personal personal : listaPersonal) {
-                String[] datos = {String.valueOf(numeroLineas() + 1), personal.getNombre(), personal.getApellido(), "1", personal.getUsuario(), personal.contrasena}; //El 1 significa que la cuenta está activa 
+                String[] datos = {String.valueOf(numeroLineas() + 1), personal.getNombre(), personal.getApellido(), "1", personal.getUsuario(), personal.getContrasena()}; //El 1 significa que la cuenta está activa 
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
