@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author PC
  */
-public class Personal {
+public  class Personal {
     int ID;
     String nombre;
     String apellido;

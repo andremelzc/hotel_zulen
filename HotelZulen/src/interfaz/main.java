@@ -1,9 +1,5 @@
 package interfaz;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 /**
  *
  * @author PC
@@ -13,6 +9,7 @@ import servicio.HuespedCrud;
 import servicio.PersonalCrud;
 import modelo.Habitacion;
 import modelo.Personal;
+import modelo.AmaDeLlaves;
 import modelo.Huesped;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -116,6 +113,7 @@ public class main {
             System.out.println("4. Actualizar personal");
             System.out.println("5. Eliminar personal");
             System.out.println("6. Retroceder");
+            System.out.println("7. Leer todo Ama de Llaves");
             System.out.println("------------------");
             System.out.println("Que desea hacer?");
             int opPersonal = sc.nextInt();
@@ -257,6 +255,12 @@ public class main {
                     System.out.println("-----------------------------\n");
                 case 6:
                     flagPersonal = false;
+                    break;
+                case 7:
+                    System.out.println("\n-----------------------------");
+                    System.out.println("Imprimiendo Ama de Llaves");
+                    System.out.println("-----------------------------\n");
+                    personalCrud.leerTodoAmaLlaves();
                     break;
             }
         } while (flagPersonal);

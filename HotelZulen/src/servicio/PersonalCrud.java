@@ -5,7 +5,6 @@
 package servicio;
 
 import modelo.Personal;
-
 import com.opencsv.CSVWriter;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.AmaDeLlaves;
 
 /**
  *
@@ -28,17 +28,21 @@ public class PersonalCrud {
 
     //Coleccion del personal
     List<Personal> listaPersonal = new ArrayList<>();
+    public List<AmaDeLlaves> listaAmaLlaves;
 
     public PersonalCrud() {
-        
+        this.listaAmaLlaves = new ArrayList<>();
     }
     
-
     public void agregarPersonal(Personal personal, int contador) {
         personal.setID(numeroLineas() + contador);
         listaPersonal.add(personal);
         System.out.println("-----------------------------");
         System.out.println("Personal agregado: " + personal.getNombre() + " " + personal.getApellido());
+        if(personal.getFuncion().equals("Ama de LLaves")){
+        listaAmaLlaves.add(new AmaDeLlaves(personal.getID(),personal.getNombre(),personal.getApellido(),personal.getDNI(),personal.getTelefono(),
+        personal.getDireccion(),personal.getUsuario(),personal.getContrasena(),personal.getEstado()));
+        }
     }
 
     public void escribirCSV() {
@@ -333,6 +337,34 @@ public class PersonalCrud {
 
             escritor.writeAll(allData);
         } catch (IOException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void leerTodoAmaLlaves() {
+        try {
+            CSVReader reader = new CSVReader(new FileReader("personal.csv"));
+            String[] nextLine;
+            System.out.println("--------------------------------------------------------------------------------------");
+            System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s %s%n",
+                    "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña", "Funcion");
+            System.out.println("--------------------------------------------------------------------------------------");
+            try {
+                while ((nextLine = reader.readNext()) != null) {
+
+                    if ("1".equals(nextLine[9]) && "Ama de Llaves".equals(nextLine[8])) {
+                        System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s %s%n", nextLine[0], nextLine[1], nextLine[2], nextLine[3],
+                                nextLine[4], nextLine[5], nextLine[6], nextLine[7], nextLine[8]);
+
+                    }
+
+                }
+                System.out.println("--------------------------------------------------------------------------------------");
+            } catch (IOException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
