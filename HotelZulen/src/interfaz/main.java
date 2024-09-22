@@ -29,28 +29,40 @@ public class main {
         //Reservación reservacion = new Reservación(); //Esto es de Melendez
         InicioSesion isesion = new InicioSesion();
         main obj = new main();
-        boolean sesion = true;
+        boolean sesion = true;//Para mantener la sesión Activa
         boolean flag = true;//Melendez lógica
+        boolean usuario = false;//Para verificar si el nombre de Usuario Existe
+        
         do {
             boolean ingresa = false;
+            
             boolean tipo = false;
             System.out.println("------------------");
             System.out.println(" Inicio de sesion ");
             System.out.println("------------------");
-            System.out.println("1. Ingrese su Usuario");
-            String nombre = sc.nextLine();
+            //Debe Haber un Mensaje
+            String nombre;
+            do{
+                System.out.println("1. Ingrese su Usuario");
+                nombre = sc.nextLine();
+                //Esta funcion Indica si es Personal o Huesped
+                usuario = isesion.verificarExistenciaUsuario(nombre);
+                //Requiero una Función Booleana que determine si lo encuentra en Personal o Huesped
+                //Si lo encuentra retornará verdadero y saldrá del bucle
+                
+                if(!usuario){
+                    System.out.println("Por favor Reingrese su Usuario:");
+                }
+            }while(!usuario);
+            
+            
             System.out.println("2. Ingrese su Contrasena");
             String contra = sc.nextLine();
-            String fun;
-            do {
-                System.out.println("3. Ingrese su Funcion");
-                fun = sc.nextLine();
-                tipo = isesion.verificarTipoIngresado(fun);
-                //Si el usuario se equivoco ingreso usuario o contraseña mal escribe salir
-            } while (!tipo);
-
+            
+            
             //Verificar condicion entonces puede acceder al menu de Opciones
-            ingresa = isesion.verificarValidezPersonal(nombre, contra, fun);
+            ingresa = isesion.verificarValidezPersonal(nombre, contra);
+            
             System.out.println("\n");
 
             if (ingresa) {
