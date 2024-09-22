@@ -9,7 +9,7 @@ import java.io.File;
  *
  * @author Fabrizio Mantari
  */
-public class Consumible {
+public abstract class Consumible {
     protected int precio;
     protected String nombre;
     protected String descripcion;
