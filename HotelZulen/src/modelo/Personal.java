@@ -40,17 +40,7 @@ public  class Personal {
         this.estado = estado;
     }
 
-    public Personal(String nombre, String apellido) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
     //Constructor Agregado por Miguel para el Inicio de Usuario
-    public Personal(String nombre, String apellido, String usuario, String contrasena) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -91,7 +81,6 @@ public  class Personal {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    
     
     public String getNombre() {
         return nombre;
