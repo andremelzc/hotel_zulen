@@ -16,6 +16,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import modelo.Servicios;
+import servicio.ServiciosCrud;
 
 //import pruebas_giron.*; //En caso se use fuera de este package
 public class main {
@@ -26,6 +28,7 @@ public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PersonalCrud personal = new PersonalCrud();
+        ServiciosCrud servicios = new ServiciosCrud();
         //Reservación reservacion = new Reservación(); //Esto es de Melendez
         InicioSesion isesion = new InicioSesion();
         main obj = new main();
@@ -61,8 +64,10 @@ public class main {
                     System.out.println("1. CRUD personal");
                     System.out.println("2. CRUD huesped");
                     System.out.println("3. CRUD habitacion");
-                    System.out.println("4. Asignar habitacion");
-                    System.out.println("5. Salir");
+                    System.out.println("4. CRUD servicios");
+                    System.out.println("5. Asignar habitacion");
+                    System.out.println("6. Salir");
+                    
                     System.out.println("------------------");
                     System.out.println("Que desea hacer?");
                     int op = sc.nextInt();
@@ -79,13 +84,17 @@ public class main {
                             obj.menuHabitacion(sc);
                             break;
                         case 4:
+                            obj.menuServicios(sc);
+                            break;
+                        case 5:
                             //reservacion.asignarReservacion(sc); //Esto es de Melendez
                             System.out.println("\n4");
                             break;
-                        case 5:
+                        case 6:
                             flag = false;
                             System.out.println("Saliendo...");
                             break;
+                            
                     }
                 } while (flag);
             }
@@ -428,5 +437,139 @@ public class main {
             }
         } while (flagHabitacion);
     }
+    
+    public void menuServicios(Scanner sc){
+       ServiciosCrud serviciosCrud = new ServiciosCrud();
+        boolean flagServicio = true;
+        do {
+            System.out.println("\n------------------");
+            System.out.println("CRUD SERVICIOS");
+            System.out.println("------------------");
+            System.out.println("1. Agregar servicio");
+            System.out.println("2. Mostrar servicios");
+            System.out.println("3. Actualizar servicio");
+            System.out.println("4. Eliminar servicio");
+            System.out.println("5. Retroceder");
+            System.out.println("------------------");
+            System.out.println("Que desea hacer?");
+            int opServicio = sc.nextInt();
+            sc.nextLine();
 
+            switch (opServicio) {
+                case 1:
+                    boolean flag_salir = false;
+
+                    System.out.println("\n-----------------------------");
+                    System.out.println("Agregando servicio");
+                    System.out.println("-----------------------------");
+                    do {
+                        //Nombre
+                        System.out.println("Concepto: ");
+                        String concepto = sc.nextLine();
+                        //Costo
+                        int costo;
+                        boolean flag_costo = false;
+                        do {
+                            System.out.println("Costo: ");
+                            costo = sc.nextInt();
+                            if (costo>0) {
+                                flag_costo = true;
+                            }
+                            if (!flag_costo) {
+                                System.out.println("-----------------------------");
+                                System.out.println("Ingrese un precio correcto");
+                                System.out.println("-----------------------------");
+                            }
+                        } while (!flag_costo);
+                        
+                        //Agregando a la lista de servicios
+                        Servicios nuevoServicio = new Servicios();
+                        serviciosCrud.agregarServicios(nuevoServicio,concepto,costo);
+                        System.out.println("-----------------------------");
+                        System.out.println("Quieres agregar otro?");
+                        sc.nextLine();// para consumir una linea >/
+                        String op_seguir = sc.nextLine();
+
+                        //Si la respuesta es no, se sale del do-while
+                        if ("no".equals(op_seguir) || "No".equals(op_seguir) || "NO".equals(op_seguir)) {
+                            flag_salir = true;
+                        }
+                    } while (!flag_salir);
+
+                    //Escrimos en el csv
+                    //personalCrud.escribirCSV();
+
+                    break;
+                case 2:
+                    System.out.println("\n-----------------------------");
+                    System.out.println("Imprimiendo los servicios");
+                    System.out.println("-----------------------------\n");
+                    serviciosCrud.mostrarServicios();
+                    break;
+                case 3: //ACTUALIZAR SERVICIO X ID
+                    System.out.println("\n-----------------------------");
+                    serviciosCrud.mostrarServicios();
+                    System.out.println("ID a actualizar: ");
+                    int id_buscar = sc.nextInt();
+                    sc.nextLine(); // consumir una linea en blanco
+                    if(!serviciosCrud.verificarExistenciaxId(id_buscar)){
+                        System.out.println("-----------------------------");
+                        System.out.println("El ID ingresado no se encuentra");
+                        System.out.println("-----------------------------");
+                    }
+                    else{
+                        //Nombre
+                        System.out.println("Concepto: ");
+                        String concepto = sc.nextLine();
+                        //Costo
+                        int costo;
+                        boolean flag_costo = false;
+                        do {
+                            System.out.println("Costo: ");
+                            costo = sc.nextInt();
+                            if (costo>0) {
+                                flag_costo = true;
+                            }
+                            if (!flag_costo) {
+                                System.out.println("-----------------------------");
+                                System.out.println("Ingrese un precio correcto");
+                                System.out.println("-----------------------------");
+                            }
+                        } while (!flag_costo);
+                        
+                        //Cambiando el registro del id por otros datos
+                        serviciosCrud.modificarServicioxId(id_buscar,concepto,costo);
+                        
+                        System.out.println("-----------------------------");
+                        System.out.println("Registro modificado");
+                        System.out.println("-----------------------------");
+                    }
+                    
+                    break;
+                case 4:
+                    System.out.println("\n-----------------------------");
+                    System.out.println("Eliminando servicio");
+                    System.out.println("-----------------------------");
+                    System.out.println("ID a eliminar: ");
+                    int id_eliminar = sc.nextInt();
+                    sc.nextLine();
+                    if(!serviciosCrud.verificarExistenciaxId(id_eliminar)){
+                        System.out.println("-----------------------------");
+                        System.out.println("El ID ingresado no se encuentra");
+                        System.out.println("-----------------------------");
+                    }
+                    else{
+                        serviciosCrud.eliminarServicioXId(id_eliminar);
+                        System.out.println("-----------------------------");
+                        System.out.println("Registro eliminado");
+                        System.out.println("-----------------------------\n");
+                    }
+                    break;
+                case 5:
+                    flagServicio=false;
+                    break;
+                
+            }
+        } while (flagServicio); 
+    }
 }
