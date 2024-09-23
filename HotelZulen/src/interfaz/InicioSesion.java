@@ -38,11 +38,11 @@ public class InicioSesion {
             }else if(huesped.existeHuespedUsuaro(nombre_usuario)){
                 existe = true;
                 setCategoria("Huesped");
-                System.out.println("Se encontro un Huesped");
+                System.out.println("Huesped: ");
             }else if(personal.existePersonalUsuaro(nombre_usuario)){
                 setCategoria("Personal");
                 existe = true;
-                System.out.println("Se encontro un miembro del personal");
+                System.out.println("Personal: ");
             }else{
                 System.out.println("No se Encontro ningun registro con el Nombre de Usuario Ingresado");
             }
@@ -50,21 +50,16 @@ public class InicioSesion {
         return existe;
     }
     
-    
-    public boolean verificarValidezPersonal(String usu, String contra) {
-        
-        System.out.println(""+usu+contra+categoria);
-        
+    public boolean verificarInicioPersonal(String usu, String contra){
         boolean validez = false;
-        if(categoria.equalsIgnoreCase(getCategoria())){
-            try {
+        try {
                     System.out.println("Intentamos en Personal");
                     CSVReader reader = new CSVReader(new FileReader("personal.csv"));
                     String[] nextLine;
 
                     try {
                         while ((nextLine = reader.readNext()) != null) {
-                            if ("1".equals(nextLine[9]) && usu.equals(nextLine[6]) && contra.equals(nextLine[7]) ) {
+                             if ("1".equals(nextLine[9]) && usu.equals(nextLine[6]) && contra.equals(nextLine[7]) ) {
                                 System.out.println("Bienvenido:");
                                 System.out.println(" Ha ingresado como " +  nextLine[6]+", "+ nextLine[1] + " " + nextLine[2]);
 
@@ -81,11 +76,17 @@ public class InicioSesion {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
+        if(!validez){
+            System.out.println("Usuario Inactivo o Contraseña Incorrecta");
         }
+        return validez;
+    }
+    
+    public boolean verificarInicioHuesped(String usu, String contra){
+        boolean validez = false;
         
-        if(categoria.equalsIgnoreCase("Huesped")){
-            try {
-                    System.out.println("Intentamos en Personal");
+        try {
+                    System.out.println("Intentamos en Huesped");
                     CSVReader readers = new CSVReader(new FileReader("huespedes.csv"));
                     String[] nextLines;
 
@@ -97,6 +98,7 @@ public class InicioSesion {
 
                                 validez = true;
                             }
+                            
 
                         }
                     } catch (IOException ex) {
@@ -108,19 +110,33 @@ public class InicioSesion {
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
+        
+        if(!validez){
+            System.out.println("Usuario Inactivo o Contraseña Incorrecta");
+        }
+        return validez;
+    }
+    
+    public boolean verificarValidezPersonal(String usu, String contra) {
+        
+        
+        
+        boolean validez = false;
+        if(categoria.equalsIgnoreCase("Personal")){
+            validez = verificarInicioPersonal(usu, contra);
+
+        }else if(categoria.equalsIgnoreCase("Huesped")){
+            validez = verificarInicioHuesped(usu, contra);
+
         }else{
-            System.out.println(" ");
-        }            
+            System.out.println("NEIN");
+        }        
+//        if(validez){
+//            System.out.println("Bienvenido: "+usu+", "+contra+" haz iniciado como: "+categoria);
+//        }
     return validez;
     }
-    //Comentado Pues ya no se necesita verificar el tipo de Función
-//    public boolean verificarTipoIngresado(String tipo){
-//        boolean valido = false;
-//            if(tipo.equalsIgnoreCase("Admin")|| tipo.equalsIgnoreCase("Huesped")|| tipo.equalsIgnoreCase("Recepcionista")){
-//                valido = true;
-//            }else{
-//                System.out.println("Tipo no Valido; se admite 'Admin' 'Huesped' o 'Recepcionista' intentelo otra vez o escriba salir");
-//            }
-//        return valido;
-//    }
+  
+    
+    
 }
