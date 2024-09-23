@@ -6,10 +6,11 @@ package modelo;
 
 import java.util.List;
 
-/**
- *
- * @author Fabrizio Mantari
- */
+
 public class Reservación {
-    
+    private int idReserva;
+    private Habitacion habitacion;
+    private Huesped huesped;
+    List<Servicios> servicios;
+    //List<PedidosComida> pedidosComida;
 }
