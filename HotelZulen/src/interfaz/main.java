@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import modelo.Servicios;
+import modelo.TipoDeHabitacion;
 import servicio.ServiciosCrud;
 
 //import pruebas_giron.*; //En caso se use fuera de este package
@@ -372,6 +373,7 @@ public class main {
 
     public void menuHabitacion(Scanner sc) {
         HabitacionCrud HabitacionCrud = new HabitacionCrud();
+        TipoDeHabitacion tipoHabitacionMostrar = new TipoDeHabitacion();
         boolean flagHabitacion = true;
         do {
             System.out.println("\n------------------");
@@ -383,6 +385,7 @@ public class main {
             System.out.println("4. Actualizar Habitacion");
             System.out.println("5. Eliminar Habitacion");
             System.out.println("6. Retroceder");
+            System.out.println("7. Leer Tipos de Habitacion");
             System.out.println("------------------");
             System.out.println("Que desea hacer?");
             int opHabitacion = sc.nextInt();
@@ -406,8 +409,9 @@ public class main {
                     String servicio = sc.nextLine();
                     System.out.println("IDHuesped: ");
                     int IDHuesped = sc.nextInt();
-
-                    Habitacion nuevoHabitacion = new Habitacion(piso, tipo, estado, personalAsignado, servicio, IDHuesped);
+                    
+                    TipoDeHabitacion tipoHabitacion =new TipoDeHabitacion(tipo);
+                    Habitacion nuevoHabitacion = new Habitacion(piso,tipoHabitacion, estado, personalAsignado, servicio, IDHuesped);
                     HabitacionCrud.agregarHabitacion(nuevoHabitacion);
                     System.out.println("-----------------------------\n");
                     break;
@@ -446,6 +450,9 @@ public class main {
                 case 6:
                     flagHabitacion = false;
                     break;
+                case 7:
+                    tipoHabitacionMostrar.mostrarTiposDeHabitaciones();
+                    break;    
             }
         } while (flagHabitacion);
     }

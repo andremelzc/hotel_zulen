@@ -4,7 +4,7 @@ public class Habitacion {
 
     private int ID;
     private int piso;
-    private String tipo;
+    private TipoDeHabitacion tipoDeHabitacion;
     private String estado;
     // private Housekeeper housekeeper;
     private String personalAsignado;
@@ -12,19 +12,19 @@ public class Habitacion {
     private String servicio;
     private int IDHuesped;
 
-    public Habitacion(int piso, String tipo, String estado, String personalAsignado, String servicio, int IDHuesped) {
+    public Habitacion(int piso, TipoDeHabitacion tipoHabitacion, String estado, String personalAsignado, String servicio, int IDHuesped) {
 
         this.piso = piso;
-        this.tipo = tipo;
+        this.tipoDeHabitacion = tipoHabitacion;
         this.estado = estado;
         this.personalAsignado = personalAsignado;
         this.servicio = servicio;
         this.IDHuesped = IDHuesped;
     }
 
-    public Habitacion(int piso, String tipo, String servicio, int IDHuesped) {
+    public Habitacion(int piso, TipoDeHabitacion tipoHabitacion, String servicio, int IDHuesped) {
         this.piso = piso;
-        this.tipo = tipo;
+        this.tipoDeHabitacion = tipoHabitacion;
         this.servicio = servicio;
         this.IDHuesped = IDHuesped;
     }
@@ -33,8 +33,8 @@ public class Habitacion {
         return piso;
     }
 
-    public String getTipo() {
-        return tipo;
+    public TipoDeHabitacion getTipoHabitacion() {
+        return tipoDeHabitacion;
     }
 
     public String getEstado() {

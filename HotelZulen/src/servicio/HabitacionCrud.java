@@ -1,6 +1,7 @@
 package servicio;
 
 import modelo.Habitacion;
+import modelo.TipoDeHabitacion;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -23,14 +24,14 @@ public class HabitacionCrud {
     public void agregarHabitacion(Habitacion habitacion) {
         listaHabitacion.add(habitacion);
         System.out.println("-----------------------------");
-        System.out.println("Habitacion " + habitacion.getTipo() + " agregada en el Piso " + habitacion.getPiso()) ;
+        System.out.println("Habitacion " + habitacion.getTipoHabitacion().getConcepto() + " agregada en el Piso " + habitacion.getPiso()) ;
         escribirCSV();
     }
 
     public void escribirCSV() {
         try (CSVWriter escritor = new CSVWriter(new FileWriter("habitaciones.csv", true))) {
             for (Habitacion habitacion : listaHabitacion) {
-                String[] datos = {String.valueOf(numeroLineas() + 1), habitacion.getTipo(), Integer.toString(habitacion.getPiso()),"1" ,habitacion.getEstado(), habitacion.getServicio(), Integer.toString(habitacion.getIDHuesped())};   //El 1 significa que la cuenta está activa
+                String[] datos = {String.valueOf(numeroLineas() + 1), habitacion.getTipoHabitacion().getConcepto(), Integer.toString(habitacion.getPiso()),"1" ,habitacion.getEstado(), habitacion.getServicio(), Integer.toString(habitacion.getIDHuesped())};   //El 1 significa que la cuenta está activa
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
@@ -198,4 +199,5 @@ public class HabitacionCrud {
         }
     }
 
+    
 }
