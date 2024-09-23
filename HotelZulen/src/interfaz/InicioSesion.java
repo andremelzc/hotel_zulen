@@ -109,7 +109,7 @@ public class InicioSesion {
                 Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            System.out.println("NO MATCH");
+            System.out.println(" ");
         }            
     return validez;
     }
