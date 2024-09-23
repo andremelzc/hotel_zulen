@@ -4,9 +4,9 @@ package interfaz;
  *
  * @author PC
  */
-import servicio.HabitacionCrud;
-import servicio.HuespedCrud;
-import servicio.PersonalCrud;
+import Controlador.HabitacionCrud;
+import Controlador.HuespedCrud;
+import Controlador.PersonalCrud;
 import modelo.Habitacion;
 import modelo.Personal;
 import modelo.AmaDeLlaves;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 import modelo.Servicios;
 import modelo.TipoDeHabitacion;
-import servicio.ServiciosCrud;
+import Controlador.ServiciosCrud;
 
 //import pruebas_giron.*; //En caso se use fuera de este package
 public class main {
@@ -384,8 +384,9 @@ public class main {
             System.out.println("3. Buscar Habitacion");
             System.out.println("4. Actualizar Habitacion");
             System.out.println("5. Eliminar Habitacion");
-            System.out.println("6. Retroceder");
-            System.out.println("7. Leer Tipos de Habitacion");
+            System.out.println("6. Leer Tipos de Habitacion");
+            System.out.println("7. Cambiar precio a tipo de Habitacion");
+            System.out.println("8. Retroceder");
             System.out.println("------------------");
             System.out.println("Que desea hacer?");
             int opHabitacion = sc.nextInt();
@@ -448,11 +449,35 @@ public class main {
                     HabitacionCrud.eliminarHabitacion(id_eliminar);
                     System.out.println("-----------------------------\n");
                 case 6:
+                    tipoHabitacionMostrar.mostrarTiposDeHabitaciones();
+                    break; 
+                case 7:
+                    System.out.println("\n-----------------------------");
+                    tipoHabitacionMostrar.mostrarTiposDeHabitaciones();
+                    System.out.println("Concepto a actualizar: ");
+                    String concepto_actualizar = sc.nextLine();
+                    if(!tipoHabitacionMostrar.verificarExistenciaDeKey(concepto_actualizar)){
+                        System.out.println("-----------------------------");
+                        System.out.println("El concepto ingresado no se encuentra");
+                        System.out.println("-----------------------------");
+                    }
+                    else{
+                        //Costo
+                        System.out.println("Nuevo Costo: ");
+                        int costo=sc.nextInt();
+                        sc.nextLine();
+
+                        //Cambiando el precio del concepto ingresado
+                        tipoHabitacionMostrar.cambiarPrecio(concepto_actualizar,costo);
+                        
+                        System.out.println("-----------------------------");
+                        System.out.println("Registro modificado");
+                        System.out.println("-----------------------------");
+                    }
+                    break; 
+                case 8:
                     flagHabitacion = false;
                     break;
-                case 7:
-                    tipoHabitacionMostrar.mostrarTiposDeHabitaciones();
-                    break;    
             }
         } while (flagHabitacion);
     }

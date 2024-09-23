@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package servicio;
+package Controlador;
 
 import modelo.Personal;
 import com.opencsv.CSVWriter;
@@ -28,21 +28,19 @@ public class PersonalCrud {
 
     //Coleccion del personal
     List<Personal> listaPersonal = new ArrayList<>();
-    public List<AmaDeLlaves> listaAmaLlaves;
 
-    public PersonalCrud() {
-        this.listaAmaLlaves = new ArrayList<>();
-    }
+
+    
     
     public void agregarPersonal(Personal personal, int contador) {
         personal.setID(numeroLineas() + contador);
         listaPersonal.add(personal);
         System.out.println("-----------------------------");
         System.out.println("Personal agregado: " + personal.getNombre() + " " + personal.getApellido());
-        if(personal.getFuncion().equals("Ama de LLaves")){
-        listaAmaLlaves.add(new AmaDeLlaves(personal.getID(),personal.getNombre(),personal.getApellido(),personal.getDNI(),personal.getTelefono(),
-        personal.getDireccion(),personal.getUsuario(),personal.getContrasena(),personal.getEstado()));
-        }
+        //if(personal.getFuncion().equals("Ama de LLaves")){
+        //listaAmaLlaves.add(new AmaDeLlaves(personal.getID(),personal.getNombre(),personal.getApellido(),personal.getDNI(),personal.getTelefono(),
+        //personal.getDireccion(),personal.getUsuario(),personal.getContrasena(),personal.getEstado()));
+        //}
     }
 
     public void escribirCSV() {

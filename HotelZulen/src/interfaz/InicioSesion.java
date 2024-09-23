@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package interfaz;
-import servicio.PersonalCrud;//Necesario para manipular al Personal -> Admin Recepcionista
-import servicio.HuespedCrud;//Necesario para manipular al Personal -> Sobretodo verificar existencia en el Inicio de Sesión
+import Controlador.PersonalCrud;//Necesario para manipular al Personal -> Admin Recepcionista
+import Controlador.HuespedCrud;//Necesario para manipular al Personal -> Sobretodo verificar existencia en el Inicio de Sesión
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileNotFoundException;

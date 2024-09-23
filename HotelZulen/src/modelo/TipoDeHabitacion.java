@@ -59,4 +59,7 @@ public class TipoDeHabitacion {
             System.out.println("Tipo: " + tipo + " - Precio: $" + precio);
     }
     }
+    public boolean verificarExistenciaDeKey(String concepto){
+        return preciosPorTipo.containsKey(concepto.toLowerCase());
+    }
 }

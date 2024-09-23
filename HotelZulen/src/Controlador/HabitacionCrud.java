@@ -1,4 +1,4 @@
-package servicio;
+package Controlador;
 
 import modelo.Habitacion;
 import modelo.TipoDeHabitacion;
