@@ -8,7 +8,7 @@ package modelo;
  *
  * @author Suyco
  */
-public class AmaDeLlaves  {
+public class AmaDeLlaves extends Personal{
     
     int ID;
     String nombre;
