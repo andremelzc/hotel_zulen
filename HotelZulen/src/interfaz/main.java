@@ -401,9 +401,11 @@ public class main {
                                 System.out.println("-----------------------------");
                             }
                         } while (!flag_funcion);
-
-                        //Agregamos el dni en el slot 1, por ahora, luego es reemplazado por el id
-                        Personal nuevoPersonal = new Personal(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, funcion, Integer.parseInt("1"));
+                     
+                        //Inicializamos, de todas formas, luego se va a cambiar
+                        int id=0; 
+                        
+                        Personal nuevoPersonal = new Personal(id, nombre, apellido, dni, telefono, direccion, usuario, contrasena, funcion, Integer.parseInt("1"));
                         //Agregamos a la lista
                         personalCrud.agregarPersonal(nuevoPersonal, sumador_id);
                         System.out.println("-----------------------------");
@@ -422,10 +424,12 @@ public class main {
 
                     break;
                 case 2:
+                    List<Personal> listaPersonales = new ArrayList<>();
                     System.out.println("\n-----------------------------");
                     System.out.println("Imprimiendo todo el personal");
                     System.out.println("-----------------------------\n");
-                    personalCrud.leerTodoPersonal();
+                    listaPersonales = personalCrud.cargarCSVlista();
+                    personalCrud.leerPersonal(listaPersonales);
                     break;
                 case 3:
                     System.out.println("\n-----------------------------");
@@ -433,7 +437,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a buscar: ");
                     int id_buscar = sc.nextInt();
-                    personalCrud.buscarPersonal(id_buscar);
+                    listaPersonales = personalCrud.cargarCSVlista();
+                    personalCrud.buscarPersonal(listaPersonales, id_buscar);
                     break;
                 case 4:
                     System.out.println("\n-----------------------------");
