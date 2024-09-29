@@ -137,166 +137,26 @@ public class PersonalCrud {
         return numero;
     }
 
-    public boolean existePersonal(int id_buscar) {
+    public boolean existePersonal(List<Personal> listaPersonal, int id_buscar) {
         boolean existe = false;
-        try {
-            CSVReader reader = new CSVReader(new FileReader("personal.csv"));
-            String[] nextLine;
-            try {
-                while ((nextLine = reader.readNext()) != null) {
-                    if (id_buscar == Integer.parseInt(nextLine[0]) && "1".equals(nextLine[9])) {
-                        existe = true;
-                    }
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        for(Personal personal : listaPersonal){
+            if(personal.getID()==id_buscar){
+                existe = true;
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
         return existe;
     }
 
-    public boolean existePersonalUsuaro(String usuario_buscar) {
+    public boolean existePersonalUsuaro(List<Personal> listaPersonal, String usuario_buscar) {
         boolean existe = false;
-        try {
-            CSVReader reader = new CSVReader(new FileReader("personal.csv"));
-            String[] nextLine;
-            try {
-                while ((nextLine = reader.readNext()) != null) {
-                    if (usuario_buscar.equals(nextLine[6])) {
-                        existe = true;
-                    }
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        for(Personal personal : listaPersonal){
+            if(personal.getUsuario().equals(usuario_buscar)){
+                existe=true;
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
         return existe;
     }
 
-    public void actualizarPersonales(List<Personal> listaPersonal, int id_actualizar) {
-        Scanner sc = new Scanner(System.in);
-        PersonalCrud personalCrud = new PersonalCrud();
-        boolean find = false;
-        for (Personal personal : listaPersonal) {
-            if (personal.getID() == id_actualizar && personal.getEstado() == 1) {
-                // Datos del id encontrado
-                System.out.println("--------------------------------------------------------------------------------------");
-                System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s %s%n",
-                        "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña", "Funcion");
-                System.out.println("--------------------------------------------------------------------------------------");
-                System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s %s%n", personal.getID(), personal.getNombre(), personal.getApellido(), personal.getDNI(),
-                        personal.getTelefono(), personal.getDireccion(), personal.getUsuario(), personal.getContrasena(), personal.getFuncion());
-                System.out.println("--------------------------------------------------------------------------------------");
-                System.out.println("Nuevos Datos");
-                // Datos nuevos
-                //Nombre
-                System.out.println("Nombre: ");
-                String nombre = sc.nextLine();
-                personal.setNombre(nombre);
-                //Apellido
-                System.out.println("Apellido: ");
-                String apellido = sc.nextLine();
-                personal.setApellido(apellido);
-                //DNI
-                boolean flag_dni = false;
-                int dni;
-                do {
-                    System.out.println("DNI");
-                    dni = sc.nextInt();
-                    if (String.valueOf(dni).length() == 8) {
-                        flag_dni = true;
-                    }
-                    if (!flag_dni) {
-                        System.out.println("-----------------------------");
-                        System.out.println("Ingrese un DNI correcto");
-                        System.out.println("-----------------------------");
-                    }
-                } while (!flag_dni);
-                personal.setDNI(dni);
-                //Telefono
-                boolean flag_telefono = false;
-                int telefono;
-                do {
-                    System.out.println("Telefono");
-                    telefono = sc.nextInt();
-                    if (String.valueOf(telefono).length() == 9) {
-                        flag_telefono = true;
-                    }
-                    if (!flag_telefono) {
-                        System.out.println("-----------------------------");
-                        System.out.println("Ingrese un telefono correcto");
-                        System.out.println("-----------------------------");
-                    }
-                } while (!flag_telefono);
-                personal.setTelefono(telefono);
-                //Direccion y limpiamos buffer
-                sc.nextLine();
-                System.out.println("Dirección");
-                String direccion = sc.nextLine();
-                personal.setDireccion(direccion);
-                //Agregado de mi parte para verificar el inicio
-                String usuario;
-                boolean flag_usuario = false;
-                do {
-                    System.out.println("Usuario: ");
-                    usuario = sc.nextLine();
-                    if (personalCrud.existePersonalUsuaro(usuario)) {
-                        flag_usuario = true;
-                        System.out.println("-----------------------------");
-                        System.out.println("Ingrese un usuario no existente");
-                        System.out.println("-----------------------------");
-                    } else {
-                        flag_usuario = false;
-                    }
-                } while (flag_usuario);
-                personal.setUsuario(usuario);
-                //Contraseña
-                System.out.println("Contrasena: ");
-                String contrasena = sc.nextLine();
-                personal.setContrasena(contrasena);
-                //Funcion
-                boolean flag_funcion = false;
-                String funcion;
-                do {
-                    System.out.println("Funcion");
-                    funcion = sc.nextLine();
-                    if ("Administrador".equals(funcion) || "Recepcionista".equals(funcion) || "Ama de LLaves".equals(funcion) || "Jefe de Cocina".equals(funcion)) {
-                        flag_funcion = true;
-                    }
-                    if (!flag_funcion) {
-                        System.out.println("-----------------------------");
-                        System.out.println("Funcion no existente, vuelva a ingresar");
-                        System.out.println("-----------------------------");
-                    }
-                } while (!flag_funcion);
-                personal.setFuncion(funcion);
-                personal.setEstado(1);
-                // Salimos del do while
-                find = true;
-            }
-        }
-        
-        try {
-            CSVWriter escritor = new CSVWriter(new FileWriter("personal.csv"));
-            for(Personal personal : listaPersonal){
-                String[] datos = {String.valueOf(personal.getID()), personal.getNombre(), personal.getApellido(), String.valueOf(personal.getDNI()), 
-                    String.valueOf(personal.getTelefono()), personal.getDireccion(), personal.getUsuario(), personal.getContrasena(), personal.getFuncion(), 
-                    String.valueOf(personal.getEstado())}; //El 1 significa que la cuenta está activa 
-                System.out.println(datos);
-                escritor.writeNext(datos);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public void actualizarPersonal(int id_actualizar) {
         //Usamos una colección
@@ -365,7 +225,8 @@ public class PersonalCrud {
                         do {
                             System.out.println("Usuario: ");
                             nextLine[6] = sc.nextLine();
-                            if (personalCrud.existePersonalUsuaro(nextLine[6])) {
+                            List<Personal> lista_Personal = cargarCSVlista();
+                            if (personalCrud.existePersonalUsuaro(lista_Personal, nextLine[6])) {
                                 flag_usuario = true;
                                 System.out.println("-----------------------------");
                                 System.out.println("Ingrese un usuario no existente");

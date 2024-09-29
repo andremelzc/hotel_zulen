@@ -374,7 +374,8 @@ public class main {
                         do {
                             System.out.println("Usuario: ");
                             usuario = sc.nextLine();
-                            if (personalCrud.existePersonalUsuaro(usuario)) {
+                            List<Personal> listaPersonales = personalCrud.cargarCSVlista();
+                            if (personalCrud.existePersonalUsuaro(listaPersonales, usuario)) {
                                 flag_usuario = true;
                                 System.out.println("-----------------------------");
                                 System.out.println("Ingrese un usuario no existente");
@@ -497,20 +498,20 @@ public class main {
                     String nombre = sc.nextLine();
                     System.out.println("Apellido: ");
                     String apellido = sc.nextLine();
+                    System.out.println("DNI: ");
+                    int dni = sc.nextInt();
+                    System.out.println("Telefono: ");
+                    int telefono = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("Direccion: ");
+                    String direccion = sc.nextLine();
                     System.out.println("Usuario: ");
                     String usuario = sc.nextLine();
                     System.out.println("Contraseña: ");
                     String contrasena = sc.nextLine();
-                    //Traer un ID real
-                    System.out.println("IDHabitacion: ");
-                    int idHabitacion = sc.nextInt();
                     sc.nextLine();
-                    // Permitir al usuario ingresar en otro formato / Traer la fecha desde la reserva
-                    System.out.println("Fecha de ingreso (YYYY-MM-dd): ");
-                    LocalDate fechaIngreso = LocalDate.parse(sc.nextLine());
-                    System.out.println("Fecha de salida (YYYY-MM-dd): ");
-                    LocalDate fechaSalida = LocalDate.parse(sc.nextLine());
-                    Huesped nuevoHuesped = new Huesped(nombre, apellido, usuario, contrasena, idHabitacion, fechaIngreso, fechaSalida);
+                    int estado = 1;
+                    Huesped nuevoHuesped = new Huesped(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, estado);
                     huespedCrud.agregarHuesped(nuevoHuesped);
                     System.out.println("-----------------------------\n");
                     break;

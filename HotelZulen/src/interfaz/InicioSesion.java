@@ -6,11 +6,13 @@ package interfaz;
 
 import Controlador.PersonalCrud;//Necesario para manipular al Personal -> Admin Recepcionista
 import Controlador.HuespedCrud;//Necesario para manipular al Personal -> Sobretodo verificar existencia en el Inicio de Sesión
+import modelo.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,13 +36,16 @@ public class InicioSesion {
         boolean existe = false;
         HuespedCrud huesped = new HuespedCrud();
         PersonalCrud personal = new PersonalCrud();
-        if (huesped.existeHuespedUsuaro(nombre_usuario) && personal.existePersonalUsuaro(nombre_usuario)) {
+        Personal p = new Personal();
+        List<Personal> listaPersonal = personal.cargarCSVlista();
+        
+        if (huesped.existeHuespedUsuaro(nombre_usuario) && personal.existePersonalUsuaro(listaPersonal, nombre_usuario)) {
             System.out.println("Registro Peligroso: Existen 2 Registros con el mismo Nombre");
         } else if (huesped.existeHuespedUsuaro(nombre_usuario)) {
             existe = true;
             setCategoria("Huesped");
             System.out.println("Huesped: ");
-        } else if (personal.existePersonalUsuaro(nombre_usuario)) {
+        } else if (personal.existePersonalUsuaro(listaPersonal, nombre_usuario)) {
             setCategoria("Personal");
             existe = true;
             System.out.println("Personal: ");

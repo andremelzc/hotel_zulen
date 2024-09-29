@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -30,12 +31,38 @@ public class HuespedCrud {
     public void escribirCSV() {
         try (CSVWriter escritor = new CSVWriter(new FileWriter("huespedes.csv", true))) {
             for (Huesped huesped : listaHuesped) {
-                String[] datos = {String.valueOf(numeroLineas() + 1), huesped.getNombre(), huesped.getApellido(), "1", huesped.getUsuario(), huesped.getContrasena(), Integer.toString(huesped.getIDHabitacion()), huesped.getIncioHuesped().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), huesped.getFinHuesped().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) };   //El 1 significa que la cuenta está activa
+                String[] datos = {String.valueOf(numeroLineas() + 1), huesped.getNombre(), huesped.getApellido(), String.valueOf(huesped.getDNI()),
+                    String.valueOf(huesped.getTelefono()), huesped.getDireccion(), huesped.getUsuario(), huesped.getContrasena(), "1", };   //El 1 significa que la cuenta está activa
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
             Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public HashMap<Integer, Huesped> cargarCSVHash(){
+        HashMap<Integer, Huesped> mapaHuesped = new HashMap<>();
+        try {
+            
+            CSVReader reader = new CSVReader(new FileReader("huespedes.csv"));
+            String[] nextLine;
+            try {
+                while ((nextLine = reader.readNext()) != null) {
+                    Huesped huesped = new Huesped(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2], Integer.parseInt(nextLine[3])
+                            , Integer.parseInt(nextLine[4]), nextLine[5], nextLine[6], nextLine[7], Integer.parseInt(nextLine[8]));
+                    
+                    mapaHuesped.put(huesped.getID(), huesped);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mapaHuesped;
     }
 
     public int numeroLineas() {

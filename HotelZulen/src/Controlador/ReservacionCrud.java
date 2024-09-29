@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,35 @@ import modelo.*;
 public class ReservacionCrud {
 
     List<Reservacion> listaReservacion = new ArrayList<>();
+    
+    public List<Personal> cargarCSVlista() {
+        // Cargamos el csv en un hashmap
+        
+        List<Personal> listaPersonales = new ArrayList<>();
+        try {
+            // Leemos el csv
+            CSVReader reader = new CSVReader(new FileReader("huespedes.csv"));
+            String[] nextLine;
+
+            try {
+
+                while ((nextLine = reader.readNext()) != null) {
+               
+
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaPersonales;
+    }
+    
 
     public void agregarReservacion() {
 
