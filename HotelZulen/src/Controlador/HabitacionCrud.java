@@ -24,14 +24,14 @@ public class HabitacionCrud {
     public void agregarHabitacion(Habitacion habitacion) {
         listaHabitacion.add(habitacion);
         System.out.println("-----------------------------");
-        System.out.println("Habitacion " + habitacion.getTipoHabitacion().getConcepto() + " agregada en el Piso " + habitacion.getPiso()) ;
+        System.out.println("Habitacion " + habitacion.getTipoHabitacion().getConcepto() + " agregada en el Piso " + habitacion.getPiso());
         escribirCSV();
     }
 
     public void escribirCSV() {
         try (CSVWriter escritor = new CSVWriter(new FileWriter("habitaciones.csv", true))) {
             for (Habitacion habitacion : listaHabitacion) {
-                String[] datos = {String.valueOf(numeroLineas() + 1), habitacion.getTipoHabitacion().getConcepto(), Integer.toString(habitacion.getPiso()),"1" ,habitacion.getEstado(), habitacion.getServicio(), Integer.toString(habitacion.getIDHuesped())};   //El 1 significa que la cuenta está activa
+                String[] datos = {String.valueOf(numeroLineas() + 1), habitacion.getTipoHabitacion().getConcepto(), Integer.toString(habitacion.getPiso()), "1", habitacion.getEstado(), habitacion.getServicio(), Integer.toString(habitacion.getIDHuesped())};   //El 1 significa que la cuenta está activa
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
@@ -199,5 +199,49 @@ public class HabitacionCrud {
         }
     }
 
-    
+    public boolean existeHabitacion(int id_habitacion) {
+        boolean existe = false;
+        try {
+            CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
+            String[] nextLine;
+            try {
+                while ((nextLine = reader.readNext()) != null) {
+                    if (Integer.parseInt(nextLine[0]) == id_habitacion) {
+                        existe = true;
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return existe;
+    }
+
+    public boolean habitacionOcupada(int id_habitacion) {
+        boolean ocupada = false;
+        try {
+            CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
+            String[] nextLine;
+            try {
+                while ((nextLine = reader.readNext()) != null) {
+                    if (Integer.parseInt(nextLine[0]) == id_habitacion && nextLine[4].equals("Ocupado")) {
+                        ocupada= true;
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ocupada;
+    }
+
 }

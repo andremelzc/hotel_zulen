@@ -134,6 +134,29 @@ public class HuespedCrud {
     }
     //Fin de la Función agregada por Miguel para el Inicio de Sesión
     
+    
+    public boolean existeHuesped(int id_huesped) {
+        boolean existe = false;
+        try {
+            CSVReader reader = new CSVReader(new FileReader("huespedes.csv"));
+            String[] nextLine;
+            try {
+                while ((nextLine = reader.readNext()) != null) {
+                    if (id_huesped == Integer.parseInt(nextLine[0])) {
+                        existe = true;
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return existe;
+    }
+    
     public void actualizarHuesped(int id_actualizar) {
         List<String[]> allData = new ArrayList<>();
         Scanner sc = new Scanner(System.in);

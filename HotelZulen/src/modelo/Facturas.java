@@ -10,7 +10,7 @@ package modelo;
  */
 public class Facturas {
     private int id;
-    private Reservación reserva;
+    private Reservacion reserva;
 
 
     
