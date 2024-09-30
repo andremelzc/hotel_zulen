@@ -77,9 +77,9 @@ public class HabitacionCrud {
     public void agregarHabitacion(Habitacion habitacion) {
         listaHabitacion.add(habitacion);
         System.out.println("-----------------------------");
-        /**
+        
         System.out.println("Habitacion " + habitacion.getTipoHabitacion().getConcepto() + " agregada en el Piso " + habitacion.getPiso());
-        * */
+        
         escribirCSV();
     }
 

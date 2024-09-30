@@ -14,6 +14,7 @@ import java.util.Scanner;
 import modelo.Servicios;
 import modelo.TipoDeHabitacion;
 import Controlador.ServiciosCrud;
+import java.util.HashMap;
 
 //import pruebas_giron.*; //En caso se use fuera de este package
 public class main {
@@ -173,7 +174,7 @@ public class main {
                     System.out.println("\n-----------------------------");
                     System.out.println("Reservando habitación");
                     System.out.println("-----------------------------");
-                    
+
                     // ID habitación
                     boolean flagHabitacion = false;
                     int idHabitacion;
@@ -198,30 +199,32 @@ public class main {
                             System.out.println("-----------------------------");
                         }
                     } while (!flagHabitacion);
-                    
+
                     // ID huesped
                     boolean flagHuesped = false;
                     int idHuesped;
-                    do{
+                    do {
                         System.out.println("ID de huesped: ");
                         idHuesped = sc.nextInt();
                         //Verificaos si existe
                         boolean existe = huespedCrud.existeHuesped(idHuesped);
-                        if (existe){
+                        if (existe) {
                             flagHuesped = true;
                             // Verificamos si el huesped ya tiene una reserva
                             boolean ocupada = reservacionCrud.existeUsuarioReservacion(idHuesped);
-                            if(ocupada){
-                                flagHabitacion = false;
+                            if (ocupada) {
+                                flagHuesped = false;
                                 System.out.println("Huesped ya cuenta con reserva");
                                 System.out.println("-----------------------------");
                             }
+                        }else{
+                            System.out.println("El huesped no existe");
                         }
-                    }while(!flagHuesped);
+                    } while (!flagHuesped);
                     // Servicios de la reserva
                     boolean flagServicio = false;
                     String servicios = null;
-                    do{
+                    do {
                         System.out.println("Combo para habitación");
                         System.out.println("1: Housekeeping");
                         System.out.println("2: Fitness Room");
@@ -229,7 +232,7 @@ public class main {
                         int servicio = sc.nextInt();
                         sc.nextLine();
                         //Comprobamos con las opciones
-                        switch(servicio){
+                        switch (servicio) {
                             case 1:
                                 servicios = "Housekeeping";
                                 flagServicio = true;
@@ -246,10 +249,10 @@ public class main {
                                 flagServicio = false;
                                 break;
                         }
-                        if(!flagServicio){
+                        if (!flagServicio) {
                             System.out.println("Opción inválida, vuelva a ingresar");
                         }
-                    }while(!flagServicio);
+                    } while (!flagServicio);
                     // Fechas:
                     LocalDate fechaHoy = LocalDate.now();
                     LocalDate fechaFin;
@@ -257,34 +260,47 @@ public class main {
                     // Fecha de inicio
                     boolean flagFechaInicio = false;
                     String fecha_inicio;
-                    do{
+                    do {
                         System.out.println("Fecha de inicio de hospedaje (formato: YYYY-MM-DD): ");
                         fecha_inicio = sc.nextLine();
                         fechaInicio = LocalDate.parse(fecha_inicio);
-                        if(fechaHoy.isBefore(fechaInicio)){
+                        if (fechaHoy.isBefore(fechaInicio)) {
                             flagFechaInicio = true;
-                        }else{
+                        } else {
                             System.out.println("Fecha inválida, ingrese otra");
                             System.out.println("-----------------------------");
                         }
-                    }while(!flagFechaInicio);
+                    } while (!flagFechaInicio);
                     // Fecha de fin
                     boolean flagFechaFin = false;
                     String fecha_fin;
-                    do{
+                    do {
                         System.out.println("Fecha de fin de hospedaje (formato: YYYY-MM-DD): ");
                         fecha_fin = sc.nextLine();
                         fechaFin = LocalDate.parse(fecha_fin);
-                        if(fechaHoy.isBefore(fechaFin) && fechaInicio.isBefore(fechaFin)){
+                        if (fechaHoy.isBefore(fechaFin) && fechaInicio.isBefore(fechaFin)) {
                             flagFechaFin = true;
-                        }else{
+                        } else {
                             System.out.println("Fecha inválida, ingrese otra");
                             System.out.println("-----------------------------");
                         }
-                    }while(!flagFechaFin);
+                    } while (!flagFechaFin);
+                    // Cargamos el csv de huespedes en un hashmap
+                    HashMap<Integer, Huesped> mapaHuesped = huespedCrud.cargarCSVHash();
+
+                    // Cargamos el csv de habitaciones en un hashmap
+                    HashMap<Integer, Habitacion> mapaHabitacion = habitacionCrud.cargarCSVHash();
+                    
                     // Agregamos la reserva
-                    Reservacion reservacion = new Reservacion(idHuesped, idHabitacion, idHuesped, servicios, fechaFin, fechaFin);
-                    reservacionCrud.agregarReservacion();
+                    Habitacion habitacion = mapaHabitacion.get(idHabitacion);
+                    Huesped huesped = mapaHuesped.get(idHuesped);
+                    
+                    Reservacion reservacion = new Reservacion(1, habitacion, huesped, servicios, fechaInicio, fechaFin);
+                    
+                    //Agregamos a la lista
+                    reservacionCrud.agregarReservacion(reservacion);
+                    
+                    reservacionCrud.escribirCSV();
                     break;
 
                 case 4:
@@ -402,10 +418,10 @@ public class main {
                                 System.out.println("-----------------------------");
                             }
                         } while (!flag_funcion);
-                     
+
                         //Inicializamos, de todas formas, luego se va a cambiar
-                        int id=0; 
-                        
+                        int id = 0;
+
                         Personal nuevoPersonal = new Personal(id, nombre, apellido, dni, telefono, direccion, usuario, contrasena, funcion, Integer.parseInt("1"));
                         //Agregamos a la lista
                         personalCrud.agregarPersonal(nuevoPersonal, sumador_id);
@@ -522,7 +538,7 @@ public class main {
                     System.out.println("-----------------------------\n");
                     listaHuespedes = huespedCrud.cargarCSVlista();
                     huespedCrud.leerHuesped(listaHuespedes);
-                    
+
                     break;
                 case 3:
                     System.out.println("\n-----------------------------");

@@ -16,25 +16,11 @@ public class Reservacion {
     //List<PedidosComida> pedidosComida;
     private LocalDate incioHuesped;
     private LocalDate finHuesped;
-    
-    //Atributos solo para guardar los datos
-    private int idHabitacion;;
-    private int idHuesped;
-    
-    public Reservacion(){
-        
+
+    public Reservacion() {
+
     }
-    
-    //Sirve para guardar los datos
-    public Reservacion(int idReserva, int habitacion, int huesped, String servicios, LocalDate incioHuesped, LocalDate finHuesped) {
-        this.idReserva = idReserva;
-        this.idHabitacion = habitacion;
-        this.idHuesped = huesped;
-        this.servicios = servicios;
-        this.incioHuesped = incioHuesped;
-        this.finHuesped = finHuesped;
-    }
-    
+
     //Constructor "oficial"?
     public Reservacion(int idReserva, Habitacion habitacion, Huesped huespedd, String servicios, LocalDate incioHuesped, LocalDate finHuesped) {
         this.idReserva = idReserva;
@@ -68,9 +54,29 @@ public class Reservacion {
     public LocalDate getFinHuesped() {
         return finHuesped;
     }
-    
-    
-    
-    
-    
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public void setHabitacionn(Habitacion habitacionn) {
+        this.habitacionn = habitacionn;
+    }
+
+    public void setHuespedd(Huesped huespedd) {
+        this.huespedd = huespedd;
+    }
+
+    public void setServicios(String servicios) {
+        this.servicios = servicios;
+    }
+
+    public void setIncioHuesped(LocalDate incioHuesped) {
+        this.incioHuesped = incioHuesped;
+    }
+
+    public void setFinHuesped(LocalDate finHuesped) {
+        this.finHuesped = finHuesped;
+    }
+
 }

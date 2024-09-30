@@ -5,9 +5,11 @@
 package Controlador;
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import modelo.*;
  * @author PC
  */
 public class ReservacionCrud {
+    List<Reservacion> listaReservaciones = new ArrayList<>();
 
     HuespedCrud huespedCrud = new HuespedCrud();
     HabitacionCrud habitacionCrud = new HabitacionCrud();
@@ -32,8 +35,6 @@ public class ReservacionCrud {
 
         // Cargamos el csv de habitaciones en un hashmap
         HashMap<Integer, Habitacion> mapaHabitacion = habitacionCrud.cargarCSVHash();
-
-        
 
         // Creamos ArrayList para reservas
         List<Reservacion> listaReservaciones = new ArrayList<>();
@@ -75,8 +76,43 @@ public class ReservacionCrud {
         return listaReservaciones;
     }
 
-    public void agregarReservacion() {
+    public void agregarReservacion(Reservacion reservacion) {
+        listaReservaciones.clear();
+        reservacion.setIdReserva(numeroLineas() + 1);
 
+        //Agregamos a la listaa
+        listaReservaciones.add(reservacion);
+    }
+    
+    public void escribirCSV() {
+        //Lista para enviar al CSV
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("reservaciones.csv", true))) {
+            for (Reservacion reservacion : listaReservaciones) {
+                String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()), 
+                    String.valueOf(reservacion.getHuespedd().getID()), reservacion.getServicios(), String.valueOf(reservacion.getIncioHuesped()),
+                String.valueOf(reservacion.getFinHuesped())};
+                escritor.writeNext(datos);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public int numeroLineas() {
+        int numero = 0;
+        try (CSVReader lector = new CSVReader(new FileReader("reservaciones.csv"))) {
+            try {
+                while ((lector.readNext()) != null) {
+                    numero++;
+                }
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, "Error al leer el archivo CSV", ex);
+        }
+
+        return numero;
     }
 
     public boolean existeUsuarioReservacion(int id_usuario) {

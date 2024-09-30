@@ -26,6 +26,9 @@ public class Huesped {
         this.estado = estado;
     }
     
+   public Huesped(){
+       
+   }
    
     public Huesped(int ID, String nombre, String apellido, int DNI, int telefono, String direccion, String usuario, String contrasena) {
         this.ID = ID;
