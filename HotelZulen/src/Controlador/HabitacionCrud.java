@@ -22,6 +22,32 @@ public class HabitacionCrud {
 
     List<Habitacion> listaHabitacion = new ArrayList<>();
     
+    public List<Habitacion> cargarCSVlista() {
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        try {
+            // Leemos el csv
+            CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
+            String[] nextLine;
+
+            try {
+
+                while ((nextLine = reader.readNext()) != null) {
+                    TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(nextLine[1]);
+                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoHabitacion, Integer.parseInt(nextLine[2]),
+                            nextLine[3],Integer.parseInt(nextLine[4]));
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaHabitaciones;
+    }
+    
     public HashMap<Integer, Habitacion> cargarCSVHash(){
         HashMap<Integer, Habitacion> mapaHabitacion = new HashMap<>();
         try {

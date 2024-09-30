@@ -77,4 +77,8 @@ public class Huesped {
     public String getContrasena() {
         return contrasena;
     }
+    
+    public int getEstado(){
+        return estado;
+    }
 }

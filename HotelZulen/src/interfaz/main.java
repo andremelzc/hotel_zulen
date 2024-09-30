@@ -516,10 +516,13 @@ public class main {
                     System.out.println("-----------------------------\n");
                     break;
                 case 2:
+                    List<Huesped> listaHuespedes = new ArrayList<>();
                     System.out.println("\n-----------------------------");
                     System.out.println("Imprimiendo todo el huesped");
                     System.out.println("-----------------------------\n");
-                    huespedCrud.leerTodoHuesped();
+                    listaHuespedes = huespedCrud.cargarCSVlista();
+                    huespedCrud.leerHuesped(listaHuespedes);
+                    
                     break;
                 case 3:
                     System.out.println("\n-----------------------------");
@@ -527,7 +530,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a buscar: ");
                     int id_buscar = sc.nextInt();
-                    huespedCrud.buscarHuesped(id_buscar);
+                    listaHuespedes = huespedCrud.cargarCSVlista();
+                    huespedCrud.buscarHuesped(listaHuespedes, id_buscar);
                     System.out.println("-----------------------------\n");
                     break;
                 case 4:

@@ -76,6 +76,7 @@ public class PersonalCrud {
 
     // Funcion para buscar personal
     public void buscarPersonal(List<Personal> listaPersonal, int id_buscar) {
+        boolean find = false;
         for (Personal personal : listaPersonal) {
             // Buscamos el ID
             if (personal.getID() == id_buscar && personal.getEstado() == 1) {
@@ -85,7 +86,12 @@ public class PersonalCrud {
                 System.out.println("--------------------------------------------------------------------------------------");
                 System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s %s%n", personal.getID(), personal.getNombre(), personal.getApellido(), personal.getDNI(),
                         personal.getTelefono(), personal.getDireccion(), personal.getUsuario(), personal.getContrasena(), personal.getFuncion());
+                find = true;
             }
+        }
+        
+        if(!find){
+            System.out.println("Personal no encontrado");
         }
     }
 
