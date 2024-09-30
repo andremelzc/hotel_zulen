@@ -588,14 +588,10 @@ public class main {
                     System.out.println("Estado: ");
                     String estado = sc.nextLine();
                     System.out.println("Personal asignado: ");
-                    String personalAsignado = sc.nextLine();
-                    System.out.println("Servicio: ");
-                    String servicio = sc.nextLine();
-                    System.out.println("IDHuesped: ");
-                    int IDHuesped = sc.nextInt();
+                    int personalAsignado = sc.nextInt();
 
                     TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(tipo);
-                    Habitacion nuevoHabitacion = new Habitacion(piso, tipoHabitacion, estado, personalAsignado, servicio, IDHuesped);
+                    Habitacion nuevoHabitacion = new Habitacion(piso, tipoHabitacion, piso, estado, personalAsignado);
                     HabitacionCrud.agregarHabitacion(nuevoHabitacion);
                     System.out.println("-----------------------------\n");
                     break;

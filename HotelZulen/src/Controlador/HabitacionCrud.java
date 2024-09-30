@@ -1,7 +1,6 @@
 package Controlador;
 
-import modelo.Habitacion;
-import modelo.TipoDeHabitacion;
+import modelo.*;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -12,26 +11,57 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Huesped;
 
 public class HabitacionCrud {
 
     List<Habitacion> listaHabitacion = new ArrayList<>();
+    
+    public HashMap<Integer, Habitacion> cargarCSVHash(){
+        HashMap<Integer, Habitacion> mapaHabitacion = new HashMap<>();
+        try {
+            
+            CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
+            String[] nextLine;
+            try {
+                while ((nextLine = reader.readNext()) != null) {
+                    TipoDeHabitacion tipoDeHabitacion = new TipoDeHabitacion(nextLine[1]);
+                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoDeHabitacion, Integer.parseInt(nextLine[2]), nextLine[3], Integer.parseInt(nextLine[4]));
+                    
+                    mapaHabitacion.put(habitacion.getId(), habitacion);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mapaHabitacion;
+    }
+    
 
     public void agregarHabitacion(Habitacion habitacion) {
         listaHabitacion.add(habitacion);
         System.out.println("-----------------------------");
+        /**
         System.out.println("Habitacion " + habitacion.getTipoHabitacion().getConcepto() + " agregada en el Piso " + habitacion.getPiso());
+        * */
         escribirCSV();
     }
 
     public void escribirCSV() {
         try (CSVWriter escritor = new CSVWriter(new FileWriter("habitaciones.csv", true))) {
             for (Habitacion habitacion : listaHabitacion) {
-                String[] datos = {String.valueOf(numeroLineas() + 1), habitacion.getTipoHabitacion().getConcepto(), Integer.toString(habitacion.getPiso()), "1", habitacion.getEstado(), habitacion.getServicio(), Integer.toString(habitacion.getIDHuesped())};   //El 1 significa que la cuenta está activa
+                String[] datos = {String.valueOf(numeroLineas() + 1), habitacion.getTipoHabitacion().getConcepto(), String.valueOf(habitacion.getPiso()),
+                habitacion.getEstado(),String.valueOf(habitacion.getIdHouseKeeper())};   //El 1 significa que la cuenta está activa
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
