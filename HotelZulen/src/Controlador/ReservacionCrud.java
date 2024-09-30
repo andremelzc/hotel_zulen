@@ -24,6 +24,7 @@ import modelo.*;
  * @author PC
  */
 public class ReservacionCrud {
+
     List<Reservacion> listaReservaciones = new ArrayList<>();
 
     HuespedCrud huespedCrud = new HuespedCrud();
@@ -53,12 +54,24 @@ public class ReservacionCrud {
                     LocalDate inicioHuesped = LocalDate.parse(nextLine[4]);
                     LocalDate finHuesped = LocalDate.parse(nextLine[5]);
 
+                    String[] serviciosArray = servicios.split(",\\s*");
+                    List<Servicios> listaServicios = new ArrayList<>();
+
+                    if (serviciosArray.length == 2) {
+                        listaServicios.add(new Servicios(1, "HouseKeeping", 70));
+                        listaServicios.add(new Servicios(2, "FitnessCenter", 30));
+                    } else if (serviciosArray[0].equals("HouseKeeping")) {
+                        listaServicios.add(new Servicios(1, "HouseKeeping", 70));
+                    } else if (serviciosArray[0].equals("FitnessCenter")) {
+                        listaServicios.add(new Servicios(2, "FitnessCenter", 30));
+                    }
+
                     Habitacion habitacion = mapaHabitacion.get(idHabitacion);
                     Huesped huesped = mapaHuesped.get(idHuesped);
 
                     if (huesped != null && habitacion != null) {
 
-                        Reservacion reservacion = new Reservacion(idReserva, habitacion, huesped, servicios, inicioHuesped, finHuesped);
+                        Reservacion reservacion = new Reservacion(idReserva, habitacion, huesped, listaServicios, inicioHuesped, finHuesped);
                         listaReservaciones.add(reservacion);
 
                     }
@@ -83,21 +96,30 @@ public class ReservacionCrud {
         //Agregamos a la listaa
         listaReservaciones.add(reservacion);
     }
-    
+
     public void escribirCSV() {
+        StringBuilder serviciosString = new StringBuilder();
         //Lista para enviar al CSV
         try (CSVWriter escritor = new CSVWriter(new FileWriter("reservaciones.csv", true))) {
             for (Reservacion reservacion : listaReservaciones) {
-                String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()), 
-                    String.valueOf(reservacion.getHuespedd().getID()), reservacion.getServicios(), String.valueOf(reservacion.getIncioHuesped()),
-                String.valueOf(reservacion.getFinHuesped())};
+                for (Servicios servicio : reservacion.getServicios()) {
+                    serviciosString.append(servicio.getConcepto()).append(", ");
+                }
+                if (serviciosString.length() > 0) {
+                    serviciosString.setLength(serviciosString.length() - 2); // Elimina la última coma y espacio
+                }
+                String servicios = serviciosString.toString();
+                
+                String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()),
+                    String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getIncioHuesped()),
+                    String.valueOf(reservacion.getFinHuesped())};
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
             Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public int numeroLineas() {
         int numero = 0;
         try (CSVReader lector = new CSVReader(new FileReader("reservaciones.csv"))) {

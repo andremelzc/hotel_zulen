@@ -12,7 +12,7 @@ public class Reservacion {
     private int idReserva;
     private Habitacion habitacionn;
     private Huesped huespedd;
-    private String servicios;
+    private List<Servicios> servicios;
     //List<PedidosComida> pedidosComida;
     private LocalDate incioHuesped;
     private LocalDate finHuesped;
@@ -21,8 +21,7 @@ public class Reservacion {
 
     }
 
-    //Constructor "oficial"?
-    public Reservacion(int idReserva, Habitacion habitacion, Huesped huespedd, String servicios, LocalDate incioHuesped, LocalDate finHuesped) {
+    public Reservacion(int idReserva, Habitacion habitacion, Huesped huespedd, List<Servicios> servicios, LocalDate incioHuesped, LocalDate finHuesped) {
         this.idReserva = idReserva;
         this.habitacionn = habitacion;
         this.huespedd = huespedd;
@@ -43,7 +42,7 @@ public class Reservacion {
         return huespedd;
     }
 
-    public String getServicios() {
+    public List<Servicios> getServicios() {
         return servicios;
     }
 
@@ -67,7 +66,7 @@ public class Reservacion {
         this.huespedd = huespedd;
     }
 
-    public void setServicios(String servicios) {
+    public void setServicios(List<Servicios> servicios) {
         this.servicios = servicios;
     }
 

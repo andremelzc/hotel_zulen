@@ -224,6 +224,7 @@ public class main {
                     // Servicios de la reserva
                     boolean flagServicio = false;
                     String servicios = null;
+                    List<Servicios> listaServicios = new ArrayList<>();
                     do {
                         System.out.println("Combo para habitación");
                         System.out.println("1: Housekeeping");
@@ -235,14 +236,18 @@ public class main {
                         switch (servicio) {
                             case 1:
                                 servicios = "Housekeeping";
+                                listaServicios.add(new Servicios(1,"HouseKeeping",70));
                                 flagServicio = true;
                                 break;
                             case 2:
                                 servicios = "Fitness";
+                                listaServicios.add(new Servicios(2,"FitnessCenter",30));
                                 flagServicio = true;
                                 break;
                             case 3:
                                 servicios = "Housekeeping, Fitness";
+                                listaServicios.add(new Servicios(1,"HouseKeeping",70));
+                                listaServicios.add(new Servicios(2,"FitnessCenter",30));
                                 flagServicio = true;
                                 break;
                             default:
@@ -295,7 +300,7 @@ public class main {
                     Habitacion habitacion = mapaHabitacion.get(idHabitacion);
                     Huesped huesped = mapaHuesped.get(idHuesped);
                     
-                    Reservacion reservacion = new Reservacion(1, habitacion, huesped, servicios, fechaInicio, fechaFin);
+                    Reservacion reservacion = new Reservacion(1, habitacion, huesped, listaServicios, fechaInicio, fechaFin);
                     
                     //Agregamos a la lista
                     reservacionCrud.agregarReservacion(reservacion);

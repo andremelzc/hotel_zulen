@@ -33,7 +33,10 @@ public class newMain {
         HashMap<Integer, Habitacion> mapaHabitacion = habitacionCrud.cargarCSVHash();
 
         for(Reservacion reservacion : listaReservaciones){
-            System.out.println(reservacion.getHabitacionn().getEstado());
+            System.out.println(reservacion.getIdReserva());
+            for(Servicios servicios : reservacion.getServicios()){
+                System.out.println(servicios.getConcepto());
+            }
         }
         
       
