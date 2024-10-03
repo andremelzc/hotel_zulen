@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.*;
+import java.time.Period;                      // Cálculo de diferencia entre fechas
+import java.time.format.DateTimeFormatter;    // Formato de fechas
+
 
 /**
  *
@@ -186,4 +189,67 @@ public class ReservacionCrud {
         String[] nextLine;
         return existe;
     }
+    
+    public void leerTodoReservacion() {
+        try {
+            CSVReader reader = new CSVReader(new FileReader("reservaciones.csv"));
+            String[] nextLine;
+            System.out.println("-----------------------------");
+            System.out.println("ID      id_Habitacion  id_Huesped      Servicios     F. Ingreso     F.Salida   ");
+            System.out.println("-----------------------------");
+            try {
+                while ((nextLine = reader.readNext()) != null) {
+                    
+                        System.out.println(nextLine[0] + "       " + nextLine[1] + "      " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4]+ "    " + nextLine[5]);
+                        System.out.println("-----------------------------");
+                    
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void leerTiempoReservacionTiempo() {
+        try {
+            CSVReader reader = new CSVReader(new FileReader("reservaciones.csv"));
+            String[] nextLine;
+            System.out.println("-----------------------------");
+            System.out.println("ID      id_Habitacion  id_Huesped      Servicios     F. Ingreso     F. Salida    Tiempo Restante");
+            System.out.println("-----------------------------");
+            try {
+                // Definir el formato de fecha para analizar las fechas en el CSV
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                
+                // Obtener la fecha actual
+                LocalDate fechaActual = LocalDate.now();
+                
+                while ((nextLine = reader.readNext()) != null) {
+                    // Parsear la fecha almacenada en nextLine[5] a LocalDate
+                    LocalDate fechaSalida = LocalDate.parse(nextLine[5], formatter);
+                    
+                    // Calcular el tiempo entre la fecha actual y la fecha de salida
+                    Period diferencia = Period.between(fechaActual, fechaSalida);
+                    
+                    // Mostrar los días, meses y años restantes
+                    String tiempoRestante = diferencia.getYears() + " anos, " +
+                                            diferencia.getMonths() + " meses, " +
+                                            diferencia.getDays() + " días";
+
+                    // Imprimir la información
+                    System.out.println(nextLine[0] + "       " + nextLine[1] + "      " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4] + "    " + nextLine[5] + "    " + tiempoRestante);
+                    System.out.println("-----------------------------");
+                }
+            } catch (IOException | CsvValidationException ex) {
+                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

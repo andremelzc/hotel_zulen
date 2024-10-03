@@ -167,7 +167,37 @@ public class main {
                     obj.menuPersonal(sc);
                     break;
                 case 2:
-                    obj.menuHuesped(sc);
+                    int op_info;
+                    
+                    //Consultar Información 
+                    System.out.println("\n-----------------------------");
+                    System.out.println("Consultando Informacion");
+                    System.out.println("-----------------------------");
+                    System.out.println("1. Consultar Todas las Habitaciones"); //Podría modificarse a Reservas Activas???
+                    System.out.println("2. Consultar Habitaciones Disponibles");
+                    System.out.println("3. Consultar Tiempo de Reservaciones en Curso");
+                    do{
+                        System.out.println("Ingrese el su opción");
+                        op_info = sc.nextInt(); sc.nextLine(); //Limpiar el buffer
+                        if(op_info<1 || op_info>3){
+                            System.out.println("Opcion Fuera de Rango, Solo se Aceptan 1,2 y 3");
+                        }
+                    }while(op_info<1 || op_info>3);
+                    switch(op_info){
+                        case 1:
+                            //Consultar Todas las Habitaciones
+                            habitacionCrud.leerTodoHabitacion();
+                            break;
+                        case 2:
+                            //Consultar Habitaciones Disponibles
+                            habitacionCrud.leerTodoHabitacionDisponible();
+                            break;
+                        case 3:
+                            //Consultar Tiempo de Reservación
+                            reservacionCrud.leerTiempoReservacionTiempo();
+                            break;
+                    }
+                    //obj.menuHuesped(sc); // Taba antes de las Modificaciones de Miguel
                     break;
                 case 3:
                     //Reserva de habitación

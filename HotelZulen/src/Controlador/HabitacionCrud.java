@@ -117,12 +117,35 @@ public class HabitacionCrud {
             CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
             String[] nextLine;
             System.out.println("-----------------------------");
-            System.out.println("ID Tipo   Piso    Estado    Servicio    IDHuesped");
+            System.out.println("ID Tipo   Piso    Estado    Servicio   ");
             System.out.println("-----------------------------");
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    if ("1".equals(nextLine[3])) {
-                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2] + "    " + nextLine[4] + "    " + nextLine[5] + "    " + nextLine[6]);
+                    
+                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4]);
+                        System.out.println("-----------------------------");
+                    
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void leerTodoHabitacionDisponible() {
+        try {
+            CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
+            String[] nextLine;
+            System.out.println("-----------------------------");
+            System.out.println("ID Tipo   Piso    Estado    Servicio    ");
+            System.out.println("-----------------------------");
+            try {
+                while ((nextLine = reader.readNext()) != null) {
+                    if ("Disponible".equalsIgnoreCase(nextLine[3])) {
+                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2] + "    " + nextLine[3]+"    " + nextLine[4]);
                         System.out.println("-----------------------------");
                     }
 
