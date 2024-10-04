@@ -2,14 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Clases_Fabri;
+package modelo;
 
 import java.io.File;
-/**
- *
- * @author Fabrizio Mantari
- */
-public class Consumible {
+
+public abstract class Consumible {
     protected int precio;
     protected String nombre;
     protected String descripcion;
@@ -18,7 +15,7 @@ public class Consumible {
     
     protected enum Subtipo{
         cafe("bebida"),jugo("bebida"),LomoSaltado("Almuerzo"); /* Los tipos seríam “Comidas” Desayuno, Almuerzo y Cena.
-“Bebidas” Infusiones,  Bebidas Alcohólicas y Bebidas Sin Alcohol .*/
+    “Bebidas” Infusiones,  Bebidas Alcohólicas y Bebidas Sin Alcohol .*/
         
         private String tipo; //atributo que detecta la configuracion de la constante elegida
         
