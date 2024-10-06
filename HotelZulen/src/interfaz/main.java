@@ -297,9 +297,9 @@ public class main {
                     String fecha_inicio;
                     do {
                         System.out.println("Fecha de inicio de hospedaje (formato: YYYY-MM-DD): ");
-                        fecha_inicio = sc.nextLine();
+                        fecha_inicio = sc.nextLine().trim();
                         fechaInicio = LocalDate.parse(fecha_inicio);
-                        if (fechaHoy.isBefore(fechaInicio)) {
+                        if (fechaHoy.isBefore(fechaInicio) || fechaHoy.isEqual(fechaInicio)) {
                             flagFechaInicio = true;
                         } else {
                             System.out.println("Fecha inválida, ingrese otra");
@@ -311,7 +311,7 @@ public class main {
                     String fecha_fin;
                     do {
                         System.out.println("Fecha de fin de hospedaje (formato: YYYY-MM-DD): ");
-                        fecha_fin = sc.nextLine();
+                        fecha_fin = sc.nextLine().trim();
                         fechaFin = LocalDate.parse(fecha_fin);
                         if (fechaHoy.isBefore(fechaFin) && fechaInicio.isBefore(fechaFin)) {
                             flagFechaFin = true;
@@ -320,6 +320,18 @@ public class main {
                             System.out.println("-----------------------------");
                         }
                     } while (!flagFechaFin);
+                    //Estado de la reservación
+                    boolean flagEstado = false;
+                    String estado;
+                   
+                    if(fechaInicio.isAfter(fechaHoy)){
+                       estado = "En espera";
+                    }else if(fechaInicio.isEqual(fechaHoy)){
+                       estado = "Vigente";
+                    }else{
+                        estado = "Hubo error";
+                    }
+
                     // Cargamos el csv de huespedes en un hashmap
                     HashMap<Integer, Huesped> mapaHuesped = huespedCrud.cargarCSVHash();
 
@@ -330,7 +342,7 @@ public class main {
                     Habitacion habitacion = mapaHabitacion.get(idHabitacion);
                     Huesped huesped = mapaHuesped.get(idHuesped);
                     
-                    Reservacion reservacion = new Reservacion(1, habitacion, huesped, listaServicios, fechaInicio, fechaFin);
+                    Reservacion reservacion = new Reservacion(1, habitacion, huesped, listaServicios, estado,fechaInicio, fechaFin);
                     
                     //Agregamos a la lista
                     reservacionCrud.agregarReservacion(reservacion);

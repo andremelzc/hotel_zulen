@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/ID's/Java/java_projects/hotel_zulen/HotelZulen/src/Clases_Fabri/Housekeeper.java</file>
-            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/ID's/Java/java_projects/hotel_zulen/HotelZulen/src/Clases_Fabri/Huesped.java</file>
-            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/ID's/Java/java_projects/hotel_zulen/HotelZulen/src/main/main.java</file>
-            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/ID's/Java/java_projects/hotel_zulen/HotelZulen/src/Clases_Fabri/Reservación.java</file>
-            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/ID's/Java/java_projects/hotel_zulen/HotelZulen/src/pruebitas_andre/PersonalCrud.java</file>
+            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/IDs/Java/java_projects/hotel_zulen/HotelZulen/src/interfaz/InicioSesion.java</file>
+            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/IDs/Java/java_projects/hotel_zulen/HotelZulen/src/interfaz/main.java</file>
+            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/IDs/Java/java_projects/hotel_zulen/HotelZulen/src/Controlador/HabitacionCrud.java</file>
+            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/IDs/Java/java_projects/hotel_zulen/HotelZulen/src/Controlador/ServiciosCrud.java</file>
+            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/IDs/Java/java_projects/hotel_zulen/HotelZulen/src/Controlador/ReservacionCrud.java</file>
+            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/IDs/Java/java_projects/hotel_zulen/HotelZulen/src/modelo/Reservacion.java</file>
+            <file>file:/C:/Users/Fabrizio%20Mantari/OneDrive%20-%20Universidad%20Nacional%20Mayor%20de%20San%20Marcos/Escritorio/IDs/Java/java_projects/hotel_zulen/HotelZulen/src/interfaz/newMain.java</file>
         </group>
     </open-files>
 </project-private>

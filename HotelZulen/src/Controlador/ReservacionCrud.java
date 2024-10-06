@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,8 +55,9 @@ public class ReservacionCrud {
                     int idHabitacion = Integer.parseInt(nextLine[1]);
                     int idHuesped = Integer.parseInt(nextLine[2]);
                     String servicios = nextLine[3];
-                    LocalDate inicioHuesped = LocalDate.parse(nextLine[4]);
-                    LocalDate finHuesped = LocalDate.parse(nextLine[5]);
+                    String estado = nextLine[4];
+                    LocalDate inicioHuesped = LocalDate.parse(nextLine[5]);
+                    LocalDate finHuesped = LocalDate.parse(nextLine[6]);
 
                     String[] serviciosArray = servicios.split(",\\s*");
                     List<Servicios> listaServicios = new ArrayList<>();
@@ -74,7 +76,7 @@ public class ReservacionCrud {
 
                     if (huesped != null && habitacion != null) {
 
-                        Reservacion reservacion = new Reservacion(idReserva, habitacion, huesped, listaServicios, inicioHuesped, finHuesped);
+                        Reservacion reservacion = new Reservacion(idReserva, habitacion, huesped, listaServicios, estado, inicioHuesped, finHuesped);
                         listaReservaciones.add(reservacion);
 
                     }
@@ -91,7 +93,22 @@ public class ReservacionCrud {
 
         return listaReservaciones;
     }
-
+    
+    public void actualizarReservacion(){
+        listaReservaciones.clear();
+        List<Reservacion> listaReservaciones1 = new ArrayList<>();
+        listaReservaciones1 = cargarCSVlista();
+        LocalDate fechaHoy = LocalDate.now();
+        
+        for(Reservacion reserva : listaReservaciones1){
+            if(reserva.getFinHuesped().isBefore(fechaHoy) || (reserva.getFinHuesped().isEqual(fechaHoy) && LocalTime.now().isAfter(LocalTime.NOON))){
+                reserva.setEstado("Finalizada");
+            }
+            listaReservaciones.add(reserva);
+        }
+        sobreescribirCSV();
+    }
+    
     public void agregarReservacion(Reservacion reservacion) {
         listaReservaciones.clear();
         reservacion.setIdReserva(numeroLineas() + 1);
@@ -100,6 +117,33 @@ public class ReservacionCrud {
         listaReservaciones.add(reservacion);
     }
 
+   public void sobreescribirCSV(){
+       StringBuilder serviciosString = new StringBuilder();
+        //Lista para enviar al CSV
+        try (CSVWriter escritor = new CSVWriter(new FileWriter("reservaciones.csv", false))) {
+            int i=0;
+            for (Reservacion reservacion : listaReservaciones) {
+                i++;
+                reservacion.setIdReserva(i);
+                serviciosString.setLength(0);
+                for (Servicios servicio : reservacion.getServicios()) {
+                    serviciosString.append(servicio.getConcepto()).append(", ");
+                }
+                if (serviciosString.length() > 0) {
+                    serviciosString.setLength(serviciosString.length() - 2); // Elimina la última coma y espacio
+                }
+                String servicios = serviciosString.toString();
+                
+                String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()),
+                    String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getEstado()),String.valueOf(reservacion.getIncioHuesped()),
+                    String.valueOf(reservacion.getFinHuesped())};
+                escritor.writeNext(datos);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+    
     public void escribirCSV() {
         StringBuilder serviciosString = new StringBuilder();
         //Lista para enviar al CSV
@@ -114,7 +158,7 @@ public class ReservacionCrud {
                 String servicios = serviciosString.toString();
                 
                 String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()),
-                    String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getIncioHuesped()),
+                    String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getEstado()),String.valueOf(reservacion.getIncioHuesped()),
                     String.valueOf(reservacion.getFinHuesped())};
                 escritor.writeNext(datos);
             }
@@ -191,16 +235,17 @@ public class ReservacionCrud {
     }
     
     public void leerTodoReservacion() {
+        actualizarReservacion();
         try {
             CSVReader reader = new CSVReader(new FileReader("reservaciones.csv"));
             String[] nextLine;
             System.out.println("-----------------------------");
-            System.out.println("ID      id_Habitacion  id_Huesped      Servicios     F. Ingreso     F.Salida   ");
+            System.out.println("ID   id_Habitacion  id_Huesped     Servicios        Estado        F. Ingreso     F.Salida   ");
             System.out.println("-----------------------------");
             try {
                 while ((nextLine = reader.readNext()) != null) {
                     
-                        System.out.println(nextLine[0] + "       " + nextLine[1] + "      " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4]+ "    " + nextLine[5]);
+                        System.out.println(nextLine[0] + "       " + nextLine[1] + "        " + nextLine[2] + "    " + nextLine[3] + "        " + nextLine[4]+ "    " + nextLine[5] + "    " + nextLine[6]);
                         System.out.println("-----------------------------");
                     
                 }
@@ -215,11 +260,12 @@ public class ReservacionCrud {
     }
     
     public void leerTiempoReservacionTiempo() {
+        actualizarReservacion();
         try {
             CSVReader reader = new CSVReader(new FileReader("reservaciones.csv"));
             String[] nextLine;
             System.out.println("-----------------------------");
-            System.out.println("ID      id_Habitacion  id_Huesped      Servicios     F. Ingreso     F. Salida    Tiempo Restante");
+            System.out.println("ID      id_Habitacion  id_Huesped      Servicios       Estado     F. Ingreso     F. Salida    Tiempo Restante");
             System.out.println("-----------------------------");
             try {
                 // Definir el formato de fecha para analizar las fechas en el CSV
@@ -241,7 +287,7 @@ public class ReservacionCrud {
                                             diferencia.getDays() + " días";
 
                     // Imprimir la información
-                    System.out.println(nextLine[0] + "       " + nextLine[1] + "      " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4] + "    " + nextLine[5] + "    " + tiempoRestante);
+                    System.out.println(nextLine[0] + "       " + nextLine[1] + "      " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4] + "    " + nextLine[5] + "    " + nextLine[6] + "    " + tiempoRestante);
                     System.out.println("-----------------------------");
                 }
             } catch (IOException | CsvValidationException ex) {

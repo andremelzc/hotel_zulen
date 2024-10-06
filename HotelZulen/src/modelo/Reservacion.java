@@ -14,6 +14,7 @@ public class Reservacion {
     private Huesped huespedd;
     private List<Servicios> servicios;
     //List<PedidosComida> pedidosComida;
+    private String estado;
     private LocalDate incioHuesped;
     private LocalDate finHuesped;
 
@@ -21,11 +22,12 @@ public class Reservacion {
 
     }
 
-    public Reservacion(int idReserva, Habitacion habitacion, Huesped huespedd, List<Servicios> servicios, LocalDate incioHuesped, LocalDate finHuesped) {
+    public Reservacion(int idReserva, Habitacion habitacion, Huesped huespedd, List<Servicios> servicios, String estado, LocalDate incioHuesped, LocalDate finHuesped) {
         this.idReserva = idReserva;
         this.habitacionn = habitacion;
         this.huespedd = huespedd;
         this.servicios = servicios;
+        this.estado = estado;
         this.incioHuesped = incioHuesped;
         this.finHuesped = finHuesped;
     }
@@ -44,6 +46,10 @@ public class Reservacion {
 
     public List<Servicios> getServicios() {
         return servicios;
+    }
+
+    public String getEstado() {
+        return estado;
     }
 
     public LocalDate getIncioHuesped() {
@@ -69,6 +75,10 @@ public class Reservacion {
     public void setServicios(List<Servicios> servicios) {
         this.servicios = servicios;
     }
+    
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public void setIncioHuesped(LocalDate incioHuesped) {
         this.incioHuesped = incioHuesped;
@@ -78,4 +88,5 @@ public class Reservacion {
         this.finHuesped = finHuesped;
     }
 
+    
 }
