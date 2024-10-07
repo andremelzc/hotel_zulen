@@ -18,26 +18,9 @@ import modelo.Personal;
 public class newMain {
 
     public static void main(String[] args) {
-        List<Personal> listaPersonales = new ArrayList<>();
-        List<Reservacion> listaReservaciones = new ArrayList<>();
-        List<Habitacion> listaHabitaciones = new ArrayList<>();
-
         PersonalCrud personalCrud = new PersonalCrud();
-        ReservacionCrud reservacionCrud = new ReservacionCrud();
-        HabitacionCrud habitacionCrud = new HabitacionCrud();
-        listaPersonales = personalCrud.cargarCSVlista();
-        
-        
-        listaReservaciones = reservacionCrud.cargarCSVlista();
-        
-        HashMap<Integer, Habitacion> mapaHabitacion = habitacionCrud.cargarCSVHash();
-
-        for(Reservacion reservacion : listaReservaciones){
-            System.out.println(reservacion.getIdReserva());
-            for(Servicios servicios : reservacion.getServicios()){
-                System.out.println(servicios.getConcepto());
-            }
-        }
+        List<Personal> listaPersonal = personalCrud.cargarCSVlista();
+        personalCrud.eliminarPersonal(listaPersonal, 1);
         
       
 

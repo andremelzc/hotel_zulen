@@ -22,6 +22,12 @@ public class HuespedCrud {
 
     List<Huesped> listaHuesped = new ArrayList<>();
 
+    public List<Huesped> getListaHuesped() {
+        return listaHuesped;
+    }
+    
+    
+
     public void agregarHuesped(Huesped huesped) {
         listaHuesped.add(huesped);
         System.out.println("-----------------------------");
@@ -190,7 +196,8 @@ public class HuespedCrud {
         }
         return existe;
     }
-
+    
+  
     public void actualizarHuesped(int id_actualizar) {
         List<String[]> allData = new ArrayList<>();
         Scanner sc = new Scanner(System.in);

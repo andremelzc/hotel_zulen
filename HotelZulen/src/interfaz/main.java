@@ -484,7 +484,7 @@ public class main {
                     } while (!flag_salir);
 
                     //Escrimos en el csv
-                    personalCrud.escribirCSV();
+                    personalCrud.escribirCSV(personalCrud.getListaPersonal());
 
                     break;
                 case 2:
@@ -510,7 +510,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a actualizar: ");
                     int id_actualizar = sc.nextInt();
-                    personalCrud.actualizarPersonal(id_actualizar);
+                    listaPersonales = personalCrud.cargarCSVlista();
+                    personalCrud.actualizarPersonal(listaPersonales, id_actualizar);
                     System.out.println("-----------------------------\n");
                     break;
                 case 5:
@@ -519,7 +520,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a eliminar: ");
                     int id_eliminar = sc.nextInt();
-                    personalCrud.eliminarPersonal(id_eliminar);
+                    listaPersonales = personalCrud.cargarCSVlista();
+                    personalCrud.eliminarPersonal(listaPersonales, id_eliminar);
                     System.out.println("-----------------------------\n");
                 case 6:
                     flagPersonal = false;
