@@ -101,8 +101,15 @@ public class ReservacionCrud {
         LocalDate fechaHoy = LocalDate.now();
         
         for(Reservacion reserva : listaReservaciones1){
-            if(reserva.getFinHuesped().isBefore(fechaHoy) || (reserva.getFinHuesped().isEqual(fechaHoy) && LocalTime.now().isAfter(LocalTime.NOON))){
+            if(reserva.getFinHuesped().isBefore(fechaHoy) || (reserva.getFinHuesped().isEqual(fechaHoy) && LocalTime.now().isAfter(LocalTime.NOON))){ //verifica si ya acabo el tiempo de reserva
                 reserva.setEstado("Finalizada");
+                //System.out.println("Paso if 1");
+            }else if(reserva.getEstado().equalsIgnoreCase("En espera") && (reserva.getIncioHuesped().isBefore(fechaHoy) || reserva.getIncioHuesped().isEqual(fechaHoy))){ //verifica si ya empezo una reservacion que hiciste para despues
+                reserva.setEstado("Vigente");
+                //System.out.println("Paso if 2");
+            }else if(reserva.getEstado().equals("Finalizada") && reserva.getFinHuesped().isAfter(fechaHoy)){ //verifica si ya habia terminado tu reservacion pero ampliaste esta misma
+                reserva.setEstado("Vigente");
+                //System.out.println("Paso if 3");
             }
             listaReservaciones.add(reserva);
         }
@@ -276,7 +283,7 @@ public class ReservacionCrud {
                 
                 while ((nextLine = reader.readNext()) != null) {
                     // Parsear la fecha almacenada en nextLine[5] a LocalDate
-                    LocalDate fechaSalida = LocalDate.parse(nextLine[5], formatter);
+                    LocalDate fechaSalida = LocalDate.parse(nextLine[6], formatter);
                     
                     // Calcular el tiempo entre la fecha actual y la fecha de salida
                     Period diferencia = Period.between(fechaActual, fechaSalida);
