@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -29,25 +30,25 @@ public class HabitacionCrud {
             CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
             String[] nextLine;
 
-            try {
-
-                while ((nextLine = reader.readNext()) != null) {
+            while ((nextLine = reader.readNext()) != null) {
+                // Check if the line has the expected number of columns
+                if (nextLine.length >= 4) { // Ensure there are at least 4 columns
                     TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(nextLine[1]);
-                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoHabitacion, Integer.parseInt(nextLine[2]),
-                            nextLine[3],Integer.parseInt(nextLine[4]));
+                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoHabitacion, Integer.parseInt(nextLine[2]), nextLine[3]);
+                    listaHabitaciones.add(habitacion); //agregando a la Lista
+                } else {
+                    System.err.println("Error: línea con datos insuficientes: " + Arrays.toString(nextLine));
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listaHabitaciones;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | CsvValidationException ex) {
+            Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
     }
-    
+    return listaHabitaciones; //Retorna la lista cargada
+}
+
+     // Método para cargar las habitaciones desde CSV a la lista
     public HashMap<Integer, Habitacion> cargarCSVHash(){
         HashMap<Integer, Habitacion> mapaHabitacion = new HashMap<>();
         try {
@@ -57,7 +58,7 @@ public class HabitacionCrud {
             try {
                 while ((nextLine = reader.readNext()) != null) {
                     TipoDeHabitacion tipoDeHabitacion = new TipoDeHabitacion(nextLine[1]);
-                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoDeHabitacion, Integer.parseInt(nextLine[2]), nextLine[3], Integer.parseInt(nextLine[4]));
+                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoDeHabitacion, Integer.parseInt(nextLine[2]), nextLine[3]);
                     
                     mapaHabitacion.put(habitacion.getId(), habitacion);
                 }
@@ -74,7 +75,7 @@ public class HabitacionCrud {
     }
     
 
-    public void agregarHabitacion(Habitacion habitacion) {
+    public void agregarHabitacion(Habitacion habitacion,List<Habitacion> listaHabitacion) {
         listaHabitacion.add(habitacion);
         System.out.println("-----------------------------");
         
@@ -87,7 +88,7 @@ public class HabitacionCrud {
         try (CSVWriter escritor = new CSVWriter(new FileWriter("habitaciones.csv", true))) {
             for (Habitacion habitacion : listaHabitacion) {
                 String[] datos = {String.valueOf(numeroLineas() + 1), habitacion.getTipoHabitacion().getConcepto(), String.valueOf(habitacion.getPiso()),
-                habitacion.getEstado(),String.valueOf(habitacion.getIdHouseKeeper())};   //El 1 significa que la cuenta está activa
+                habitacion.getEstado()};   //El 1 significa que la cuenta está activa
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
@@ -112,29 +113,23 @@ public class HabitacionCrud {
         return numero;
     }
 
-    public void leerTodoHabitacion() {
-        try {
-            CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
-            String[] nextLine;
-            System.out.println("-----------------------------");
-            System.out.println("ID Tipo   Piso    Estado    Servicio   ");
-            System.out.println("-----------------------------");
-            try {
-                while ((nextLine = reader.readNext()) != null) {
-                    
-                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4]);
-                        System.out.println("-----------------------------");
-                    
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+    public void leerTodoHabitacion(List<Habitacion> listaHabitacion) {
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.printf("%-4s %-10s %-15s %-12s%n", "ID", "Tipo de habitacion", "Piso", "Estado");
+        System.out.println("--------------------------------------------------------------------------------------");
+        // Imprimimos toda la lista
+        for (Habitacion habitacion : listaHabitacion) {
+            // Verificamos si está activo
+            
+                System.out.printf("%-4s %-10s %-15s %-12s%n", 
+                habitacion.getId(), 
+                habitacion.getTipoHabitacion().getConcepto(), 
+                habitacion.getPiso(), 
+                habitacion.getEstado());
+            
         }
     }
+    
     public void leerTodoHabitacionDisponible() {
         try {
             CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
@@ -145,7 +140,7 @@ public class HabitacionCrud {
             try {
                 while ((nextLine = reader.readNext()) != null) {
                     if ("Disponible".equalsIgnoreCase(nextLine[3])) {
-                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2] + "    " + nextLine[3]+"    " + nextLine[4]);
+                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2] + "    " + nextLine[3]);
                         System.out.println("-----------------------------");
                     }
 
@@ -307,7 +302,7 @@ public class HabitacionCrud {
             String[] nextLine;
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    if (Integer.parseInt(nextLine[0]) == id_habitacion && nextLine[4].equals("Ocupado")) {
+                    if (Integer.parseInt(nextLine[0]) == id_habitacion && nextLine[3].equals("Ocupado")) {
                         ocupada= true;
                     }
                 }

@@ -6,7 +6,6 @@ public class Habitacion {
     private TipoDeHabitacion tipoHabitacion;
     private int piso;
     private String estado;
-    private int idHouseKeeper;
     // private Servicio servicio;
     private String servicio;
     /**
@@ -28,12 +27,11 @@ public class Habitacion {
         this.IDHuesped = IDHuesped;
     }*/
 
-    public Habitacion(int id, TipoDeHabitacion tipoHabitacion, int piso, String estado, int idHousekeeper) {
+    public Habitacion(int id, TipoDeHabitacion tipoHabitacion, int piso, String estado) {
         this.id = id;
         this.tipoHabitacion = tipoHabitacion;
         this.piso = piso;
         this.estado = estado;
-        this.idHouseKeeper = idHousekeeper;
     }
 
     public int getId() {
@@ -52,15 +50,9 @@ public class Habitacion {
         return estado;
     }
 
-    public int getIdHouseKeeper() {
-        return idHouseKeeper;
-    }
-
     public String getServicio() {
         return servicio;
     }
-    
-    
     
     
 }

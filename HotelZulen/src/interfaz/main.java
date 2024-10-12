@@ -26,6 +26,7 @@ public class main {
         Scanner sc = new Scanner(System.in);
         PersonalCrud personal = new PersonalCrud();
         ServiciosCrud servicios = new ServiciosCrud();
+
         //Reservación reservacion = new Reservación(); //Esto es de Melendez
         InicioSesion isesion = new InicioSesion();
         main obj = new main();
@@ -145,6 +146,8 @@ public class main {
         main obj = new main();
         ReservacionCrud reservacionCrud = new ReservacionCrud();
         HabitacionCrud habitacionCrud = new HabitacionCrud();
+        List<Habitacion> listaHabitaciones = new ArrayList();
+        listaHabitaciones = habitacionCrud.cargarCSVlista();
         HuespedCrud huespedCrud = new HuespedCrud();
         LocalDate fechaActual = LocalDate.now();
         do {
@@ -186,7 +189,7 @@ public class main {
                     switch(op_info){
                         case 1:
                             //Consultar Todas las Habitaciones
-                            habitacionCrud.leerTodoHabitacion();
+                            habitacionCrud.leerTodoHabitacion(listaHabitaciones);
                             break;
                         case 2:
                             //Consultar Habitaciones Disponibles
@@ -626,6 +629,8 @@ public class main {
     public void menuHabitacion(Scanner sc) {
         HabitacionCrud HabitacionCrud = new HabitacionCrud();
         TipoDeHabitacion tipoHabitacionMostrar = new TipoDeHabitacion();
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
+        listaHabitaciones=HabitacionCrud.cargarCSVlista();
         boolean flagHabitacion = true;
         do {
             System.out.println("\n------------------");
@@ -656,19 +661,18 @@ public class main {
                     sc.nextLine();
                     System.out.println("Estado: ");
                     String estado = sc.nextLine();
-                    System.out.println("Personal asignado: ");
-                    int personalAsignado = sc.nextInt();
+           
 
                     TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(tipo);
-                    Habitacion nuevoHabitacion = new Habitacion(piso, tipoHabitacion, piso, estado, personalAsignado);
-                    HabitacionCrud.agregarHabitacion(nuevoHabitacion);
+                    Habitacion nuevoHabitacion = new Habitacion(piso, tipoHabitacion, piso, estado);
+                    HabitacionCrud.agregarHabitacion(nuevoHabitacion,listaHabitaciones);
                     System.out.println("-----------------------------\n");
                     break;
                 case 2:
                     System.out.println("\n-----------------------------");
                     System.out.println("Imprimiendo todo el Habitacion");
                     System.out.println("-----------------------------\n");
-                    HabitacionCrud.leerTodoHabitacion();
+                    HabitacionCrud.leerTodoHabitacion(listaHabitaciones);
                     break;
                 case 3:
                     System.out.println("\n-----------------------------");
