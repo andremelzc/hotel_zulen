@@ -195,7 +195,7 @@ public class main {
                             break;
                         case 2:
                             //Consultar Habitaciones Disponibles
-                            habitacionCrud.leerTodoHabitacionDisponible();
+                            habitacionCrud.leerTodoHabitacionDisponible(listaHabitaciones);
                             break;
                         case 3:
                             //Consultar Tiempo de Reservación
@@ -256,7 +256,7 @@ public class main {
                         idHabitacion = sc.nextInt();
                         sc.nextLine();
                         //Verificamos si existe
-                        boolean existe = habitacionCrud.existeHabitacion(idHabitacion);
+                        boolean existe = habitacionCrud.existeHabitacion(listaHabitaciones, idHabitacion);
                         if (existe) {
                             flagHabitacion = true;
                             //Verificamos si está ocupada (puede cambiarse con lógica/datos de reservas) <<<<-- cambiar
@@ -688,7 +688,6 @@ public class main {
         HabitacionCrud HabitacionCrud = new HabitacionCrud();
         TipoDeHabitacion tipoHabitacionMostrar = new TipoDeHabitacion();
         List<Habitacion> listaHabitaciones = new ArrayList<>();
-        listaHabitaciones=HabitacionCrud.cargarCSVlista();
         boolean flagHabitacion = true;
         do {
             System.out.println("\n------------------");
@@ -730,6 +729,7 @@ public class main {
                     System.out.println("\n-----------------------------");
                     System.out.println("Imprimiendo todo el Habitacion");
                     System.out.println("-----------------------------\n");
+                    listaHabitaciones=HabitacionCrud.cargarCSVlista();
                     HabitacionCrud.leerTodoHabitacion(listaHabitaciones);
                     break;
                 case 3:
@@ -738,7 +738,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a buscar: ");
                     int id_buscar = sc.nextInt();
-                    HabitacionCrud.buscarHabitacion(id_buscar);
+                    listaHabitaciones=HabitacionCrud.cargarCSVlista();
+                    HabitacionCrud.buscarHabitacion(listaHabitaciones, id_buscar);
                     System.out.println("-----------------------------\n");
                     break;
                 case 4:
@@ -747,7 +748,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a actualizar: ");
                     int id_actualizar = sc.nextInt();
-                    HabitacionCrud.actualizarHabitacion(id_actualizar);
+                    listaHabitaciones=HabitacionCrud.cargarCSVlista();
+                    HabitacionCrud.actualizarHabitacion(listaHabitaciones, id_actualizar);
                     System.out.println("-----------------------------\n");
                     break;
                 case 5:
@@ -756,7 +758,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a eliminar: ");
                     int id_eliminar = sc.nextInt();
-                    HabitacionCrud.eliminarHabitacion(id_eliminar);
+                    listaHabitaciones=HabitacionCrud.cargarCSVlista();
+                    HabitacionCrud.eliminarHabitacion(listaHabitaciones, id_eliminar);
                     System.out.println("-----------------------------\n");
                 case 6:
                     tipoHabitacionMostrar.mostrarTiposDeHabitaciones();
