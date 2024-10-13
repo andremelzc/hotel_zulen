@@ -7,6 +7,7 @@ package Controlador;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,15 +17,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import modelo.*;
+
 import java.time.Period;                      // Cálculo de diferencia entre fechas
 import java.time.format.DateTimeFormatter;    // Formato de fechas
 
 
 /**
- *
  * @author PC
  */
 public class ReservacionCrud {
@@ -93,21 +96,21 @@ public class ReservacionCrud {
 
         return listaReservaciones;
     }
-    
-    public void actualizarReservacion(){
+
+    public void actualizarReservacion() {
         listaReservaciones.clear();
         List<Reservacion> listaReservaciones1 = new ArrayList<>();
         listaReservaciones1 = cargarCSVlista();
         LocalDate fechaHoy = LocalDate.now();
-        
-        for(Reservacion reserva : listaReservaciones1){
-            if(reserva.getFinHuesped().isBefore(fechaHoy) || (reserva.getFinHuesped().isEqual(fechaHoy) && LocalTime.now().isAfter(LocalTime.NOON))){ //verifica si ya acabo el tiempo de reserva
+
+        for (Reservacion reserva : listaReservaciones1) {
+            if (reserva.getFinHuesped().isBefore(fechaHoy) || (reserva.getFinHuesped().isEqual(fechaHoy) && LocalTime.now().isAfter(LocalTime.NOON))) { //verifica si ya acabo el tiempo de reserva
                 reserva.setEstado("Finalizada");
                 //System.out.println("Paso if 1");
-            }else if(reserva.getEstado().equalsIgnoreCase("En espera") && (reserva.getIncioHuesped().isBefore(fechaHoy) || reserva.getIncioHuesped().isEqual(fechaHoy))){ //verifica si ya empezo una reservacion que hiciste para despues
+            } else if (reserva.getEstado().equalsIgnoreCase("En espera") && (reserva.getIncioHuesped().isBefore(fechaHoy) || reserva.getIncioHuesped().isEqual(fechaHoy))) { //verifica si ya empezo una reservacion que hiciste para despues
                 reserva.setEstado("Vigente");
                 //System.out.println("Paso if 2");
-            }else if(reserva.getEstado().equals("Finalizada") && reserva.getFinHuesped().isAfter(fechaHoy)){ //verifica si ya habia terminado tu reservacion pero ampliaste esta misma
+            } else if (reserva.getEstado().equals("Finalizada") && reserva.getFinHuesped().isAfter(fechaHoy)) { //verifica si ya habia terminado tu reservacion pero ampliaste esta misma
                 reserva.setEstado("Vigente");
                 //System.out.println("Paso if 3");
             }
@@ -115,8 +118,8 @@ public class ReservacionCrud {
         }
         sobreescribirCSV();
     }
-    
-    public void agregarReservacion(Reservacion reservacion,List<Habitacion> listaHabitacion,List<Huesped> listaHuesped) {
+
+    public void agregarReservacion(Reservacion reservacion, List<Habitacion> listaHabitacion, List<Huesped> listaHuesped) {
         reservacion.setIdReserva(numeroLineas() + 1);
 
         reservacion.getHuespedd().setEstado(1);
@@ -127,11 +130,11 @@ public class ReservacionCrud {
         listaReservaciones.add(reservacion);
     }
 
-   public void sobreescribirCSV(){
-       StringBuilder serviciosString = new StringBuilder();
+    public void sobreescribirCSV() {
+        StringBuilder serviciosString = new StringBuilder();
         //Lista para enviar al CSV
         try (CSVWriter escritor = new CSVWriter(new FileWriter("reservaciones.csv", false))) {
-            int i=0;
+            int i = 0;
             for (Reservacion reservacion : listaReservaciones) {
                 i++;
                 reservacion.setIdReserva(i);
@@ -143,17 +146,17 @@ public class ReservacionCrud {
                     serviciosString.setLength(serviciosString.length() - 2); // Elimina la última coma y espacio
                 }
                 String servicios = serviciosString.toString();
-                
+
                 String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()),
-                    String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getEstado()),String.valueOf(reservacion.getIncioHuesped()),
-                    String.valueOf(reservacion.getFinHuesped())};
+                        String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getEstado()), String.valueOf(reservacion.getIncioHuesped()),
+                        String.valueOf(reservacion.getFinHuesped())};
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
             Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
-   }
-    
+    }
+
     public void escribirCSV() {
         StringBuilder serviciosString = new StringBuilder();
         //Lista para enviar al CSV
@@ -166,14 +169,14 @@ public class ReservacionCrud {
                     serviciosString.setLength(serviciosString.length() - 2); // Elimina la última coma y espacio
                 }
                 String servicios = serviciosString.toString();
-                
+
                 String[] datos = {
-                    String.valueOf(reservacion.getIdReserva()), 
-                    String.valueOf(reservacion.getHabitacionn().getId()),
-                    String.valueOf(reservacion.getHuespedd().getID()), servicios, 
-                    String.valueOf(reservacion.getEstado()),
-                    String.valueOf(reservacion.getIncioHuesped()),
-                    String.valueOf(reservacion.getFinHuesped())};
+                        String.valueOf(reservacion.getIdReserva()),
+                        String.valueOf(reservacion.getHabitacionn().getId()),
+                        String.valueOf(reservacion.getHuespedd().getID()), servicios,
+                        String.valueOf(reservacion.getEstado()),
+                        String.valueOf(reservacion.getIncioHuesped()),
+                        String.valueOf(reservacion.getFinHuesped())};
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
@@ -247,7 +250,7 @@ public class ReservacionCrud {
         String[] nextLine;
         return existe;
     }
-    
+
     public void leerTodoReservacion() {
         actualizarReservacion();
         try {
@@ -258,10 +261,10 @@ public class ReservacionCrud {
             System.out.println("-----------------------------");
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    
-                        System.out.println(nextLine[0] + "       " + nextLine[1] + "        " + nextLine[2] + "    " + nextLine[3] + "        " + nextLine[4]+ "    " + nextLine[5] + "    " + nextLine[6]);
-                        System.out.println("-----------------------------");
-                    
+
+                    System.out.println(nextLine[0] + "       " + nextLine[1] + "        " + nextLine[2] + "    " + nextLine[3] + "        " + nextLine[4] + "    " + nextLine[5] + "    " + nextLine[6]);
+                    System.out.println("-----------------------------");
+
                 }
             } catch (IOException ex) {
                 Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
@@ -272,7 +275,7 @@ public class ReservacionCrud {
             Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void leerTiempoReservacionTiempo() {
         actualizarReservacion();
         try {
@@ -284,21 +287,21 @@ public class ReservacionCrud {
             try {
                 // Definir el formato de fecha para analizar las fechas en el CSV
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                
+
                 // Obtener la fecha actual
                 LocalDate fechaActual = LocalDate.now();
-                
+
                 while ((nextLine = reader.readNext()) != null) {
                     // Parsear la fecha almacenada en nextLine[5] a LocalDate
                     LocalDate fechaSalida = LocalDate.parse(nextLine[6], formatter);
-                    
+
                     // Calcular el tiempo entre la fecha actual y la fecha de salida
                     Period diferencia = Period.between(fechaActual, fechaSalida);
-                    
+
                     // Mostrar los días, meses y años restantes
                     String tiempoRestante = diferencia.getYears() + " anos, " +
-                                            diferencia.getMonths() + " meses, " +
-                                            diferencia.getDays() + " días";
+                            diferencia.getMonths() + " meses, " +
+                            diferencia.getDays() + " días";
 
                     // Imprimir la información
                     System.out.println(nextLine[0] + "       " + nextLine[1] + "      " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4] + "    " + nextLine[5] + "    " + nextLine[6] + "    " + tiempoRestante);
@@ -311,5 +314,53 @@ public class ReservacionCrud {
             Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public void ampliarReservacion() {
+        listaReservaciones.clear();
+        List<Reservacion> listaReservaciones1 = new ArrayList<>();
+        listaReservaciones1 = cargarCSVlista();
+        LocalDate fechaHoy = LocalDate.now();
+        int idReservacion;
+        boolean flag = false;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el ID de la reservacion que desea ampliar: ");
+        idReservacion = sc.nextInt();
+
+        for (Reservacion reserva : listaReservaciones1) {
+            if (reserva.getIdReserva() == idReservacion) {
+                flag = true;
+                if (reserva.getFinHuesped().isBefore(fechaHoy) || (reserva.getFinHuesped().isEqual(fechaHoy) && LocalTime.now().isAfter(LocalTime.NOON))) { //verifica si ya acabo el tiempo de reserva
+                    System.out.println("La reservacion ya ha finalizado, no se puede ampliar");
+                } else {
+                    System.out.println("La reservacion seleccionada es la siguiente: ");
+                    System.out.println("ID: " + reserva.getIdReserva());
+                    System.out.println("Habitacion: " + reserva.getHabitacionn().getId());
+                    System.out.println("Huesped: " + reserva.getHuespedd().getID());
+                    System.out.println("Servicios: ");
+                    for (Servicios servicio : reserva.getServicios()) {
+                        System.out.println("    " + servicio.getConcepto());
+                    }
+                    System.out.println("Estado: " + reserva.getEstado());
+                    System.out.println("Fecha de ingreso: " + reserva.getIncioHuesped());
+                    System.out.println("Fecha de salida: " + reserva.getFinHuesped());
+
+                    System.out.println("Ingrese la nueva fecha de salida: ");
+                    LocalDate nuevaFechaSalida = LocalDate.parse(sc.next());
+                    reserva.setFinHuesped(nuevaFechaSalida);
+                    reserva.setEstado("Vigente");
+                }
+
+            } else {
+                listaReservaciones.add(reserva);
+                continue;
+            }
+            listaReservaciones.add(reserva);
+        }
+
+        if (!flag) {
+            System.out.println("No se encontro la reservacion con el ID ingresado");
+        }
+        sobreescribirCSV();
+    }
 }

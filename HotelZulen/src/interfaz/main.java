@@ -159,7 +159,8 @@ public class main {
             System.out.println("2. Consultar información");
             System.out.println("3. Reservar habitación");
             System.out.println("4. Actualizar reserva");
-            System.out.println("5. Salir");
+            System.out.println("5. Ampliar reserva");
+            System.out.println("6. Salir");
 
             System.out.println("------------------");
             System.out.println("Que desea hacer?");
@@ -393,10 +394,12 @@ public class main {
                     obj.menuServicios(sc);
                     break;
                 case 5:
+                    reservacionCrud.ampliarReservacion();
+                    break;
+                case 6:
                     flag = false;
                     System.out.println("Saliendo...");
                     break;
-
             }
         } while (flag);
     }
