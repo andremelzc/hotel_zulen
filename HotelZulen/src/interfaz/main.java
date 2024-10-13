@@ -19,9 +19,6 @@ import java.util.HashMap;
 //import pruebas_giron.*; //En caso se use fuera de este package
 public class main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PersonalCrud personal = new PersonalCrud();
@@ -146,9 +143,11 @@ public class main {
         main obj = new main();
         ReservacionCrud reservacionCrud = new ReservacionCrud();
         HabitacionCrud habitacionCrud = new HabitacionCrud();
-        List<Habitacion> listaHabitaciones = new ArrayList();
+        List<Habitacion> listaHabitaciones = new ArrayList<>();
         listaHabitaciones = habitacionCrud.cargarCSVlista();
         HuespedCrud huespedCrud = new HuespedCrud();
+        List<Huesped> listaHuesped = new ArrayList<>();
+        listaHuesped = huespedCrud.cargarCSVlista();
         LocalDate fechaActual = LocalDate.now();
         do {
             System.out.println("------------------");
@@ -167,7 +166,7 @@ public class main {
 
             switch (op) {
                 case 1:
-                    obj.menuPersonal(sc);
+                    obj.menuHuesped(sc);
                     break;
                 case 2:
                     int op_info;
@@ -207,13 +206,52 @@ public class main {
                     System.out.println("\n-----------------------------");
                     System.out.println("Reservando habitación");
                     System.out.println("-----------------------------");
-
+                    
+                    // ID huesped
+                    boolean flagHuesped = false;
+                    boolean continuarReserva = true;
+                    int idHuesped;
+                    int dniHuesped;
+                    String respuesta;
+                    
+                    do {
+                        System.out.println("DNI de huesped: ");
+                        dniHuesped = sc.nextInt();
+                        sc.nextLine();
+                        //Verificaos si existe
+                        boolean existe = huespedCrud.existeHuespedXDni(listaHuesped,dniHuesped);
+                        if (existe) {
+                            flagHuesped = true;
+                            System.out.println("Datos del huesped");
+                            huespedCrud.buscarHuespedXDNI(listaHuesped,dniHuesped);
+                        }else{
+                            System.out.println("El huesped no existe");
+                            System.out.println("¿Desea intentar denuevo? (si/no)");
+                            respuesta = sc.nextLine().trim(); // Captura la respuesta del usuario
+                            if ("no".equalsIgnoreCase(respuesta)) {
+                                 // Si la respuesta es "no", salimos del bucle y terminamos el caso 3
+                                System.out.println("No se registró el huésped. Saliendo de la reserva...");
+                                flagHuesped = true;
+                                continuarReserva = false;
+                            } else if (!"si".equalsIgnoreCase(respuesta)) {
+                             // Si la respuesta no es ni "si" ni "no", puedes indicarle que ingrese una opción válida
+                                System.out.println("Opción inválida, por favor ingrese 'si' o 'no'.");
+                            }
+                        }
+                    } while (!flagHuesped);
+                    
+                    if (!continuarReserva) {
+                        break; // Salimos del case 3
+                    }
                     // ID habitación
                     boolean flagHabitacion = false;
+                    boolean seguir=true;
                     int idHabitacion;
+                    String answer;
                     do {
                         System.out.println("ID de habitación: ");
                         idHabitacion = sc.nextInt();
+                        sc.nextLine();
                         //Verificamos si existe
                         boolean existe = habitacionCrud.existeHabitacion(idHabitacion);
                         if (existe) {
@@ -226,34 +264,24 @@ public class main {
                                 System.out.println("-----------------------------");
                             } else {
                                 flagHabitacion = true;
+                                System.out.println("Datos de la habitacion: ");
+                                habitacionCrud.buscarHabitacionXId(listaHabitaciones,idHabitacion );
+                                System.out.println("-----------------------------");
+                                System.out.println("Deseas seguir? (si/no)");
+                                answer=sc.nextLine().trim();
+                                if("no".equalsIgnoreCase(answer)){
+                                    seguir=false;
+                                }
                             }
                         } else {
                             System.out.println("Habitación no existente");
                             System.out.println("-----------------------------");
                         }
                     } while (!flagHabitacion);
-
-                    // ID huesped
-                    boolean flagHuesped = false;
-                    int idHuesped;
-                    do {
-                        System.out.println("ID de huesped: ");
-                        idHuesped = sc.nextInt();
-                        //Verificaos si existe
-                        boolean existe = huespedCrud.existeHuesped(idHuesped);
-                        if (existe) {
-                            flagHuesped = true;
-                            // Verificamos si el huesped ya tiene una reserva
-                            boolean ocupada = reservacionCrud.existeUsuarioReservacion(idHuesped);
-                            if (ocupada) {
-                                flagHuesped = false;
-                                System.out.println("Huesped ya cuenta con reserva");
-                                System.out.println("-----------------------------");
-                            }
-                        }else{
-                            System.out.println("El huesped no existe");
-                        }
-                    } while (!flagHuesped);
+                    if(!seguir){
+                        break;
+                    }
+                    
                     // Servicios de la reserva
                     boolean flagServicio = false;
                     String servicios = null;
@@ -334,7 +362,9 @@ public class main {
                     }else{
                         estado = "Hubo error";
                     }
-
+                    
+                    idHuesped=huespedCrud.obtenerIdXDni(listaHuesped, dniHuesped);
+                    
                     // Cargamos el csv de huespedes en un hashmap
                     HashMap<Integer, Huesped> mapaHuesped = huespedCrud.cargarCSVHash();
 
@@ -351,6 +381,7 @@ public class main {
                     reservacionCrud.agregarReservacion(reservacion);
                     
                     reservacionCrud.escribirCSV();
+                    
                     break;
 
                 case 4:
@@ -547,7 +578,7 @@ public class main {
             System.out.println("CRUD HUESPED");
             System.out.println("------------------");
             System.out.println("1. Agregar huesped");
-            System.out.println("2. Leer todo huesped");
+            System.out.println("2. Mostrar huespedes");
             System.out.println("3. Buscar huesped");
             System.out.println("4. Actualizar huesped");
             System.out.println("5. Eliminar huesped");
@@ -577,19 +608,38 @@ public class main {
                     String usuario = sc.nextLine();
                     System.out.println("Contraseña: ");
                     String contrasena = sc.nextLine();
-                    sc.nextLine();
-                    int estado = 1;
+                    int estado = 0;
                     Huesped nuevoHuesped = new Huesped(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, estado);
                     huespedCrud.agregarHuesped(nuevoHuesped);
                     System.out.println("-----------------------------\n");
                     break;
                 case 2:
                     List<Huesped> listaHuespedes = new ArrayList<>();
-                    System.out.println("\n-----------------------------");
-                    System.out.println("Imprimiendo todo el huesped");
-                    System.out.println("-----------------------------\n");
                     listaHuespedes = huespedCrud.cargarCSVlista();
-                    huespedCrud.leerHuesped(listaHuespedes);
+                    
+                    int respuesta;
+                    System.out.println("\n-----------------------------");
+                    System.out.println("Imprimiendo huespedes");
+                    System.out.println("-----------------------------\n");
+                    System.out.println("Seleccione opcion: ");
+                    System.out.println("1. Huespedes activos ");
+                    System.out.println("2. Huespedes desactivos ");
+                    System.out.println("3. Toda la data (Inactivos y Activos) ");
+                    respuesta= sc.nextInt();
+                    sc.nextLine();
+                    switch(respuesta){
+                        case 1: 
+                            huespedCrud.leerHuespedActivo(listaHuespedes);
+                            break;
+                        case 2:
+                            huespedCrud.leerHuespedInactivo(listaHuespedes);
+                            break;
+                        case 3:
+                            huespedCrud.leerHuespedesAoI(listaHuespedes);
+                            break;
+                        default:
+                         System.out.println("Ingrese una opción válida.");   
+                    }
 
                     break;
                 case 3:
@@ -665,7 +715,7 @@ public class main {
 
                     TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(tipo);
                     Habitacion nuevoHabitacion = new Habitacion(piso, tipoHabitacion, piso, estado);
-                    HabitacionCrud.agregarHabitacion(nuevoHabitacion,listaHabitaciones);
+                    HabitacionCrud.agregarHabitacion(nuevoHabitacion);
                     System.out.println("-----------------------------\n");
                     break;
                 case 2:

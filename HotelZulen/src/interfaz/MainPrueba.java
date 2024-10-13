@@ -29,28 +29,9 @@ public class MainPrueba {
 
 
    public static void main(String[] args) {
+System.out.printf("Hola, %s!\n", "Pedro");
 
-        HabitacionCrud HabitacionCrud = new HabitacionCrud();
-        List<Habitacion> listaHabitaciones = new ArrayList<>();
-        try {
-            // Leemos el csv
-            CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
-            String[] nextLine;
-           
-            try{
-                
-                while ((nextLine = reader.readNext()) != null) {
-                    System.out.println(nextLine[0]);        
-                }
-            }catch (IOException  ex) {
-                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);     
-            }catch (CsvValidationException ex) {
-                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            
-    }catch (FileNotFoundException ex) {
-                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            }
+       
 
 }
 }

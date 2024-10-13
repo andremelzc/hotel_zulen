@@ -27,33 +27,7 @@ public class newMain {
 
     public static void main(String[] args) {
 
-        HuespedCrud huespedcrud= new HuespedCrud();
-        List<Huesped> listaHuespedes = new ArrayList<>();
-        try {
-            // Leemos el csv
-            CSVReader reader = new CSVReader(new FileReader("huespedes.csv"));
-            String[] nextLine;
-
-            try {
-
-                while ((nextLine = reader.readNext()) != null) {
-                    System.out.println(nextLine[0]);
-                    Huesped huesped = new Huesped(Integer.parseInt(nextLine[0]), nextLine[1], nextLine[2], Integer.parseInt(nextLine[3]),
-                            Integer.parseInt(nextLine[4]), nextLine[5], nextLine[6], nextLine[7], Integer.parseInt(nextLine[8]));
-                    listaHuespedes.add(huesped);
-
-                }
-
-            } catch (IOException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
-
+   
+        
     }
 }

@@ -17,11 +17,14 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Huesped;
 
 public class HabitacionCrud {
 
     List<Habitacion> listaHabitacion = new ArrayList<>();
+    
+    public List<Habitacion> getListaHabitacion() {
+        return listaHabitacion;
+    }
     
     public List<Habitacion> cargarCSVlista() {
         List<Habitacion> listaHabitaciones = new ArrayList<>();
@@ -75,7 +78,7 @@ public class HabitacionCrud {
     }
     
 
-    public void agregarHabitacion(Habitacion habitacion,List<Habitacion> listaHabitacion) {
+    public void agregarHabitacion(Habitacion habitacion) {
         listaHabitacion.add(habitacion);
         System.out.println("-----------------------------");
         
@@ -156,36 +159,65 @@ public class HabitacionCrud {
     }
 
     public boolean buscarHabitacion(int id_buscar) {
-        boolean find = false;
+    boolean find = false;
+
+    try {
+        // Crear un lector para el archivo CSV
+        CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
+        String[] nextLine;
+
         try {
-            CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));
-            String[] nextLine;
-            try {
-                while ((nextLine = reader.readNext()) != null) {
-
-                    if (id_buscar == Integer.parseInt(nextLine[0]) && "1".equals(nextLine[3])) {
-                        System.out.println("-----------------------------");
-                        System.out.println("ID Tipo   Piso");
-                        System.out.println("-----------------------------");
-                        System.out.println(nextLine[0] + "  " + nextLine[1] + "    " + nextLine[2]);
-                        find = true;
-                    }
-
+            // Leer cada línea del archivo CSV
+            while ((nextLine = reader.readNext()) != null) {
+                // Comprobar si el ID coincide y si la habitación está activa (estado "1")
+                if (id_buscar == Integer.parseInt(nextLine[0]) && "1".equals(nextLine[3])) {
+                    System.out.println("-----------------------------");
+                    System.out.println("ID   Tipo   Piso");
+                    System.out.println("-----------------------------");
+                    System.out.printf("%s  %s    %s%n", nextLine[0], nextLine[1], nextLine[2]);
+                    find = true;
                 }
-                if (!find) {
-                    System.out.println("No se encontro algun habitacion con dicho ID");
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (FileNotFoundException ex) {
+
+            // Mensaje si no se encontró la habitación
+            if (!find) {
+                System.out.println("No se encontró ninguna habitación con dicho ID.");
+            }
+        } catch (IOException | CsvValidationException ex) {
             Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return find;
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
     }
 
+    return find;
+}
+    public void buscarHabitacionXId(List<Habitacion> listaHabitaciones, int id) {
+    boolean find = false;
+
+    // Encabezado de la tabla
+    System.out.println("------------------------------------------");
+    System.out.printf("%-4s %-10s %-15s%n", "ID", "Tipo", "Piso");
+    System.out.println("------------------------------------------");
+
+    // Buscar el ID en la lista de habitaciones
+    for (Habitacion habitacion : listaHabitaciones) {
+        if (habitacion.getId() == id) {
+            // Imprimir detalles de la habitación si se encuentra
+            System.out.printf("%-4s %-10s %-15s%n", 
+                    habitacion.getId(), 
+                    habitacion.getTipoHabitacion().getConcepto(), 
+                    habitacion.getPiso());
+            find = true;
+            break; // Salir del bucle si se encontró la habitación
+        }
+    }
+
+    // Mensaje si no se encontró la habitación
+    if (!find) {
+        System.out.println("Habitación no encontrada.");
+    }
+}
     public void actualizarHabitacion(int id_actualizar) {
         List<String[]> allData = new ArrayList<>();
         Scanner sc = new Scanner(System.in);

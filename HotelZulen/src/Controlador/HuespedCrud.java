@@ -26,7 +26,7 @@ public class HuespedCrud {
         return listaHuesped;
     }
     
-    
+
 
     public void agregarHuesped(Huesped huesped) {
         listaHuesped.add(huesped);
@@ -39,7 +39,7 @@ public class HuespedCrud {
         try (CSVWriter escritor = new CSVWriter(new FileWriter("huespedes.csv", true))) {
             for (Huesped huesped : listaHuesped) {
                 String[] datos = {String.valueOf(numeroLineas() + 1), huesped.getNombre(), huesped.getApellido(), String.valueOf(huesped.getDNI()),
-                    String.valueOf(huesped.getTelefono()), huesped.getDireccion(), huesped.getUsuario(), huesped.getContrasena(), "1",};   //El 1 significa que la cuenta está activa
+                    String.valueOf(huesped.getTelefono()), huesped.getDireccion(), huesped.getUsuario(), huesped.getContrasena(), "0",};
                 escritor.writeNext(datos);
             }
         } catch (IOException ex) {
@@ -117,21 +117,71 @@ public class HuespedCrud {
         return numero;
     }
 
-    public void leerHuesped(List<Huesped> listaHuesped) {
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s",
-                "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña");
-        System.out.println("--------------------------------------------------------------------------------------");
-        // Imprimimos toda la lista
-        for (Huesped huesped : listaHuesped) {
-            // Verificamos si está activo
-            if (huesped.getEstado() == 1) {
-                System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s", huesped.getID(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),
-                        huesped.getTelefono(), huesped.getDireccion(), huesped.getUsuario(), huesped.getContrasena());
-            }
+    public void leerHuespedActivo(List<Huesped> listaHuesped) {
+    System.out.println("--------------------------------------------------------------------------------------");
+    System.out.printf("%-4s %-15s %-15s %-12s %-15s %-20s %-15s %-15s%n",
+            "ID", "Nombre", "Apellido", "DNI", "Teléfono", "Dirección", "Usuario", "Contraseña");
+    System.out.println("--------------------------------------------------------------------------------------");
+
+    boolean hayHuespedesActivos = false; // Para verificar si hay huéspedes activos
+
+    // Imprimimos toda la lista
+    for (Huesped huesped : listaHuesped) {
+        // Verificamos si está activo
+        if (huesped.getEstado() == 1) {
+            System.out.printf("%-4d %-15s %-15s %-12s %-15s %-20s %-15s %-15s%n",
+                    huesped.getID(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),
+                    huesped.getTelefono(), huesped.getDireccion(), huesped.getUsuario(), huesped.getContrasena());
+            hayHuespedesActivos = true; // Hay al menos un huésped activo
         }
     }
 
+    // Mensaje si no hay huéspedes activos
+    if (!hayHuespedesActivos) {
+        System.out.println("No hay huéspedes activos en el sistema.");
+    }
+
+    System.out.println("--------------------------------------------------------------------------------------");
+}
+    public void leerHuespedInactivo(List<Huesped> listaHuesped) {
+    System.out.println("--------------------------------------------------------------------------------------");
+    System.out.printf("%-4s %-15s %-15s %-12s %-15s %-20s %-15s %-15s%n",
+            "ID", "Nombre", "Apellido", "DNI", "Teléfono", "Dirección", "Usuario", "Contraseña");
+    System.out.println("--------------------------------------------------------------------------------------");
+
+    boolean hayHuespedesInactivos = false; // Para verificar si hay huéspedes activos
+
+    // Imprimimos toda la lista
+    for (Huesped huesped : listaHuesped) {
+        // Verificamos si está activo
+        if (huesped.getEstado() == 0) {
+            System.out.printf("%-4d %-15s %-15s %-12s %-15s %-20s %-15s %-15s%n",
+                    huesped.getID(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),
+                    huesped.getTelefono(), huesped.getDireccion(), huesped.getUsuario(), huesped.getContrasena());
+            hayHuespedesInactivos = true; // Hay al menos un huésped activo
+        }
+    }
+    
+    // Mensaje si no hay huéspedes activos
+    if (!hayHuespedesInactivos) {
+        System.out.println("No hay huéspedes inactivos en el sistema.");
+    }
+
+    System.out.println("--------------------------------------------------------------------------------------");
+}
+    public void leerHuespedesAoI(List<Huesped> listaHuesped) {
+    System.out.println("--------------------------------------------------------------------------------------");
+    System.out.printf("%-4s %-15s %-15s %-12s %-15s %-20s %-15s %-15s%n",
+            "ID", "Nombre", "Apellido", "DNI", "Teléfono", "Dirección", "Usuario", "Contraseña");
+    System.out.println("--------------------------------------------------------------------------------------");
+    // Imprimimos toda la lista
+    for (Huesped huesped : listaHuesped) {
+            System.out.printf("%-4d %-15s %-15s %-12s %-15s %-20s %-15s %-15s%n",
+                    huesped.getID(), huesped.getNombre(), huesped.getApellido(), huesped.getDNI(),
+                    huesped.getTelefono(), huesped.getDireccion(), huesped.getUsuario(), huesped.getContrasena());   
+    }
+    System.out.println("--------------------------------------------------------------------------------------");
+}
     public void buscarHuesped(List<Huesped> listaHuesped, int id_buscar) {
         boolean find = false;
         for (Huesped huesped : listaHuesped) {
@@ -150,7 +200,42 @@ public class HuespedCrud {
             System.out.println("Huesped no encontrado");
         }
     }
-
+    public void buscarHuespedXDNI(List<Huesped> listaHuesped, int dni) {
+        boolean find = false;
+        for (Huesped huesped : listaHuesped) {
+            //Buscamos el ID
+            if (huesped.getDNI()== dni && huesped.getEstado() == 1) {
+                System.out.println("--------------------------------------------------------------------------------------");
+                System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s",
+                        "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña");
+                System.out.println("--------------------------------------------------------------------------------------");
+                System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s\n", 
+                huesped.getID(), 
+                huesped.getNombre(), 
+                huesped.getApellido(), 
+                huesped.getDNI(),
+                huesped.getTelefono(), 
+                huesped.getDireccion(), 
+                huesped.getUsuario(), 
+                huesped.getContrasena()
+);
+                find = true;
+            }
+        }
+        if(!find){
+            System.out.println("Huesped no encontrado");
+        }
+    }
+    public int obtenerIdXDni(List<Huesped> listaHuesped,int dniHuesped){
+        for (Huesped huesped : listaHuesped) {
+            //Buscamos el ID
+            if (huesped.getDNI()== dniHuesped && huesped.getEstado() == 1) {
+                return huesped.getID();
+            }
+        }
+        return 0;
+        
+    }
     //Funcion Agregada por Miguel para el Inicio de Sesión
     public boolean existeHuespedUsuaro(String usuario_buscar) {
         boolean existe = false;
@@ -197,6 +282,17 @@ public class HuespedCrud {
         return existe;
     }
     
+    public boolean existeHuespedXDni(List<Huesped> lsitaHuesped,int dni){
+        boolean existe = false;
+        for (Huesped huesped : lsitaHuesped) {
+            //Buscamos el ID
+            if (huesped.getDNI()== dni && huesped.getEstado() == 1) {
+                
+            existe=true;
+            }
+        }
+        return existe;
+    }
   
     public void actualizarHuesped(int id_actualizar) {
         List<String[]> allData = new ArrayList<>();
