@@ -53,6 +53,26 @@ public class Habitacion {
     public String getServicio() {
         return servicio;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTipoHabitacion(TipoDeHabitacion tipoHabitacion) {
+        this.tipoHabitacion = tipoHabitacion;
+    }
+
+    public void setPiso(int piso) {
+        this.piso = piso;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
     
     
 }

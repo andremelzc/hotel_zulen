@@ -142,6 +142,8 @@ public class main {
         boolean flag = true;
         main obj = new main();
         ReservacionCrud reservacionCrud = new ReservacionCrud();
+        List<Reservacion> listaReservaciones = new ArrayList<>();
+        listaReservaciones = reservacionCrud.cargarCSVlista();
         HabitacionCrud habitacionCrud = new HabitacionCrud();
         List<Habitacion> listaHabitaciones = new ArrayList<>();
         listaHabitaciones = habitacionCrud.cargarCSVlista();
@@ -249,7 +251,7 @@ public class main {
                     int idHabitacion;
                     String answer;
                     do {
-                        System.out.println("ID de habitación: ");
+                        System.out.println("\nID de habitación: ");
                         idHabitacion = sc.nextInt();
                         sc.nextLine();
                         //Verificamos si existe
@@ -364,21 +366,24 @@ public class main {
                     }
                     
                     idHuesped=huespedCrud.obtenerIdXDni(listaHuesped, dniHuesped);
+                    // Agregamos la reserva
+                    Habitacion habitacion = habitacionCrud.buscarHabitacionPorId(idHabitacion, listaHabitaciones);
+                    Huesped huesped = huespedCrud.buscarHuespedPorId(idHuesped, listaHuesped);
                     
                     // Cargamos el csv de huespedes en un hashmap
-                    HashMap<Integer, Huesped> mapaHuesped = huespedCrud.cargarCSVHash();
+                    //HashMap<Integer, Huesped> mapaHuesped = huespedCrud.cargarCSVHash();
 
                     // Cargamos el csv de habitaciones en un hashmap
-                    HashMap<Integer, Habitacion> mapaHabitacion = habitacionCrud.cargarCSVHash();
+                    //HashMap<Integer, Habitacion> mapaHabitacion = habitacionCrud.cargarCSVHash();
                     
                     // Agregamos la reserva
-                    Habitacion habitacion = mapaHabitacion.get(idHabitacion);
-                    Huesped huesped = mapaHuesped.get(idHuesped);
+                    //Habitacion habitacion = mapaHabitacion.get(idHabitacion);
+                    //Huesped huesped = mapaHuesped.get(idHuesped);
                     
                     Reservacion reservacion = new Reservacion(1, habitacion, huesped, listaServicios, estado,fechaInicio, fechaFin);
                     
                     //Agregamos a la lista
-                    reservacionCrud.agregarReservacion(reservacion);
+                    reservacionCrud.agregarReservacion(reservacion,listaHabitaciones,listaHuesped);
                     
                     reservacionCrud.escribirCSV();
                     

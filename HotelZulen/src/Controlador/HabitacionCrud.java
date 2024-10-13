@@ -98,7 +98,23 @@ public class HabitacionCrud {
             Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void sobreescribirCSV(List<Habitacion> listaHabitacion) {
+    try (CSVWriter escritor = new CSVWriter(new FileWriter("habitaciones.csv", false))) {  // Cambiar true por false para sobrescribir
+        int id = 1; // Iniciar el contador desde 1
+        for (Habitacion habitacion : listaHabitacion) {
+            String[] datos = {
+                String.valueOf(habitacion.getId()),  // Usamos el id que hemos inicializado
+                habitacion.getTipoHabitacion().getConcepto(), 
+                String.valueOf(habitacion.getPiso()),
+                habitacion.getEstado()
+            };
+            escritor.writeNext(datos);
+            
+        }
+    } catch (IOException ex) {
+        Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
     public int numeroLineas() {
         int numero = 0;
         try (CSVReader lector = new CSVReader(new FileReader("habitaciones.csv"))) {
@@ -122,7 +138,6 @@ public class HabitacionCrud {
         System.out.println("--------------------------------------------------------------------------------------");
         // Imprimimos toda la lista
         for (Habitacion habitacion : listaHabitacion) {
-            // Verificamos si está activo
             
                 System.out.printf("%-4s %-10s %-15s %-12s%n", 
                 habitacion.getId(), 
@@ -132,7 +147,14 @@ public class HabitacionCrud {
             
         }
     }
-    
+    public Habitacion buscarHabitacionPorId(int idHabitacion,List<Habitacion> listaHabitaciones) {
+        for (Habitacion habitacion : listaHabitaciones) {
+            if (habitacion.getId() == idHabitacion) {
+                return habitacion;
+            }
+        }
+        return null;  // Si no se encuentra la habitación
+    }
     public void leerTodoHabitacionDisponible() {
         try {
             CSVReader reader = new CSVReader(new FileReader("habitaciones.csv"));

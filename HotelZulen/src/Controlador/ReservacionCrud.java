@@ -116,10 +116,13 @@ public class ReservacionCrud {
         sobreescribirCSV();
     }
     
-    public void agregarReservacion(Reservacion reservacion) {
-        listaReservaciones.clear();
+    public void agregarReservacion(Reservacion reservacion,List<Habitacion> listaHabitacion,List<Huesped> listaHuesped) {
         reservacion.setIdReserva(numeroLineas() + 1);
 
+        reservacion.getHuespedd().setEstado(1);
+        reservacion.getHabitacionn().setEstado("Reservado");
+        habitacionCrud.sobreescribirCSV(listaHabitacion);
+        huespedCrud.sobreescribirCSV(listaHuesped);
         //Agregamos a la listaa
         listaReservaciones.add(reservacion);
     }
@@ -164,8 +167,12 @@ public class ReservacionCrud {
                 }
                 String servicios = serviciosString.toString();
                 
-                String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()),
-                    String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getEstado()),String.valueOf(reservacion.getIncioHuesped()),
+                String[] datos = {
+                    String.valueOf(reservacion.getIdReserva()), 
+                    String.valueOf(reservacion.getHabitacionn().getId()),
+                    String.valueOf(reservacion.getHuespedd().getID()), servicios, 
+                    String.valueOf(reservacion.getEstado()),
+                    String.valueOf(reservacion.getIncioHuesped()),
                     String.valueOf(reservacion.getFinHuesped())};
                 escritor.writeNext(datos);
             }

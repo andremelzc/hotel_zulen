@@ -46,7 +46,26 @@ public class HuespedCrud {
             Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void sobreescribirCSV(List<Huesped> listaHuesped) {
+    try (CSVWriter escritor = new CSVWriter(new FileWriter("huespedes.csv", false))) {
+        for (Huesped huesped : listaHuesped) {
+            String[] datos = {
+                String.valueOf(numeroLineas() + 1), 
+                huesped.getNombre(), 
+                huesped.getApellido(), 
+                String.valueOf(huesped.getDNI()),
+                String.valueOf(huesped.getTelefono()), 
+                huesped.getDireccion(), 
+                huesped.getUsuario(), 
+                huesped.getContrasena(), 
+                String.valueOf(huesped.getEstado())  
+            };
+            escritor.writeNext(datos);
+        }
+    } catch (IOException ex) {
+        Logger.getLogger(HuespedCrud.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
     public List<Huesped> cargarCSVlista() {
         List<Huesped> listaHuespedes = new ArrayList<>();
         try {
@@ -186,7 +205,7 @@ public class HuespedCrud {
         boolean find = false;
         for (Huesped huesped : listaHuesped) {
             //Buscamos el ID
-            if (huesped.getID() == id_buscar && huesped.getEstado() == 1) {
+            if (huesped.getID() == id_buscar ) {
                 System.out.println("--------------------------------------------------------------------------------------");
                 System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s",
                         "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña");
@@ -200,36 +219,45 @@ public class HuespedCrud {
             System.out.println("Huesped no encontrado");
         }
     }
-    public void buscarHuespedXDNI(List<Huesped> listaHuesped, int dni) {
-        boolean find = false;
-        for (Huesped huesped : listaHuesped) {
-            //Buscamos el ID
-            if (huesped.getDNI()== dni && huesped.getEstado() == 1) {
-                System.out.println("--------------------------------------------------------------------------------------");
-                System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s",
-                        "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contraseña");
-                System.out.println("--------------------------------------------------------------------------------------");
-                System.out.printf("%-4s %-10s %-15s %-12s %-10s %-20s %-15s %-15s\n", 
-                huesped.getID(), 
-                huesped.getNombre(), 
-                huesped.getApellido(), 
-                huesped.getDNI(),
-                huesped.getTelefono(), 
-                huesped.getDireccion(), 
-                huesped.getUsuario(), 
-                huesped.getContrasena()
-);
-                find = true;
+    public Huesped buscarHuespedPorId(int idHuesped,List<Huesped> listaHuespedes) {
+        for (Huesped huesped : listaHuespedes) {
+            if (huesped.getID() == idHuesped) {
+                return huesped;
             }
         }
-        if(!find){
-            System.out.println("Huesped no encontrado");
+        return null;  // Si no se encuentra el huésped
+    }
+    public void buscarHuespedXDNI(List<Huesped> listaHuesped, int dni) {
+    boolean find = false;
+    for (Huesped huesped : listaHuesped) {
+        // Buscamos el DNI
+        if (huesped.getDNI() == dni) {
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%-4s %-15s %-15s %-12s %-10s %-20s %-15s %-15s\n",
+                    "ID", "Nombre", "Apellido", "DNI", "Telefono", "Direccion", "Usuario", "Contrasena");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%-4s %-15s %-15s %-12s %-10s %-20s %-15s %-15s\n", 
+                    huesped.getID(), 
+                    huesped.getNombre(), 
+                    huesped.getApellido(), 
+                    huesped.getDNI(),
+                    huesped.getTelefono(), 
+                    huesped.getDireccion(), 
+                    huesped.getUsuario(), 
+                    huesped.getContrasena()
+            );
+            find = true;
+            break;  // Si encuentras el huésped, no necesitas seguir buscando
         }
     }
+    if (!find) {
+        System.out.println("Huesped no encontrado");
+    }
+}
     public int obtenerIdXDni(List<Huesped> listaHuesped,int dniHuesped){
         for (Huesped huesped : listaHuesped) {
             //Buscamos el ID
-            if (huesped.getDNI()== dniHuesped && huesped.getEstado() == 1) {
+            if (huesped.getDNI()== dniHuesped ) {
                 return huesped.getID();
             }
         }
@@ -286,7 +314,7 @@ public class HuespedCrud {
         boolean existe = false;
         for (Huesped huesped : lsitaHuesped) {
             //Buscamos el ID
-            if (huesped.getDNI()== dni && huesped.getEstado() == 1) {
+            if (huesped.getDNI()== dni ) {
                 
             existe=true;
             }
