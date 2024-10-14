@@ -176,7 +176,8 @@ public class main {
                     listaReservaciones.clear();
                     listaReservaciones=reservacionCrud.cargarCSVlista();
                     int op_info;
-                    
+                    boolean flagConsulta=true;
+                do{    
                     //Consultar Información 
                     System.out.println("\n-----------------------------");
                     System.out.println("Consultando Informacion");
@@ -195,7 +196,7 @@ public class main {
                         if(op_info<1 || op_info>8){
                             System.out.println("Opcion Fuera de Rango");
                         }
-                    }while(op_info<1 || op_info>7);
+                    }while(op_info<1 || op_info>8);
                     switch(op_info){
                         case 1:
                             //Consultar Todas las Habitaciones
@@ -226,8 +227,10 @@ public class main {
                             reservacionCrud.leerTiempoReservacionFinalizada(listaReservaciones);
                             break;
                         case 8:
+                            flagConsulta=false;
                             break;
                     }
+                }while(flagConsulta);
                     //obj.menuHuesped(sc); // Taba antes de las Modificaciones de Miguel
                     break;
                 case 3:
