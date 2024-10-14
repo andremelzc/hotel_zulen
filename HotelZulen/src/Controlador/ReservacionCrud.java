@@ -251,10 +251,10 @@ public class ReservacionCrud {
     public boolean verificacionDisponibilidadHabitacion(List<Habitacion> listaHabitaciones, int id_habitacion) {
     for (Habitacion habitacion : listaHabitaciones) {
         if (habitacion.getId() == id_habitacion && habitacion.getEstado().equals("Disponible")) {
-            return true;
+            return false;
         }
     }
-    return false;
+    return true;
 }
 
     public void leerTodoReservacion() {
