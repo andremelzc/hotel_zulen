@@ -156,10 +156,10 @@ public class main {
             System.out.println("Vista Recepcionista");
             System.out.println("------------------");
             System.out.println("1. Registrar huesped");
-            System.out.println("2. Consultar información");
-            System.out.println("3. Reservar habitación");
-            System.out.println("4. Actualizar reserva");
-            System.out.println("5. Ampliar reserva");
+            System.out.println("2. Consultar informacion");
+            System.out.println("3. Reservar habitacion");
+            System.out.println("4. Ampliar reserva");
+            System.out.println("5. Registrar salida");
             System.out.println("6. Salir");
 
             System.out.println("------------------");
@@ -391,10 +391,10 @@ public class main {
                     break;
 
                 case 4:
-                    obj.menuServicios(sc);
+                    reservacionCrud.ampliarReservacion();                  
                     break;
                 case 5:
-                    reservacionCrud.ampliarReservacion();
+                    obj.menuServicios(sc);
                     break;
                 case 6:
                     flag = false;
