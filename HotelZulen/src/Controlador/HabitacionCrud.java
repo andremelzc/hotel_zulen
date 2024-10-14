@@ -136,12 +136,12 @@ public class HabitacionCrud {
 
     public void leerTodoHabitacion(List<Habitacion> listaHabitacion) {
         System.out.println("--------------------------------------------------------------------------------------");
-        System.out.printf("%-4s %-10s %-15s %-12s%n", "ID", "Tipo de habitacion", "Piso", "Estado");
+        System.out.printf("%-4s %-19s %-5s %-12s%n", "ID", "Tipo de habitacion", "Piso", "Estado");
         System.out.println("--------------------------------------------------------------------------------------");
         // Imprimimos toda la lista
         for (Habitacion habitacion : listaHabitacion) {
 
-            System.out.printf("%-4s %-10s %-15s %-12s%n",
+            System.out.printf("%-4s %-19s %-5s %-12s%n",
                     habitacion.getId(),
                     habitacion.getTipoHabitacion().getConcepto(),
                     habitacion.getPiso(),
@@ -161,11 +161,11 @@ public class HabitacionCrud {
 
     public void leerTodoHabitacionDisponible(List<Habitacion> listaHabitacion) {
         System.out.println("--------------------------------------------------------------------------------------");
-        System.out.printf("%-4s %-10s %-15s %-12s%n", "ID", "Tipo", "Piso", "Estado");
+        System.out.printf("%-4s %-10s %-5s %-12s%n", "ID", "Tipo", "Piso", "Estado");
         System.out.println("--------------------------------------------------------------------------------------");
         for (Habitacion habitacion : listaHabitacion) {
             if (habitacion.getEstado().equals("Disponible")) {
-                System.out.printf("%-4s %-10s %-15s %-12s%n",
+                System.out.printf("%-4s %-10s %-5s %-12s%n",
                         habitacion.getId(),
                         habitacion.getTipoHabitacion().getConcepto(),
                         habitacion.getPiso(),
@@ -175,7 +175,38 @@ public class HabitacionCrud {
         }
 
     }
+    public void leerTodoHabitacionReservado(List<Habitacion> listaHabitacion) {
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.printf("%-4s %-10s %-5s %-12s%n", "ID", "Tipo", "Piso", "Estado");
+        System.out.println("--------------------------------------------------------------------------------------");
+        for (Habitacion habitacion : listaHabitacion) {
+            if (habitacion.getEstado().equals("Reservado")) {
+                System.out.printf("%-4s %-10s %-5s %-12s%n",
+                        habitacion.getId(),
+                        habitacion.getTipoHabitacion().getConcepto(),
+                        habitacion.getPiso(),
+                        habitacion.getEstado());
+            }
 
+        }
+
+    }
+    public void leerTodoHabitacionOcupada(List<Habitacion> listaHabitacion) {
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.printf("%-4s %-10s %-5s %-12s%n", "ID", "Tipo", "Piso", "Estado");
+        System.out.println("--------------------------------------------------------------------------------------");
+        for (Habitacion habitacion : listaHabitacion) {
+            if (habitacion.getEstado().equals("Ocupada")) {
+                System.out.printf("%-4s %-10s %-5s %-12s%n",
+                        habitacion.getId(),
+                        habitacion.getTipoHabitacion().getConcepto(),
+                        habitacion.getPiso(),
+                        habitacion.getEstado());
+            }
+
+        }
+
+    }
     public boolean buscarHabitacion(List<Habitacion> listaHabitaciones, int id_buscar) {
         boolean find = false;
 

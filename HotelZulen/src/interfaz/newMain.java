@@ -26,7 +26,10 @@ import modelo.Personal;
 public class newMain {
 
     public static void main(String[] args) {
-
+        ReservacionCrud reservacionCrud = new ReservacionCrud();
+        List<Reservacion> listaReservaciones = new ArrayList<>();
+        listaReservaciones = reservacionCrud.cargarCSVlista();
+        reservacionCrud.leerTiempoReservacionEspera(listaReservaciones);
    
         
     }

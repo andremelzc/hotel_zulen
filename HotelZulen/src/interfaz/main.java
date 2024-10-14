@@ -155,12 +155,13 @@ public class main {
             System.out.println("------------------");
             System.out.println("Vista Recepcionista");
             System.out.println("------------------");
-            System.out.println("1. Registrar huesped");
+            System.out.println("1. Gestionar huespedes");
             System.out.println("2. Consultar informacion");
             System.out.println("3. Reservar habitacion");
             System.out.println("4. Ampliar reserva");
-            System.out.println("5. Registrar salida");
-            System.out.println("6. Salir");
+            System.out.println("5. Registrar ingreso");
+            System.out.println("6. Registrar salida");
+            System.out.println("7. Salir");
 
             System.out.println("------------------");
             System.out.println("Que desea hacer?");
@@ -172,6 +173,8 @@ public class main {
                     obj.menuHuesped(sc);
                     break;
                 case 2:
+                    listaReservaciones.clear();
+                    listaReservaciones=reservacionCrud.cargarCSVlista();
                     int op_info;
                     
                     //Consultar Información 
@@ -180,14 +183,19 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("1. Consultar Todas las Habitaciones"); //Podría modificarse a Reservas Activas???
                     System.out.println("2. Consultar Habitaciones Disponibles");
-                    System.out.println("3. Consultar Tiempo de Reservaciones en Curso");
+                    System.out.println("3. Consultar Habitaciones Reservadas");
+                    System.out.println("4. Consultar Habitaciones Ocupadas");
+                    System.out.println("5. Consultar Tiempo de Reservaciones en Curso");
+                    System.out.println("6. Consultar Tiempo de Reservaciones en Espera");
+                    System.out.println("7. Consultar Tiempo de Reservaciones Finalizadas");
+                    System.out.println("8. Retroceder");
                     do{
                         System.out.println("Ingrese el su opción");
                         op_info = sc.nextInt(); sc.nextLine(); //Limpiar el buffer
-                        if(op_info<1 || op_info>3){
-                            System.out.println("Opcion Fuera de Rango, Solo se Aceptan 1,2 y 3");
+                        if(op_info<1 || op_info>8){
+                            System.out.println("Opcion Fuera de Rango");
                         }
-                    }while(op_info<1 || op_info>3);
+                    }while(op_info<1 || op_info>7);
                     switch(op_info){
                         case 1:
                             //Consultar Todas las Habitaciones
@@ -198,13 +206,33 @@ public class main {
                             habitacionCrud.leerTodoHabitacionDisponible(listaHabitaciones);
                             break;
                         case 3:
-                            //Consultar Tiempo de Reservación
-                            reservacionCrud.leerTiempoReservacionTiempo(listaReservaciones);
+                            //Consultar Habitaciones Reservado
+                            habitacionCrud.leerTodoHabitacionReservado(listaHabitaciones);
+                            break;
+                        case 4: 
+                            //Consultar Habitaciones Ocupada
+                           habitacionCrud.leerTodoHabitacionOcupada(listaHabitaciones);
+                           break; 
+                        case 5:
+                            //Consultar Tiempo de Reservación En Curso
+                            reservacionCrud.leerTiempoReservacionTiempo(listaReservaciones);                           
+                            break;
+                        case 6:
+                            //Consultar Tiempo de Reservación en Espera
+                            reservacionCrud.leerTiempoReservacionEspera(listaReservaciones);                            
+                            break;
+                        case 7:
+                            //Consultar Tiempo de Reservación en Espera
+                            reservacionCrud.leerTiempoReservacionFinalizada(listaReservaciones);
+                            break;
+                        case 8:
                             break;
                     }
                     //obj.menuHuesped(sc); // Taba antes de las Modificaciones de Miguel
                     break;
                 case 3:
+                    listaHuesped.clear();
+                    listaHuesped = huespedCrud.cargarCSVlista();
                     //Reserva de habitación
                     System.out.println("\n-----------------------------");
                     System.out.println("Reservando habitación");
@@ -357,29 +385,14 @@ public class main {
                     //Estado de la reservación
                     boolean flagEstado = false;
                     String estado;
-                   
-                    if(fechaInicio.isAfter(fechaHoy)){
-                       estado = "En espera";
-                    }else if(fechaInicio.isEqual(fechaHoy)){
-                       estado = "Vigente";
-                    }else{
-                        estado = "Hubo error";
-                    }
-                    
+
+                    estado = "En espera";
+
                     idHuesped=huespedCrud.obtenerIdXDni(listaHuesped, dniHuesped);
                     // Agregamos la reserva
                     Habitacion habitacion = habitacionCrud.buscarHabitacionPorId(idHabitacion, listaHabitaciones);
                     Huesped huesped = huespedCrud.buscarHuespedPorId(idHuesped, listaHuesped);
                     
-                    // Cargamos el csv de huespedes en un hashmap
-                    //HashMap<Integer, Huesped> mapaHuesped = huespedCrud.cargarCSVHash();
-
-                    // Cargamos el csv de habitaciones en un hashmap
-                    //HashMap<Integer, Habitacion> mapaHabitacion = habitacionCrud.cargarCSVHash();
-                    
-                    // Agregamos la reserva
-                    //Habitacion habitacion = mapaHabitacion.get(idHabitacion);
-                    //Huesped huesped = mapaHuesped.get(idHuesped);
                     
                     Reservacion reservacion = new Reservacion(1, habitacion, huesped, listaServicios, estado,fechaInicio, fechaFin);
                     
@@ -394,9 +407,18 @@ public class main {
                     reservacionCrud.ampliarReservacion();                  
                     break;
                 case 5:
-                    obj.menuServicios(sc);
+                    listaHuesped.clear();
+                    listaHuesped = huespedCrud.cargarCSVlista();
+                    listaReservaciones.clear();
+                    listaReservaciones = reservacionCrud.cargarCSVlista();
+                    listaHabitaciones.clear();
+                    listaHabitaciones = habitacionCrud.cargarCSVlista();
+                    reservacionCrud.registrarEntrada(listaReservaciones, listaHabitaciones, listaHuesped);
                     break;
                 case 6:
+                    reservacionCrud.registrarSalida(listaReservaciones, listaHabitaciones, listaHuesped);
+                    break;
+                case 7:
                     flag = false;
                     System.out.println("Saliendo...");
                     break;
@@ -654,10 +676,11 @@ public class main {
                     System.out.println("\n-----------------------------");
                     System.out.println("Buscando huesped");
                     System.out.println("-----------------------------");
-                    System.out.println("ID a buscar: ");
-                    int id_buscar = sc.nextInt();
+                    System.out.println("DNI del huesped: ");
+                    int dni_buscar = sc.nextInt();
+                    sc.nextLine();
                     listaHuespedes = huespedCrud.cargarCSVlista();
-                    huespedCrud.buscarHuesped(listaHuespedes, id_buscar);
+                    huespedCrud.buscarHuespedXDNI(listaHuespedes, dni_buscar);
                     System.out.println("-----------------------------\n");
                     break;
                 case 4:

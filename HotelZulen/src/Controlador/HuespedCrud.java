@@ -48,9 +48,10 @@ public class HuespedCrud {
     }
     public void sobreescribirCSV(List<Huesped> listaHuesped) {
     try (CSVWriter escritor = new CSVWriter(new FileWriter("huespedes.csv", false))) {
+        int incremento=1;
         for (Huesped huesped : listaHuesped) {
             String[] datos = {
-                String.valueOf(numeroLineas() + 1), 
+                String.valueOf(incremento), 
                 huesped.getNombre(), 
                 huesped.getApellido(), 
                 String.valueOf(huesped.getDNI()),
@@ -60,6 +61,7 @@ public class HuespedCrud {
                 huesped.getContrasena(), 
                 String.valueOf(huesped.getEstado())  
             };
+            incremento++;
             escritor.writeNext(datos);
         }
     } catch (IOException ex) {
