@@ -36,7 +36,7 @@ public class ReservacionCrud {
 
     HuespedCrud huespedCrud = new HuespedCrud();
     HabitacionCrud habitacionCrud = new HabitacionCrud();
-
+    
     public List<Reservacion> cargarCSVlista() {
         // Cargamos el csv de huespedes en un hashmap
         HashMap<Integer, Huesped> mapaHuesped = huespedCrud.cargarCSVHash();
@@ -276,44 +276,52 @@ public class ReservacionCrud {
         }
     }
 
-    public void leerTiempoReservacionTiempo() {
-        actualizarReservacion();
-        try {
-            CSVReader reader = new CSVReader(new FileReader("reservaciones.csv"));
-            String[] nextLine;
-            System.out.println("-----------------------------");
-            System.out.println("ID      id_Habitacion  id_Huesped      Servicios       Estado     F. Ingreso     F. Salida    Tiempo Restante");
-            System.out.println("-----------------------------");
-            try {
-                // Definir el formato de fecha para analizar las fechas en el CSV
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public void leerTiempoReservacionTiempo(List<Reservacion> listaReservaciones) {
+    // Cabecera de la tabla con formato
+    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
+    System.out.printf("%-8s %-15s %-15s %-27s %-10s %-15s %-15s %-20s\n", 
+            "ID", "id_Habitacion", "DNI_Huesped", "Servicios", "Estado", "F. Ingreso", "F. Salida", "Tiempo Restante");
+    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
 
-                // Obtener la fecha actual
-                LocalDate fechaActual = LocalDate.now();
+    // Obtener la fecha actual
+    LocalDate fechaActual = LocalDate.now();
+    
+    // Iterar sobre la lista de reservaciones
+    for (Reservacion reservacion : listaReservaciones) {
+        // Filtrar solo las reservaciones con estado "Vigente"
+        if (reservacion.getEstado().equalsIgnoreCase("Vigente")) {
+            // Obtener la fecha de salida
+            LocalDate fechaSalida = reservacion.getFinHuesped();
 
-                while ((nextLine = reader.readNext()) != null) {
-                    // Parsear la fecha almacenada en nextLine[5] a LocalDate
-                    LocalDate fechaSalida = LocalDate.parse(nextLine[6], formatter);
+            // Calcular la diferencia entre la fecha actual y la fecha de salida
+            Period diferencia = Period.between(fechaActual, fechaSalida);
 
-                    // Calcular el tiempo entre la fecha actual y la fecha de salida
-                    Period diferencia = Period.between(fechaActual, fechaSalida);
+            // Mostrar los días, meses y años restantes
+            String tiempoRestante = diferencia.getYears() + " años, " +
+                                    diferencia.getMonths() + " meses, " +
+                                    diferencia.getDays() + " días";
 
-                    // Mostrar los días, meses y años restantes
-                    String tiempoRestante = diferencia.getYears() + " anos, " +
-                            diferencia.getMonths() + " meses, " +
-                            diferencia.getDays() + " días";
+            // Obtener los servicios de la reservación como una cadena de texto
+            String servicios = reservacion.getServicios().stream()
+                                  .map(Servicios::getConcepto)  // Usamos el getter para obtener el concepto
+                                  .reduce((s1, s2) -> s1 + ", " + s2)
+                                  .orElse("N/A");
 
-                    // Imprimir la información
-                    System.out.println(nextLine[0] + "       " + nextLine[1] + "      " + nextLine[2] + "    " + nextLine[3] + "    " + nextLine[4] + "    " + nextLine[5] + "    " + nextLine[6] + "    " + tiempoRestante);
-                    System.out.println("-----------------------------");
-                }
-            } catch (IOException | CsvValidationException ex) {
-                Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(HabitacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+            // Imprimir la información formateada
+            System.out.printf("%-8s %-15s %-15s %-27s %-10s %-15s %-15s %-20s\n", 
+                    reservacion.getIdReserva(), 
+                    reservacion.getHabitacionn().getId(), 
+                    reservacion.getHuespedd().getDNI(), 
+                    servicios, 
+                    reservacion.getEstado(), 
+                    reservacion.getIncioHuesped(), 
+                    reservacion.getFinHuesped(), 
+                    tiempoRestante);
+            
+            System.out.println("-------------------------------------------------------------------------------");
         }
     }
+}
 
     public void ampliarReservacion() {
         listaReservaciones.clear();
@@ -336,7 +344,7 @@ public class ReservacionCrud {
                     System.out.println("La reservacion seleccionada es la siguiente: ");
                     System.out.println("ID: " + reserva.getIdReserva());
                     System.out.println("Habitacion: " + reserva.getHabitacionn().getId());
-                    System.out.println("Huesped: " + reserva.getHuespedd().getID());
+                    System.out.println("DNI del Huesped: " + reserva.getHuespedd().getDNI());
                     System.out.println("Servicios: ");
                     for (Servicios servicio : reserva.getServicios()) {
                         System.out.println("    " + servicio.getConcepto());

@@ -199,7 +199,7 @@ public class main {
                             break;
                         case 3:
                             //Consultar Tiempo de Reservación
-                            reservacionCrud.leerTiempoReservacionTiempo();
+                            reservacionCrud.leerTiempoReservacionTiempo(listaReservaciones);
                             break;
                     }
                     //obj.menuHuesped(sc); // Taba antes de las Modificaciones de Miguel

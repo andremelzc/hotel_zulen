@@ -6,7 +6,6 @@ public class Habitacion {
     private TipoDeHabitacion tipoHabitacion;
     private int piso;
     private String estado;
-    // private Servicio servicio;
     private String servicio;
     /**
     public Habitacion(int piso, TipoDeHabitacion tipoHabitacion, String estado, String personalAsignado, String servicio, int IDHuesped) {
