@@ -248,30 +248,14 @@ public class ReservacionCrud {
         return existe;
     }
 
-    public boolean existeHabitacionReservacion(int id_habitacion) {
-        boolean existe = false;
-        try {
-            CSVReader reader = new CSVReader(new FileReader("reservaciones.csv"));
-            String[] nextLine;
-            try {
-                while ((nextLine = reader.readNext()) != null) {
-                    // Verificamos si existe una reservación para dicho huesped
-                    if (id_habitacion == Integer.parseInt(nextLine[1])) {
-                        existe = true;
-                    }
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(ReservacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(ReservacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ReservacionCrud.class.getName()).log(Level.SEVERE, null, ex);
+    public boolean verificacionDisponibilidadHabitacion(List<Habitacion> listaHabitaciones, int id_habitacion) {
+    for (Habitacion habitacion : listaHabitaciones) {
+        if (habitacion.getId() == id_habitacion && habitacion.getEstado().equals("Disponible")) {
+            return true;
         }
-        String[] nextLine;
-        return existe;
     }
+    return false;
+}
 
     public void leerTodoReservacion() {
         actualizarReservacion();

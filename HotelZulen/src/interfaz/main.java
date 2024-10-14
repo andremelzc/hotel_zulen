@@ -291,7 +291,7 @@ public class main {
                         if (existe) {
                             flagHabitacion = true;
                             //Verificamos si está ocupada (puede cambiarse con lógica/datos de reservas) <<<<-- cambiar
-                            boolean ocupada = reservacionCrud.existeHabitacionReservacion(idHabitacion);
+                            boolean ocupada = reservacionCrud.verificacionDisponibilidadHabitacion(listaHabitaciones, idHabitacion);
                             if (ocupada) {
                                 flagHabitacion = false;
                                 System.out.println("Habitación ocupada, pruebe con otra");
