@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class HabitacionCrud {
     Funcionalidades funcionalidades = new Funcionalidades();
     List<Habitacion> listaHabitacion = new ArrayList<>();
+    TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion();
     public List<Habitacion> getListaHabitacion() {
         return listaHabitacion;
     }
@@ -212,17 +213,18 @@ public class HabitacionCrud {
 
         // Encabezado de la tabla
         System.out.println("------------------------------------------");
-        System.out.printf("%-4s %-10s %-15s%n", "ID", "Tipo", "Piso");
+        System.out.printf("%-4s %-10s %-5s %-15s%n", "ID", "Tipo", "Piso", "Precio");
         System.out.println("------------------------------------------");
 
         // Buscar el ID en la lista de habitaciones
         for (Habitacion habitacion : listaHabitaciones) {
             if (habitacion.getId() == id_buscar) {
                 // Imprimir detalles de la habitación si se encuentra
-                System.out.printf("%-4s %-10s %-15s%n",
+                System.out.printf("%-4s %-10s %-5s %-15s%n",
                         habitacion.getId(),
                         habitacion.getTipoHabitacion().getConcepto(),
-                        habitacion.getPiso());
+                        habitacion.getPiso(),
+                        tipoHabitacion.mostrarPrecioXTipo(habitacion.getTipoHabitacion().getConcepto()));
                 find = true;
                 break; // Salir del bucle si se encontró la habitación
             }
@@ -240,17 +242,19 @@ public class HabitacionCrud {
 
         // Encabezado de la tabla
         System.out.println("------------------------------------------");
-        System.out.printf("%-4s %-10s %-15s%n", "ID", "Tipo", "Piso");
+        System.out.printf("%-4s %-10s %-5s %-15s%n", "ID", "Tipo", "Piso", "Precio");
         System.out.println("------------------------------------------");
 
         // Buscar el ID en la lista de habitaciones
         for (Habitacion habitacion : listaHabitaciones) {
             if (habitacion.getId() == id) {
                 // Imprimir detalles de la habitación si se encuentra
-                System.out.printf("%-4s %-10s %-15s%n",
+                System.out.printf("%-4s %-10s %-5s %-15s%n",
                         habitacion.getId(),
                         habitacion.getTipoHabitacion().getConcepto(),
-                        habitacion.getPiso());
+                        habitacion.getPiso(),
+                        tipoHabitacion.mostrarPrecioXTipo(habitacion.getTipoHabitacion().getConcepto()
+                ));
                 find = true;
                 break; // Salir del bucle si se encontró la habitación
             }

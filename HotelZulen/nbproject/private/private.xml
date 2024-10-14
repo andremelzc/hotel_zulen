@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Controlador/HabitacionCrud.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Controlador/ReservacionCrud.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/interfaz/main.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Habitacion.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Reservacion.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Servicios.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Huesped.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Controlador/ServiciosCrud.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Controlador/HuespedCrud.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/HotelZulen_Clone/hotel_zulen/HotelZulen/personal.csv</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/HotelZulen_Clone/hotel_zulen/HotelZulen/src/Controlador/ReservacionCrud.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/HotelZulen_Clone/hotel_zulen/HotelZulen/src/Controlador/ServiciosCrud.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/HotelZulen_Clone/hotel_zulen/HotelZulen/src/modelo/TipoDeHabitacion.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/HotelZulen_Clone/hotel_zulen/HotelZulen/reservaciones.csv</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/HotelZulen_Clone/hotel_zulen/HotelZulen/src/Controlador/HabitacionCrud.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/HotelZulen_Clone/hotel_zulen/HotelZulen/huespedes.csv</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/HotelZulen_Clone/hotel_zulen/HotelZulen/habitaciones.csv</file>
         </group>
     </open-files>
 </project-private>
