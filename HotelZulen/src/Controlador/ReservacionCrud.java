@@ -427,15 +427,15 @@ public class ReservacionCrud {
         List<Reservacion> listaReservaciones1 = new ArrayList<>();
         listaReservaciones1 = cargarCSVlista();
         LocalDate fechaHoy = LocalDate.now();
-        int idReservacion;
+        int dniHuesped;
         boolean flag = false;
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Ingrese el ID de la reservacion que desea ampliar: ");
-        idReservacion = sc.nextInt();
+        System.out.print("Ingrese el DNI del huesped cuya reservacion desea ampliar: ");
+        dniHuesped = sc.nextInt();
 
         for (Reservacion reserva : listaReservaciones1) {
-            if (reserva.getIdReserva() == idReservacion) {
+            if (reserva.getHuespedd().getDNI() == dniHuesped) {
                 flag = true;
                 if (reserva.getFinHuesped().isBefore(fechaHoy) || (reserva.getFinHuesped().isEqual(fechaHoy) && LocalTime.now().isAfter(LocalTime.NOON))) { //verifica si ya acabo el tiempo de reserva
                     System.out.println("La reservacion ya ha finalizado, no se puede ampliar");
@@ -455,7 +455,7 @@ public class ReservacionCrud {
                     System.out.println("Ingrese la nueva fecha de salida: ");
                     LocalDate nuevaFechaSalida = LocalDate.parse(sc.next());
                     reserva.setFinHuesped(nuevaFechaSalida);
-                    reserva.setEstado("Vigente");
+                    
                 }
 
             } else {
@@ -466,7 +466,7 @@ public class ReservacionCrud {
         }
 
         if (!flag) {
-            System.out.println("No se encontro la reservacion con el ID ingresado");
+            System.out.println("No se encontro ninguna reservacion con el DNI ingresado");
         }
         sobreescribirCSV();
     }
