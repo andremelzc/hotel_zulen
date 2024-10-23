@@ -19,10 +19,10 @@ public class TipoDeHabitacion {
 
     preciosPorTipo = new HashMap<>();
     
-    preciosPorTipo.put("standard", 100);  // Precio inicial en dólares o la moneda que elijas
-    preciosPorTipo.put("doble", 150);
-    preciosPorTipo.put("suite", 250);
-    preciosPorTipo.put("business", 200);
+    preciosPorTipo.put("Standard", 100);  // Precio inicial en dólares o la moneda que elijas
+    preciosPorTipo.put("Doble", 150);
+    preciosPorTipo.put("Suite", 250);
+    preciosPorTipo.put("Business", 200);
     
     }
 
@@ -58,6 +58,11 @@ public class TipoDeHabitacion {
             Integer precio = entry.getValue();
             System.out.println("Tipo: " + tipo + " - Precio: $" + precio);
     }
+    }
+    public int mostrarPrecioXTipo(String tipoHabitacion){
+        
+        return preciosPorTipo.get(tipoHabitacion);
+        
     }
     public boolean verificarExistenciaDeKey(String concepto){
         return preciosPorTipo.containsKey(concepto.toLowerCase());
