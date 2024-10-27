@@ -22,10 +22,13 @@ import Persistencia.ReservacionRepository;
 import Persistencia.ReservacionServicioRepository;
 import Persistencia.ServiciosAdicionalesRepository;
 import Persistencia.TipoHabitacionRepository;
-import java.util.HashMap;
+import Persistencia.FuncionalidadesRepository;
 
 //import pruebas_giron.*; //En caso se use fuera de este package
 public class main {
+
+    // Funcionalidades
+    FuncionalidadesRepository funcionalidadesRepository = new FuncionalidadesRepository();
 
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -678,16 +681,13 @@ public class main {
     }
 
     public void menuHabitacion(Scanner sc) throws IOException {
-        HabitacionCrud HabitacionCrud = new HabitacionCrud();
-
-        TipoDeHabitacion tipoHabitacionMostrar = new TipoDeHabitacion();
-        List<Habitacion> listaHabitaciones = new ArrayList<>();
-
+        // Cargamos los tipos de habitaaciones
         List<TipoDeHabitacion> tiposCargados = new ArrayList<>();
         TipoHabitacionRepository tipoRepo = new TipoHabitacionRepository();
         TipoDeHabitacion nuevoTipo = new TipoDeHabitacion();
         tiposCargados = tipoRepo.cargarCSVtoLista("tipoHabitacion.csv");
 
+        // Cargamos las habitaciones
         List<Habitacion> habitacionCargada = new ArrayList<>();
         HabitacionRepository habitacionRepo = new HabitacionRepository();
         Habitacion habitacion = new Habitacion();
@@ -717,23 +717,31 @@ public class main {
                     System.out.println("FALTA AGREGAR TONOTOS CON LA NUEVA LOGICA\n");
                     System.out.println("Agregando Habitacion");
                     System.out.println("-----------------------------");
+
                     System.out.println("Tipo: ");
                     String tipo = sc.nextLine();
+                    for (TipoDeHabitacion tipoDeHabitacion : tiposCargados) {
+                        if (tipo.equals(tipoDeHabitacion.getConcepto())) {
+                            nuevoTipo = tipoDeHabitacion;
+                        }
+                    }
                     System.out.println("Piso: ");
                     int piso = sc.nextInt();
                     sc.nextLine();
                     System.out.println("Estado: ");
                     String estado = sc.nextLine();
-
-                    //TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(tipo);
-                    //Habitacion nuevoHabitacion = new Habitacion(piso, tipoHabitacion, piso, estado);
-                    //HabitacionCrud.agregarHabitacion(nuevoHabitacion);
+                    int id = funcionalidadesRepository.numeroLineas("habitaciones.csv") + 1;
+                    Habitacion nuevoHabitacion = new Habitacion(id, nuevoTipo, String.valueOf(piso), estado);
+                    habitacion.agregar(habitacionCargada, nuevoHabitacion);
+                    habitacionRepo.cargarRegistroToCSV(nuevoHabitacion, "habitaciones.csv");
                     System.out.println("-----------------------------\n");
                     break;
                 case 2:
                     System.out.println("\n-----------------------------");
                     System.out.println("Imprimiendo todas las Habitaciones");
                     System.out.println("-----------------------------\n");
+                    System.out.println("------------------------------------------");
+                    System.out.printf("%-4s %-10s %-15s%n", "ID", "Tipo", "Piso");
                     habitacion.mostrarLista(habitacionCargada);
                     break;
                 case 3:
@@ -762,8 +770,12 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a actualizar: ");
                     int id_actualizar = sc.nextInt();
+                    System.out.println("------------------------------------------");
+                    System.out.printf("%-4s %-10s %-15s%n", "ID", "Tipo", "Piso");
                     habitacion_escogida = habitacion.obtenerPorId(habitacionCargada, id_actualizar);
                     habitacion.actualizar(habitacionCargada, habitacion_escogida);
+                    funcionalidadesRepository.vaciarCSV("habitaciones.csv");
+                    habitacionRepo.cargarListaToCSV(habitacionCargada, "habitaciones.csv");
                     System.out.println("-----------------------------\n");
                     break;
                 case 5:
@@ -774,6 +786,8 @@ public class main {
                     int id_eliminar = sc.nextInt();
                     habitacion_escogida = habitacion.obtenerPorId(habitacionCargada, id_eliminar);
                     habitacion.eliminar(habitacionCargada, habitacion_escogida);
+                    funcionalidadesRepository.vaciarCSV("habitaciones.csv");
+                    habitacionRepo.cargarListaToCSV(habitacionCargada, "habitaciones.csv");
                     System.out.println("-----------------------------\n");
                 case 6:
                     nuevoTipo.mostrarLista(tiposCargados);
@@ -781,24 +795,20 @@ public class main {
                 case 7:
                     System.out.println("\n-----------------------------");
                     nuevoTipo.mostrarLista(tiposCargados);
-                    //System.out.println("Concepto a actualizar: ");
-                    //String concepto_actualizar = sc.nextLine();
-                    //if (!tipoHabitacionMostrar.verificarExistenciaDeKey(concepto_actualizar)) {
-                    //  System.out.println("-----------------------------");
-                    // System.out.println("El concepto ingresado no se encuentra");
-                    // System.out.println("-----------------------------");
-                    //} else {
-                    //Costo
-                    //   System.out.println("Nuevo Costo: ");
-                    //  int costo = sc.nextInt();
-                    //  sc.nextLine();
-
-                    //Cambiando el precio del concepto ingresado
-                    //   tipoHabitacionMostrar.cambiarPrecio(concepto_actualizar, costo);
-                    //  System.out.println("-----------------------------");
-                    //  System.out.println("Registro modificado");
-                    //  System.out.println("-----------------------------");
-                    //}
+                    System.out.println("\n-----------------------------");
+                    System.out.println("Tipo de habitación a cambiar el precio: ");
+                    int id_tipo = sc.nextInt();
+                    sc.nextLine();
+                    for (TipoDeHabitacion tipoDeHabitacion : tiposCargados) {
+                        if (id_tipo == tipoDeHabitacion.getId()) {
+                            System.out.println("Nuevo precio: ");
+                            float nuevo_precio = sc.nextInt();
+                            sc.nextLine();
+                            tipoDeHabitacion.setPrecio(nuevo_precio);
+                        }
+                    }
+                    funcionalidadesRepository.vaciarCSV("tipoHabitacion.csv");
+                    tipoRepo.cargarListaToCSV(tiposCargados, "tipoHabitacion.csv");
                     break;
                 case 8:
                     flagHabitacion = false;
@@ -855,9 +865,8 @@ public class main {
                                 System.out.println("-----------------------------");
                             }
                         } while (!flag_costo);
-
-                        //Agregando a la lista de servicios
-                        ServiciosAdicionales nuevoServicio = new ServiciosAdicionales(9, concepto, costo);
+                        int id = funcionalidadesRepository.numeroLineas("serviciosAdicionales.csv") + 1; //Agregando a la lista de servicios
+                        ServiciosAdicionales nuevoServicio = new ServiciosAdicionales(id, concepto, costo, "Disponible");
                         servicios.agregar(serviciosCargados, servicios);
                         serviciosRepo.cargarRegistroToCSV(nuevoServicio, "serviciosAdicionales.csv");
 
@@ -885,28 +894,35 @@ public class main {
                     int id_buscar = sc.nextInt();
                     sc.nextLine(); // consumir una linea en blanco
 
-                    System.out.println("-----------------------------");
+                    /*System.out.println("-----------------------------");
                     System.out.println("El ID ingresado no se encuentra");
-                    System.out.println("-----------------------------");
-
-                    //Nombre
-                    System.out.println("Concepto: ");
-                    String concepto = sc.nextLine();
-                    //Costo
-                    int costo;
-                    boolean flag_costo = false;
-                    do {
-                        System.out.println("Costo: ");
-                        costo = sc.nextInt();
-                        if (costo > 0) {
-                            flag_costo = true;
+                    System.out.println("-----------------------------");*/
+                    for (ServiciosAdicionales serviciosAdicionales : serviciosCargados) {
+                        if (serviciosAdicionales.getId() == id_buscar) {
+                            //Nombre
+                            System.out.println("Concepto: ");
+                            String concepto = sc.nextLine();
+                            //Costo
+                            int costo;
+                            boolean flag_costo = false;
+                            do {
+                                System.out.println("Costo: ");
+                                costo = sc.nextInt();
+                                if (costo > 0) {
+                                    flag_costo = true;
+                                }
+                                if (!flag_costo) {
+                                    System.out.println("-----------------------------");
+                                    System.out.println("Ingrese un precio correcto");
+                                    System.out.println("-----------------------------");
+                                }
+                            } while (!flag_costo);
+                            serviciosAdicionales.setCosto(costo);
+                            serviciosAdicionales.setConcepto(concepto);
                         }
-                        if (!flag_costo) {
-                            System.out.println("-----------------------------");
-                            System.out.println("Ingrese un precio correcto");
-                            System.out.println("-----------------------------");
-                        }
-                    } while (!flag_costo);
+                    }
+                    funcionalidadesRepository.vaciarCSV("serviciosAdicionales.csv");
+                    serviciosRepo.cargarListaToCSV(serviciosCargados, "serviciosAdicionales.csv");
 
                     System.out.println("-----------------------------");
                     System.out.println("Registro modificado");
@@ -920,11 +936,18 @@ public class main {
                     System.out.println("ID a eliminar: ");
                     int id_eliminar = sc.nextInt();
                     sc.nextLine();
+                    for (ServiciosAdicionales serviciosAdicionales : serviciosCargados) {
+                        if (serviciosAdicionales.getId() == id_eliminar) {
+                            serviciosAdicionales.setEstado("No Disponible");
+                        }
+                    }
 
-                    System.out.println("-----------------------------");
+                    /*System.out.println("-----------------------------");
                     System.out.println("El ID ingresado no se encuentra");
-                    System.out.println("-----------------------------");
-
+                    System.out.println("-----------------------------");*/
+                    funcionalidadesRepository.vaciarCSV("serviciosAdicionales.csv");
+                    serviciosRepo.cargarListaToCSV(serviciosCargados, "serviciosAdicionales.csv");
+                    
                     System.out.println("-----------------------------");
                     System.out.println("Registro eliminado");
                     System.out.println("-----------------------------\n");

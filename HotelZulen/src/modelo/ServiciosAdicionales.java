@@ -19,14 +19,16 @@ public class ServiciosAdicionales implements IActualizar<ServiciosAdicionales> {
     int id;
     String concepto;
     double costo;
+    String estado;
 
     public ServiciosAdicionales() {
     }
 
-    public ServiciosAdicionales(int id, String concepto, double costo) {
+    public ServiciosAdicionales(int id, String concepto, double costo, String estado) {
         this.id = id;
         this.concepto = concepto;
         this.costo = costo;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -40,7 +42,11 @@ public class ServiciosAdicionales implements IActualizar<ServiciosAdicionales> {
     public String getConcepto() {
         return concepto;
     }
-
+    
+    public String getEstado(){
+        return estado;
+    }
+    
     public void setConcepto(String concepto) {
         this.concepto = concepto;
     }
@@ -51,6 +57,10 @@ public class ServiciosAdicionales implements IActualizar<ServiciosAdicionales> {
 
     public void setCosto(double costo) {
         this.costo = costo;
+    }
+    
+    public void setEstado(String estado){
+        this.estado = estado;
     }
 
     @Override

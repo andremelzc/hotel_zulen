@@ -1,7 +1,12 @@
 package modelo;
 
+import Persistencia.TipoHabitacionRepository;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Habitacion implements IActualizar<Habitacion> {
 
@@ -60,12 +65,22 @@ public class Habitacion implements IActualizar<Habitacion> {
     @Override
     public void actualizar(List<Habitacion> lista, Habitacion elemento) {
         Scanner sc = new Scanner(System.in);
+        
+        // Cargamos los tipos de habitaaciones
+        List<TipoDeHabitacion> tiposCargados = new ArrayList<>();
+        TipoHabitacionRepository tipoRepo = new TipoHabitacionRepository();
+        TipoDeHabitacion nuevoTipo = new TipoDeHabitacion();
+        
+        try {
+            tiposCargados = tipoRepo.cargarCSVtoLista("tipoHabitacion.csv");
+        } catch (IOException ex) {
+            Logger.getLogger(Habitacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         boolean find = false;
 
         for (Habitacion habitacion : lista) {
             if (habitacion.getId() == elemento.getId()) {
-                System.out.println("------------------------------------------");
-                System.out.printf("%-4s %-10s %-15s%n", "ID", "Tipo", "Piso");
                 System.out.println("------------------------------------------");
                 System.out.printf("%-4s %-10s %-15s%n",
                         habitacion.getId(), habitacion.getTipoHabitacion().getConcepto(),
@@ -73,14 +88,23 @@ public class Habitacion implements IActualizar<Habitacion> {
                 System.out.println("------------------------------------------");
                 System.out.println("Nuevos Datos");
                 System.out.println("------------------------------------------");
+                // Tipo de habitacion
                 System.out.println("Tipo: ");
                 String tipo = sc.nextLine();
-                TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(100, tipo, 00);
-                habitacion.setTipoHabitacion(tipoHabitacion);
+                for (TipoDeHabitacion tipoDeHabitacion : tiposCargados) {
+                    if (tipo.equals(tipoDeHabitacion.getConcepto())) {
+                        nuevoTipo = tipoDeHabitacion;
+                    }
+                }
+                habitacion.setTipoHabitacion(nuevoTipo);
+                // Piso de habitación
                 System.out.println("Piso: ");
                 String piso = sc.nextLine();
                 habitacion.setPiso(piso);
-                sc.nextLine();
+                // Estado de habitación
+                System.out.println("Estado: ");
+                String estado = sc.nextLine();
+                habitacion.setEstado(estado);
                 find = true;
                 break;
             }
@@ -89,13 +113,16 @@ public class Habitacion implements IActualizar<Habitacion> {
             System.out.println("-----------------------------");
             System.out.println("No se encontro algun habitacion con dicho ID");
         }
-        
-        
+
     }
 
     @Override
     public void eliminar(List<Habitacion> lista, Habitacion elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       for(Habitacion habitacion: lista){
+           if(habitacion.getId()==elemento.getId()){
+               habitacion.setEstado("No Disponible");
+           }
+       }
     }
 
     @Override

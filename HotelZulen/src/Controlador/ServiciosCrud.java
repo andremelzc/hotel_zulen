@@ -13,11 +13,12 @@ import modelo.ServiciosAdicionales;
  * @author Suyco
  */
 public class ServiciosCrud {
-    
+    /*
     public List<ServiciosAdicionales> listaServicios;
 
     public ServiciosCrud() {
         this.listaServicios = new ArrayList<>();
+        
         listaServicios.add(new ServiciosAdicionales(1,"HouseKeeping",70));
         listaServicios.add(new ServiciosAdicionales(2,"FitnessCenter",30));
     }
@@ -57,5 +58,5 @@ public class ServiciosCrud {
             }
         }
         return false;
-    }
+    }*/
 }
