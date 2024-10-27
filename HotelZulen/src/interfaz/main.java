@@ -11,18 +11,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import modelo.Servicios;
+import modelo.ServiciosAdicionales;
 import modelo.TipoDeHabitacion;
-import Controlador.ServiciosCrud;
+import Persistencia.HabitacionRepository;
+import Persistencia.HotelRepository;
+import Persistencia.HuespedRepository;
+import Persistencia.ReservacionHabitacionesRepository;
+import Persistencia.ReservacionHuespedRepository;
+import Persistencia.ReservacionRepository;
+import Persistencia.ReservacionServicioRepository;
+import Persistencia.ServiciosAdicionalesRepository;
+import Persistencia.TipoHabitacionRepository;
 import java.util.HashMap;
 
 //import pruebas_giron.*; //En caso se use fuera de este package
 public class main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         PersonalCrud personal = new PersonalCrud();
-        ServiciosCrud servicios = new ServiciosCrud();
 
         //Reservación reservacion = new Reservación(); //Esto es de Melendez
         InicioSesion isesion = new InicioSesion();
@@ -98,7 +105,7 @@ public class main {
 
     }//Fin del main
 
-    public void vistaAdmin(Scanner sc) {
+    public void vistaAdmin(Scanner sc) throws IOException {
         boolean flag = true;
         main obj = new main();
         do {
@@ -138,7 +145,7 @@ public class main {
         } while (flag);
     }
 
-    public void vistaRececpionista(Scanner sc) {
+    public void vistaRececpionista(Scanner sc) throws IOException {
         boolean flag = true;
         main obj = new main();
         ReservacionCrud reservacionCrud = new ReservacionCrud();
@@ -150,6 +157,42 @@ public class main {
         HuespedCrud huespedCrud = new HuespedCrud();
         List<Huesped> listaHuesped = new ArrayList<>();
         listaHuesped = huespedCrud.cargarCSVlista();
+
+        List<Reservacion> reservacionesCargadas = new ArrayList<>();
+        ReservacionRepository reservaRepo = new ReservacionRepository();
+        Reservacion reserva = new Reservacion();
+        reservacionesCargadas = reservaRepo.cargarCSVtoLista("reservaciones.csv");
+
+        List<ServiciosAdicionales> serviciosCargados = new ArrayList<>();
+        ServiciosAdicionalesRepository serviciosRepo = new ServiciosAdicionalesRepository();
+        ServiciosAdicionales servicio = new ServiciosAdicionales();
+        serviciosCargados = serviciosRepo.cargarCSVtoLista("serviciosAdicionales.csv");
+
+        List<Huesped> HuespedesCargados = new ArrayList<>();
+        HuespedRepository huespedRepo = new HuespedRepository();
+        Huesped huesped = new Huesped();
+        HuespedesCargados = huespedRepo.cargarCSVtoLista("huespedes.csv");
+
+        List<Habitacion> habitacionCargada = new ArrayList<>();
+        HabitacionRepository habitacionRepo = new HabitacionRepository();
+        Habitacion habitacion = new Habitacion();
+        habitacionCargada = habitacionRepo.cargarCSVtoLista("habitaciones.csv");
+
+        List<ResevacionHabitacion> reservaHabitacionCargados = new ArrayList<>();
+        ReservacionHabitacionesRepository reservaHabitacionesRepo = new ReservacionHabitacionesRepository();
+        ResevacionHabitacion reservaHabitacion = new ResevacionHabitacion();
+        reservaHabitacionCargados = reservaHabitacionesRepo.cargarCSVtoLista("reservaHabitacion.csv");
+
+        List<ReservacionHuesped> reservaHuespedCargados = new ArrayList<>();
+        ReservacionHuespedRepository reservaHuespedRepo = new ReservacionHuespedRepository();
+        ReservacionHuesped reservaHuesped = new ReservacionHuesped();
+        reservaHuespedCargados = reservaHuespedRepo.cargarCSVtoLista("reservaHuesped.csv");
+
+        List<ReservacionServicio> reservacionServicioCargada = new ArrayList<>();
+        ReservacionServicioRepository reservaServicioRepo = new ReservacionServicioRepository();
+        ReservacionServicio reservaServicio = new ReservacionServicio();
+        reservacionServicioCargada = reservaServicioRepo.cargarCSVtoLista("reservaServicios.csv");
+
         LocalDate fechaActual = LocalDate.now();
         do {
             System.out.println("------------------");
@@ -174,185 +217,93 @@ public class main {
                     break;
                 case 2:
                     listaReservaciones.clear();
-                    listaReservaciones=reservacionCrud.cargarCSVlista();
+
                     int op_info;
-                    boolean flagConsulta=true;
-                do{    
-                    //Consultar Información 
-                    System.out.println("\n-----------------------------");
-                    System.out.println("Consultando Informacion");
-                    System.out.println("-----------------------------");
-                    System.out.println("1. Consultar Todas las Habitaciones"); //Podría modificarse a Reservas Activas???
-                    System.out.println("2. Consultar Habitaciones Disponibles");
-                    System.out.println("3. Consultar Habitaciones Reservadas");
-                    System.out.println("4. Consultar Habitaciones Ocupadas");
-                    System.out.println("5. Consultar Tiempo de Reservaciones en Curso");
-                    System.out.println("6. Consultar Tiempo de Reservaciones en Espera");
-                    System.out.println("7. Consultar Tiempo de Reservaciones Finalizadas");
-                    System.out.println("8. Retroceder");
-                    do{
-                        System.out.println("Ingrese el su opción");
-                        op_info = sc.nextInt(); sc.nextLine(); //Limpiar el buffer
-                        if(op_info<1 || op_info>8){
-                            System.out.println("Opcion Fuera de Rango");
+                    boolean flagConsulta = true;
+                    do {
+                        //Consultar Información 
+                        System.out.println("\n-----------------------------");
+                        System.out.println("Consultando Informacion");
+                        System.out.println("-----------------------------");
+                        System.out.println("1. Consultar Todas las Habitaciones"); //Podría modificarse a Reservas Activas???
+                        System.out.println("2. Consultar Habitaciones Disponibles");
+                        System.out.println("3. Consultar Habitaciones Reservadas");
+                        System.out.println("4. Consultar Habitaciones Ocupadas");
+                        System.out.println("5. Consultar Tiempo de Reservaciones en Curso");
+                        System.out.println("6. Consultar Tiempo de Reservaciones en Espera");
+                        System.out.println("7. Consultar Tiempo de Reservaciones Finalizadas");
+                        System.out.println("8. Retroceder");
+                        do {
+                            System.out.println("Ingrese el su opción");
+                            op_info = sc.nextInt();
+                            sc.nextLine(); //Limpiar el buffer
+                            if (op_info < 1 || op_info > 8) {
+                                System.out.println("Opcion Fuera de Rango");
+                            }
+                        } while (op_info < 1 || op_info > 8);
+                        switch (op_info) {
+                            case 1:
+                                habitacion.mostrarLista(habitacionCargada);
+                                break;
+                            case 2:
+
+                                habitacion.leerTodoHabitacionDisponible(habitacionCargada);
+                                break;
+                            case 3:
+                                //Consultar Habitaciones Reservado
+                                habitacion.leerTodoHabitacionReservado(habitacionCargada);
+                                break;
+                            case 4:
+                                //Consultar Habitaciones Ocupada
+                                habitacion.leerTodoHabitacionOcupada(habitacionCargada);
+                                break;
+                            case 5:
+                                //Consultar Tiempo de Reservación En Curso
+                                //reservacionCrud.leerTiempoReservacionTiempo(listaReservaciones);                           
+                                break;
+                            case 6:
+                                //Consultar Tiempo de Reservación en Espera
+                                //reservacionCrud.leerTiempoReservacionEspera(listaReservaciones);                            
+                                break;
+                            case 7:
+                                //Consultar Tiempo de Reservación en Espera
+                                //reservacionCrud.leerTiempoReservacionFinalizada(listaReservaciones);
+                                break;
+                            case 8:
+                                flagConsulta = false;
+                                break;
                         }
-                    }while(op_info<1 || op_info>8);
-                    switch(op_info){
-                        case 1:
-                            //Consultar Todas las Habitaciones
-                            habitacionCrud.leerTodoHabitacion(listaHabitaciones);
-                            break;
-                        case 2:
-                            //Consultar Habitaciones Disponibles
-                            habitacionCrud.leerTodoHabitacionDisponible(listaHabitaciones);
-                            break;
-                        case 3:
-                            //Consultar Habitaciones Reservado
-                            habitacionCrud.leerTodoHabitacionReservado(listaHabitaciones);
-                            break;
-                        case 4: 
-                            //Consultar Habitaciones Ocupada
-                           habitacionCrud.leerTodoHabitacionOcupada(listaHabitaciones);
-                           break; 
-                        case 5:
-                            //Consultar Tiempo de Reservación En Curso
-                            reservacionCrud.leerTiempoReservacionTiempo(listaReservaciones);                           
-                            break;
-                        case 6:
-                            //Consultar Tiempo de Reservación en Espera
-                            reservacionCrud.leerTiempoReservacionEspera(listaReservaciones);                            
-                            break;
-                        case 7:
-                            //Consultar Tiempo de Reservación en Espera
-                            reservacionCrud.leerTiempoReservacionFinalizada(listaReservaciones);
-                            break;
-                        case 8:
-                            flagConsulta=false;
-                            break;
-                    }
-                }while(flagConsulta);
+                    } while (flagConsulta);
                     //obj.menuHuesped(sc); // Taba antes de las Modificaciones de Miguel
                     break;
                 case 3:
-                    listaHuesped.clear();
-                    listaHuesped = huespedCrud.cargarCSVlista();
+
                     //Reserva de habitación
                     System.out.println("\n-----------------------------");
                     System.out.println("Reservando habitación");
                     System.out.println("-----------------------------");
-                    
+
                     // ID huesped
                     boolean flagHuesped = false;
                     boolean continuarReserva = true;
                     int idHuesped;
                     int dniHuesped;
                     String respuesta;
-                    
-                    do {
-                        System.out.println("DNI de huesped: ");
-                        dniHuesped = sc.nextInt();
-                        sc.nextLine();
-                        //Verificaos si existe
-                        boolean existe = huespedCrud.existeHuespedXDni(listaHuesped,dniHuesped);
-                        if (existe) {
-                            flagHuesped = true;
-                            System.out.println("Datos del huesped");
-                            huespedCrud.buscarHuespedXDNI(listaHuesped,dniHuesped);
-                        }else{
-                            System.out.println("El huesped no existe");
-                            System.out.println("¿Desea intentar denuevo? (si/no)");
-                            respuesta = sc.nextLine().trim(); // Captura la respuesta del usuario
-                            if ("no".equalsIgnoreCase(respuesta)) {
-                                 // Si la respuesta es "no", salimos del bucle y terminamos el caso 3
-                                System.out.println("No se registró el huésped. Saliendo de la reserva...");
-                                flagHuesped = true;
-                                continuarReserva = false;
-                            } else if (!"si".equalsIgnoreCase(respuesta)) {
-                             // Si la respuesta no es ni "si" ni "no", puedes indicarle que ingrese una opción válida
-                                System.out.println("Opción inválida, por favor ingrese 'si' o 'no'.");
-                            }
-                        }
-                    } while (!flagHuesped);
-                    
-                    if (!continuarReserva) {
-                        break; // Salimos del case 3
-                    }
+
+                    System.out.println("DNI de huesped: (METE ID POR MIENTRAS< BABOSO)  ");
+                    idHuesped = sc.nextInt();
+                    sc.nextLine();
+
                     // ID habitación
                     boolean flagHabitacion = false;
-                    boolean seguir=true;
+                    boolean seguir = true;
                     int idHabitacion;
                     String answer;
-                    do {
-                        System.out.println("\nID de habitación: ");
-                        idHabitacion = sc.nextInt();
-                        sc.nextLine();
-                        //Verificamos si existe
-                        boolean existe = habitacionCrud.existeHabitacion(listaHabitaciones, idHabitacion);
-                        if (existe) {
-                            flagHabitacion = true;
-                            //Verificamos si está ocupada (puede cambiarse con lógica/datos de reservas) <<<<-- cambiar
-                            boolean ocupada = reservacionCrud.verificacionDisponibilidadHabitacion(listaHabitaciones, idHabitacion);
-                            if (ocupada) {
-                                flagHabitacion = false;
-                                System.out.println("Habitación ocupada, pruebe con otra");
-                                System.out.println("-----------------------------");
-                            } else {
-                                flagHabitacion = true;
-                                System.out.println("Datos de la habitacion: ");
-                                habitacionCrud.buscarHabitacionXId(listaHabitaciones,idHabitacion );
-                                System.out.println("-----------------------------");
-                                System.out.println("Deseas seguir? (si/no)");
-                                answer=sc.nextLine().trim();
-                                if("no".equalsIgnoreCase(answer)){
-                                    seguir=false;
-                                }
-                            }
-                        } else {
-                            System.out.println("Habitación no existente");
-                            System.out.println("-----------------------------");
-                        }
-                    } while (!flagHabitacion);
-                    if(!seguir){
-                        break;
-                    }
-                    
-                    // Servicios de la reserva
-                    boolean flagServicio = false;
-                    String servicios = null;
-                    List<Servicios> listaServicios = new ArrayList<>();
-                    do {
-                        System.out.println("Combo para habitación");
-                        System.out.println("1: Housekeeping");
-                        System.out.println("2: Fitness Room");
-                        System.out.println("3: Housekeeping y Fiteness Room");
-                        int servicio = sc.nextInt();
-                        sc.nextLine();
-                        //Comprobamos con las opciones
-                        switch (servicio) {
-                            case 1:
-                                servicios = "Housekeeping";
-                                listaServicios.add(new Servicios(1,"HouseKeeping",70));
-                                flagServicio = true;
-                                break;
-                            case 2:
-                                servicios = "Fitness";
-                                listaServicios.add(new Servicios(2,"FitnessCenter",30));
-                                flagServicio = true;
-                                break;
-                            case 3:
-                                servicios = "Housekeeping, Fitness";
-                                listaServicios.add(new Servicios(1,"HouseKeeping",70));
-                                listaServicios.add(new Servicios(2,"FitnessCenter",30));
-                                flagServicio = true;
-                                break;
-                            default:
-                                flagServicio = false;
-                                break;
-                        }
-                        if (!flagServicio) {
-                            System.out.println("Opción inválida, vuelva a ingresar");
-                        }
-                    } while (!flagServicio);
+
+                    System.out.println("\nID de habitación: ");
+                    idHabitacion = sc.nextInt();
+                    sc.nextLine();
+
                     // Fechas:
                     LocalDate fechaHoy = LocalDate.now();
                     LocalDate fechaFin;
@@ -391,35 +342,48 @@ public class main {
 
                     estado = "En espera";
 
-                    idHuesped=huespedCrud.obtenerIdXDni(listaHuesped, dniHuesped);
-                    // Agregamos la reserva
-                    Habitacion habitacion = habitacionCrud.buscarHabitacionPorId(idHabitacion, listaHabitaciones);
-                    Huesped huesped = huespedCrud.buscarHuespedPorId(idHuesped, listaHuesped);
-                    
-                    
-                    Reservacion reservacion = new Reservacion(1, habitacion, huesped, listaServicios, estado,fechaInicio, fechaFin);
-                    
-                    //Agregamos a la lista
-                    reservacionCrud.agregarReservacion(reservacion,listaHabitaciones,listaHuesped);
-                    
-                    reservacionCrud.escribirCSV();
-                    
+                    // Servicios de la reserva
+                    boolean flagServicio = false;
+                    String servicios = null;
+
+                    servicio.mostrarLista(serviciosCargados);
+
+                    System.out.println("Escriba los servicios que más desee con el siguiente formato 'House-Fitnes-Masaje'.");
+                    String serviciosDeseados = sc.nextLine();
+
+                    HotelRepository hotel = new HotelRepository();
+
+                    Reservacion nuevaReserva = new Reservacion(
+                            hotel.contarLineasCSV("reservaciones.csv") + 1,
+                            1,
+                            estado,
+                            fechaInicio,
+                            fechaFin);
+                    reserva.agregar(reservacionesCargadas, nuevaReserva);
+                    reservaRepo.cargarRegistroToCSV(nuevaReserva, "reservaciones.csv");
+
+                    ReservacionHuesped nuevaReservaHuesped = new ReservacionHuesped(nuevaReserva, huesped.obtenerPorId(HuespedesCargados, idHuesped));
+                    reservaHuesped.agregar(reservaHuespedCargados, nuevaReservaHuesped);
+                    reservaHuespedRepo.cargarRegistroToCSV(nuevaReservaHuesped, "reservaHuesped.csv");
+
+                    ResevacionHabitacion nuevaReservaHabitacion = new ResevacionHabitacion(nuevaReserva, habitacion.obtenerPorId(habitacionCargada, idHabitacion));
+                    reservaHabitacion.agregar(reservaHabitacionCargados, nuevaReservaHabitacion);
+                    reservaHabitacionesRepo.cargarRegistroToCSV(nuevaReservaHabitacion, "reservaHabitacion.csv");
+
+                    List<String> listaServiciosDeseados = reservaServicio.separarServicios(serviciosDeseados);
+                    reservaServicio.crearReservaServicios(listaServiciosDeseados, serviciosCargados, nuevaReserva, reservacionServicioCargada);
+                    reservaServicioRepo.cargarListaToCSV(reservacionServicioCargada, "reservaServicios.csv");
+
                     break;
 
                 case 4:
-                    reservacionCrud.ampliarReservacion();                  
+
                     break;
                 case 5:
-                    listaHuesped.clear();
-                    listaHuesped = huespedCrud.cargarCSVlista();
-                    listaReservaciones.clear();
-                    listaReservaciones = reservacionCrud.cargarCSVlista();
-                    listaHabitaciones.clear();
-                    listaHabitaciones = habitacionCrud.cargarCSVlista();
-                    reservacionCrud.registrarEntrada(listaReservaciones, listaHabitaciones, listaHuesped);
+
                     break;
                 case 6:
-                    reservacionCrud.registrarSalida(listaReservaciones, listaHabitaciones, listaHuesped);
+
                     break;
                 case 7:
                     flag = false;
@@ -603,8 +567,12 @@ public class main {
         } while (flagPersonal);
     }
 
-    public void menuHuesped(Scanner sc) {
+    public void menuHuesped(Scanner sc) throws IOException {
         HuespedCrud huespedCrud = new HuespedCrud();
+        Huesped huesped = new Huesped();
+        List<Huesped> HuespedesCargados = new ArrayList<>();
+        HuespedRepository huespedRepo = new HuespedRepository();
+        HuespedesCargados = huespedRepo.cargarCSVtoLista("huespedes.csv");
         boolean flagHuesped = true;
         do {
             System.out.println("\n------------------");
@@ -642,14 +610,14 @@ public class main {
                     System.out.println("Contraseña: ");
                     String contrasena = sc.nextLine();
                     int estado = 0;
+
                     Huesped nuevoHuesped = new Huesped(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, estado);
-                    huespedCrud.agregarHuesped(nuevoHuesped);
+                    nuevoHuesped.agregar(HuespedesCargados, nuevoHuesped);
+                    huespedRepo.cargarRegistroToCSV(nuevoHuesped, "huespedes.csv");
                     System.out.println("-----------------------------\n");
                     break;
                 case 2:
-                    List<Huesped> listaHuespedes = new ArrayList<>();
-                    listaHuespedes = huespedCrud.cargarCSVlista();
-                    
+
                     int respuesta;
                     System.out.println("\n-----------------------------");
                     System.out.println("Imprimiendo huespedes");
@@ -658,20 +626,20 @@ public class main {
                     System.out.println("1. Huespedes activos ");
                     System.out.println("2. Huespedes desactivos ");
                     System.out.println("3. Toda la data (Inactivos y Activos) ");
-                    respuesta= sc.nextInt();
+                    respuesta = sc.nextInt();
                     sc.nextLine();
-                    switch(respuesta){
-                        case 1: 
-                            huespedCrud.leerHuespedActivo(listaHuespedes);
+                    switch (respuesta) {
+                        case 1:
+                            huesped.leerHuespedActivo(HuespedesCargados);
                             break;
                         case 2:
-                            huespedCrud.leerHuespedInactivo(listaHuespedes);
+                            huesped.leerHuespedInactivo(HuespedesCargados);
                             break;
                         case 3:
-                            huespedCrud.leerHuespedesAoI(listaHuespedes);
+                            huesped.mostrarLista(HuespedesCargados);
                             break;
                         default:
-                         System.out.println("Ingrese una opción válida.");   
+                            System.out.println("Ingrese una opción válida.");
                     }
 
                     break;
@@ -682,8 +650,7 @@ public class main {
                     System.out.println("DNI del huesped: ");
                     int dni_buscar = sc.nextInt();
                     sc.nextLine();
-                    listaHuespedes = huespedCrud.cargarCSVlista();
-                    huespedCrud.buscarHuespedXDNI(listaHuespedes, dni_buscar);
+                    huesped.buscarHuespedXDNI(HuespedesCargados, dni_buscar);
                     System.out.println("-----------------------------\n");
                     break;
                 case 4:
@@ -710,10 +677,22 @@ public class main {
         } while (flagHuesped);
     }
 
-    public void menuHabitacion(Scanner sc) {
+    public void menuHabitacion(Scanner sc) throws IOException {
         HabitacionCrud HabitacionCrud = new HabitacionCrud();
+
         TipoDeHabitacion tipoHabitacionMostrar = new TipoDeHabitacion();
         List<Habitacion> listaHabitaciones = new ArrayList<>();
+
+        List<TipoDeHabitacion> tiposCargados = new ArrayList<>();
+        TipoHabitacionRepository tipoRepo = new TipoHabitacionRepository();
+        TipoDeHabitacion nuevoTipo = new TipoDeHabitacion();
+        tiposCargados = tipoRepo.cargarCSVtoLista("tipoHabitacion.csv");
+
+        List<Habitacion> habitacionCargada = new ArrayList<>();
+        HabitacionRepository habitacionRepo = new HabitacionRepository();
+        Habitacion habitacion = new Habitacion();
+        habitacionCargada = habitacionRepo.cargarCSVtoLista("habitaciones.csv");
+
         boolean flagHabitacion = true;
         do {
             System.out.println("\n------------------");
@@ -735,6 +714,7 @@ public class main {
             switch (opHabitacion) {
                 case 1:
                     System.out.println("\n-----------------------------");
+                    System.out.println("FALTA AGREGAR TONOTOS CON LA NUEVA LOGICA\n");
                     System.out.println("Agregando Habitacion");
                     System.out.println("-----------------------------");
                     System.out.println("Tipo: ");
@@ -744,19 +724,17 @@ public class main {
                     sc.nextLine();
                     System.out.println("Estado: ");
                     String estado = sc.nextLine();
-           
 
-                    TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(tipo);
-                    Habitacion nuevoHabitacion = new Habitacion(piso, tipoHabitacion, piso, estado);
-                    HabitacionCrud.agregarHabitacion(nuevoHabitacion);
+                    //TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(tipo);
+                    //Habitacion nuevoHabitacion = new Habitacion(piso, tipoHabitacion, piso, estado);
+                    //HabitacionCrud.agregarHabitacion(nuevoHabitacion);
                     System.out.println("-----------------------------\n");
                     break;
                 case 2:
                     System.out.println("\n-----------------------------");
-                    System.out.println("Imprimiendo todo el Habitacion");
+                    System.out.println("Imprimiendo todas las Habitaciones");
                     System.out.println("-----------------------------\n");
-                    listaHabitaciones=HabitacionCrud.cargarCSVlista();
-                    HabitacionCrud.leerTodoHabitacion(listaHabitaciones);
+                    habitacion.mostrarLista(habitacionCargada);
                     break;
                 case 3:
                     System.out.println("\n-----------------------------");
@@ -764,9 +742,19 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a buscar: ");
                     int id_buscar = sc.nextInt();
-                    listaHabitaciones=HabitacionCrud.cargarCSVlista();
-                    HabitacionCrud.buscarHabitacion(listaHabitaciones, id_buscar);
-                    System.out.println("-----------------------------\n");
+                    Habitacion habitacion_escogida = new Habitacion();
+                    habitacion_escogida = habitacion.obtenerPorId(habitacionCargada, id_buscar);
+                    System.out.println("--------------------------------------------------------------------------------------");
+                    System.out.printf("%-4s %-19s %-5s %-12s%n", "ID", "Tipo de habitacion", "Piso", "Estado");
+                    System.out.println("--------------------------------------------------------------------------------------");
+                    // Imprimimos toda la lista
+                    System.out.printf("%-4s %-19s %-5s %-12s%n",
+                            habitacion_escogida.getId(),
+                            habitacion_escogida.getTipoHabitacion().getConcepto(),
+                            habitacion_escogida.getPiso(),
+                            habitacion_escogida.getEstado());
+
+                    System.out.println("--------------------------------------------------------------------------------------");
                     break;
                 case 4:
                     System.out.println("\n-----------------------------");
@@ -774,8 +762,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a actualizar: ");
                     int id_actualizar = sc.nextInt();
-                    listaHabitaciones=HabitacionCrud.cargarCSVlista();
-                    HabitacionCrud.actualizarHabitacion(listaHabitaciones, id_actualizar);
+                    habitacion_escogida = habitacion.obtenerPorId(habitacionCargada, id_actualizar);
+                    habitacion.actualizar(habitacionCargada, habitacion_escogida);
                     System.out.println("-----------------------------\n");
                     break;
                 case 5:
@@ -784,34 +772,33 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a eliminar: ");
                     int id_eliminar = sc.nextInt();
-                    listaHabitaciones=HabitacionCrud.cargarCSVlista();
-                    HabitacionCrud.eliminarHabitacion(listaHabitaciones, id_eliminar);
+                    habitacion_escogida = habitacion.obtenerPorId(habitacionCargada, id_eliminar);
+                    habitacion.eliminar(habitacionCargada, habitacion_escogida);
                     System.out.println("-----------------------------\n");
                 case 6:
-                    tipoHabitacionMostrar.mostrarTiposDeHabitaciones();
+                    nuevoTipo.mostrarLista(tiposCargados);
                     break;
                 case 7:
                     System.out.println("\n-----------------------------");
-                    tipoHabitacionMostrar.mostrarTiposDeHabitaciones();
-                    System.out.println("Concepto a actualizar: ");
-                    String concepto_actualizar = sc.nextLine();
-                    if (!tipoHabitacionMostrar.verificarExistenciaDeKey(concepto_actualizar)) {
-                        System.out.println("-----------------------------");
-                        System.out.println("El concepto ingresado no se encuentra");
-                        System.out.println("-----------------------------");
-                    } else {
-                        //Costo
-                        System.out.println("Nuevo Costo: ");
-                        int costo = sc.nextInt();
-                        sc.nextLine();
+                    nuevoTipo.mostrarLista(tiposCargados);
+                    //System.out.println("Concepto a actualizar: ");
+                    //String concepto_actualizar = sc.nextLine();
+                    //if (!tipoHabitacionMostrar.verificarExistenciaDeKey(concepto_actualizar)) {
+                    //  System.out.println("-----------------------------");
+                    // System.out.println("El concepto ingresado no se encuentra");
+                    // System.out.println("-----------------------------");
+                    //} else {
+                    //Costo
+                    //   System.out.println("Nuevo Costo: ");
+                    //  int costo = sc.nextInt();
+                    //  sc.nextLine();
 
-                        //Cambiando el precio del concepto ingresado
-                        tipoHabitacionMostrar.cambiarPrecio(concepto_actualizar, costo);
-
-                        System.out.println("-----------------------------");
-                        System.out.println("Registro modificado");
-                        System.out.println("-----------------------------");
-                    }
+                    //Cambiando el precio del concepto ingresado
+                    //   tipoHabitacionMostrar.cambiarPrecio(concepto_actualizar, costo);
+                    //  System.out.println("-----------------------------");
+                    //  System.out.println("Registro modificado");
+                    //  System.out.println("-----------------------------");
+                    //}
                     break;
                 case 8:
                     flagHabitacion = false;
@@ -820,8 +807,13 @@ public class main {
         } while (flagHabitacion);
     }
 
-    public void menuServicios(Scanner sc) {
-        ServiciosCrud serviciosCrud = new ServiciosCrud();
+    public void menuServicios(Scanner sc) throws IOException {
+
+        List<ServiciosAdicionales> serviciosCargados = new ArrayList<>();
+        ServiciosAdicionalesRepository serviciosRepo = new ServiciosAdicionalesRepository();
+        serviciosCargados = serviciosRepo.cargarCSVtoLista("serviciosAdicionales.csv");
+        ServiciosAdicionales servicios = new ServiciosAdicionales();
+
         boolean flagServicio = true;
         do {
             System.out.println("\n------------------");
@@ -865,8 +857,10 @@ public class main {
                         } while (!flag_costo);
 
                         //Agregando a la lista de servicios
-                        Servicios nuevoServicio = new Servicios();
-                        serviciosCrud.agregarServicios(nuevoServicio, concepto, costo);
+                        ServiciosAdicionales nuevoServicio = new ServiciosAdicionales(9, concepto, costo);
+                        servicios.agregar(serviciosCargados, servicios);
+                        serviciosRepo.cargarRegistroToCSV(nuevoServicio, "serviciosAdicionales.csv");
+
                         System.out.println("-----------------------------");
                         System.out.println("Quieres agregar otro?");
                         sc.nextLine();// para consumir una linea >/
@@ -877,53 +871,46 @@ public class main {
                             flag_salir = true;
                         }
                     } while (!flag_salir);
-
-                    //Escrimos en el csv
-                    //personalCrud.escribirCSV();
                     break;
                 case 2:
                     System.out.println("\n-----------------------------");
                     System.out.println("Imprimiendo los servicios");
                     System.out.println("-----------------------------\n");
-                    serviciosCrud.mostrarServicios();
+                    servicios.mostrarLista(serviciosCargados);
                     break;
                 case 3: //ACTUALIZAR SERVICIO X ID
                     System.out.println("\n-----------------------------");
-                    serviciosCrud.mostrarServicios();
+
                     System.out.println("ID a actualizar: ");
                     int id_buscar = sc.nextInt();
                     sc.nextLine(); // consumir una linea en blanco
-                    if (!serviciosCrud.verificarExistenciaxId(id_buscar)) {
-                        System.out.println("-----------------------------");
-                        System.out.println("El ID ingresado no se encuentra");
-                        System.out.println("-----------------------------");
-                    } else {
-                        //Nombre
-                        System.out.println("Concepto: ");
-                        String concepto = sc.nextLine();
-                        //Costo
-                        int costo;
-                        boolean flag_costo = false;
-                        do {
-                            System.out.println("Costo: ");
-                            costo = sc.nextInt();
-                            if (costo > 0) {
-                                flag_costo = true;
-                            }
-                            if (!flag_costo) {
-                                System.out.println("-----------------------------");
-                                System.out.println("Ingrese un precio correcto");
-                                System.out.println("-----------------------------");
-                            }
-                        } while (!flag_costo);
 
-                        //Cambiando el registro del id por otros datos
-                        serviciosCrud.modificarServicioxId(id_buscar, concepto, costo);
+                    System.out.println("-----------------------------");
+                    System.out.println("El ID ingresado no se encuentra");
+                    System.out.println("-----------------------------");
 
-                        System.out.println("-----------------------------");
-                        System.out.println("Registro modificado");
-                        System.out.println("-----------------------------");
-                    }
+                    //Nombre
+                    System.out.println("Concepto: ");
+                    String concepto = sc.nextLine();
+                    //Costo
+                    int costo;
+                    boolean flag_costo = false;
+                    do {
+                        System.out.println("Costo: ");
+                        costo = sc.nextInt();
+                        if (costo > 0) {
+                            flag_costo = true;
+                        }
+                        if (!flag_costo) {
+                            System.out.println("-----------------------------");
+                            System.out.println("Ingrese un precio correcto");
+                            System.out.println("-----------------------------");
+                        }
+                    } while (!flag_costo);
+
+                    System.out.println("-----------------------------");
+                    System.out.println("Registro modificado");
+                    System.out.println("-----------------------------");
 
                     break;
                 case 4:
@@ -933,17 +920,17 @@ public class main {
                     System.out.println("ID a eliminar: ");
                     int id_eliminar = sc.nextInt();
                     sc.nextLine();
-                    if (!serviciosCrud.verificarExistenciaxId(id_eliminar)) {
-                        System.out.println("-----------------------------");
-                        System.out.println("El ID ingresado no se encuentra");
-                        System.out.println("-----------------------------");
-                    } else {
-                        serviciosCrud.eliminarServicioXId(id_eliminar);
-                        System.out.println("-----------------------------");
-                        System.out.println("Registro eliminado");
-                        System.out.println("-----------------------------\n");
-                    }
+
+                    System.out.println("-----------------------------");
+                    System.out.println("El ID ingresado no se encuentra");
+                    System.out.println("-----------------------------");
+
+                    System.out.println("-----------------------------");
+                    System.out.println("Registro eliminado");
+                    System.out.println("-----------------------------\n");
+
                     break;
+
                 case 5:
                     flagServicio = false;
                     break;

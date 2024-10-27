@@ -6,7 +6,7 @@ package Controlador;
 
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Servicios;
+import modelo.ServiciosAdicionales;
 
 /**
  *
@@ -14,17 +14,17 @@ import modelo.Servicios;
  */
 public class ServiciosCrud {
     
-    public List<Servicios> listaServicios;
+    public List<ServiciosAdicionales> listaServicios;
 
     public ServiciosCrud() {
         this.listaServicios = new ArrayList<>();
-        listaServicios.add(new Servicios(1,"HouseKeeping",70));
-        listaServicios.add(new Servicios(2,"FitnessCenter",30));
+        listaServicios.add(new ServiciosAdicionales(1,"HouseKeeping",70));
+        listaServicios.add(new ServiciosAdicionales(2,"FitnessCenter",30));
     }
     
-    public void agregarServicios(Servicios servicio,String concepto,int costo){
+    public void agregarServicios(ServiciosAdicionales servicio,String concepto,int costo){
         int ultimoId= listaServicios.size();
-        listaServicios.add(new Servicios(ultimoId+1,concepto,costo));
+        listaServicios.add(new ServiciosAdicionales(ultimoId+1,concepto,costo));
     }
     public void eliminarServicioXId(int id){
         for(int i=0;i<listaServicios.size();i++){
@@ -36,7 +36,7 @@ public class ServiciosCrud {
     public void modificarServicioxId(int id,String concepto,int costo){
         for(int i=0;i<listaServicios.size();i++){
             if(listaServicios.get(i).getId()== id){
-                listaServicios.set(i,new Servicios(id,concepto,costo));
+                listaServicios.set(i,new ServiciosAdicionales(id,concepto,costo));
                 break;
             }
         }

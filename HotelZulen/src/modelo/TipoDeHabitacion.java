@@ -5,29 +5,33 @@
 package modelo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  *
  * @author Suyco
  */
-public class TipoDeHabitacion {
+public class TipoDeHabitacion implements IActualizar <TipoDeHabitacion>{
+    int id;
     String concepto;
-    private Map<String, Integer> preciosPorTipo;
-  
-    public TipoDeHabitacion() {
+    double precio;
 
-    preciosPorTipo = new HashMap<>();
-    
-    preciosPorTipo.put("Standard", 100);  // Precio inicial en dólares o la moneda que elijas
-    preciosPorTipo.put("Doble", 150);
-    preciosPorTipo.put("Suite", 250);
-    preciosPorTipo.put("Business", 200);
-    
+    public TipoDeHabitacion(int id, String concepto, double precio) {
+        this.id = id;
+        this.concepto = concepto;
+        this.precio = precio;
     }
 
-    public TipoDeHabitacion(String concepto) {
-        this.concepto = concepto;
+    public TipoDeHabitacion() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getConcepto() {
@@ -37,34 +41,60 @@ public class TipoDeHabitacion {
     public void setConcepto(String concepto) {
         this.concepto = concepto;
     }
-    
-    
-    public int obtenerPrecio(String tipo) {
-        return preciosPorTipo.getOrDefault(tipo.toLowerCase(), 0);
+
+    public double getPrecio() {
+        return precio;
     }
 
-    // Método para cambiar el precio de un tipo de habitación
-    public void cambiarPrecio(String tipo, Integer nuevoPrecio) {
-        if (preciosPorTipo.containsKey(tipo.toLowerCase())) {
-            preciosPorTipo.put(tipo.toLowerCase(), nuevoPrecio);
-            System.out.println("Precio actualizado para " + tipo + ": " + nuevoPrecio);
-        } else {
-            System.out.println("Tipo de habitación no reconocido.");
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    @Override
+    public void agregar(List<TipoDeHabitacion> lista, TipoDeHabitacion elemento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void actualizar(List<TipoDeHabitacion> lista, TipoDeHabitacion elemento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void eliminar(List<TipoDeHabitacion> lista, TipoDeHabitacion elemento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mostrarLista(List<TipoDeHabitacion> lista) {
+     
+        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.printf("%-4s %-19s %-5s%n", "ID", "Tipo de Habitacion", "Precio");
+        System.out.println("--------------------------------------------------------------------------------------");
+    
+        // Imprimimos toda la lista
+        for (TipoDeHabitacion tipos : lista) {
+            System.out.printf("%-4d %-19s %-5.2f%n", // Aquí usamos %d para entero y %.2f para double
+                tipos.getId(),
+                tipos.getConcepto(),
+                tipos.getPrecio()
+            );
         }
+        System.out.println("--------------------------------------------------------------------------------------");
+}
+    
+
+    @Override
+    public TipoDeHabitacion obtenerPorId(List<TipoDeHabitacion> lista, int id) {
+
+        for (TipoDeHabitacion tipo : lista) {
+            if (tipo.getId()== id) {
+                return tipo; 
+            }
+        }
+        return null; 
+    
     }
-    public void mostrarTiposDeHabitaciones(){
-        for (Map.Entry<String, Integer> entry : preciosPorTipo.entrySet()) {
-            String tipo = entry.getKey();
-            Integer precio = entry.getValue();
-            System.out.println("Tipo: " + tipo + " - Precio: $" + precio);
-    }
-    }
-    public int mostrarPrecioXTipo(String tipoHabitacion){
-        
-        return preciosPorTipo.get(tipoHabitacion);
-        
-    }
-    public boolean verificarExistenciaDeKey(String concepto){
-        return preciosPorTipo.containsKey(concepto.toLowerCase());
-    }
+  
+    
 }

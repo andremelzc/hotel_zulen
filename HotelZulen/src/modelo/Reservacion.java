@@ -7,13 +7,11 @@ package modelo;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Reservacion {
+
+public class Reservacion implements IActualizar<Reservacion>{
 
     private int idReserva;
-    private Habitacion habitacionn;
-    private Huesped huespedd;
-    private List<Servicios> servicios;
-    //List<PedidosComida> pedidosComida;
+    private int numHabitaciones;
     private String estado;
     private LocalDate incioHuesped;
     private LocalDate finHuesped;
@@ -22,11 +20,9 @@ public class Reservacion {
 
     }
 
-    public Reservacion(int idReserva, Habitacion habitacion, Huesped huespedd, List<Servicios> servicios, String estado, LocalDate incioHuesped, LocalDate finHuesped) {
+    public Reservacion(int idReserva, int numHabitaciones, String estado, LocalDate incioHuesped, LocalDate finHuesped) {
         this.idReserva = idReserva;
-        this.habitacionn = habitacion;
-        this.huespedd = huespedd;
-        this.servicios = servicios;
+        this.numHabitaciones = numHabitaciones;
         this.estado = estado;
         this.incioHuesped = incioHuesped;
         this.finHuesped = finHuesped;
@@ -36,57 +32,89 @@ public class Reservacion {
         return idReserva;
     }
 
-    public Habitacion getHabitacionn() {
-        return habitacionn;
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
     }
 
-    public Huesped getHuespedd() {
-        return huespedd;
+    public int getNumHabitaciones() {
+        return numHabitaciones;
     }
 
-    public List<Servicios> getServicios() {
-        return servicios;
+    public void setNumHabitaciones(int numHabitaciones) {
+        this.numHabitaciones = numHabitaciones;
     }
 
     public String getEstado() {
         return estado;
     }
 
-    public LocalDate getIncioHuesped() {
-        return incioHuesped;
-    }
-
-    public LocalDate getFinHuesped() {
-        return finHuesped;
-    }
-
-    public void setIdReserva(int idReserva) {
-        this.idReserva = idReserva;
-    }
-
-    public void setHabitacionn(Habitacion habitacionn) {
-        this.habitacionn = habitacionn;
-    }
-
-    public void setHuespedd(Huesped huespedd) {
-        this.huespedd = huespedd;
-    }
-
-    public void setServicios(List<Servicios> servicios) {
-        this.servicios = servicios;
-    }
-    
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public LocalDate getIncioHuesped() {
+        return incioHuesped;
     }
 
     public void setIncioHuesped(LocalDate incioHuesped) {
         this.incioHuesped = incioHuesped;
     }
 
+    public LocalDate getFinHuesped() {
+        return finHuesped;
+    }
+
     public void setFinHuesped(LocalDate finHuesped) {
         this.finHuesped = finHuesped;
     }
 
+    @Override
+    public void agregar(List<Reservacion> lista, Reservacion elemento) {
+        lista.add(elemento);
+    }
+    
+    
+    @Override
+    public void actualizar(List<Reservacion> lista, Reservacion elemento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void eliminar(List<Reservacion> lista, Reservacion elemento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mostrarLista(List<Reservacion> lista) {
+        
+    System.out.println("--------------------------------------------------------------------------------------");
+    System.out.printf("%-10s %-15s %-10s %-15s %-15s%n", "ID Reserva", "Num Habitaciones", "Estado", "Inicio Huesped", "Fin Huesped");
+    System.out.println("--------------------------------------------------------------------------------------");
+    
+    // Imprimimos toda la lista
+    for (Reservacion reservacion : lista) {
+        System.out.printf("%-10d %-15d %-10s %-15s %-15s%n",
+                reservacion.getIdReserva(),
+                reservacion.getNumHabitaciones(),
+                reservacion.getEstado(),
+                reservacion.getIncioHuesped(),  
+                reservacion.getFinHuesped());    
+    }
+    System.out.println("--------------------------------------------------------------------------------------");
+
+    }
+
+    @Override
+    public Reservacion obtenerPorId(List<Reservacion> lista, int id) {
+        for (Reservacion reserva : lista){
+            if(reserva.getIdReserva()==id){
+                return reserva;
+            }
+        }
+        return null;
+    
+    }
+
+    
     
 }

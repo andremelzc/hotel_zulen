@@ -36,8 +36,8 @@ public class HabitacionCrud {
             while ((nextLine = reader.readNext()) != null) {
                 // Check if the line has the expected number of columns
                 if (nextLine.length >= 4) { // Ensure there are at least 4 columns
-                    TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(nextLine[1]);
-                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoHabitacion, Integer.parseInt(nextLine[2]), nextLine[3]);
+                    TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(9,nextLine[1],7);
+                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoHabitacion, nextLine[2], nextLine[3]);
                     listaHabitaciones.add(habitacion); //agregando a la Lista
                 } else {
                     System.err.println("Error: línea con datos insuficientes: " + Arrays.toString(nextLine));
@@ -60,8 +60,8 @@ public class HabitacionCrud {
             String[] nextLine;
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    TipoDeHabitacion tipoDeHabitacion = new TipoDeHabitacion(nextLine[1]);
-                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoDeHabitacion, Integer.parseInt(nextLine[2]), nextLine[3]);
+                    TipoDeHabitacion tipoDeHabitacion = new TipoDeHabitacion(6,nextLine[1],34.1);
+                    Habitacion habitacion = new Habitacion(Integer.parseInt(nextLine[0]), tipoDeHabitacion, nextLine[2], nextLine[3]);
 
                     mapaHabitacion.put(habitacion.getId(), habitacion);
                 }
@@ -210,7 +210,7 @@ public class HabitacionCrud {
     }
     public boolean buscarHabitacion(List<Habitacion> listaHabitaciones, int id_buscar) {
         boolean find = false;
-
+        
         // Encabezado de la tabla
         System.out.println("------------------------------------------");
         System.out.printf("%-4s %-10s %-5s %-15s%n", "ID", "Tipo", "Piso", "Precio");
@@ -219,13 +219,8 @@ public class HabitacionCrud {
         // Buscar el ID en la lista de habitaciones
         for (Habitacion habitacion : listaHabitaciones) {
             if (habitacion.getId() == id_buscar) {
-                // Imprimir detalles de la habitación si se encuentra
-                System.out.printf("%-4s %-10s %-5s %-15s%n",
-                        habitacion.getId(),
-                        habitacion.getTipoHabitacion().getConcepto(),
-                        habitacion.getPiso(),
-                        tipoHabitacion.mostrarPrecioXTipo(habitacion.getTipoHabitacion().getConcepto()));
-                find = true;
+                
+                // ELIMINADO TODO LO DE ADENTRO
                 break; // Salir del bucle si se encontró la habitación
             }
         }
@@ -248,14 +243,7 @@ public class HabitacionCrud {
         // Buscar el ID en la lista de habitaciones
         for (Habitacion habitacion : listaHabitaciones) {
             if (habitacion.getId() == id) {
-                // Imprimir detalles de la habitación si se encuentra
-                System.out.printf("%-4s %-10s %-5s %-15s%n",
-                        habitacion.getId(),
-                        habitacion.getTipoHabitacion().getConcepto(),
-                        habitacion.getPiso(),
-                        tipoHabitacion.mostrarPrecioXTipo(habitacion.getTipoHabitacion().getConcepto()
-                ));
-                find = true;
+                //ELIMINADO TODO LO DE ADENTRO
                 break; // Salir del bucle si se encontró la habitación
             }
         }
@@ -285,10 +273,10 @@ public class HabitacionCrud {
                 System.out.println("------------------------------------------");
                 System.out.println("Tipo: ");
                 String tipo = sc.nextLine();
-                TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(tipo);
+                TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(100,tipo,00);
                 habitacion.setTipoHabitacion(tipoHabitacion);
                 System.out.println("Piso: ");
-                int piso = sc.nextInt();
+                String piso = sc.nextLine();
                 habitacion.setPiso(piso);
                 sc.nextLine();
                 find = true;

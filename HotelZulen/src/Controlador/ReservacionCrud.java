@@ -35,61 +35,10 @@ public class ReservacionCrud {
     HabitacionCrud habitacionCrud = new HabitacionCrud();
     
     public List<Reservacion> cargarCSVlista() {
-        // Cargamos el csv de huespedes en un hashmap
-        HashMap<Integer, Huesped> mapaHuesped = huespedCrud.cargarCSVHash();
-
-        // Cargamos el csv de habitaciones en un hashmap
-        HashMap<Integer, Habitacion> mapaHabitacion = habitacionCrud.cargarCSVHash();
+        
 
         // Creamos ArrayList para reservas
         List<Reservacion> listaReservaciones = new ArrayList<>();
-
-        try {
-            CSVReader reader = new CSVReader(new FileReader("reservaciones.csv"));
-            String[] nextLine;
-
-            try {
-
-                while ((nextLine = reader.readNext()) != null) {
-                    int idReserva = Integer.parseInt(nextLine[0]);
-                    int idHabitacion = Integer.parseInt(nextLine[1]);
-                    int idHuesped = Integer.parseInt(nextLine[2]);
-                    String servicios = nextLine[3];
-                    String estado = nextLine[4];
-                    LocalDate inicioHuesped = LocalDate.parse(nextLine[5]);
-                    LocalDate finHuesped = LocalDate.parse(nextLine[6]);
-
-                    String[] serviciosArray = servicios.split(",\\s*");
-                    List<Servicios> listaServicios = new ArrayList<>();
-
-                    if (serviciosArray.length == 2) {
-                        listaServicios.add(new Servicios(1, "HouseKeeping", 70));
-                        listaServicios.add(new Servicios(2, "FitnessCenter", 30));
-                    } else if (serviciosArray[0].equals("HouseKeeping")) {
-                        listaServicios.add(new Servicios(1, "HouseKeeping", 70));
-                    } else if (serviciosArray[0].equals("FitnessCenter")) {
-                        listaServicios.add(new Servicios(2, "FitnessCenter", 30));
-                    }
-
-                    Habitacion habitacion = mapaHabitacion.get(idHabitacion);
-                    Huesped huesped = mapaHuesped.get(idHuesped);
-
-                    if (huesped != null && habitacion != null) {
-
-                        Reservacion reservacion = new Reservacion(idReserva, habitacion, huesped, listaServicios, estado, inicioHuesped, finHuesped);
-                        listaReservaciones.add(reservacion);
-
-                    }
-                }
-
-            } catch (IOException ex) {
-                Logger.getLogger(ReservacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(ReservacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ReservacionCrud.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         return listaReservaciones;
     }
@@ -117,93 +66,17 @@ public class ReservacionCrud {
     }
 
     public void agregarReservacion(Reservacion reservacion, List<Habitacion> listaHabitacion, List<Huesped> listaHuesped) {
-        reservacion.setIdReserva(numeroLineas() + 1);
-
-        reservacion.getHuespedd().setEstado(1);
-        reservacion.getHabitacionn().setEstado("Reservado");
-        habitacionCrud.sobreescribirCSV(listaHabitacion);
-        huespedCrud.sobreescribirCSV(listaHuesped);
-        //Agregamos a la listaa
-        listaReservaciones.add(reservacion);
+        
     }
 
     public void sobreescribirCSV() {
-        StringBuilder serviciosString = new StringBuilder();
-        //Lista para enviar al CSV
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("reservaciones.csv", false))) {
-            int i = 0;
-            for (Reservacion reservacion : listaReservaciones) {
-                i++;
-                reservacion.setIdReserva(i);
-                serviciosString.setLength(0);
-                for (Servicios servicio : reservacion.getServicios()) {
-                    serviciosString.append(servicio.getConcepto()).append(", ");
-                }
-                if (serviciosString.length() > 0) {
-                    serviciosString.setLength(serviciosString.length() - 2); // Elimina la última coma y espacio
-                }
-                String servicios = serviciosString.toString();
-
-                String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()),
-                        String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getEstado()), String.valueOf(reservacion.getIncioHuesped()),
-                        String.valueOf(reservacion.getFinHuesped())};
-                escritor.writeNext(datos);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     public void sobreescribirCSVxLista(List<Reservacion> listaReservaciones) {
-        StringBuilder serviciosString = new StringBuilder();
-        //Lista para enviar al CSV
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("reservaciones.csv", false))) {
-            int i = 0;
-            for (Reservacion reservacion : listaReservaciones) {
-                i++;
-                reservacion.setIdReserva(i);
-                serviciosString.setLength(0);
-                for (Servicios servicio : reservacion.getServicios()) {
-                    serviciosString.append(servicio.getConcepto()).append(", ");
-                }
-                if (serviciosString.length() > 0) {
-                    serviciosString.setLength(serviciosString.length() - 2); // Elimina la última coma y espacio
-                }
-                String servicios = serviciosString.toString();
-
-                String[] datos = {String.valueOf(reservacion.getIdReserva()), String.valueOf(reservacion.getHabitacionn().getId()),
-                        String.valueOf(reservacion.getHuespedd().getID()), servicios, String.valueOf(reservacion.getEstado()), String.valueOf(reservacion.getIncioHuesped()),
-                        String.valueOf(reservacion.getFinHuesped())};
-                escritor.writeNext(datos);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     public void escribirCSV() {
-        StringBuilder serviciosString = new StringBuilder();
-        //Lista para enviar al CSV
-        try (CSVWriter escritor = new CSVWriter(new FileWriter("reservaciones.csv", true))) {
-            for (Reservacion reservacion : listaReservaciones) {
-                for (Servicios servicio : reservacion.getServicios()) {
-                    serviciosString.append(servicio.getConcepto()).append(", ");
-                }
-                if (serviciosString.length() > 0) {
-                    serviciosString.setLength(serviciosString.length() - 2); // Elimina la última coma y espacio
-                }
-                String servicios = serviciosString.toString();
-
-                String[] datos = {
-                        String.valueOf(reservacion.getIdReserva()),
-                        String.valueOf(reservacion.getHabitacionn().getId()),
-                        String.valueOf(reservacion.getHuespedd().getID()), servicios,
-                        String.valueOf(reservacion.getEstado()),
-                        String.valueOf(reservacion.getIncioHuesped()),
-                        String.valueOf(reservacion.getFinHuesped())};
-                escritor.writeNext(datos);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(PersonalCrud.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     public int numeroLineas() {
@@ -283,192 +156,16 @@ public class ReservacionCrud {
     }
 
     public void leerTiempoReservacionTiempo(List<Reservacion> listaReservaciones) {
-    // Cabecera de la tabla con formato
-    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
-    System.out.printf("%-8s %-15s %-15s %-27s %-10s %-15s %-15s %-20s\n", 
-            "ID", "id_Habitacion", "DNI_Huesped", "Servicios", "Estado", "F. Ingreso", "F. Salida", "Tiempo Restante");
-    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
-
-    // Obtener la fecha actual
-    LocalDate fechaActual = LocalDate.now();
     
-    // Iterar sobre la lista de reservaciones
-    for (Reservacion reservacion : listaReservaciones) {
-        // Filtrar solo las reservaciones con estado "Vigente"
-        if (reservacion.getEstado().equalsIgnoreCase("Vigente")) {
-            // Obtener la fecha de salida
-            LocalDate fechaSalida = reservacion.getFinHuesped();
-
-            // Calcular la diferencia entre la fecha actual y la fecha de salida
-            Period diferencia = Period.between(fechaActual, fechaSalida);
-
-            // Mostrar los días, meses y años restantes
-            String tiempoRestante = diferencia.getYears() + " años, " +
-                                    diferencia.getMonths() + " meses, " +
-                                    diferencia.getDays() + " días";
-
-            // Obtener los servicios de la reservación como una cadena de texto
-            String servicios = reservacion.getServicios().stream()
-                                  .map(Servicios::getConcepto)  // Usamos el getter para obtener el concepto
-                                  .reduce((s1, s2) -> s1 + ", " + s2)
-                                  .orElse("N/A");
-
-            // Imprimir la información formateada
-            System.out.printf("%-8s %-15s %-15s %-27s %-10s %-15s %-15s %-20s\n", 
-                    reservacion.getIdReserva(), 
-                    reservacion.getHabitacionn().getId(), 
-                    reservacion.getHuespedd().getDNI(), 
-                    servicios, 
-                    reservacion.getEstado(), 
-                    reservacion.getIncioHuesped(), 
-                    reservacion.getFinHuesped(), 
-                    tiempoRestante);
-            
-            System.out.println("-------------------------------------------------------------------------------");
-        }
     }
-}
     public void leerTiempoReservacionEspera(List<Reservacion> listaReservaciones) {
     
-    // Cabecera de la tabla con formato
-    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
-    System.out.printf("%-8s %-15s %-15s %-27s %-10s %-15s %-15s %-20s\n", 
-            "ID", "id_Habitacion", "DNI_Huesped", "Servicios", "Estado", "F. Ingreso", "F. Salida", "Tiempo Restante");
-    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
-
-    // Obtener la fecha actual
-    LocalDate fechaActual = LocalDate.now();
-    
-    // Iterar sobre la lista de reservaciones
-    for (Reservacion reservacion : listaReservaciones) {
-        // Filtrar solo las reservaciones con estado "En espera"
-        if (reservacion.getEstado().equalsIgnoreCase("En espera")) {
-            // Obtener la fecha de salida
-            LocalDate fechaSalida = reservacion.getFinHuesped();
-
-            // Calcular la diferencia entre la fecha actual y la fecha de salida
-            Period diferencia = Period.between(fechaActual, fechaSalida);
-
-            // Mostrar los días, meses y años restantes
-            String tiempoRestante = diferencia.getYears() + " años, " +
-                                    diferencia.getMonths() + " meses, " +
-                                    diferencia.getDays() + " días";
-
-            // Obtener los servicios de la reservación como una cadena de texto
-            String servicios = reservacion.getServicios().stream()
-                                  .map(Servicios::getConcepto)  // Usamos el getter para obtener el concepto
-                                  .reduce((s1, s2) -> s1 + ", " + s2)
-                                  .orElse("N/A");
-
-            // Imprimir la información formateada
-            System.out.printf("%-8s %-15s %-15s %-27s %-10s %-15s %-15s %-20s\n", 
-                    reservacion.getIdReserva(), 
-                    reservacion.getHabitacionn().getId(), 
-                    reservacion.getHuespedd().getDNI(), 
-                    servicios, 
-                    reservacion.getEstado(), 
-                    reservacion.getIncioHuesped(), 
-                    reservacion.getFinHuesped(), 
-                    tiempoRestante);
-            
-            System.out.println("-------------------------------------------------------------------------------");
-        }
     }
-}
     public void leerTiempoReservacionFinalizada(List<Reservacion> listaReservaciones) {
     
-    // Cabecera de la tabla con formato
-    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
-    System.out.printf("%-8s %-15s %-15s %-27s %-10s %-15s %-15s %-20s\n", 
-            "ID", "id_Habitacion", "DNI_Huesped", "Servicios", "Estado", "F. Ingreso", "F. Salida", "Tiempo Restante");
-    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
-
-    // Obtener la fecha actual
-    LocalDate fechaActual = LocalDate.now();
-    
-    // Iterar sobre la lista de reservaciones
-    for (Reservacion reservacion : listaReservaciones) {
-        // Filtrar solo las reservaciones con estado "En espera"
-        if (reservacion.getEstado().equalsIgnoreCase("Finalizada")) {
-            // Obtener la fecha de salida
-            LocalDate fechaSalida = reservacion.getFinHuesped();
-
-            // Calcular la diferencia entre la fecha actual y la fecha de salida
-            Period diferencia = Period.between(fechaActual, fechaSalida);
-
-            // Mostrar los días, meses y años restantes
-            String tiempoRestante = diferencia.getYears() + " años, " +
-                                    diferencia.getMonths() + " meses, " +
-                                    diferencia.getDays() + " días";
-
-            // Obtener los servicios de la reservación como una cadena de texto
-            String servicios = reservacion.getServicios().stream()
-                                  .map(Servicios::getConcepto)  // Usamos el getter para obtener el concepto
-                                  .reduce((s1, s2) -> s1 + ", " + s2)
-                                  .orElse("N/A");
-
-            // Imprimir la información formateada
-            System.out.printf("%-8s %-15s %-15s %-27s %-10s %-15s %-15s %-20s\n", 
-                    reservacion.getIdReserva(), 
-                    reservacion.getHabitacionn().getId(), 
-                    reservacion.getHuespedd().getDNI(), 
-                    servicios, 
-                    reservacion.getEstado(), 
-                    reservacion.getIncioHuesped(), 
-                    reservacion.getFinHuesped(), 
-                    tiempoRestante);
-            
-            System.out.println("-------------------------------------------------------------------------------");
-        }
     }
-}
     public void ampliarReservacion() {
-        listaReservaciones.clear();
-        List<Reservacion> listaReservaciones1 = new ArrayList<>();
-        listaReservaciones1 = cargarCSVlista();
-        LocalDate fechaHoy = LocalDate.now();
-        int dniHuesped;
-        boolean flag = false;
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Ingrese el DNI del huesped cuya reservacion desea ampliar: ");
-        dniHuesped = sc.nextInt();
-
-        for (Reservacion reserva : listaReservaciones1) {
-            if (reserva.getHuespedd().getDNI() == dniHuesped) {
-                flag = true;
-                if (reserva.getFinHuesped().isBefore(fechaHoy) || (reserva.getFinHuesped().isEqual(fechaHoy) && LocalTime.now().isAfter(LocalTime.NOON))) { //verifica si ya acabo el tiempo de reserva
-                    System.out.println("La reservacion ya ha finalizado, no se puede ampliar");
-                } else {
-                    System.out.println("La reservacion seleccionada es la siguiente: ");
-                    System.out.println("ID: " + reserva.getIdReserva());
-                    System.out.println("Habitacion: " + reserva.getHabitacionn().getId());
-                    System.out.println("DNI del Huesped: " + reserva.getHuespedd().getDNI());
-                    System.out.println("Servicios: ");
-                    for (Servicios servicio : reserva.getServicios()) {
-                        System.out.println("    " + servicio.getConcepto());
-                    }
-                    System.out.println("Estado: " + reserva.getEstado());
-                    System.out.println("Fecha de ingreso: " + reserva.getIncioHuesped());
-                    System.out.println("Fecha de salida: " + reserva.getFinHuesped());
-
-                    System.out.println("Ingrese la nueva fecha de salida: ");
-                    LocalDate nuevaFechaSalida = LocalDate.parse(sc.next());
-                    reserva.setFinHuesped(nuevaFechaSalida);
-                    
-                }
-
-            } else {
-                listaReservaciones.add(reserva);
-                continue;
-            }
-            listaReservaciones.add(reserva);
-        }
-
-        if (!flag) {
-            System.out.println("No se encontro ninguna reservacion con el DNI ingresado");
-        }
-        sobreescribirCSV();
+        
     }
     public void registrarSalida(List<Reservacion> listaReservaciones, List<Habitacion> listaHabitaciones, List<Huesped> listaHuespedes) {
     Scanner sc = new Scanner(System.in);
@@ -493,14 +190,14 @@ public class ReservacionCrud {
     }
 
     // Buscar la reservación activa del huésped (estado "Vigente")
-    Reservacion reservacionActiva = null;
+    /*Reservacion reservacionActiva = null;
     for (Reservacion reservacion : listaReservaciones) {
         if (reservacion.getHuespedd().getDNI() == dni && reservacion.getEstado().equalsIgnoreCase("Vigente")) {
             reservacionActiva = reservacion;
             break;
         }
-    }
-
+    }*/
+/*
     // Si no se encuentra una reservación activa
     if (reservacionActiva == null) {
         System.out.println("No se encontró una reservación activa para este huésped.");
@@ -549,10 +246,10 @@ public class ReservacionCrud {
         huespedCrud.sobreescribirCSV(listaHuespedes);
     } else {
         System.out.println("Operación cancelada.");
-    }
+    }*/
 }
     public void registrarEntrada(List<Reservacion> listaReservaciones, List<Habitacion> listaHabitaciones, List<Huesped> listaHuespedes) {
-    Scanner sc = new Scanner(System.in);
+  /*  Scanner sc = new Scanner(System.in);
     
     // Solicitar el DNI del huésped
     System.out.print("Ingrese DNI del huésped: ");
@@ -620,6 +317,6 @@ public class ReservacionCrud {
         System.out.println("Check-in registrado con exito para el huesped: " + huespedEncontrado.getNombre() + " " + huespedEncontrado.getApellido());
     } else {
         System.out.println("Check-in cancelado.");
-    }
+    }*/
 }        
 }
