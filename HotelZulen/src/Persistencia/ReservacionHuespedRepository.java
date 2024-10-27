@@ -72,7 +72,7 @@ public class ReservacionHuespedRepository implements IRepository<ReservacionHues
             for(ReservacionHuesped elemento: lista){
                 String[] data = {
                     String.valueOf(elemento.getReserva().getIdReserva()), // Ajusta según los campos que tenga ReservacionHuesped
-                    String.valueOf(elemento.getHuesped().getID()),
+                    String.valueOf(elemento.getHuesped().getDNI()),
                 };
                 writer.writeNext(data); // Escribe la nueva línea en el archivo
             }
@@ -87,7 +87,7 @@ public class ReservacionHuespedRepository implements IRepository<ReservacionHues
     try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, true))) {
         String[] data = {
             String.valueOf(elemento.getReserva().getIdReserva()), // Ajusta según los campos que tenga ReservacionHuesped
-            String.valueOf(elemento.getHuesped().getID()),
+            String.valueOf(elemento.getHuesped().getDNI()),
         };
         writer.writeNext(data); // Escribe la nueva línea en el archivo
     } catch (IOException e) {

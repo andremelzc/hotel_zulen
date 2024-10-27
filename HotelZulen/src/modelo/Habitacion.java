@@ -66,7 +66,7 @@ public class Habitacion implements IActualizar<Habitacion> {
     public void actualizar(List<Habitacion> lista, Habitacion elemento) {
         Scanner sc = new Scanner(System.in);
         
-        // Cargamos los tipos de habitaaciones
+        // Cargamos los tipos de habitaciones
         List<TipoDeHabitacion> tiposCargados = new ArrayList<>();
         TipoHabitacionRepository tipoRepo = new TipoHabitacionRepository();
         TipoDeHabitacion nuevoTipo = new TipoDeHabitacion();

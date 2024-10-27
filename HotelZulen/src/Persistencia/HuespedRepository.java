@@ -29,15 +29,14 @@ public class HuespedRepository implements IRepository<Huesped>{
             String[] nextLine;
             while((nextLine = csvReader.readNext())!=null){
                 Huesped huesped = new Huesped(
-                Integer.parseInt(nextLine[0]), //idHuesped
+                Integer.parseInt(nextLine[0]), //dniHuesped
                 nextLine[1], //nombre
                 nextLine[2], //apellido
-                Integer.parseInt(nextLine[3]), //DNI
-                Integer.parseInt(nextLine[4]), //telefono
-                nextLine[5], //direccion
-                nextLine[6], //usuario
-                nextLine[7], //contrasena
-                Integer.parseInt(nextLine[8]) //estado
+                Integer.parseInt(nextLine[3]), //telefono
+                nextLine[4], //direccion
+                nextLine[5], //usuario
+                nextLine[6], //contrasena
+                nextLine[7] //estado
                 );
                 HuespedesCargados.add(huesped);
             }               
@@ -56,15 +55,14 @@ public class HuespedRepository implements IRepository<Huesped>{
             
             for(Huesped elemento : lista){        
                 String[] datosHuesped = {
-                String.valueOf(elemento.getID()),
+                String.valueOf(elemento.getDNI()),
                 elemento.getNombre(),
                 elemento.getApellido(),
-                String.valueOf(elemento.getDNI()),
                 String.valueOf(elemento.getTelefono()),
                 elemento.getDireccion(),
                 elemento.getUsuario(),
                 elemento.getContrasena(),
-                String.valueOf(elemento.getEstado())
+                elemento.getEstado()
                 };
                 writer.writeNext(datosHuesped); // Escribe la nueva línea en el CSV
             }
@@ -79,15 +77,14 @@ public class HuespedRepository implements IRepository<Huesped>{
             // Agregar el nuevo huésped al archivo CSV
             try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, true))) {
                 String[] datosHuesped = {
-                    String.valueOf(elemento.getID()),
+                    String.valueOf(elemento.getDNI()),
                     elemento.getNombre(),
                     elemento.getApellido(),
-                    String.valueOf(elemento.getDNI()),
                     String.valueOf(elemento.getTelefono()),
                     elemento.getDireccion(),
                     elemento.getUsuario(),
                     elemento.getContrasena(),
-                    String.valueOf(elemento.getEstado())
+                    elemento.getEstado()
                 };
                 writer.writeNext(datosHuesped); // Escribe la nueva línea en el CSV
             } catch (IOException e) {

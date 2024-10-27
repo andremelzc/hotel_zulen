@@ -612,9 +612,9 @@ public class main {
                     String usuario = sc.nextLine();
                     System.out.println("Contraseña: ");
                     String contrasena = sc.nextLine();
-                    int estado = 0;
+                    String estado = "Activo";
 
-                    Huesped nuevoHuesped = new Huesped(dni, nombre, apellido, dni, telefono, direccion, usuario, contrasena, estado);
+                    Huesped nuevoHuesped = new Huesped(dni, nombre, apellido, telefono, direccion, usuario, contrasena, estado);
                     nuevoHuesped.agregar(HuespedesCargados, nuevoHuesped);
                     huespedRepo.cargarRegistroToCSV(nuevoHuesped, "huespedes.csv");
                     System.out.println("-----------------------------\n");
@@ -662,7 +662,14 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a actualizar: ");
                     int id_actualizar = sc.nextInt();
-                    huespedCrud.actualizarHuesped(id_actualizar);
+                    for(Huesped huespedes : HuespedesCargados){
+                        if(huespedes.getDNI()==id_actualizar){
+                            huesped = huespedes;
+                        }
+                    }
+                    huesped.actualizar(HuespedesCargados, huesped);
+                    funcionalidadesRepository.vaciarCSV("huespedes.csv");
+                    huespedRepo.cargarListaToCSV(HuespedesCargados, "huespedes.csv");
                     System.out.println("-----------------------------\n");
                     break;
                 case 5:
@@ -671,7 +678,14 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a eliminar: ");
                     int id_eliminar = sc.nextInt();
-                    huespedCrud.eliminarHuesped(id_eliminar);
+                    for(Huesped huespedes : HuespedesCargados){
+                        if(huespedes.getDNI()==id_eliminar){
+                            huesped = huespedes;
+                        }
+                    }
+                    huesped.eliminar(HuespedesCargados, huesped);
+                    funcionalidadesRepository.vaciarCSV("huespedes.csv");
+                    huespedRepo.cargarListaToCSV(HuespedesCargados, "huespedes.csv");
                     System.out.println("-----------------------------\n");
                 case 6:
                     flagHuesped = false;
