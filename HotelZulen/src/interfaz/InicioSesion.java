@@ -15,13 +15,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import Persistencia.PersonalRepository;
 /**
  *
  * @author Miguel Giron
  */
 public class InicioSesion {
-
+    PersonalRepository personalRepository = new PersonalRepository();
+    
     private String categoria;
 
     public String getCategoria() {
@@ -37,7 +38,13 @@ public class InicioSesion {
         HuespedCrud huesped = new HuespedCrud();
         PersonalCrud personal = new PersonalCrud();
         Personal p = new Personal();
-        List<Personal> listaPersonal = personal.cargarCSVlista();
+        List<Personal> listaPersonal = null;
+        
+        try {
+            listaPersonal = personalRepository.cargarCSVtoLista("personal.csv");
+        } catch (IOException ex) {
+            Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         if (huesped.existeHuespedUsuaro(nombre_usuario) && personal.existePersonalUsuaro(listaPersonal, nombre_usuario)) {
             System.out.println("Registro Peligroso: Existen 2 Registros con el mismo Nombre");
@@ -66,10 +73,10 @@ public class InicioSesion {
 
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    if ("1".equals(nextLine[9]) && usu.equals(nextLine[6]) && contra.equals(nextLine[7])) {
+                    if ("Activo".equals(nextLine[8]) && usu.equals(nextLine[5]) && contra.equals(nextLine[6])) {
                         System.out.print("\n");
                         System.out.println("Bienvenido:");
-                        System.out.println("Ha ingresado como " + nextLine[6] + ", " + nextLine[1] + " " + nextLine[2]);
+                        System.out.println("Ha ingresado como " + nextLine[5] + ", " + nextLine[1] + " " + nextLine[2]);
                         validez = true;
                     }
                 }
@@ -95,14 +102,14 @@ public class InicioSesion {
             String[] nextLine;
             try {
                 while ((nextLine = reader.readNext()) != null) {
-                    if ("1".equals(nextLine[9]) && usu.equals(nextLine[6])) {
-                        if ("Recepcionista".equals(nextLine[8])) {
+                    if ("Activo".equals(nextLine[8]) && usu.equals(nextLine[5])) {
+                        if ("Recepcionista".equals(nextLine[7])) {
                             funcion = "Recepcionista";
-                        } else if ("Administrador".equals(nextLine[8])) {
+                        } else if ("Administrador".equals(nextLine[7])) {
                             funcion = "Administrador";
-                        } else if ("Ama de LLaves".equals(nextLine[8])) {
+                        } else if ("Ama de LLaves".equals(nextLine[7])) {
                             funcion = "Ama de Llaves";
-                        } else if ("Jefe de Cocina".equals(nextLine[8])) {
+                        } else if ("Jefe de Cocina".equals(nextLine[7])) {
                             funcion = "Jefe de Cocina";
                         } else{
                             return "null";

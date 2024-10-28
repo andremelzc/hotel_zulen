@@ -8,23 +8,12 @@ package modelo;
  *
  * @author Suyco
  */
-public class AmaDeLlaves extends Personal{
-    
-    int ID;
-    String nombre;
-    String apellido;
-    int DNI;
-    int telefono;
-    String direccion;
-    String usuario;
-    String contrasena;
-    int estado;
+public class AmaDeLlaves extends Personal {
 
-    public AmaDeLlaves(int ID, String nombre, String apellido, int DNI, int telefono, String direccion, String usuario, String contrasena, int estado) {
-        this.ID = ID;
+    public AmaDeLlaves(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado) {
+        this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.DNI = DNI;
         this.telefono = telefono;
         this.direccion = direccion;
         this.usuario = usuario;
@@ -33,15 +22,6 @@ public class AmaDeLlaves extends Personal{
     }
 
     public AmaDeLlaves() {
-    }
-    
-    
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getNombre() {
@@ -100,14 +80,12 @@ public class AmaDeLlaves extends Personal{
         this.contrasena = contrasena;
     }
 
-
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
+
 }

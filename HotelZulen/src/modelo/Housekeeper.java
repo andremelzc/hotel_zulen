@@ -14,16 +14,8 @@ public class Housekeeper extends Personal{
     public Housekeeper() {
     }
 
-    public Housekeeper(int ID, String nombre, String apellido, int DNI, int telefono, String direccion, String usuario, String contrasena, String funcion, int estado) {
-        super(ID, nombre, apellido, DNI, telefono, direccion, usuario, contrasena, funcion, estado);
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+    public Housekeeper(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String funcion, String estado) {
+        super(DNI, nombre, apellido, telefono, direccion, usuario, contrasena, funcion, estado);
     }
 
     public String getNombre() {
@@ -90,11 +82,11 @@ public class Housekeeper extends Personal{
         this.funcion = funcion;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
     

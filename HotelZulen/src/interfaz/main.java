@@ -23,6 +23,9 @@ import Persistencia.ReservacionServicioRepository;
 import Persistencia.ServiciosAdicionalesRepository;
 import Persistencia.TipoHabitacionRepository;
 import Persistencia.FuncionalidadesRepository;
+import Persistencia.PersonalRepository;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //import pruebas_giron.*; //En caso se use fuera de este package
 public class main {
@@ -397,7 +400,17 @@ public class main {
     }
 
     public void menuPersonal(Scanner sc) {
+        Personal personal = new Personal();
+        List<Personal> PersonalCargado = new ArrayList<>();
+        PersonalRepository personalRepository = new PersonalRepository();
+        try {
+            PersonalCargado = personalRepository.cargarCSVtoLista("personal.csv");
+        } catch (IOException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         PersonalCrud personalCrud = new PersonalCrud();
+
         boolean flagPersonal = true;
         do {
             System.out.println("\n------------------");
@@ -418,7 +431,6 @@ public class main {
             switch (opPersonal) {
                 case 1:
                     boolean flag_salir = false;
-                    int sumador_id = 1;
 
                     System.out.println("\n-----------------------------");
                     System.out.println("Agregando personal");
@@ -467,20 +479,10 @@ public class main {
                         String direccion = sc.nextLine();
                         //Agregado de mi parte para verificar el inicio
                         String usuario;
-                        boolean flag_usuario = false;
-                        do {
-                            System.out.println("Usuario: ");
-                            usuario = sc.nextLine();
-                            List<Personal> listaPersonales = personalCrud.cargarCSVlista();
-                            if (personalCrud.existePersonalUsuaro(listaPersonales, usuario)) {
-                                flag_usuario = true;
-                                System.out.println("-----------------------------");
-                                System.out.println("Ingrese un usuario no existente");
-                                System.out.println("-----------------------------");
-                            } else {
-                                flag_usuario = false;
-                            }
-                        } while (flag_usuario);
+
+                        System.out.println("Usuario: ");
+                        usuario = sc.nextLine();
+
                         //Contraseña
                         System.out.println("Contrasena: ");
                         String contrasena = sc.nextLine();
@@ -500,12 +502,9 @@ public class main {
                             }
                         } while (!flag_funcion);
 
-                        //Inicializamos, de todas formas, luego se va a cambiar
-                        int id = 0;
-
-                        Personal nuevoPersonal = new Personal(id, nombre, apellido, dni, telefono, direccion, usuario, contrasena, funcion, Integer.parseInt("1"));
-                        //Agregamos a la lista
-                        personalCrud.agregarPersonal(nuevoPersonal, sumador_id);
+                        Personal nuevoPersonal = new Personal(dni, nombre, apellido, telefono, direccion, usuario, contrasena, funcion, "Activo");
+                        //Agregamos al csv
+                        personalRepository.cargarRegistroToCSV(nuevoPersonal, "personal.csv");
                         System.out.println("-----------------------------");
                         System.out.println("Quieres agregar otro?");
                         String op_seguir = sc.nextLine();
@@ -514,11 +513,7 @@ public class main {
                         if ("no".equals(op_seguir) || "No".equals(op_seguir) || "NO".equals(op_seguir)) {
                             flag_salir = true;
                         }
-                        sumador_id++;
                     } while (!flag_salir);
-
-                    //Escrimos en el csv
-                    personalCrud.escribirCSV(personalCrud.getListaPersonal());
 
                     break;
                 case 2:
@@ -526,17 +521,16 @@ public class main {
                     System.out.println("\n-----------------------------");
                     System.out.println("Imprimiendo todo el personal");
                     System.out.println("-----------------------------\n");
-                    listaPersonales = personalCrud.cargarCSVlista();
-                    personalCrud.leerPersonal(listaPersonales);
+                    personal.mostrarLista(PersonalCargado);
                     break;
                 case 3:
                     System.out.println("\n-----------------------------");
                     System.out.println("Buscando personal");
                     System.out.println("-----------------------------");
-                    System.out.println("ID a buscar: ");
+                    System.out.println("DNI del personal: ");
                     int id_buscar = sc.nextInt();
-                    listaPersonales = personalCrud.cargarCSVlista();
-                    personalCrud.buscarPersonal(listaPersonales, id_buscar);
+                    sc.nextLine();
+                    personal.buscarPersonalXDNI(PersonalCargado, id_buscar);
                     break;
                 case 4:
                     System.out.println("\n-----------------------------");
@@ -544,8 +538,14 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a actualizar: ");
                     int id_actualizar = sc.nextInt();
-                    listaPersonales = personalCrud.cargarCSVlista();
-                    personalCrud.actualizarPersonal(listaPersonales, id_actualizar);
+                    for(Personal personal1 : PersonalCargado){
+                        if(personal1.getDNI()==id_actualizar){
+                            personal = personal1;
+                        }
+                    }
+                    personal.actualizar(PersonalCargado, personal);
+                    funcionalidadesRepository.vaciarCSV("personal.csv");
+                    personalRepository.cargarListaToCSV(PersonalCargado, "personal.csv");
                     System.out.println("-----------------------------\n");
                     break;
                 case 5:
@@ -554,8 +554,14 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a eliminar: ");
                     int id_eliminar = sc.nextInt();
-                    listaPersonales = personalCrud.cargarCSVlista();
-                    personalCrud.eliminarPersonal(listaPersonales, id_eliminar);
+                    for(Personal personal1 : PersonalCargado){
+                        if(personal1.getDNI()==id_eliminar){
+                            personal = personal1;
+                        }
+                    }
+                    personal.eliminar(PersonalCargado, personal);
+                    funcionalidadesRepository.vaciarCSV("personal.csv");
+                    personalRepository.cargarListaToCSV(PersonalCargado, "personal.csv");
                     System.out.println("-----------------------------\n");
                 case 6:
                     flagPersonal = false;
@@ -662,8 +668,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a actualizar: ");
                     int id_actualizar = sc.nextInt();
-                    for(Huesped huespedes : HuespedesCargados){
-                        if(huespedes.getDNI()==id_actualizar){
+                    for (Huesped huespedes : HuespedesCargados) {
+                        if (huespedes.getDNI() == id_actualizar) {
                             huesped = huespedes;
                         }
                     }
@@ -678,8 +684,8 @@ public class main {
                     System.out.println("-----------------------------");
                     System.out.println("ID a eliminar: ");
                     int id_eliminar = sc.nextInt();
-                    for(Huesped huespedes : HuespedesCargados){
-                        if(huespedes.getDNI()==id_eliminar){
+                    for (Huesped huespedes : HuespedesCargados) {
+                        if (huespedes.getDNI() == id_eliminar) {
                             huesped = huespedes;
                         }
                     }
@@ -961,7 +967,7 @@ public class main {
                     System.out.println("-----------------------------");*/
                     funcionalidadesRepository.vaciarCSV("serviciosAdicionales.csv");
                     serviciosRepo.cargarListaToCSV(serviciosCargados, "serviciosAdicionales.csv");
-                    
+
                     System.out.println("-----------------------------");
                     System.out.println("Registro eliminado");
                     System.out.println("-----------------------------\n");
