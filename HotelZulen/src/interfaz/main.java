@@ -809,6 +809,7 @@ public class main {
                     funcionalidadesRepository.vaciarCSV("habitaciones.csv");
                     habitacionRepo.cargarListaToCSV(habitacionCargada, "habitaciones.csv");
                     System.out.println("-----------------------------\n");
+                    break;
                 case 6:
                     nuevoTipo.mostrarLista(tiposCargados);
                     break;
