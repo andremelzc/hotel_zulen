@@ -32,11 +32,11 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        usuarioField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        contrasenaField = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        funcionalidadBox = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -51,34 +51,34 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
         jLabel3.setText("Usuario");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 30));
 
-        jTextField2.setText("Ingrese su usuario...");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        usuarioField.setText("Ingrese su usuario...");
+        usuarioField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                usuarioFieldActionPerformed(evt);
             }
         });
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 430, 40));
+        add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 430, 40));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(75, 76, 73));
         jLabel2.setText("Funcionalidad");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 280, 30));
 
-        jPasswordField1.setText("jPasswordField1");
-        add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 430, 40));
+        contrasenaField.setText("jPasswordField1");
+        add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 430, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(75, 76, 73));
         jLabel4.setText("Contraseña");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 160, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Recepcionista", "Ama de Llaves", "Jefe de Cocina" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        funcionalidadBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Recepcionista", "Ama de Llaves", "Jefe de Cocina" }));
+        funcionalidadBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                funcionalidadBoxActionPerformed(evt);
             }
         });
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 420, 40));
+        add(funcionalidadBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 420, 40));
 
         jSeparator1.setBackground(new java.awt.Color(75, 76, 73));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -113,18 +113,18 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
         add(borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 200, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void usuarioFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_usuarioFieldActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void funcionalidadBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcionalidadBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_funcionalidadBoxActionPerformed
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
         // TODO add your handling code here:
-        String usuario= jTextField2.getText();
-        String contrasena = jPasswordField1.getText();
+        String usuario= usuarioField.getText();
+        String contrasena = contrasenaField.getText();
         InicioSession usuarioActual = new InicioSession();
         try {
             usuarioActual.iniciarSesion(usuario, contrasena);
@@ -140,15 +140,15 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrar;
+    private javax.swing.JPasswordField contrasenaField;
+    private javax.swing.JComboBox<String> funcionalidadBox;
     private javax.swing.JButton iniciarSesion;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField usuarioField;
     // End of variables declaration//GEN-END:variables
 }
