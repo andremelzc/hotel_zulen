@@ -8,7 +8,7 @@ import java.sql.SQLException;
  * @author Suyco
  */
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://junction.proxy.rlwy.net:22916/railway";
+    private static final String URL = "jdbc:mysql://junction.proxy.rlwy.net:22916/hotel_zulen";
     private static final String USER = "root";
     private static final String PASSWORD = "DhoWeLnJVtryReFIrjeQzoaKpaspVyjO";
 

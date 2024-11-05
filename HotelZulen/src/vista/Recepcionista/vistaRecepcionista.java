@@ -4,7 +4,10 @@
  */
 package vista.Recepcionista;
 
+import Persistencia.DatabaseConnection;
 import java.awt.BorderLayout;
+import modelo.InicioSession;
+import static modelo.InicioSession.cerrarSesion;
 import modelo.Recepcionista;
 import vista.iniciarSesionPersonal;
 
@@ -290,7 +293,8 @@ public class vistaRecepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_facturarBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
-        // TODO add your handling code here:
+        
+        cerrarSesion();
     }//GEN-LAST:event_cerrarSesionActionPerformed
 
    
