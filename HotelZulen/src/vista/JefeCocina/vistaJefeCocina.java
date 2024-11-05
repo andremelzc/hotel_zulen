@@ -2,23 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package vista.Recepcionista;
+package vista.JefeCocina;
 
+import vista.Admin.*;
 import java.awt.BorderLayout;
-import vista.iniciarSesionPersonal;
+import vista.Recepcionista.vistaRecepcionistaFacturar;
+import vista.Recepcionista.vistaRecepcionistaRegistrar;
 
 /**
  *
  * @author PC
  */
-public class vistaRecepcionista extends javax.swing.JFrame {
+public class vistaJefeCocina extends javax.swing.JFrame {
 
     /**
-     * Creates new form vistaRecepcionista
+     * Creates new form vistaAdministrador
      */
-    public vistaRecepcionista() {
+    public vistaJefeCocina() {
         initComponents();
-        
     }
 
     /**
@@ -34,10 +35,9 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         panelIzquierda = new javax.swing.JPanel();
         iniciarSesion = new javax.swing.JLabel();
         principalBoton = new javax.swing.JButton();
-        registrarBoton = new javax.swing.JButton();
-        consultarBoton = new javax.swing.JButton();
-        reservacionesBoton = new javax.swing.JButton();
-        facturarBoton = new javax.swing.JButton();
+        pedidosBoton = new javax.swing.JButton();
+        cartaBoton = new javax.swing.JButton();
+        estadisticasBoton = new javax.swing.JButton();
         content = new javax.swing.JPanel();
         cerrarSesion = new javax.swing.JButton();
 
@@ -68,63 +68,48 @@ public class vistaRecepcionista extends javax.swing.JFrame {
             }
         });
 
-        registrarBoton.setBackground(new java.awt.Color(141, 153, 174));
-        registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        registrarBoton.setText("Registrar");
-        registrarBoton.setBorder(null);
-        registrarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+        pedidosBoton.setBackground(new java.awt.Color(141, 153, 174));
+        pedidosBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pedidosBoton.setText("Ver pedidos");
+        pedidosBoton.setBorder(null);
+        pedidosBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                registrarBotonMouseClicked(evt);
+                pedidosBotonMouseClicked(evt);
             }
         });
-        registrarBoton.addActionListener(new java.awt.event.ActionListener() {
+        pedidosBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarBotonActionPerformed(evt);
+                pedidosBotonActionPerformed(evt);
             }
         });
 
-        consultarBoton.setBackground(new java.awt.Color(141, 153, 174));
-        consultarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        consultarBoton.setText("Consultar");
-        consultarBoton.setBorder(null);
-        consultarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+        cartaBoton.setBackground(new java.awt.Color(141, 153, 174));
+        cartaBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cartaBoton.setText("Modificar carta");
+        cartaBoton.setBorder(null);
+        cartaBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                consultarBotonMouseClicked(evt);
+                cartaBotonMouseClicked(evt);
             }
         });
-        consultarBoton.addActionListener(new java.awt.event.ActionListener() {
+        cartaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarBotonActionPerformed(evt);
+                cartaBotonActionPerformed(evt);
             }
         });
 
-        reservacionesBoton.setBackground(new java.awt.Color(141, 153, 174));
-        reservacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        reservacionesBoton.setText("Reservaciones");
-        reservacionesBoton.setBorder(null);
-        reservacionesBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+        estadisticasBoton.setBackground(new java.awt.Color(141, 153, 174));
+        estadisticasBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        estadisticasBoton.setText("Ver estadísticas");
+        estadisticasBoton.setBorder(null);
+        estadisticasBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                reservacionesBotonMouseClicked(evt);
+                estadisticasBotonMouseClicked(evt);
             }
         });
-        reservacionesBoton.addActionListener(new java.awt.event.ActionListener() {
+        estadisticasBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservacionesBotonActionPerformed(evt);
-            }
-        });
-
-        facturarBoton.setBackground(new java.awt.Color(141, 153, 174));
-        facturarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        facturarBoton.setText("Facturar");
-        facturarBoton.setBorder(null);
-        facturarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                facturarBotonMouseClicked(evt);
-            }
-        });
-        facturarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                facturarBotonActionPerformed(evt);
+                estadisticasBotonActionPerformed(evt);
             }
         });
 
@@ -135,17 +120,15 @@ public class vistaRecepcionista extends javax.swing.JFrame {
             .addGroup(panelIzquierdaLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(iniciarSesion)
-                .addGap(42, 42, 42)
+                .addGap(67, 67, 67)
                 .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(reservacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(facturarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(pedidosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(cartaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(estadisticasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73))
         );
         panelIzquierdaLayout.setVerticalGroup(
             panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,10 +138,9 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reservacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(facturarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pedidosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cartaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estadisticasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(iniciarSesion)))
@@ -190,7 +172,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                 cerrarSesionActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 220, 50));
+        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,68 +194,61 @@ public class vistaRecepcionista extends javax.swing.JFrame {
 
     private void principalBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_principalBotonActionPerformed
         // TODO add your handling code here:
-        iniciarSesionPersonal sesionPersonal = new iniciarSesionPersonal();
+        System.out.println("princiapl");
+        vistaJefeCocinaPrincipal jefeCocinaPrincipal = new vistaJefeCocinaPrincipal();
+        jefeCocinaPrincipal.setSize(1280, 720);
+        jefeCocinaPrincipal.setLocation(0, 0);
+        content.removeAll();
+        content.add(jefeCocinaPrincipal, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
     }//GEN-LAST:event_principalBotonActionPerformed
 
-    private void registrarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarBotonMouseClicked
+    private void pedidosBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidosBotonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_registrarBotonMouseClicked
+    }//GEN-LAST:event_pedidosBotonMouseClicked
 
-    private void registrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBotonActionPerformed
+    private void pedidosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosBotonActionPerformed
         // TODO add your handling code here:
-        vistaRecepcionistaRegistrar recepcionistaRegistrar = new vistaRecepcionistaRegistrar();
-        recepcionistaRegistrar.setSize(1280, 720);
-        recepcionistaRegistrar.setLocation(0, 0);
+        vistaJefeCocinaPedidos jefeCocinaPedidos = new vistaJefeCocinaPedidos();
+        jefeCocinaPedidos.setSize(1280, 720);
+        jefeCocinaPedidos.setLocation(0, 0);
         content.removeAll();
-        content.add(recepcionistaRegistrar, BorderLayout.CENTER);
+        content.add(jefeCocinaPedidos, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-    }//GEN-LAST:event_registrarBotonActionPerformed
+    }//GEN-LAST:event_pedidosBotonActionPerformed
 
-    private void consultarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarBotonMouseClicked
+    private void cartaBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cartaBotonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_consultarBotonMouseClicked
+    }//GEN-LAST:event_cartaBotonMouseClicked
 
-    private void consultarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarBotonActionPerformed
+    private void cartaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartaBotonActionPerformed
         // TODO add your handling code here:
-        vistaRecepcionistaConsultar recepcionistaConsultar = new vistaRecepcionistaConsultar();
-        recepcionistaConsultar.setSize(1280, 720);
-        recepcionistaConsultar.setLocation(0, 0);
+        vistaJefeCocinaCarta jefeCocinaCarta = new vistaJefeCocinaCarta();
+        jefeCocinaCarta.setSize(1280, 720);
+        jefeCocinaCarta.setLocation(0, 0);
         content.removeAll();
-        content.add(recepcionistaConsultar, BorderLayout.CENTER);
+        content.add(jefeCocinaCarta, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-    }//GEN-LAST:event_consultarBotonActionPerformed
+    }//GEN-LAST:event_cartaBotonActionPerformed
 
-    private void reservacionesBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservacionesBotonMouseClicked
+    private void estadisticasBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadisticasBotonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_reservacionesBotonMouseClicked
+    }//GEN-LAST:event_estadisticasBotonMouseClicked
 
-    private void reservacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservacionesBotonActionPerformed
+    private void estadisticasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadisticasBotonActionPerformed
         // TODO add your handling code here:
-        vistaRecepcionistaReservaciones recepcionistaReservaciones = new vistaRecepcionistaReservaciones();
-        recepcionistaReservaciones.setSize(1280 , 720);
-        recepcionistaReservaciones.setLocation(0,0);
+        System.out.println("estadticas");
+        vistaJefeCocinaEstadisticas jefeCocinaEstadisticas = new vistaJefeCocinaEstadisticas();
+        jefeCocinaEstadisticas.setSize(1280, 720);
+        jefeCocinaEstadisticas.setLocation(0, 0);
         content.removeAll();
-        content.add(recepcionistaReservaciones, BorderLayout.CENTER);
+        content.add(jefeCocinaEstadisticas, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-    }//GEN-LAST:event_reservacionesBotonActionPerformed
-
-    private void facturarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facturarBotonMouseClicked
-        // TODO add your handling code here:
-        vistaRecepcionistaFacturar recepcionistaFacturar = new vistaRecepcionistaFacturar();
-        recepcionistaFacturar.setSize(1280 , 720);
-        recepcionistaFacturar.setLocation(0,0);
-        content.removeAll();
-        content.add(recepcionistaFacturar, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_facturarBotonMouseClicked
-
-    private void facturarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturarBotonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_facturarBotonActionPerformed
+    }//GEN-LAST:event_estadisticasBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
         // TODO add your handling code here:
@@ -296,34 +271,34 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vistaRecepcionista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaJefeCocina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vistaRecepcionista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaJefeCocina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vistaRecepcionista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaJefeCocina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vistaRecepcionista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vistaJefeCocina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaRecepcionista().setVisible(true);
+                new vistaJefeCocina().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
+    private javax.swing.JButton cartaBoton;
     private javax.swing.JButton cerrarSesion;
-    private javax.swing.JButton consultarBoton;
     private javax.swing.JPanel content;
-    private javax.swing.JButton facturarBoton;
+    private javax.swing.JButton estadisticasBoton;
     private javax.swing.JLabel iniciarSesion;
     private javax.swing.JPanel panelIzquierda;
+    private javax.swing.JButton pedidosBoton;
     private javax.swing.JButton principalBoton;
-    private javax.swing.JButton registrarBoton;
-    private javax.swing.JButton reservacionesBoton;
     // End of variables declaration//GEN-END:variables
 }
