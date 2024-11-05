@@ -14,73 +14,77 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Habitacion;
 import modelo.TipoDeHabitacion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class HabitacionRepository implements IRepository<Habitacion> {
 
     @Override
-    public List<Habitacion> cargarCSVtoLista(String archivo) throws IOException {
-        List<Habitacion> habitacionCargada = new ArrayList<>();
-
-        TipoHabitacionRepository tipoHabitacionRepo = new TipoHabitacionRepository();
-        List<TipoDeHabitacion> tiposCargados = tipoHabitacionRepo.cargarCSVtoLista("tipoHabitacion.csv");
-
-        TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion();
-
-        try (CSVReader csvReader = new CSVReader(new FileReader(archivo))) {
-            String[] nextLine;
-
-            while ((nextLine = csvReader.readNext()) != null) {
-
-                int idHabitacion = Integer.parseInt(nextLine[0]); //ID Habitacion
-                int idTipoHabitacion = Integer.parseInt(nextLine[1]); //ID tipoHabitacion
-                String idPiso = nextLine[2]; //Piso
-                String estado = nextLine[3]; // estado
-
-                Habitacion habitacion = new Habitacion(idHabitacion,
-                        tipoHabitacion.obtenerPorId(tiposCargados, idTipoHabitacion),
-                        idPiso,
-                        estado);
-                habitacionCargada.add(habitacion);
-            }
-        } catch (CsvException e) {
+    public void crear(Habitacion objeto) {
+        String sql = "INSERT INTO habitaciones (idHabitaciones, Piso, Estado, TIPO_HAB_idCategoria) VALUES (?, ?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, objeto.getId());
+            stmt.setInt(2, Integer.parseInt(objeto.getPiso()));
+            stmt.setString(3, objeto.getEstado());
+            stmt.setInt(4, objeto.getTipoHabitacion().getId());
+            stmt.executeUpdate();
+            System.out.println("Habitación creada con éxito.");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return habitacionCargada;
-
     }
 
     @Override
-    public void cargarListaToCSV(List<Habitacion> lista, String archivo) {
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, false))) {
-
-            for (Habitacion elemento : lista) {
-
-                String[] data = {
-                    String.valueOf(elemento.getId()),
-                    String.valueOf(elemento.getTipoHabitacion().getId()),
-                    String.valueOf(elemento.getPiso()),
-                    String.valueOf(elemento.getEstado()),};
-                writer.writeNext(data); // Escribe la nueva línea en el archivo
+    public Habitacion obtener(int id) {
+        String sql = "SELECT * FROM habitaciones WHERE idHabitaciones = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                TipoDeHabitacion tipo = new TipoHabitacionRepository().obtener(rs.getInt("TIPO_HAB_idCategoria"));
+                return new Habitacion(
+                    rs.getInt("idHabitaciones"),
+                    tipo,
+                    rs.getString("Piso"),
+                    rs.getString("Estado")
+                );
             }
-        } catch (IOException e) {
-            e.printStackTrace(); // Manejo de excepciones
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Si no se encuentra, retorna null
+    }
+
+    @Override
+    public void actualizar(Habitacion objeto) {
+        String sql = "UPDATE habitaciones SET Piso = ?, Estado = ?, TIPO_DE_HABITACION_idCategoria = ? WHERE idHabitaciones = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, objeto.getPiso());
+            stmt.setString(2, objeto.getEstado());
+            stmt.setInt(3, objeto.getTipoHabitacion().getId());
+            stmt.setInt(4, objeto.getId());
+            stmt.executeUpdate();
+            System.out.println("Habitación actualizada con éxito.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void cargarRegistroToCSV(Habitacion elemento, String archivo) {
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, true))) {
-
-            String[] data = {
-                String.valueOf(elemento.getId()),
-                String.valueOf(elemento.getTipoHabitacion().getId()),
-                String.valueOf(elemento.getPiso()),
-                String.valueOf(elemento.getEstado()),};
-            writer.writeNext(data); // Escribe la nueva línea en el archivo
-
-        } catch (IOException e) {
-            e.printStackTrace(); // Manejo de excepciones
+    public void eliminar(int id) {
+        String sql = "DELETE FROM habitaciones WHERE idHabitaciones = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Habitación eliminada con éxito.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

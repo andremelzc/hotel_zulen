@@ -4,21 +4,23 @@
  */
 package modelo;
 
-import java.util.List;
+
 
 /**
  *
  * @author Suyco
  */
-public class TipoDeHabitacion implements IActualizar <TipoDeHabitacion>{
+public class TipoDeHabitacion {
     int id;
     String concepto;
     double precio;
+    String estado;
 
-    public TipoDeHabitacion(int id, String concepto, double precio) {
+    public TipoDeHabitacion(int id, String concepto, double precio, String estado) {
         this.id = id;
         this.concepto = concepto;
         this.precio = precio;
+        this.estado = estado;
     }
 
     public TipoDeHabitacion() {
@@ -48,51 +50,15 @@ public class TipoDeHabitacion implements IActualizar <TipoDeHabitacion>{
         this.precio = precio;
     }
 
-    @Override
-    public void agregar(List<TipoDeHabitacion> lista, TipoDeHabitacion elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getEstado() {
+        return estado;
     }
 
-    @Override
-    public void actualizar(List<TipoDeHabitacion> lista, TipoDeHabitacion elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
-
-    @Override
-    public void eliminar(List<TipoDeHabitacion> lista, TipoDeHabitacion elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void mostrarLista(List<TipoDeHabitacion> lista) {
-     
-        System.out.println("--------------------------------------------------------------------------------------");
-        System.out.printf("%-4s %-19s %-5s%n", "ID", "Tipo de Habitacion", "Precio");
-        System.out.println("--------------------------------------------------------------------------------------");
     
-        // Imprimimos toda la lista
-        for (TipoDeHabitacion tipos : lista) {
-            System.out.printf("%-4d %-19s %-5.2f%n", // Aquí usamos %d para entero y %.2f para double
-                tipos.getId(),
-                tipos.getConcepto(),
-                tipos.getPrecio()
-            );
-        }
-        System.out.println("--------------------------------------------------------------------------------------");
-}
+        
     
 
-    @Override
-    public TipoDeHabitacion obtenerPorId(List<TipoDeHabitacion> lista, int id) {
-
-        for (TipoDeHabitacion tipo : lista) {
-            if (tipo.getId()== id) {
-                return tipo; 
-            }
-        }
-        return null; 
-    
-    }
-  
-    
 }

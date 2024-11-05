@@ -4,16 +4,101 @@
  */
 package modelo;
 
+import Persistencia.RecepcionistaRepository;
+
 /**
  *
  * @author Fabrizio Mantari
  */
 
 public class Recepcionista extends Personal{
-    /**
-    public Recepcionista(String Nombre, String Apellido, String DNI, String telefono, String dirección, String ID, String usuario, String contraseña, String funcion) {
-        super(Nombre, Apellido, DNI, telefono, dirección, ID, usuario, contraseña, "Recepcionista");
+    
+    private RecepcionistaRepository repository;
+    
+    public Recepcionista() {
+        this.repository= new RecepcionistaRepository();
     }
-    **/
+
+    public Recepcionista(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado) {
+        super(DNI, funcion, nombre, apellido, telefono, direccion, usuario, contrasena, estado);
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getFuncion() {
+        return funcion;
+    }
+
+    public void setFuncion(String funcion) {
+        this.funcion = funcion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    public void agregarRecepcionista(int DNI, String funcion,String nombre,String apellido,int telefono,String direccion,String usuario,String contrasena,String estado){
+        Recepcionista recep=new Recepcionista(DNI, funcion, nombre, apellido, telefono, direccion, usuario, contrasena, estado);
+        repository.crear(recep);
+    }
+    
 }
 

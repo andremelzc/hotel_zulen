@@ -14,6 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Habitacion;
 import modelo.ServiciosAdicionales;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Connection;
 
 /**
  *
@@ -22,59 +27,67 @@ import modelo.ServiciosAdicionales;
 public class ServiciosAdicionalesRepository implements IRepository<ServiciosAdicionales> {
 
     @Override
-    public List<ServiciosAdicionales> cargarCSVtoLista(String archivo) throws IOException {
-
-        List<ServiciosAdicionales> serviciosCargados = new ArrayList<>();
-
-        try (CSVReader csvReader = new CSVReader(new FileReader(archivo))) {
-            String[] nextLine;
-            while ((nextLine = csvReader.readNext()) != null) {
-                ServiciosAdicionales servicios = new ServiciosAdicionales(
-                        Integer.parseInt(nextLine[0]),
-                        nextLine[1],
-                        Double.parseDouble(nextLine[2]),
-                        nextLine[3]
-                );
-                serviciosCargados.add(servicios);
-            }
-        } catch (CsvException e) {
+    public void crear(ServiciosAdicionales objeto) {
+        String sql = "INSERT INTO servicios_adicionales (NombreServicio, Costo,Estado) VALUES (?, ?,?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, objeto.getConcepto()); // Suponiendo que 'concepto' se usa como 'NombreServicio'
+            stmt.setDouble(2, objeto.getCosto());
+            stmt.setString(3, objeto.getEstado());
+            stmt.executeUpdate();
+            System.out.println("Servicio adicional creado con exito.");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return serviciosCargados;
     }
 
     @Override
-    public void cargarListaToCSV(List<ServiciosAdicionales> lista, String archivo) {
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, false))) {
-
-            for (ServiciosAdicionales serviciosAdicionales : lista) {
-
-                String[] data = {
-                    String.valueOf(serviciosAdicionales.getId()),
-                    serviciosAdicionales.getConcepto(),
-                    String.valueOf(serviciosAdicionales.getCosto()),
-                    serviciosAdicionales.getEstado()
-                };
-                writer.writeNext(data); // Escribe la nueva línea en el archivo
+    public ServiciosAdicionales obtener(int id) {
+        String sql = "SELECT * FROM servicios_adicionales WHERE idSERVICIOS_UNICO = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new ServiciosAdicionales(
+                    rs.getInt("idSERVICIOS_UNICO"),
+                    rs.getString("NombreServicio"),
+                    rs.getDouble("Costo"),
+                    rs.getString("Estado") // Si 'Estado' se encuentra en la tabla
+                );
             }
-        } catch (IOException e) {
-            e.printStackTrace(); // Manejo de excepciones
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Si no se encuentra, retorna null
+    }
+
+    @Override
+    public void actualizar(ServiciosAdicionales objeto) {
+        String sql = "UPDATE servicios_adicionales SET NombreServicio = ?, Costo = ?,Estado=? WHERE idSERVICIOS_UNICO = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, objeto.getConcepto());
+            stmt.setDouble(2, objeto.getCosto());
+            stmt.setString(3, objeto.getEstado());
+            stmt.setInt(4, objeto.getId());
+            stmt.executeUpdate();
+            System.out.println("Servicio adicional actualizado con exito.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void cargarRegistroToCSV(ServiciosAdicionales elemento, String archivo) {
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, true))) {
-
-            String[] data = {
-                String.valueOf(elemento.getId()),
-                elemento.getConcepto(),
-                String.valueOf(elemento.getCosto())
-            };
-            writer.writeNext(data); // Escribe la nueva línea en el archivo
-
-        } catch (IOException e) {
-            e.printStackTrace(); // Manejo de excepciones
+    public void eliminar(int id) {
+        String sql = "DELETE FROM servicios_adicionales WHERE idSERVICIOS_UNICO = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Servicio adicional eliminado con exito.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

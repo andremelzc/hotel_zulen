@@ -14,8 +14,24 @@ public class Housekeeper extends Personal{
     public Housekeeper() {
     }
 
-    public Housekeeper(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String funcion, String estado) {
-        super(DNI, nombre, apellido, telefono, direccion, usuario, contrasena, funcion, estado);
+    public Housekeeper(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado) {
+        super(DNI, funcion, nombre, apellido, telefono, direccion, usuario, contrasena, estado);
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getFuncion() {
+        return funcion;
+    }
+
+    public void setFuncion(String funcion) {
+        this.funcion = funcion;
     }
 
     public String getNombre() {
@@ -32,14 +48,6 @@ public class Housekeeper extends Personal{
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public int getDNI() {
-        return DNI;
-    }
-
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
     }
 
     public int getTelefono() {
@@ -74,14 +82,6 @@ public class Housekeeper extends Personal{
         this.contrasena = contrasena;
     }
 
-    public String getFuncion() {
-        return funcion;
-    }
-
-    public void setFuncion(String funcion) {
-        this.funcion = funcion;
-    }
-
     public String getEstado() {
         return estado;
     }
@@ -89,5 +89,6 @@ public class Housekeeper extends Personal{
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
     
 }

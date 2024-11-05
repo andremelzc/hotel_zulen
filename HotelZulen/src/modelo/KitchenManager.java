@@ -14,11 +14,25 @@ public class KitchenManager extends Personal{
     public KitchenManager() {
     }
 
-    public KitchenManager(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String funcion, String estado) {
-        super(DNI, nombre, apellido, telefono, direccion, usuario, contrasena, funcion, estado);
+    public KitchenManager(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado) {
+        super(DNI, funcion, nombre, apellido, telefono, direccion, usuario, contrasena, estado);
     }
 
-    
+    public int getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
+
+    public String getFuncion() {
+        return funcion;
+    }
+
+    public void setFuncion(String funcion) {
+        this.funcion = funcion;
+    }
 
     public String getNombre() {
         return nombre;
@@ -34,14 +48,6 @@ public class KitchenManager extends Personal{
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public int getDNI() {
-        return DNI;
-    }
-
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
     }
 
     public int getTelefono() {
@@ -76,14 +82,6 @@ public class KitchenManager extends Personal{
         this.contrasena = contrasena;
     }
 
-    public String getFuncion() {
-        return funcion;
-    }
-
-    public void setFuncion(String funcion) {
-        this.funcion = funcion;
-    }
-
     public String getEstado() {
         return estado;
     }
@@ -91,5 +89,6 @@ public class KitchenManager extends Personal{
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
     
 }

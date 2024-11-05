@@ -11,33 +11,35 @@ import java.util.Scanner;
  *
  * @author PC
  */
-public class Personal implements IActualizar<Personal> {
+public abstract class Personal  {
 
     int DNI;
+    String funcion;
     String nombre;
     String apellido;
     int telefono;
     String direccion;
     String usuario;
     String contrasena;
-    String funcion;
     String estado;
 
     public Personal() {
 
     }
 
-    public Personal(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String funcion, String estado) {
+    public Personal(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado) {
         this.DNI = DNI;
+        this.funcion = funcion;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.direccion = direccion;
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.funcion = funcion;
         this.estado = estado;
     }
+
+    
 
     //Constructor Agregado por Miguel para el Inicio de Usuario
     public void setNombre(String nombre) {
@@ -112,13 +114,12 @@ public class Personal implements IActualizar<Personal> {
         return estado;
     }
 
-    @Override
+    
     public void agregar(List<Personal> lista, Personal elemento) {
         lista.add(elemento);
     }
 
-    @Override
-    public void actualizar(List<Personal> lista, Personal elemento) {
+        public void actualizar(List<Personal> lista, Personal elemento) {
         Scanner sc = new Scanner(System.in);
 
         for (Personal personal : lista) {
@@ -194,7 +195,7 @@ public class Personal implements IActualizar<Personal> {
         }
     }
 
-    @Override
+    
     public void eliminar(List<Personal> lista, Personal elemento) {
         for(Personal personal : lista){
             if(personal.getDNI()==elemento.getDNI()){
@@ -203,7 +204,7 @@ public class Personal implements IActualizar<Personal> {
         }
     }
 
-    @Override
+
     public void mostrarLista(List<Personal> lista) {
         System.out.println("------------------------------------------------------------------------------------------------------");
         System.out.printf("%-10s %-20s %-20s %-15s %-15s %-10s%n",
@@ -224,7 +225,7 @@ public class Personal implements IActualizar<Personal> {
 
     }
 
-    @Override
+  
     public Personal obtenerPorId(List<Personal> lista, int id) {
         for (Personal personal : lista) {
             if (personal.getDNI() == id) {

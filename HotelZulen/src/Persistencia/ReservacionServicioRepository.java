@@ -15,7 +15,12 @@ import java.util.List;
 import modelo.Reservacion;
 import modelo.ReservacionServicio;
 import modelo.ServiciosAdicionales;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.sql.Statement; // <-- Agrega esta línea
 /**
  *
  * @author Suyco
@@ -23,74 +28,48 @@ import modelo.ServiciosAdicionales;
 public class ReservacionServicioRepository implements IRepository<ReservacionServicio> {
 
   
-    
-    @Override
-    public List<ReservacionServicio> cargarCSVtoLista(String archivo) throws IOException {
-        
-        List<ReservacionServicio> reservacionServicioCargada = new ArrayList<>();
-        List<Reservacion> reservacionesCargadas = new ArrayList<>();
-        List<ServiciosAdicionales> serviciosCargados = new ArrayList<>();
-        
-        ReservacionRepository reservaRepo = new ReservacionRepository();      
-        ServiciosAdicionalesRepository serviciosRepo = new ServiciosAdicionalesRepository();        
-        
-        reservacionesCargadas = reservaRepo.cargarCSVtoLista("reservaciones.csv");
-        serviciosCargados = serviciosRepo.cargarCSVtoLista("serviciosAdicionales.csv");
-        
-        Reservacion nuevaReserva =new Reservacion();
-        ServiciosAdicionales nuevoServicio =new ServiciosAdicionales();
-        
-        try (CSVReader csvReader = new CSVReader(new FileReader(archivo))) {
-            String[] nextLine;
-            
+    public void asociarReservaHabitacion(int idReservacion, List<ServiciosAdicionales> listaServicios) {
+        String sql = "INSERT INTO reservaciones_has_servicios_adicionales (RESERVACIONES_idReservaciones, SERVICIOS_ADICIONALES_idSERVICIOS_UNICO) VALUES (?, ?)";
 
-            while ((nextLine = csvReader.readNext()) != null) {
-                int idReserva = Integer.parseInt(nextLine[0]);
-                int idServicio = Integer.parseInt(nextLine[1]);
-
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            connection.setAutoCommit(false);  // Iniciar la transacción
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
                 
-                ReservacionServicio reservaServicio = new ReservacionServicio(
-                                                      nuevaReserva.obtenerPorId(reservacionesCargadas, idReserva),
-                                                      nuevoServicio.obtenerPorId(serviciosCargados, idServicio)
-                                                      );
-                reservacionServicioCargada.add(reservaServicio);
+                for (ServiciosAdicionales servicio : listaServicios) {
+                    stmt.setInt(1, idReservacion);
+                    stmt.setInt(2, servicio.getId());                    
+
+                    stmt.addBatch();
+                }
+                stmt.executeBatch();
+                connection.commit();  // Confirmar la transacción
+                System.out.println("Reserva asociada al servicio(s) exitosamente!");
+                
+            } catch (SQLException e) {
+                connection.rollback();  // Hacer rollback en caso de error
+                System.out.println("Error al asociar la reserva: " + e.getMessage());
             }
-        } catch (CsvException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Error al obtener la conexión: " + e.getMessage());
         }
-        
-        return reservacionServicioCargada;
     }
-
-
-
     @Override
-    public void cargarListaToCSV(List<ReservacionServicio> lista, String archivo) {
-        
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, false))) {
-            for(ReservacionServicio elemento : lista){
-                String[] data = {
-                    String.valueOf(elemento.getReserva().getIdReserva()), // Ajusta según los campos que tenga ReservacionHuesped
-                    String.valueOf(elemento.getServicio().getId()),
-                };
-                writer.writeNext(data); // Escribe la nueva línea en el archivo
-            }
-        } catch (IOException e) {
-        e.printStackTrace(); // Manejo de excepciones
-        } 
+    public void crear(ReservacionServicio objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void cargarRegistroToCSV(ReservacionServicio elemento, String archivo) {
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, true))) {
-                String[] data = {
-                    String.valueOf(elemento.getReserva().getIdReserva()), // Ajusta según los campos que tenga ReservacionHuesped
-                    String.valueOf(elemento.getServicio().getId()),
-                };
-                writer.writeNext(data); // Escribe la nueva línea en el archivo
-            
-        } catch (IOException e) {
-        e.printStackTrace(); // Manejo de excepciones
-        } 
+    public ReservacionServicio obtener(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void actualizar(ReservacionServicio objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void eliminar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

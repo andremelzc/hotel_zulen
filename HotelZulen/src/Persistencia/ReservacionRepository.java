@@ -15,79 +15,73 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Reservacion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.sql.Statement; // <-- Agrega esta línea
 
-public class ReservacionRepository implements IRepository <Reservacion>{
+public class ReservacionRepository implements IRepository <Reservacion>{ 
     
     
     @Override
-    public List<Reservacion> cargarCSVtoLista(String archivo) throws IOException {
-        List<Reservacion> reservasCargadas = new ArrayList<>();
-        
-        try (CSVReader csvReader = new CSVReader(new FileReader(archivo))) {
-            String[] nextLine;
-            
+    public Reservacion obtener(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-            while ((nextLine = csvReader.readNext()) != null) {
-                int idReserva = Integer.parseInt(nextLine[0]);
-                int numHabitaciones = Integer.parseInt(nextLine[1]);
-                String estado = nextLine[2];
-                LocalDate inicioHuesped = LocalDate.parse(nextLine[3]);
-                LocalDate finHuesped = LocalDate.parse(nextLine[4]);
-                
-                Reservacion reserva = new Reservacion(idReserva,
-                                                      numHabitaciones,
-                                                      estado,
-                                                      inicioHuesped,
-                                                      finHuesped);
-                reservasCargadas.add(reserva);
+    @Override
+    public void actualizar(Reservacion objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void eliminar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void crear(Reservacion objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public int crearReserva(Reservacion reservacion) {
+    // Consulta SQL para insertar una nueva reserva
+    String sql = "INSERT INTO reservaciones (NumeroHabitaciones, FechaInicio, FechaFinal, Estado) VALUES (?, ?, ?, ?)";
+    
+    // Establecer la conexión y preparar la declaración
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+         
+        // Configurar los parámetros de la reserva
+        stmt.setInt(1, reservacion.getNumHabitaciones()); // Número de habitaciones
+        stmt.setDate(2, java.sql.Date.valueOf(reservacion.getIncioHuesped())); // Fecha de inicio
+        stmt.setDate(3, java.sql.Date.valueOf(reservacion.getFinHuesped())); // Fecha final
+        stmt.setString(4, reservacion.getEstado()); // Estado de la reserva
+
+        // Ejecutar la inserción de la reserva
+        int affectedRows = stmt.executeUpdate();
+        
+        // Verificar si se insertó alguna fila
+        if (affectedRows > 0) {
+            // Obtener el ID generado
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1); // Retorna el ID de la reserva creada
+                } else {
+                    System.out.println("No se pudo obtener el ID de la reserva.");
+                    return -1; // Retorna -1 si no se pudo obtener el ID
+                }
             }
-        } catch (CsvException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("No se pudo crear la reserva.");
+            return -1; // Retorna -1 si no se creó la reserva
         }
- 
-        return reservasCargadas;
-    }
-
-
-    @Override
-    public void cargarListaToCSV(List<Reservacion> lista, String archivo) {
-       
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, false))) {
-        
-            for (Reservacion elemento : lista) {
-            
-                String[] data = {
-                    String.valueOf(elemento.getIdReserva()),
-                    String.valueOf(elemento.getNumHabitaciones()),
-                    String.valueOf(elemento.getEstado()),
-                    elemento.getIncioHuesped().toString(), // Asegúrate de que este método devuelve una cadena legible
-                    elemento.getFinHuesped().toString() // Igual que arriba
-                };
-            writer.writeNext(data); // Escribe la nueva línea en el archivo
-        }
-        } catch (IOException e) {
-            e.printStackTrace(); // Manejo de excepciones
-        }
-    
-       
-}
-
-    @Override
-    public void cargarRegistroToCSV(Reservacion elemento, String archivo) {
-        
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, true))) {
-            
-                String[] data = {
-                    String.valueOf(elemento.getIdReserva()),
-                    String.valueOf(elemento.getNumHabitaciones()),
-                    String.valueOf(elemento.getEstado()),
-                    elemento.getIncioHuesped().toString(), 
-                    elemento.getFinHuesped().toString() 
-                };
-            writer.writeNext(data); 
-        
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
+    } catch (SQLException e) {
+        System.out.println("Error al crear la reserva: " + e.getMessage());
+        e.printStackTrace(); // Imprime el stack trace para depuración
+        return -1; // Retorna -1 en caso de error
     }
 }
+}
+

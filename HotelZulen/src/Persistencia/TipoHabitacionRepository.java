@@ -14,54 +14,69 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Habitacion;
 import modelo.TipoDeHabitacion;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Suyco
  */
 public class TipoHabitacionRepository implements IRepository<TipoDeHabitacion> {
-    
+
     @Override
-    public List<TipoDeHabitacion> cargarCSVtoLista(String archivo) throws IOException {
-        
-        List<TipoDeHabitacion> tiposCargados = new ArrayList<>();
-        
-        try (CSVReader csvReader = new CSVReader(new FileReader(archivo))) {
-            String[] nextLine;
-            while ((nextLine = csvReader.readNext()) != null) {
-                TipoDeHabitacion tipoHabitacion = new TipoDeHabitacion(
-                        Integer.parseInt(nextLine[0]),
-                        nextLine[1],
-                        Double.parseDouble(nextLine[2])
-                );
-                tiposCargados.add(tipoHabitacion);
-            }
-        } catch (CsvException e) {
+    public void crear(TipoDeHabitacion objeto) {
+         String sql = "INSERT INTO tipo_hab (idCategoria, Precio, Descripcion) VALUES (?, ?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, objeto.getId());
+            stmt.setDouble(2, objeto.getPrecio());
+            stmt.setString(3, objeto.getConcepto());
+            stmt.executeUpdate();
+            System.out.println("Tipo de habitación creado con éxito.");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        return tiposCargados;
     }
-    
+
     @Override
-    public void cargarListaToCSV(List<TipoDeHabitacion> lista, String archivo) {
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, false))) {
-            
-            for (TipoDeHabitacion tipoDeHabitacion : lista) {
-                
-                String[] data = {
-                    String.valueOf(tipoDeHabitacion.getId()),
-                    tipoDeHabitacion.getConcepto(), String.valueOf(tipoDeHabitacion.getPrecio())};
-                writer.writeNext(data); // Escribe la nueva línea en el archivo
+    public TipoDeHabitacion obtener(int id) {
+        String sql = "SELECT * FROM tipo_hab WHERE idCategoria = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new TipoDeHabitacion(
+                    rs.getInt("idCategoria"),
+                    rs.getString("Descripcion"),
+                    rs.getDouble("Precio"),
+                    rs.getString("Descripcion")
+                );
             }
-        } catch (IOException e) {
-            e.printStackTrace(); // Manejo de excepciones
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return null; // Si no se encuentra, retorna null
     }
-    
     @Override
-    public void cargarRegistroToCSV(TipoDeHabitacion elemento, String archivo) {
+    public void actualizar(TipoDeHabitacion objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void eliminar(int id) {
+        String sql = "DELETE FROM tipo_de_habitacion WHERE idCategoria = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Tipo de habitacion eliminado con exito.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
 }

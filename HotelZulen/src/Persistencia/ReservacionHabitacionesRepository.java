@@ -10,80 +10,61 @@ import com.opencsv.exceptions.CsvException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Habitacion;
+import modelo.Huesped;
 import modelo.Reservacion;
 import modelo.ResevacionHabitacion;
 
 public class ReservacionHabitacionesRepository implements IRepository<ResevacionHabitacion> {
     
-    
-    @Override
-    public List<ResevacionHabitacion> cargarCSVtoLista(String archivo) throws IOException {
-        
-        List<ResevacionHabitacion> reservaHabitacionCargados = new ArrayList<>();
-        List<Reservacion> reservacionesCargadas = new ArrayList<>();
-        List<Habitacion> habitacionesCargadas = new ArrayList<>();
-        
-        ReservacionRepository reservaRepo = new ReservacionRepository();
-        HabitacionRepository habitacionRepo = new HabitacionRepository();
-        
-        reservacionesCargadas = reservaRepo.cargarCSVtoLista("reservaciones.csv");
-        habitacionesCargadas = habitacionRepo.cargarCSVtoLista("habitaciones.csv");
-        
-        Habitacion nuevaHabitacion = new Habitacion();
-        Reservacion nuevaReservacion = new Reservacion();
-        
-        try (CSVReader csvReader = new CSVReader(new FileReader(archivo))) {
-            String[] nextLine;
-            
-            while ((nextLine = csvReader.readNext()) != null) {
-                int idReserva = Integer.parseInt(nextLine[0]);
-                int idHabitacion = Integer.parseInt(nextLine[1]);
+    public void asociarReservaHabitacion(int idReservacion, List<Habitacion> habitaciones) {
+        String sql = "INSERT INTO habitaciones_has_reservaciones (HABITACIONES_idHabitaciones, HABITACIONES_TIPO_HAB_idCategoria, RESERVACIONES_idReservaciones) VALUES (?, ?, ?)";
 
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            connection.setAutoCommit(false);  // Iniciar la transacción
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
                 
-                ResevacionHabitacion reservaServicio = new ResevacionHabitacion(
-                                                      nuevaReservacion.obtenerPorId(reservacionesCargadas, idReserva),
-                                                      nuevaHabitacion.obtenerPorId(habitacionesCargadas, idHabitacion)
-                                                      );
-                reservaHabitacionCargados.add(reservaServicio);
+                for (Habitacion habitacion : habitaciones) {
+                    stmt.setInt(1, habitacion.getId());
+                    stmt.setInt(2, habitacion.getTipoHabitacion().getId());
+                    stmt.setInt(3, idReservacion);
+                    stmt.addBatch();
+                }
+                stmt.executeBatch();
+                connection.commit();  // Confirmar la transacción
+                System.out.println("Reserva asociada a la(s) habitacion(es) exitosamente!");
+                
+            } catch (SQLException e) {
+                connection.rollback();  // Hacer rollback en caso de error
+                System.out.println("Error al asociar la reserva: " + e.getMessage());
             }
-        } catch (CsvException e) {
-            e.printStackTrace();
-        }        
-        return reservaHabitacionCargados;
+        } catch (SQLException e) {
+            System.out.println("Error al obtener la conexión: " + e.getMessage());
+        }
     }
-
+    @Override
+    public void crear(ResevacionHabitacion objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     @Override
-    public void cargarListaToCSV(List<ResevacionHabitacion> lista, String archivo) {
-     
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, false))) {
-            for(ResevacionHabitacion elemento : lista){
-                String[] data = {
-                    String.valueOf(elemento.getReserva().getIdReserva()), 
-                    String.valueOf(elemento.getHabitacion().getId()),
-                };
-                writer.writeNext(data); 
-            }
-    }  catch (IOException e) {
-        e.printStackTrace(); 
+    public ResevacionHabitacion obtener(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    } 
 
     @Override
-    public void cargarRegistroToCSV(ResevacionHabitacion elemento, String archivo) {
-       // Guardar en el archivo CSV
-    try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, true))) {
-        String[] data = {
-            String.valueOf(elemento.getReserva().getIdReserva()), 
-            String.valueOf(elemento.getHabitacion().getId()),
-        };
-        writer.writeNext(data); 
-    } catch (IOException e) {
-        e.printStackTrace(); 
+    public void actualizar(ResevacionHabitacion objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void eliminar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
     

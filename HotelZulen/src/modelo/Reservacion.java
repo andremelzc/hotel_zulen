@@ -4,11 +4,16 @@
  */
 package modelo;
 
+import Persistencia.HuespedRepository;
+import Persistencia.ReservacionHabitacionesRepository;
+import Persistencia.ReservacionHuespedRepository;
+import Persistencia.ReservacionRepository;
+import Persistencia.ReservacionServicioRepository;
 import java.time.LocalDate;
 import java.util.List;
 
 
-public class Reservacion implements IActualizar<Reservacion>{
+public class Reservacion {
 
     private int idReserva;
     private int numHabitaciones;
@@ -19,7 +24,15 @@ public class Reservacion implements IActualizar<Reservacion>{
     public Reservacion() {
 
     }
-
+    
+//Para crear reserva , ya q id es autoincremental en la BD
+    public Reservacion(int numHabitaciones, String estado, LocalDate incioHuesped, LocalDate finHuesped) {
+        this.numHabitaciones = numHabitaciones;
+        this.estado = estado;
+        this.incioHuesped = incioHuesped;
+        this.finHuesped = finHuesped;
+    }
+    //cuando recupere una reserva
     public Reservacion(int idReserva, int numHabitaciones, String estado, LocalDate incioHuesped, LocalDate finHuesped) {
         this.idReserva = idReserva;
         this.numHabitaciones = numHabitaciones;
@@ -68,53 +81,26 @@ public class Reservacion implements IActualizar<Reservacion>{
         this.finHuesped = finHuesped;
     }
 
-    @Override
-    public void agregar(List<Reservacion> lista, Reservacion elemento) {
-        lista.add(elemento);
-    }
-    
-    
-    @Override
-    public void actualizar(List<Reservacion> lista, Reservacion elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void eliminar(List<Reservacion> lista, Reservacion elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void mostrarLista(List<Reservacion> lista) {
+   public void crearReservacion(Reservacion reservacion, List<Huesped> listaHuespedes,List<Habitacion> listaHabitaciones,List<ServiciosAdicionales> listaServicios) {
+        // Crear la reserva y obtener el ID
+        ReservacionRepository reservacionRepository = new ReservacionRepository();
+        ReservacionHuespedRepository reservacionHuespedRepository = new ReservacionHuespedRepository();
+        ReservacionHabitacionesRepository reservacionHabitacionRepository = new ReservacionHabitacionesRepository();
+        ReservacionServicioRepository reservacionServicioRepository = new ReservacionServicioRepository();
+        HuespedRepository huespedRepo = new HuespedRepository ();
         
-    System.out.println("--------------------------------------------------------------------------------------");
-    System.out.printf("%-10s %-15s %-10s %-15s %-15s%n", "ID Reserva", "Num Habitaciones", "Estado", "Inicio Huesped", "Fin Huesped");
-    System.out.println("--------------------------------------------------------------------------------------");
-    
-    // Imprimimos toda la lista
-    for (Reservacion reservacion : lista) {
-        System.out.printf("%-10d %-15d %-10s %-15s %-15s%n",
-                reservacion.getIdReserva(),
-                reservacion.getNumHabitaciones(),
-                reservacion.getEstado(),
-                reservacion.getIncioHuesped(),  
-                reservacion.getFinHuesped());    
-    }
-    System.out.println("--------------------------------------------------------------------------------------");
-
-    }
-
-    @Override
-    public Reservacion obtenerPorId(List<Reservacion> lista, int id) {
-        for (Reservacion reserva : lista){
-            if(reserva.getIdReserva()==id){
-                return reserva;
-            }
+        huespedRepo.crearHuespedes(listaHuespedes);
+        int idReservacion = reservacionRepository.crearReserva(reservacion);
+        if (idReservacion > 0) {
+            // Asociar los huéspedes a la nueva reserva
+            reservacionHuespedRepository.asociarReservaHuespedes(idReservacion, listaHuespedes);
+            reservacionHabitacionRepository.asociarReservaHabitacion(idReservacion, listaHabitaciones);
+            reservacionServicioRepository.asociarReservaHabitacion(idReservacion, listaServicios);
+            
+            System.out.println("Reserva generada satisfactoriamente!");
+            
         }
-        return null;
-    
     }
-
     
     
 }

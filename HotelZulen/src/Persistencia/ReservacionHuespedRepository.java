@@ -15,83 +15,51 @@ import java.util.List;
 import modelo.Huesped;
 import modelo.Reservacion;
 import modelo.ReservacionHuesped;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Suyco
  */
-public class ReservacionHuespedRepository implements IRepository<ReservacionHuesped> {
+public class ReservacionHuespedRepository  {
     
     
     
-    @Override
-    public List<ReservacionHuesped> cargarCSVtoLista(String archivo) throws IOException {
-            
-        List<ReservacionHuesped> reservaHuespedCargados = new ArrayList<>();    
-        List<Reservacion> reservacionesCargadas = new ArrayList<>();
-        List<Huesped> huespedesCargados = new ArrayList<>();
-        
-        ReservacionRepository reservaRepo = new ReservacionRepository();
-        HuespedRepository huespedRepo = new HuespedRepository ();
-        
-        reservacionesCargadas = reservaRepo.cargarCSVtoLista("reservaciones.csv");
-        huespedesCargados = huespedRepo.cargarCSVtoLista("huespedes.csv");
-        
-        Reservacion nuevaReserva = new Reservacion();
-        Huesped nuevoHuesped = new Huesped();
-        
-        try (CSVReader csvReader = new CSVReader(new FileReader("reservaHuesped.csv"))) {
-            String[] nextLine;
-            
-
-            while ((nextLine = csvReader.readNext()) != null) {
-                int idReserva = Integer.parseInt(nextLine[0]);
-                int idHuesped = Integer.parseInt(nextLine[1]);
-
-                
-                ReservacionHuesped reservaHuesped = new ReservacionHuesped(
-                                                      nuevaReserva.obtenerPorId(reservacionesCargadas, idReserva),
-                                                      nuevoHuesped.obtenerPorId(huespedesCargados, idHuesped)
-                                                      );
-                reservaHuespedCargados.add(reservaHuesped);
+    public void asociarReservaHuespedes(int idReservacion, List<Huesped> huespedes) {
+        String sql = "INSERT INTO huespedes_has_reservaciones (HUESPEDES_DNI, RESERVACIONES_idReservaciones) VALUES (?, ?)";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             
+            // Asociar cada huésped con la reserva
+            for (Huesped huesped : huespedes) {
+                stmt.setInt(1, huesped.getDNI()); // DNI del huésped
+                stmt.setInt(2, idReservacion); // ID de la reserva
+                stmt.addBatch(); // Agregar al lote
             }
-        } catch (CsvException e) {
-            e.printStackTrace();
-        }
-        
-        
-        return reservaHuespedCargados;
-    }
-
-
-
-    @Override
-    public void cargarListaToCSV(List<ReservacionHuesped> lista, String archivo) {
-        // Guardar en el archivo CSV
-        try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, false))) {
-            for(ReservacionHuesped elemento: lista){
-                String[] data = {
-                    String.valueOf(elemento.getReserva().getIdReserva()), // Ajusta según los campos que tenga ReservacionHuesped
-                    String.valueOf(elemento.getHuesped().getDNI()),
-                };
-                writer.writeNext(data); // Escribe la nueva línea en el archivo
-            }
-        } catch (IOException e) {
-            e.printStackTrace(); // Manejo de excepciones
+            stmt.executeBatch(); // Ejecutar todas las inserciones
+            System.out.println("Huéspedes asociados a la reserva exitosamente!");
+        } catch (SQLException e) {
+            System.out.println("Error al asociar los huéspedes: " + e.getMessage());
         }
     }
 
-    @Override
-    public void cargarRegistroToCSV(ReservacionHuesped elemento, String archivo) {
-        // Guardar en el archivo CSV
-    try (CSVWriter writer = new CSVWriter(new FileWriter(archivo, true))) {
-        String[] data = {
-            String.valueOf(elemento.getReserva().getIdReserva()), // Ajusta según los campos que tenga ReservacionHuesped
-            String.valueOf(elemento.getHuesped().getDNI()),
-        };
-        writer.writeNext(data); // Escribe la nueva línea en el archivo
-    } catch (IOException e) {
-        e.printStackTrace(); // Manejo de excepciones
+
+    
+    public ReservacionHuesped obtener(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    
+    public void actualizar(ReservacionHuesped objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+    public void eliminar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

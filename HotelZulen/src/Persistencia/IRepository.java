@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IRepository<T> {
-    List<T> cargarCSVtoLista(String archivo) throws IOException;
-    void cargarListaToCSV(List<T> lista,String archivo);
-    void cargarRegistroToCSV(T elemento,String archivo);
+    
+    void crear(T objeto);
+    T obtener(int id);
+    void actualizar(T objeto);
+    void eliminar(int id);
+    
 }

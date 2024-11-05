@@ -9,7 +9,7 @@ package modelo;
  * @author Suyco
  */
 public class AmaDeLlaves extends Personal {
-
+    
     public AmaDeLlaves(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado) {
         this.DNI = DNI;
         this.nombre = nombre;
