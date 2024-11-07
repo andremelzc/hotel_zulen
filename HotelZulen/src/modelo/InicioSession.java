@@ -6,8 +6,6 @@ package modelo;
 
 import Persistencia.InicioSesionRepository;
 import java.io.IOException;
-import vista.Admin.vistaAdministrador;
-import vista.Recepcionista.vistaRecepcionista;
 
 /**
  *
@@ -32,13 +30,11 @@ public class InicioSession {
         if (usuarioActual instanceof Administrador) {
             Administrador administrador = (Administrador) usuarioActual;
             System.out.println("Abriendo vista de administrador");
-            vistaAdministrador vistaAdmin = new vistaAdministrador(administrador);
-            vistaAdmin.setVisible(true);
+            //new VistaAdministrador().mostrar();
         } else if (usuarioActual instanceof Recepcionista) {
             Recepcionista recepcionista = (Recepcionista) usuarioActual;
             System.out.println("Abriendo vista de recepcionista");
-            vistaRecepcionista vistaRecep = new vistaRecepcionista(recepcionista);
-            vistaRecep.setVisible(true);
+            
         } else if(usuarioActual instanceof AmaDeLlaves) { 
             AmaDeLlaves amaLlaves = (AmaDeLlaves) usuarioActual;
             System.out.println("Abriendo vista del ama de llaves");

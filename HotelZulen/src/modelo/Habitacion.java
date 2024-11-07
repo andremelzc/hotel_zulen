@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Habitacion  {
+public class Habitacion implements IActualizar<Habitacion> {
 
     private int id;
     private TipoDeHabitacion tipoHabitacion;

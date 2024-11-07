@@ -4,13 +4,13 @@
  */
 package modelo;
 
-
+import java.util.List;
 
 /**
  *
  * @author Suyco
  */
-public class TipoDeHabitacion {
+public class TipoDeHabitacion implements IActualizar <TipoDeHabitacion>{
     int id;
     String concepto;
     double precio;

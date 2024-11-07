@@ -4,13 +4,6 @@
  */
 package Persistencia;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import modelo.Huesped;
 import modelo.Reservacion;
@@ -30,7 +23,7 @@ public class ReservacionHuespedRepository  {
     
     
     public void asociarReservaHuespedes(int idReservacion, List<Huesped> huespedes) {
-        String sql = "INSERT INTO huespedes_has_reservaciones (HUESPEDES_DNI, RESERVACIONES_idReservaciones) VALUES (?, ?)";
+        String sql = "INSERT INTO reservaciones_has_huespedes (HUESPEDES_DNI, RESERVACIONES_idReservaciones) VALUES (?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
              

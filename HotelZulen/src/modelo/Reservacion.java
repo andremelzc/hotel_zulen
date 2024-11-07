@@ -4,42 +4,128 @@
  */
 package modelo;
 
+import Persistencia.HabitacionRepository;
 import Persistencia.HuespedRepository;
 import Persistencia.ReservacionHabitacionesRepository;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionRepository;
 import Persistencia.ReservacionServicioRepository;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
-public class Reservacion {
+public class Reservacion implements IActualizar<Reservacion>{
 
     private int idReserva;
     private int numHabitaciones;
     private String estado;
-    private LocalDate incioHuesped;
-    private LocalDate finHuesped;
-
+    private LocalDateTime incioHuesped;
+    private LocalDateTime finHuesped;
+    private LocalDateTime fechaCrea;
+    private LocalDateTime checkIn;
+    private LocalDateTime checkOut;
+    private HuespedRepository repoHuesped;
+    private HabitacionRepository repoHab;
+    private ReservacionRepository repoReserva;
+    private ReservacionHuespedRepository repoReservaHuesped;
+    private ReservacionHabitacionesRepository repoReservaHab;
+    private ReservacionServicioRepository repoReservaServ;
+    
+    
+    
     public Reservacion() {
+        this.repoHuesped = new HuespedRepository();
+        this.repoHab = new HabitacionRepository();
+        this.repoReserva= new ReservacionRepository();
+        this.repoReservaHab= new ReservacionHabitacionesRepository();
+        this.repoReservaHuesped = new ReservacionHuespedRepository();
+        this.repoReservaServ= new ReservacionServicioRepository();
 
     }
     
-//Para crear reserva , ya q id es autoincremental en la BD
-    public Reservacion(int numHabitaciones, String estado, LocalDate incioHuesped, LocalDate finHuesped) {
+    // Para crear una reserva para despues 
+    public Reservacion(int numHabitaciones, String estado, LocalDateTime incioHuesped, LocalDateTime finHuesped) {
         this.numHabitaciones = numHabitaciones;
         this.estado = estado;
         this.incioHuesped = incioHuesped;
         this.finHuesped = finHuesped;
+        this.fechaCrea = LocalDateTime.now();
+        this.repoHuesped = new HuespedRepository();
+        this.repoHab = new HabitacionRepository();
+        this.repoReserva= new ReservacionRepository();
+        this.repoReservaHab= new ReservacionHabitacionesRepository();
+        this.repoReservaHuesped = new ReservacionHuespedRepository();
+        this.repoReservaServ= new ReservacionServicioRepository();
     }
-    //cuando recupere una reserva
-    public Reservacion(int idReserva, int numHabitaciones, String estado, LocalDate incioHuesped, LocalDate finHuesped) {
+    // Para crear una "reserva" que es en el momento. (Se considera checkin)
+    public Reservacion(int numHabitaciones, String estado, LocalDateTime incioHuesped, LocalDateTime finHuesped, LocalDateTime checkIn) {
+        this.numHabitaciones = numHabitaciones;
+        this.estado = estado;
+        this.incioHuesped = incioHuesped;
+        this.finHuesped = finHuesped;
+        this.fechaCrea = LocalDateTime.now();
+        this.checkIn = checkIn;
+        this.repoHuesped = new HuespedRepository();
+        this.repoHab = new HabitacionRepository();
+        this.repoReserva= new ReservacionRepository();
+        this.repoReservaHab= new ReservacionHabitacionesRepository();
+        this.repoReservaHuesped = new ReservacionHuespedRepository();
+        this.repoReservaServ= new ReservacionServicioRepository();
+    }
+    
+    //Al momento de recuperar una reserva y no tiene todos los campos llenos
+    public Reservacion(int idReserva, int numHabitaciones, String estado, LocalDateTime incioHuesped, LocalDateTime finHuesped, LocalDateTime fechaCrea) {
         this.idReserva = idReserva;
         this.numHabitaciones = numHabitaciones;
         this.estado = estado;
         this.incioHuesped = incioHuesped;
         this.finHuesped = finHuesped;
+        this.fechaCrea = fechaCrea;
+        this.repoHuesped = new HuespedRepository();
+        this.repoHab = new HabitacionRepository();
+        this.repoReserva= new ReservacionRepository();
+        this.repoReservaHab= new ReservacionHabitacionesRepository();
+        this.repoReservaHuesped = new ReservacionHuespedRepository();
+        this.repoReservaServ= new ReservacionServicioRepository();
     }
+    //Al momento de recuperar los datos de una reserva y no tiene todos los campos llenos
+    public Reservacion(int idReserva, int numHabitaciones, String estado, LocalDateTime incioHuesped, LocalDateTime finHuesped, LocalDateTime fechaCrea, LocalDateTime checkIn) {
+        this.idReserva = idReserva;
+        this.numHabitaciones = numHabitaciones;
+        this.estado = estado;
+        this.incioHuesped = incioHuesped;
+        this.finHuesped = finHuesped;
+        this.fechaCrea = fechaCrea;
+        this.checkIn = checkIn;
+        this.repoHuesped = new HuespedRepository();
+        this.repoHab = new HabitacionRepository();
+        this.repoReserva= new ReservacionRepository();
+        this.repoReservaHab= new ReservacionHabitacionesRepository();
+        this.repoReservaHuesped = new ReservacionHuespedRepository();
+        this.repoReservaServ= new ReservacionServicioRepository();
+    }
+    
+    
+    //Al momento de recuperar una reserva y tiene todos los campos llenos
+    public Reservacion(int idReserva, int numHabitaciones, String estado, LocalDateTime incioHuesped, LocalDateTime finHuesped, LocalDateTime fechaCrea, LocalDateTime checkIn, LocalDateTime checkOut) {
+        this.idReserva = idReserva;
+        this.numHabitaciones = numHabitaciones;
+        this.estado = estado;
+        this.incioHuesped = incioHuesped;
+        this.finHuesped = finHuesped;
+        this.fechaCrea = fechaCrea;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.repoHuesped = new HuespedRepository();
+        this.repoHab = new HabitacionRepository();
+        this.repoReserva= new ReservacionRepository();
+        this.repoReservaHab= new ReservacionHabitacionesRepository();
+        this.repoReservaHuesped = new ReservacionHuespedRepository();
+        this.repoReservaServ= new ReservacionServicioRepository();
+    }
+
+    
+    
 
     public int getIdReserva() {
         return idReserva;
@@ -65,42 +151,87 @@ public class Reservacion {
         this.estado = estado;
     }
 
-    public LocalDate getIncioHuesped() {
+    public LocalDateTime getIncioHuesped() {
         return incioHuesped;
     }
 
-    public void setIncioHuesped(LocalDate incioHuesped) {
+    public void setIncioHuesped(LocalDateTime incioHuesped) {
         this.incioHuesped = incioHuesped;
     }
 
-    public LocalDate getFinHuesped() {
+    public LocalDateTime getFinHuesped() {
         return finHuesped;
     }
 
-    public void setFinHuesped(LocalDate finHuesped) {
+    public void setFinHuesped(LocalDateTime finHuesped) {
         this.finHuesped = finHuesped;
     }
 
+    public LocalDateTime getFechaCrea() {
+        return fechaCrea;
+    }
+
+    public void setFechaCrea(LocalDateTime fechaCrea) {
+        this.fechaCrea = fechaCrea;
+    }
+
+    public LocalDateTime getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(LocalDateTime checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public LocalDateTime getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(LocalDateTime checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    public ReservacionRepository getRepoReserva() {
+        return repoReserva;
+    }
+
+    public void setRepoReserva(ReservacionRepository repoReserva) {
+        this.repoReserva = repoReserva;
+    }
+
+    
+
    public void crearReservacion(Reservacion reservacion, List<Huesped> listaHuespedes,List<Habitacion> listaHabitaciones,List<ServiciosAdicionales> listaServicios) {
-        // Crear la reserva y obtener el ID
-        ReservacionRepository reservacionRepository = new ReservacionRepository();
-        ReservacionHuespedRepository reservacionHuespedRepository = new ReservacionHuespedRepository();
-        ReservacionHabitacionesRepository reservacionHabitacionRepository = new ReservacionHabitacionesRepository();
-        ReservacionServicioRepository reservacionServicioRepository = new ReservacionServicioRepository();
-        HuespedRepository huespedRepo = new HuespedRepository ();
         
-        huespedRepo.crearHuespedes(listaHuespedes);
-        int idReservacion = reservacionRepository.crearReserva(reservacion);
+       repoHuesped.crearHuespedes(listaHuespedes);
+        int idReservacion = repoReserva.crearReserva(reservacion);
         if (idReservacion > 0) {
             // Asociar los huéspedes a la nueva reserva
-            reservacionHuespedRepository.asociarReservaHuespedes(idReservacion, listaHuespedes);
-            reservacionHabitacionRepository.asociarReservaHabitacion(idReservacion, listaHabitaciones);
-            reservacionServicioRepository.asociarReservaHabitacion(idReservacion, listaServicios);
+            repoReservaHuesped.asociarReservaHuespedes(idReservacion, listaHuespedes);
+            repoReservaHab.asociarReservaHabitacion(idReservacion, listaHabitaciones);
+            repoReservaServ.asociarReservaServi(idReservacion, listaServicios);
+            repoHab.setOcupados(listaHabitaciones);
             
             System.out.println("Reserva generada satisfactoriamente!");
             
         }
     }
     
+   public void reservarAhora (Reservacion reservacion, List<Huesped> listaHuespedes,List<Habitacion> listaHabitaciones,List<ServiciosAdicionales> listaServicios){
+       
+        repoHuesped.crearHuespedes(listaHuespedes);
+        int idReservacion = repoReserva.reservarAhora(reservacion);
+        if (idReservacion > 0) {
+            // Asociar los huéspedes a la nueva reserva
+            repoReservaHuesped.asociarReservaHuespedes(idReservacion, listaHuespedes);
+            repoReservaHab.asociarReservaHabitacion(idReservacion, listaHabitaciones);
+            repoReservaServ.asociarReservaServi(idReservacion, listaServicios);
+            repoHab.setOcupados(listaHabitaciones);
+            
+            System.out.println("Reserva generada satisfactoriamente!");
+            
+        }
+
+   }
     
 }

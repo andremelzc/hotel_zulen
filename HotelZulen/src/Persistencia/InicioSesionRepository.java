@@ -10,12 +10,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelo.Administrador;
-import modelo.Recepcionista;
-import modelo.Huesped;
-import modelo.Personal;
-import modelo.KitchenManager;
-import modelo.AmaDeLlaves;
 import modelo.Personal;
 import modelo.PersonalFactory;
 /**

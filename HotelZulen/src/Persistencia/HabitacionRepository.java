@@ -4,20 +4,13 @@
  */
 package Persistencia;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import modelo.Habitacion;
 import modelo.TipoDeHabitacion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class HabitacionRepository implements IRepository<Habitacion> {
 
@@ -84,6 +77,25 @@ public class HabitacionRepository implements IRepository<Habitacion> {
             stmt.executeUpdate();
             System.out.println("Habitación eliminada con éxito.");
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void setOcupados(List<Habitacion> listaHabitaciones) {
+        String sql = "UPDATE habitaciones SET Estado = ? WHERE idHabitaciones = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            for (Habitacion habitacion : listaHabitaciones) {
+                stmt.setString(1, "Ocupado"); // Configura el estado a "ocupado"
+                stmt.setInt(2, habitacion.getId()); 
+                stmt.executeUpdate();
+            }
+
+            System.out.println("Habitaciones actualizadas a 'ocupado' exitosamente.");
+
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar el estado de las habitaciones: " + e.getMessage());
             e.printStackTrace();
         }
     }

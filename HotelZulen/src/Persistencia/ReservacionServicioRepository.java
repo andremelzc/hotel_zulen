@@ -4,13 +4,6 @@
  */
 package Persistencia;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import modelo.Reservacion;
 import modelo.ReservacionServicio;
@@ -28,7 +21,7 @@ import java.sql.Statement; // <-- Agrega esta línea
 public class ReservacionServicioRepository implements IRepository<ReservacionServicio> {
 
   
-    public void asociarReservaHabitacion(int idReservacion, List<ServiciosAdicionales> listaServicios) {
+    public void asociarReservaServi(int idReservacion, List<ServiciosAdicionales> listaServicios) {
         String sql = "INSERT INTO reservaciones_has_servicios_adicionales (RESERVACIONES_idReservaciones, SERVICIOS_ADICIONALES_idSERVICIOS_UNICO) VALUES (?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection()) {

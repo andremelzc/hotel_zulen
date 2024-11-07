@@ -4,15 +4,6 @@
  */
 package Persistencia;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import modelo.Habitacion;
 import modelo.ServiciosAdicionales;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -53,13 +44,13 @@ public class ServiciosAdicionalesRepository implements IRepository<ServiciosAdic
                     rs.getInt("idSERVICIOS_UNICO"),
                     rs.getString("NombreServicio"),
                     rs.getDouble("Costo"),
-                    rs.getString("Estado") // Si 'Estado' se encuentra en la tabla
+                    rs.getString("Estado") 
                 );
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null; // Si no se encuentra, retorna null
+        return null; 
     }
 
     @Override
@@ -89,5 +80,29 @@ public class ServiciosAdicionalesRepository implements IRepository<ServiciosAdic
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public ServiciosAdicionales obtenerxString(String servicio) {
+        String sql = "SELECT idSERVICIOS_UNICO, NombreServicio, Costo, Estado FROM servicios_adicionales WHERE NombreServicio = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, servicio);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new ServiciosAdicionales(
+                    rs.getInt("idSERVICIOS_UNICO"),
+                    rs.getString("NombreServicio"),
+                    rs.getDouble("Costo"), 
+                    rs.getString("Estado") 
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null; 
     }
 }
