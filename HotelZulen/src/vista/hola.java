@@ -8,6 +8,8 @@ import Persistencia.ConsumibleRepository;
 import modelo.Combo;
 import modelo.Consumible;
 import Persistencia.ComboRepository;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.ComboConsumible;
 /**
  *
@@ -16,9 +18,16 @@ import modelo.ComboConsumible;
 public class hola {
     public static void main(String args[]){
         ComboConsumibleRepository combor = new ComboConsumibleRepository();
-        ComboConsumible comboconsumible = new ComboConsumible();
-        comboconsumible = combor.obtener(1);
         
-        System.out.println(comboconsumible.getConsumible().getPrecio());
+        List<Consumible> consumibles = new ArrayList<>();
+        ComboConsumibleRepository ccr = new ComboConsumibleRepository();
+        consumibles = ccr.obtenerConsumiblesPorCombo(1);
+        
+        for(Consumible consumible : consumibles){
+            System.out.println(consumible.getPrecio());
+        }
+        
+        
+       
     }
 }

@@ -8,9 +8,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.Combo;
 import modelo.Consumible;
 import modelo.ComboConsumible;
+import modelo.Habitacion;
+import modelo.TipoDeHabitacion;
 
 /**
  *
@@ -24,25 +28,6 @@ public class ComboConsumibleRepository implements IRepository<ComboConsumible> {
     }
 
     @Override
-    public ComboConsumible obtener(int id) {
-        String sql = "SELECT * FROM combo_has_consumible WHERE COMBO_idCOMBO = ?";
-        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                Combo combo = new ComboRepository().obtener(rs.getInt("COMBO_idCOMBO"));
-                Consumible consumible = new ConsumibleRepository().obtener(rs.getInt("CONSUMIBLE_idCONSUMIBLE"));
-                return new ComboConsumible(
-                        combo,
-                        consumible);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null; // Si no se encuentra, retorna null
-    }
-
-    @Override
     public void actualizar(ComboConsumible objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -50,6 +35,27 @@ public class ComboConsumibleRepository implements IRepository<ComboConsumible> {
     @Override
     public void eliminar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ComboConsumible obtener(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public List<Consumible> obtenerConsumiblesPorCombo(int comboId) {
+        List<Consumible> consumibles = new ArrayList<>();
+        String sql = "SELECT * FROM combo_has_consumible WHERE COMBO_idCOMBO = ?";
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, comboId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Consumible consumible = new ConsumibleRepository().obtener(rs.getInt("CONSUMIBLE_idCONSUMIBLE"));
+                consumibles.add(consumible);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return consumibles;
     }
 
 }
