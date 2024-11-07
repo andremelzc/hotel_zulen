@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.Combo;
 import modelo.Consumible;
 
@@ -31,13 +33,31 @@ public class ComboRepository implements IRepository<Combo> {
             if (rs.next()) {
                 return new Combo(
                         rs.getInt("idCOMBO"),
-                        rs.getInt("TipoComida"),    
+                        rs.getString("TipoComida"),
                         rs.getString("Descripcion"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null; // Si no se encuentra, retorna null
+    }
+
+    public List<Combo> obtenerTodosCombos() {
+        List<Combo> combos = new ArrayList<>();
+        String sql = "SELECT * FROM combo";
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Combo combo = new Combo(
+                        rs.getInt("idCOMBO"),
+                        rs.getString("TipoComida"),
+                        rs.getString("Descripcion"));
+                combos.add(combo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return combos;
     }
 
     @Override

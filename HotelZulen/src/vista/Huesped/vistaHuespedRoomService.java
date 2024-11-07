@@ -103,6 +103,7 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
 
     private void almuerzoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almuerzoBotonActionPerformed
         // TODO add your handling code here:
+        System.out.println("hola :V");
         vistaHuespedRoomServiceAlmuerzo serviceAlmuerzo = new vistaHuespedRoomServiceAlmuerzo();
         serviceAlmuerzo.setSize(1280, 720);
         serviceAlmuerzo.setLocation(0, 0);

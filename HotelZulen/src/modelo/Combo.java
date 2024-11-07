@@ -10,10 +10,10 @@ package modelo;
  */
 public class Combo {
     private int id;
-    private int tipoComida;
+    private String tipoComida;
     private String descripcion;
 
-    public Combo(int id, int tipoComida, String descripcion) {
+    public Combo(int id, String tipoComida, String descripcion) {
         this.id = id;
         this.tipoComida = tipoComida;
         this.descripcion = descripcion;
@@ -26,9 +26,11 @@ public class Combo {
         return id;
     }
 
-    public int getTipoComida() {
+    public String getTipoComida() {
         return tipoComida;
     }
+
+    
 
     public String getDescripcion() {
         return descripcion;
@@ -38,7 +40,7 @@ public class Combo {
         this.id = id;
     }
 
-    public void setTipoComida(int tipoComida) {
+    public void setTipoComida(String tipoComida) {
         this.tipoComida = tipoComida;
     }
 

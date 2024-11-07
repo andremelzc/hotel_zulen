@@ -4,8 +4,15 @@
  */
 package vista.Huesped;
 
+import Persistencia.ComboConsumibleRepository;
+import Persistencia.ComboRepository;
+import Persistencia.ConsumibleRepository;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Combo;
+import modelo.Consumible;
 import vista.Recepcionista.*;
 
 /**
@@ -15,29 +22,55 @@ import vista.Recepcionista.*;
 public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
 
     DefaultTableModel mt = new DefaultTableModel();
-    
 
     /**
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaHuespedRoomServiceAlmuerzo() {
-        
+
         initComponents();
-        
+
         String ids[] = {"ID", "Combo", "Precio"};
         mt.setColumnIdentifiers(ids);
         System.out.println("dsada");
         tablaCombos.setModel(mt);
 
-        Object[][] data = {
-            {1, "Combo 1", 15.50},
-            {2, "Combo 2", 20.00},
-            {3, "Combo 3", 12.75}
-        };
+        // Inicializar para tener todos los combos
+        List<Combo> combos = new ArrayList<>();
+        System.out.println("hola");
+        ComboRepository comborepo = new ComboRepository();
+        ComboConsumibleRepository comboconsurepo = new ComboConsumibleRepository();
 
-        for (Object[] row : data) {
-            mt.addRow(row);
+        // Todos los combos
+        combos = comborepo.obtenerTodosCombos();
+        
+        
+        for (Combo combo : combos) {
+            
+            // Solo combos del almuerzo
+            if (combo.getTipoComida().equals("Almuerzo")) {
+
+                // Inicializar para tener todos los consumibles por cada combo
+                List<Consumible> consumibles = comboconsurepo.obtenerConsumiblesPorCombo(combo.getId());
+
+                // Hallamos el precio del combo
+                float precio = 0;
+
+                // Iteramos los consumibles del combo
+                for (Consumible consumible : consumibles) {
+                    precio = precio + consumible.getPrecio();
+                }
+                
+                System.out.println(combo.getId());
+                System.out.println(combo.getDescripcion());
+                System.out.println(precio);
+                
+                Object[] fila = {combo.getId(), combo.getDescripcion(), precio};
+                mt.addRow(fila);
+            }
+
         }
+        
     }
 
     /**
@@ -68,7 +101,7 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tablaCombos);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, 330));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, 330));
     }// </editor-fold>//GEN-END:initComponents
 
 

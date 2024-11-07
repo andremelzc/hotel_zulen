@@ -8,9 +8,9 @@ import java.sql.SQLException;
  * @author Suyco
  */
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/hotel_zulen";
+    private static final String URL = "jdbc:mysql://junction.proxy.rlwy.net:22916/hotel_zulen";
     private static final String USER = "root";
-    private static final String PASSWORD = "Pablopalero1?";
+    private static final String PASSWORD = "DhoWeLnJVtryReFIrjeQzoaKpaspVyjO";
 
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
@@ -23,6 +23,7 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             System.out.println("Error de conexión: " + e.getMessage());
         }
-
     }
+    
+    
 }
