@@ -7,6 +7,7 @@ package modelo;
 import Persistencia.InicioSesionRepository;
 import java.io.IOException;
 import vista.Admin.vistaAdministrador;
+import vista.Huesped.vistaHuesped;
 import vista.Recepcionista.vistaRecepcionista;
 
 /**
@@ -16,6 +17,7 @@ import vista.Recepcionista.vistaRecepcionista;
 public class InicioSession {
     
     private static Personal usuarioActual;
+    private static Huesped huespedActual;
     
     public static void iniciarSesion(String usuario, String contraseña) throws IOException {
         InicioSesionRepository identificarUsuario = new InicioSesionRepository();
@@ -23,6 +25,18 @@ public class InicioSession {
 
         if (usuarioActual != null) {
             mostrarVistaCorrespondiente();
+        } else {
+            System.out.println("Usuario o contraseña incorrectos.");
+        }
+    }
+    
+    public static void iniciarSesionHuesped(String usuario, String contraseña) throws IOException{
+        InicioSesionRepository identificarUsuario = new InicioSesionRepository();
+        huespedActual = identificarUsuario.iniciarSesionHuesped(usuario, contraseña);
+        
+        if (huespedActual != null){
+            vistaHuesped vistaHuesped = new vistaHuesped();
+            vistaHuesped.setVisible(true);
         } else {
             System.out.println("Usuario o contraseña incorrectos.");
         }

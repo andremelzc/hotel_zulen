@@ -36,6 +36,22 @@ public class Huesped   {
         this.repo = new HuespedRepository();
     }
 
+    public Huesped(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado, Boolean esTitular, LocalDateTime FechaCrea, LocalDateTime FechaMod) {
+        this.DNI = DNI;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.estado = estado;
+        this.esTitular = esTitular;
+        this.FechaCrea = FechaCrea;
+        this.FechaMod = FechaMod;
+    }
+    
+    
+
     public Huesped() {
         this.repo = new HuespedRepository();
     }
