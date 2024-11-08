@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author PC
@@ -13,13 +15,21 @@ public class ReservacionHabitacionCombo {
     private Habitacion habitacion;
     private TipoDeHabitacion tipoDeHabitacion;
     private Combo combo;
+    private String estado;
+    private LocalDateTime fechaPedido;
+    private LocalDateTime fechaEnvio;
 
-    public ReservacionHabitacionCombo(Reservacion reservacion, Habitacion habitacion, TipoDeHabitacion tipoDeHabitacion, Combo combo) {
+    public ReservacionHabitacionCombo(Reservacion reservacion, Habitacion habitacion, TipoDeHabitacion tipoDeHabitacion, Combo combo, String estado, LocalDateTime fechaPedido, LocalDateTime fechaEnvio) {
         this.reservacion = reservacion;
         this.habitacion = habitacion;
         this.tipoDeHabitacion = tipoDeHabitacion;
         this.combo = combo;
+        this.estado = estado;
+        this.fechaPedido = fechaPedido;
+        this.fechaEnvio = fechaEnvio;
     }
+
+    
 
     public ReservacionHabitacionCombo() {
     }
@@ -54,6 +64,30 @@ public class ReservacionHabitacionCombo {
 
     public void setCombo(Combo combo) {
         this.combo = combo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public LocalDateTime getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public LocalDateTime getFechaEnvio() {
+        return fechaEnvio;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setFechaPedido(LocalDateTime fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
+    public void setFechaEnvio(LocalDateTime fechaEnvio) {
+        this.fechaEnvio = fechaEnvio;
     }
     
     
