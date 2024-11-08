@@ -187,7 +187,7 @@ public class vistaHuesped extends javax.swing.JFrame {
                 cerrarSesionActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 220, 50));
+        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 640, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
