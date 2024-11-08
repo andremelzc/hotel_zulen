@@ -23,6 +23,7 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             System.out.println("Error de conexión: " + e.getMessage());
         }
-
     }
+    
+    
 }

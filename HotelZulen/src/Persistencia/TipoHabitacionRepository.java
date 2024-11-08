@@ -4,15 +4,6 @@
  */
 package Persistencia;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import modelo.Habitacion;
 import modelo.TipoDeHabitacion;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,12 +19,15 @@ public class TipoHabitacionRepository implements IRepository<TipoDeHabitacion> {
 
     @Override
     public void crear(TipoDeHabitacion objeto) {
-         String sql = "INSERT INTO tipo_hab (idCategoria, Precio, Descripcion) VALUES (?, ?, ?)";
+         String sql = "INSERT INTO tipo_hab (idCategoria, Concepto,Precio, Estado) VALUES (?,?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, objeto.getId());
-            stmt.setDouble(2, objeto.getPrecio());
-            stmt.setString(3, objeto.getConcepto());
+            stmt.setString(2, objeto.getConcepto());
+            stmt.setInt(3, (int)objeto.getPrecio());
+            stmt.setString(4, objeto.getEstado());
+            
+            
             stmt.executeUpdate();
             System.out.println("Tipo de habitación creado con éxito.");
         } catch (SQLException e) {
@@ -51,9 +45,9 @@ public class TipoHabitacionRepository implements IRepository<TipoDeHabitacion> {
             if (rs.next()) {
                 return new TipoDeHabitacion(
                     rs.getInt("idCategoria"),
-                    rs.getString("Descripcion"),
+                    rs.getString("Concepto"),
                     rs.getDouble("Precio"),
-                    rs.getString("Descripcion")
+                    rs.getString("Estado")
                 );
             }
         } catch (SQLException e) {

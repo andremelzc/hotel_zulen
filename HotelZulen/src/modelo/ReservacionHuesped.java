@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Suyco
  */
-public class ReservacionHuesped {
+public class ReservacionHuesped implements IActualizar<ReservacionHuesped> {
     Reservacion reserva;
     Huesped huesped;
 

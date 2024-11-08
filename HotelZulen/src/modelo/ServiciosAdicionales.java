@@ -16,13 +16,12 @@ import java.util.List;
  *
  * @author Suyco
  */
-public class ServiciosAdicionales {
+public class ServiciosAdicionales implements IActualizar<ServiciosAdicionales> {
     int id;
     String concepto;
     double costo;
     String estado;
     private ServiciosAdicionalesRepository repository;
-
 
     public ServiciosAdicionales() {
         this.repository= new ServiciosAdicionalesRepository();
@@ -32,6 +31,7 @@ public class ServiciosAdicionales {
         this.concepto = concepto;
         this.costo = costo;
         this.estado = estado;
+        this.repository= new ServiciosAdicionalesRepository();
     }
     
     public ServiciosAdicionales(int id, String concepto, double costo, String estado) {
@@ -39,6 +39,7 @@ public class ServiciosAdicionales {
         this.concepto = concepto;
         this.costo = costo;
         this.estado = estado;
+        this.repository= new ServiciosAdicionalesRepository();
     }
 
     public int getId() {
@@ -76,5 +77,9 @@ public class ServiciosAdicionales {
         ServiciosAdicionales nuevoServicio = new ServiciosAdicionales(concepto, costo, estado);
         repository.crear(nuevoServicio); // Llama al método del repositorio para guardar el nuevo servicio
         System.out.println("Servicio adicional agregado exitosamente.");
+    }
+    
+    public void obtenerServicioxString (String concepto){
+        repository.obtenerxString(concepto);
     }
 }

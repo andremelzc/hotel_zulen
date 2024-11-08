@@ -4,6 +4,13 @@
  */
 package vista.Huesped;
 
+import Persistencia.ComboConsumibleRepository;
+import Persistencia.ComboRepository;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Combo;
+import modelo.Consumible;
 import vista.Recepcionista.*;
 
 /**
@@ -12,11 +19,54 @@ import vista.Recepcionista.*;
  */
 public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
 
+    DefaultTableModel mt = new DefaultTableModel();
+
     /**
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaHuespedRoomServiceCena() {
         initComponents();
+
+        String ids[] = {"ID", "Combo", "Precio"};
+        mt.setColumnIdentifiers(ids);
+        System.out.println("dsada");
+        tablaCombos.setModel(mt);
+
+        // Inicializar para tener todos los combos
+        List<Combo> combos = new ArrayList<>();
+        System.out.println("hola");
+        ComboRepository comborepo = new ComboRepository();
+        ComboConsumibleRepository comboconsurepo = new ComboConsumibleRepository();
+
+        // Todos los combos
+        combos = comborepo.obtenerTodosCombos();
+
+        for (Combo combo : combos) {
+
+            // Solo combos del almuerzo
+            if (combo.getTipoComida().equals("Cena")) {
+
+                // Inicializar para tener todos los consumibles por cada combo
+                List<Consumible> consumibles = comboconsurepo.obtenerConsumiblesPorCombo(combo.getId());
+
+                // Hallamos el precio del combo
+                float precio = 0;
+
+                // Iteramos los consumibles del combo
+                for (Consumible consumible : consumibles) {
+                    precio = precio + consumible.getPrecio();
+                }
+
+                System.out.println(combo.getId());
+                System.out.println(combo.getDescripcion());
+                System.out.println(precio);
+
+                Object[] fila = {combo.getId(), combo.getDescripcion(), precio};
+                mt.addRow(fila);
+            }
+
+        }
+
     }
 
     /**
@@ -28,18 +78,143 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCombos = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        precioSeleccionadoField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        comboSeleccionadoField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        pedirBoton = new javax.swing.JButton();
+        borrarBoton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("cenaa");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, -1, -1));
+        tablaCombos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Combo", "Precio"
+            }
+        ));
+        tablaCombos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaCombosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaCombos);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, 330));
+
+        jPanel1.setBackground(new java.awt.Color(141, 153, 174));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel2.setText("Combo");
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        precioSeleccionadoField.setBackground(new java.awt.Color(221, 221, 221));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel3.setText("Precio");
+        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        comboSeleccionadoField.setBackground(new java.awt.Color(221, 221, 221));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                    .addComponent(precioSeleccionadoField))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 500, 190));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel4.setText("Seleccione el combo que desee pedir");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, -1, -1));
+
+        pedirBoton.setBackground(new java.awt.Color(239, 35, 60));
+        pedirBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        pedirBoton.setText("Pedir");
+        pedirBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pedirBotonActionPerformed(evt);
+            }
+        });
+        add(pedirBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, 240, 50));
+
+        borrarBoton.setBackground(new java.awt.Color(239, 35, 60));
+        borrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        borrarBoton.setText("Borrar");
+        borrarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarBotonActionPerformed(evt);
+            }
+        });
+        add(borrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 320, 240, 50));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pedirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedirBotonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_pedirBotonActionPerformed
+
+    private void borrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarBotonActionPerformed
+        // TODO add your handling code here:
+        comboSeleccionadoField.setText("");
+        precioSeleccionadoField.setText("");
+    }//GEN-LAST:event_borrarBotonActionPerformed
+
+    private void tablaCombosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCombosMouseClicked
+        // TODO add your handling code here:
+        int fila = tablaCombos.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel)tablaCombos.getModel();
+        
+        // Obtener valores
+        comboSeleccionadoField.setText(model.getValueAt(fila, 1).toString());
+        precioSeleccionadoField.setText(model.getValueAt(fila, 2).toString());
+    }//GEN-LAST:event_tablaCombosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton borrarBoton;
+    private javax.swing.JTextField comboSeleccionadoField;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton pedirBoton;
+    private javax.swing.JTextField precioSeleccionadoField;
+    private javax.swing.JTable tablaCombos;
     // End of variables declaration//GEN-END:variables
 }

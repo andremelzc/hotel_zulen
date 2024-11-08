@@ -1,6 +1,8 @@
 package modelo;
 
+
 import Persistencia.HuespedRepository;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +17,9 @@ public class Huesped   {
     String contrasena;
     String estado;
     Boolean esTitular;
-    private HuespedRepository repository;
+    LocalDateTime FechaCrea;
+    LocalDateTime FechaMod;
+    private HuespedRepository repo;
 
     public Huesped(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado, Boolean esTitular) {
         this.DNI = DNI;
@@ -27,10 +31,13 @@ public class Huesped   {
         this.contrasena = contrasena;
         this.estado = estado;
         this.esTitular = esTitular;
+        this.FechaCrea = LocalDateTime.now();
+        this.FechaMod = LocalDateTime.now();
+        this.repo = new HuespedRepository();
     }
 
     public Huesped() {
-        this.repository= new HuespedRepository();
+        this.repo = new HuespedRepository();
     }
 
     public int getDNI() {
@@ -104,12 +111,35 @@ public class Huesped   {
     public void setEsTitular(Boolean esTitular) {
         this.esTitular = esTitular;
     }
-    
-    public void agregarHuesped(int DNI,String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado, Boolean esTitular) {
-        Huesped nuevoHuesped = new Huesped(DNI,nombre,apellido,telefono,direccion,usuario,contrasena,estado,esTitular);
-        repository.crear(nuevoHuesped);
+
+    public LocalDateTime getFechaCrea() {
+        return FechaCrea;
+    }
+
+    public void setFechaCrea(LocalDateTime FechaCrea) {
+        this.FechaCrea = FechaCrea;
     }
     
+    public LocalDateTime getFechaMod() {
+        return FechaMod;
+    }
+
+    public void setFechaMod() {
+        this.FechaMod = LocalDateTime.now();
+    }
+
+    public void setFechaMod(LocalDateTime FechaMod) {
+        this.FechaMod = FechaMod;
+    }
+
+    
+    public void agregarHuesped(int DNI, String nombre,String  apellido,int  telefono,String  direccion,String  usuario, String contrasena,String  estado,Boolean esTitular){
+        Huesped huesped = new Huesped(DNI, nombre, apellido, telefono, direccion, usuario, contrasena, estado, esTitular);
+        repo.crear(huesped);
+    }
+    public void eliminarHuesped(){
+        
+    }
 
 
 }

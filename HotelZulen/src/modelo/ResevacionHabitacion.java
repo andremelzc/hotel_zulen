@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Suyco
  */
-public class ResevacionHabitacion  {
+public class ResevacionHabitacion implements IActualizar<ResevacionHabitacion> {
     private Reservacion reserva;
     private Habitacion habitacion;
 

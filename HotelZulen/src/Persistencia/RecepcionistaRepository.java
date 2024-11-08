@@ -4,8 +4,6 @@
  */
 package Persistencia;
 
-import java.io.IOException;
-import java.util.List;
 import modelo.Recepcionista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

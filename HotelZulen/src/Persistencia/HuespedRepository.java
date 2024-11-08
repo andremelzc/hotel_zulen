@@ -1,16 +1,6 @@
 package Persistencia;
 
-import Persistencia.IRepository;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 import modelo.Habitacion;
 import modelo.Huesped;
@@ -18,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -27,7 +19,7 @@ public class HuespedRepository implements IRepository<Huesped>{
     
     @Override
     public void crear(Huesped huesped) {
-        String sql = "INSERT INTO huespedes (DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO huespedes (DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular,FechaCrea,FechaMod) VALUES (?, ?, ?, ?, ?, ?,?,?, ?, ?, ?)";
         
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -41,7 +33,8 @@ public class HuespedRepository implements IRepository<Huesped>{
             stmt.setString(7, huesped.getContrasena());
             stmt.setString(8, huesped.getEstado());
             stmt.setBoolean(9, huesped.getEsTitular());
-
+            stmt.setTimestamp(10, Timestamp.valueOf(huesped.getFechaCrea())); 
+            stmt.setTimestamp(11, Timestamp.valueOf(huesped.getFechaMod() ));
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Huesped "+huesped.getNombre()+" creado exitosamente!");
@@ -55,7 +48,7 @@ public class HuespedRepository implements IRepository<Huesped>{
 
     @Override
     public Huesped obtener(int dni) {
-        String sql = "SELECT DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contrasena, Estado, EsTitular FROM huespedes WHERE DNI = ?";
+        String sql = "SELECT DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular,FechaCrea,FechaMod FROM huespedes WHERE DNI = ?";
         Huesped huesped = null;
 
         try (Connection connection = DatabaseConnection.getConnection();
@@ -72,10 +65,14 @@ public class HuespedRepository implements IRepository<Huesped>{
                 huesped.setTelefono( Integer.parseInt(rs.getString("Telefono")));
                 huesped.setDireccion(rs.getString("Direccion"));
                 huesped.setUsuario(rs.getString("Usuario"));
-                huesped.setContrasena(rs.getString("Contrasena"));
+                huesped.setContrasena(rs.getString("Contraseña"));
                 huesped.setEstado(rs.getString("Estado"));
                 huesped.setEsTitular(rs.getBoolean("EsTitular"));
-        
+                LocalDateTime fechaCrea = rs.getObject("FechaCrea", LocalDateTime.class);
+                huesped.setFechaCrea(fechaCrea);
+                LocalDateTime fechaMod = rs.getObject("FechaMod", LocalDateTime.class);
+                huesped.setFechaCrea(fechaMod);
+
                 return huesped;
             }
 
@@ -137,7 +134,7 @@ public void actualizar(Huesped huesped) {
     }
     
 public void crearHuespedes(List<Huesped> huespedes) {
-    String sql = "INSERT INTO huespedes (DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO huespedes (DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular,FechaCrea,FechaMod) VALUES (?, ?, ?, ?, ?, ?,?,?, ?, ?, ?)";
 
     try (Connection connection = DatabaseConnection.getConnection();
          PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -152,6 +149,9 @@ public void crearHuespedes(List<Huesped> huespedes) {
             stmt.setString(7, huesped.getContrasena());
             stmt.setString(8, huesped.getEstado());
             stmt.setBoolean(9, huesped.getEsTitular());
+            stmt.setTimestamp(10, Timestamp.valueOf(huesped.getFechaCrea())); 
+            stmt.setTimestamp(11, Timestamp.valueOf(huesped.getFechaMod() ));
+            
 
             stmt.addBatch(); // Agregar a la tanda de inserciones
         }

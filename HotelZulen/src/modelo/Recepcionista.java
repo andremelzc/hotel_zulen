@@ -4,19 +4,14 @@
  */
 package modelo;
 
-import Persistencia.RecepcionistaRepository;
-
 /**
  *
  * @author Fabrizio Mantari
  */
 
 public class Recepcionista extends Personal{
-    
-    private RecepcionistaRepository repository;
-    
+
     public Recepcionista() {
-        this.repository= new RecepcionistaRepository();
     }
 
     public Recepcionista(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado) {
@@ -94,11 +89,7 @@ public class Recepcionista extends Personal{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    public void agregarRecepcionista(int DNI, String funcion,String nombre,String apellido,int telefono,String direccion,String usuario,String contrasena,String estado){
-        Recepcionista recep=new Recepcionista(DNI, funcion, nombre, apellido, telefono, direccion, usuario, contrasena, estado);
-        repository.crear(recep);
-    }
+
     
 }
 

@@ -4,12 +4,6 @@
  */
 package Persistencia;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -23,7 +17,7 @@ import modelo.ResevacionHabitacion;
 public class ReservacionHabitacionesRepository implements IRepository<ResevacionHabitacion> {
     
     public void asociarReservaHabitacion(int idReservacion, List<Habitacion> habitaciones) {
-        String sql = "INSERT INTO habitaciones_has_reservaciones (HABITACIONES_idHabitaciones, HABITACIONES_TIPO_HAB_idCategoria, RESERVACIONES_idReservaciones) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO reservaciones_has_habitaciones (HABITACIONES_idHabitaciones, HABITACIONES_TIPO_HAB_idCategoria, RESERVACIONES_idReservaciones) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection()) {
             connection.setAutoCommit(false);  // Iniciar la transacción
