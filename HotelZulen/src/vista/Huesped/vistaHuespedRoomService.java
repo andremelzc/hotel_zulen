@@ -8,18 +8,19 @@ import java.awt.BorderLayout;
 import vista.AmaLlaves.*;
 import vista.JefeCocina.*;
 import vista.Admin.*;
-
+import modelo.Huesped;
 /**
  *
  * @author PC
  */
 public class vistaHuespedRoomService extends javax.swing.JPanel {
-
+    public Huesped huesped;
     /**
      * Creates new form vistaAdministradorPersonal
      */
-    public vistaHuespedRoomService() {
+    public vistaHuespedRoomService(Huesped huesped) {
         initComponents();
+        this.huesped = huesped;
     }
 
     /**
@@ -103,7 +104,7 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
 
     private void desayunoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desayunoBotonActionPerformed
         // TODO add your handling code here:
-        vistaHuespedRoomServiceDesayuno serviceDesayuno = new vistaHuespedRoomServiceDesayuno();
+        vistaHuespedRoomServiceDesayuno serviceDesayuno = new vistaHuespedRoomServiceDesayuno(huesped);
         serviceDesayuno.setSize(1280, 720);
         serviceDesayuno.setLocation(0, 0);
         subcontent.removeAll();
@@ -114,8 +115,7 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
 
     private void almuerzoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almuerzoBotonActionPerformed
         // TODO add your handling code here:
-        System.out.println("hola :V");
-        vistaHuespedRoomServiceAlmuerzo serviceAlmuerzo = new vistaHuespedRoomServiceAlmuerzo();
+        vistaHuespedRoomServiceAlmuerzo serviceAlmuerzo = new vistaHuespedRoomServiceAlmuerzo(huesped);
         serviceAlmuerzo.setSize(1280, 720);
         serviceAlmuerzo.setLocation(0, 0);
         subcontent.removeAll();
@@ -126,7 +126,7 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
 
     private void cenaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cenaBotonActionPerformed
         // TODO add your handling code here:
-        vistaHuespedRoomServiceCena serviceCena = new vistaHuespedRoomServiceCena();
+        vistaHuespedRoomServiceCena serviceCena = new vistaHuespedRoomServiceCena(huesped);
         serviceCena.setSize(1280, 720);
         serviceCena.setLocation(0, 0);
         subcontent.removeAll();

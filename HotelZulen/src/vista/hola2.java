@@ -15,6 +15,7 @@ import modelo.ComboConsumible;
 import Persistencia.DatabaseConnection;
 import modelo.Huesped;
 import Persistencia.*;
+import modelo.*;
 
 /**
  *
@@ -23,10 +24,10 @@ import Persistencia.*;
 public class hola2 {
 
     public static void main(String args[]) {
-        Huesped huesped = new Huesped();
-        InicioSesionRepository inicioSesionRepository = new InicioSesionRepository();
-        huesped = inicioSesionRepository.iniciarSesionHuesped("andrecuenca", "andrecuenca00");
-        System.out.println(huesped.getApellido());
-
+        HabitacionRepository habitacionRepository = new HabitacionRepository();
+        Habitacion habitacion = new Habitacion();
+        
+        habitacion = habitacionRepository.obtener(1);
+        System.out.println(habitacion.getTipoHabitacion().getConcepto());
     }
 }

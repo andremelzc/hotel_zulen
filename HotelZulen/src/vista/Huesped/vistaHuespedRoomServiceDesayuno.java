@@ -12,21 +12,22 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Combo;
 import modelo.Consumible;
 import vista.Recepcionista.*;
-
+import modelo.Huesped;
 /**
  *
  * @author PC
  */
 public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
-
+    public Huesped huesped;
     DefaultTableModel mt = new DefaultTableModel();
 
     /**
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
-    public vistaHuespedRoomServiceDesayuno() {
+    public vistaHuespedRoomServiceDesayuno(Huesped huesped) {
         initComponents();
-
+        this.huesped = huesped;
+        
         String ids[] = {"ID", "Combo", "Precio"};
         mt.setColumnIdentifiers(ids);
         System.out.println("dsada");

@@ -17,6 +17,11 @@ import java.sql.ResultSet;
  */
 public class TipoHabitacionRepository implements IRepository<TipoDeHabitacion> {
 
+    public TipoHabitacionRepository() {
+    }
+
+    
+    
     @Override
     public void crear(TipoDeHabitacion objeto) {
          String sql = "INSERT INTO tipo_hab (idCategoria, Concepto,Precio, Estado) VALUES (?,?, ?, ?)";
@@ -55,6 +60,7 @@ public class TipoHabitacionRepository implements IRepository<TipoDeHabitacion> {
         }
         return null; // Si no se encuentra, retorna null
     }
+    
     @Override
     public void actualizar(TipoDeHabitacion objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

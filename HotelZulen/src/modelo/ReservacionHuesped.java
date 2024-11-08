@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,8 @@ public class ReservacionHuesped implements IActualizar<ReservacionHuesped> {
         this.reserva = reserva;
         this.huesped = huesped;
     }
-
+    
+ 
     public Reservacion getReserva() {
         return reserva;
     }
@@ -37,6 +39,5 @@ public class ReservacionHuesped implements IActualizar<ReservacionHuesped> {
     public void setHuesped(Huesped huesped) {
         this.huesped = huesped;
     }
-
     
 }

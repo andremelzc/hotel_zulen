@@ -13,13 +13,41 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.sql.Statement; // <-- Agrega esta línea
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import modelo.Combo;
 
 public class ReservacionRepository implements IRepository <Reservacion>{ 
     
     
     @Override
     public Reservacion obtener(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT * FROM reservaciones WHERE idReservaciones = ?";
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                
+                Timestamp fechaComienzoSQL = rs.getTimestamp("FechaInicio");
+                LocalDateTime fechaComienzo = fechaComienzoSQL.toLocalDateTime();
+                
+                Timestamp fechaFinSQL = rs.getTimestamp("FechaFinal");
+                LocalDateTime fechaFin = fechaFinSQL.toLocalDateTime();
+                
+                Timestamp fechaCreacionSQL = rs.getTimestamp("FechaCreacion");
+                LocalDateTime fechaCreacion = fechaCreacionSQL.toLocalDateTime();
+                
+                return new Reservacion(
+                        rs.getInt("idReservaciones"), 
+                        rs.getInt("NumeroHabitaciones"), 
+                        rs.getString("Estado"), 
+                        fechaComienzo, 
+                        fechaFin, 
+                        fechaCreacion);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Si no se encuentra, retorna null
     }
 
     @Override

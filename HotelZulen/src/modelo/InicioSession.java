@@ -35,7 +35,7 @@ public class InicioSession {
         huespedActual = identificarUsuario.iniciarSesionHuesped(usuario, contraseña);
         
         if (huespedActual != null){
-            vistaHuesped vistaHuesped = new vistaHuesped();
+            vistaHuesped vistaHuesped = new vistaHuesped(huespedActual);
             vistaHuesped.setVisible(true);
         } else {
             System.out.println("Usuario o contraseña incorrectos.");
