@@ -4,6 +4,18 @@
  */
 package vista.JefeCocina;
 
+import java.awt.BorderLayout;
+import Persistencia.ComboConsumibleRepository;
+import Persistencia.ReservacionHabitacionComboRepository;
+import Persistencia.ComboRepository;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import modelo.Combo;
+import modelo.Consumible;
 import vista.Admin.*;
 
 /**
@@ -11,12 +23,98 @@ import vista.Admin.*;
  * @author PC
  */
 public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
-
+    
+    DefaultTableModel model = new DefaultTableModel();
+       
     /**
      * Creates new form vistaAdministradorPersonal
      */
     public vistaJefeCocinaEstadisticas() {
         initComponents();
+        
+        String ids[] = {"ID", "Combo", "Total Ganancias"};
+        model.setColumnIdentifiers(ids); //es como q actualizar el modelo con nuevos cambios
+        contentTableEst.setModel(model);
+        
+        //Incializar para obtener todos los pedidos de combos
+        List<Combo> combos = new ArrayList<>();
+        ComboRepository comborepo = new ComboRepository();
+        ComboConsumibleRepository comboConsuRepo = new ComboConsumibleRepository();
+        
+        //obtener todos los combos de la bd
+        combos = comborepo.obtenerTodosCombos();
+        
+        // Matriz para almacenar los datos antes de añadirlos a la tabla
+        Object[][] datosCombos = new Object[combos.size()][3];
+        int index = 0;
+        for (Combo combo : combos){
+            // Inicializar para tener todos los consumibles por id de combo
+            List<Consumible> consumibles = comboConsuRepo.obtenerConsumiblesPorCombo(combo.getId());
+            
+            //Hallamos el precio del combo
+            float precio=0;
+            
+            //Iteramos los consumibles del combo 
+            for (Consumible consumible : consumibles) {
+                    precio = precio + consumible.getPrecio();
+            }
+            
+            System.out.println(combo.getId());
+            System.out.println(combo.getDescripcion());
+            System.out.println(precio);
+            
+            Object[] fila = {combo.getId(), combo.getDescripcion(), precio};
+            datosCombos[index++] = fila;
+            
+            
+            
+        }
+        
+        ReservacionHabitacionComboRepository repo = new ReservacionHabitacionComboRepository();
+        
+        Map<Integer,Integer> estadisticas = repo.obtenerCantPedidos();
+        
+        for ( Object[] row : datosCombos ){
+            Integer cantidad = estadisticas.get(row[0]);
+            if (cantidad != null && cantidad != 0) {
+                System.out.println("El total de cantidad para el combo " + row[0]+ " es: " + cantidad);
+                float totalPrecio = ((Float) row[2])*cantidad;
+                row[2] = totalPrecio;              
+                
+                
+            } else {
+                System.out.println("No se encontró el combo con ID " + row[0]);
+            }
+        }
+        
+        // Ordenar la matriz por el tercer elemento (Total Ganancias)
+        Arrays.sort(datosCombos, (fila1,fila2)->{
+            Float valor1 = (Float) fila1[2];
+            Float valor2 = (Float) fila2[2];
+            return valor2.compareTo(valor1);
+        });
+        
+        // Añadir las filas ordenadas al modelo de la tabla
+        for(Object[] row : datosCombos){
+            model.addRow(row);
+        }
+        
+    }
+    
+    public static void main(String args[]){
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
+            // new vistaJefeCocinaEstadisticas().setVisible(true); //solo consola
+            JFrame frame = new JFrame("Vista Jefe Cocina Estadísticas");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.getContentPane().add(new vistaJefeCocinaEstadisticas());
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+
+            }
+        });
+            
     }
 
     /**
@@ -38,18 +136,10 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         content = new javax.swing.JPanel();
         BebidasName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        title1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        contentTableEst = new javax.swing.JTable();
+        title2 = new javax.swing.JLabel();
         cerrarSesion = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(221, 221, 221));
@@ -165,41 +255,24 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         BebidasName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         BebidasName.setText("Combos");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Más vendidos:");
+        title1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        title1.setText("Resumen de pedidos del día");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Menos vendidos:");
+        contentTableEst.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Combo", "Total Ganancias"
+            }
+        ));
+        jScrollPane1.setViewportView(contentTableEst);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("1-");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("1-");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("1-");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("1-");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("1-");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("1-");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("1-");
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setText("1-");
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setText("1-");
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel12.setText("1-");
+        title2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        title2.setText("(De más a menos ganancias)");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,57 +281,27 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jLabel1)
-                        .addGap(333, 333, 333)
-                        .addComponent(jLabel3))
+                        .addGap(285, 285, 285)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(310, 310, 310)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(424, 424, 424)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8))))
-                .addContainerGap(346, Short.MAX_VALUE))
+                            .addComponent(title2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(title1)))))
+                .addContainerGap(644, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
+                .addComponent(title1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(title2)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(295, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
@@ -266,23 +309,23 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(37, 37, 37)
                 .addComponent(BebidasName)
-                .addGap(50, 50, 50)
+                .addGap(48, 48, 48)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
                 .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(70, 70, 70)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contentLayout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(BebidasName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(166, Short.MAX_VALUE))
+                        .addGap(271, 271, 271)
+                        .addComponent(BebidasName)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1280, 520));
@@ -388,23 +431,15 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
     private javax.swing.JButton cartaBoton;
     private javax.swing.JButton cerrarSesion;
     private javax.swing.JPanel content;
+    private javax.swing.JTable contentTableEst;
     private javax.swing.JButton estadisticasBoton;
     private javax.swing.JLabel iniciarSesion;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelIzquierda;
     private javax.swing.JButton pedidosBoton;
     private javax.swing.JButton principalBoton;
+    private javax.swing.JLabel title1;
+    private javax.swing.JLabel title2;
     // End of variables declaration//GEN-END:variables
 }

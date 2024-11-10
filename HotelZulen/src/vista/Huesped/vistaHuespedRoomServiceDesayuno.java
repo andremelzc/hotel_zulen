@@ -41,6 +41,11 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
         // Todos los combos
         combos = comborepo.obtenerTodosCombos();
 
+        // Matriz para almacenar los datos del coste por combo
+        Object[][] datosCombos = new Object[combos.size()][3];
+
+        int index = 0;
+        
         for (Combo combo : combos) {
 
             // Solo combos del almuerzo
@@ -61,6 +66,13 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
                 System.out.println(combo.getDescripcion());
                 System.out.println(precio);
 
+                 // Almacenar los valores en la matriz
+                datosCombos[index][0] = combo.getId();
+                datosCombos[index][1] = combo.getDescripcion();
+                datosCombos[index][2] = precio; // Aquí sería el total de ganancias si tienes los datos de cantidad de ventas
+
+                index++;
+                
                 Object[] fila = {combo.getId(), combo.getDescripcion(), precio};
                 mt.addRow(fila);
             }
