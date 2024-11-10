@@ -9,6 +9,7 @@ import java.io.IOException;
 import vista.Admin.vistaAdministrador;
 import vista.Huesped.vistaHuesped;
 import vista.Recepcionista.vistaRecepcionista;
+import vista.JefeCocina.vistaJefeCocina;
 
 /**
  *
@@ -60,6 +61,8 @@ public class InicioSession {
         } else if (usuarioActual instanceof KitchenManager){
             KitchenManager jefeCocina = (KitchenManager) usuarioActual;
             System.out.println("Abriendo vista del jefe de cocina");
+            vistaJefeCocina vistaCocina = new vistaJefeCocina();
+            vistaCocina.setVisible(true);
             //new VistaKitchenManager().mostrar()
         } else {
             System.out.println("Tipo de usuario no reconocido.");
