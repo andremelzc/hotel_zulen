@@ -62,6 +62,26 @@ public class ReservacionHabitacionesRepository implements IRepository<Resevacion
         }
         return habitaciones;
     }
+    
+    public boolean relacionHabitacionReserva(int idHabitacion, int idReserva) {
+    boolean relacion = false;
+    String sql = "SELECT * FROM reservaciones_has_habitaciones WHERE RESERVACIONES_idReservaciones = ? AND HABITACIONES_idHabitaciones = ?";
+    
+    try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, idReserva);
+        stmt.setInt(2, idHabitacion);
+        ResultSet rs = stmt.executeQuery();
+        
+        // If there's a result, then the room is related to the reservation
+        if (rs.next()) {
+            relacion = true;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+    return relacion;
+}
 
     @Override
     public void crear(ResevacionHabitacion objeto) {

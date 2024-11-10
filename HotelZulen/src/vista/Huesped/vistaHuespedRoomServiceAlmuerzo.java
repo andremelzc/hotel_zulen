@@ -20,6 +20,7 @@ import vista.Recepcionista.*;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionHabitacionesRepository;
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import modelo.Habitacion;
 
 /**
@@ -127,6 +128,8 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         reservacionesCombo = new javax.swing.JComboBox<>();
         Reservación1 = new javax.swing.JLabel();
         habitacionesCombo = new javax.swing.JComboBox<>();
+        cantidadField = new javax.swing.JTextField();
+        Reservación2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         pedirBoton = new javax.swing.JButton();
         borrarBoton = new javax.swing.JButton();
@@ -186,6 +189,13 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         habitacionesCombo.setBackground(new java.awt.Color(221, 221, 221));
         habitacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        cantidadField.setBackground(new java.awt.Color(221, 221, 221));
+
+        Reservación2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación2.setForeground(new java.awt.Color(45, 45, 44));
+        Reservación2.setText("Cantidad");
+        Reservación2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -194,45 +204,54 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(191, 191, 191)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Reservación2)
+                                    .addComponent(cantidadField)))
                             .addComponent(jLabel2)
-                            .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                            .addComponent(precioSeleccionadoField))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(reservacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(habitacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Reservación)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Reservación1)
-                        .addGap(129, 129, 129))))
+                        .addGap(129, 129, 129))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(reservacionesCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 212, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(habitacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Reservación)
-                        .addComponent(Reservación1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Reservación2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cantidadField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Reservación)
+                    .addComponent(Reservación1))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reservacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(habitacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 500, 260));
@@ -265,26 +284,40 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
 
     private void pedirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedirBotonActionPerformed
         // TODO add your handling code here:
+
+        
         int fila = tablaCombos.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tablaCombos.getModel();
         int idCombo = Integer.parseInt(model.getValueAt(fila, 0).toString());
         
+        int cantidad = Integer.parseInt(cantidadField.getText());
+        
         ReservacionHabitacionComboRepository rhcr = new ReservacionHabitacionComboRepository();
         int idReservacion = Integer.parseInt((String) reservacionesCombo.getSelectedItem());
         int idHabitacion = Integer.parseInt((String) habitacionesCombo.getSelectedItem());
+        
+        // Verificamos si hay relacion entre la habitacion y la reserva
+        ReservacionHabitacionesRepository rhr = new ReservacionHabitacionesRepository();
+        if(!(rhr.relacionHabitacionReserva(idHabitacion, idReservacion))){
+            JOptionPane.showMessageDialog(null, "La habitación escodiga no correspondo a la reserva echa");
+            return;
+        }
+        
         HabitacionRepository habirepo = new HabitacionRepository();
         
         LocalDateTime fechaActual = LocalDateTime.now();
         
         Habitacion habitacion = habirepo.obtener(idHabitacion);
         
+        //  idReserva, idHabitacion, huesped, idTipoHabitacion, idCombo, cantidad, estado, fechaPedido, fechaEnvio: SERÁ NULL
         rhcr.asociarReservacionCombo(
                 idReservacion, 
                 idHabitacion, 
                 huesped, 
                 habitacion.getTipoHabitacion().getId(),
                 idCombo,
-                "Pendiente",
+                cantidad, 
+                "Enviado",
                 fechaActual);
 
     }//GEN-LAST:event_pedirBotonActionPerformed
@@ -309,7 +342,9 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Reservación;
     private javax.swing.JLabel Reservación1;
+    private javax.swing.JLabel Reservación2;
     private javax.swing.JButton borrarBoton;
+    private javax.swing.JTextField cantidadField;
     private javax.swing.JTextField comboSeleccionadoField;
     private javax.swing.JComboBox<String> habitacionesCombo;
     private javax.swing.JLabel jLabel2;
