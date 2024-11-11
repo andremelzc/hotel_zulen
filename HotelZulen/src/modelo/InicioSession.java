@@ -47,7 +47,7 @@ public class InicioSession {
         if (usuarioActual instanceof Administrador) {
             Administrador administrador = (Administrador) usuarioActual;
             System.out.println("Abriendo vista de administrador");
-            vistaAdministrador vistaAdmin = new vistaAdministrador(administrador);
+           vistaAdministrador vistaAdmin = new vistaAdministrador(administrador);
             vistaAdmin.setVisible(true);
         } else if (usuarioActual instanceof Recepcionista) {
             Recepcionista recepcionista = (Recepcionista) usuarioActual;

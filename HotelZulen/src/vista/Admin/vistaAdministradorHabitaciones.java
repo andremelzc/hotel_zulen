@@ -4,17 +4,53 @@
  */
 package vista.Admin;
 
+import Persistencia.HabitacionRepository;
+import Persistencia.TipoHabitacionRepository;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.Habitacion;
+import modelo.TipoDeHabitacion;
+
 /**
  *
  * @author PC
  */
 public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
 
+    DefaultTableModel mt = new DefaultTableModel();
+
     /**
      * Creates new form vistaAdministradorPersonal
      */
     public vistaAdministradorHabitaciones() {
         initComponents();
+        String ids[] = {"ID", "Tipo", "Piso", "Estado"};
+        mt.setColumnIdentifiers(ids);
+
+        List<Habitacion> habitaciones = new ArrayList<>();
+        HabitacionRepository hr = new HabitacionRepository();
+
+        for (int i = 1; i < 4; i++) {
+            Habitacion habitacion = hr.obtener(i);
+
+            // Check if habitacion is null
+            if (habitacion != null) {
+                System.out.println(habitacion.getId());
+                Object[] fila = {
+                    habitacion.getId(),
+                    habitacion.getTipoHabitacion().getConcepto(),
+                    habitacion.getPiso(),
+                    habitacion.getEstado()
+                };
+                mt.addRow(fila);
+            } else {
+                System.out.println("Habitacion with ID " + i + " is null.");
+            }
+        }
+        
+        habitacionesTable.setModel(mt);
     }
 
     /**
@@ -26,33 +62,197 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        habitacionesTable = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        pisoField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        tipoField = new javax.swing.JTextField();
+        Reservación = new javax.swing.JLabel();
+        estadoField = new javax.swing.JTextField();
+        registrarBoton = new javax.swing.JButton();
+        cancelarBoton = new javax.swing.JButton();
+        modificarBoton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(221, 221, 221));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("habitaciones");
+        habitacionesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Tipo", "Piso", "Estado"
+            }
+        ));
+        habitacionesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                habitacionesTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(habitacionesTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(616, 616, 616)
-                .addComponent(jLabel1)
-                .addContainerGap(597, Short.MAX_VALUE))
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel4.setText("Datos de habitación");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 60, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(141, 153, 174));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel2.setText("Tipo:");
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        pisoField.setBackground(new java.awt.Color(221, 221, 221));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel3.setText("Piso:");
+        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        tipoField.setBackground(new java.awt.Color(221, 221, 221));
+
+        Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación.setForeground(new java.awt.Color(45, 45, 44));
+        Reservación.setText("Estado:");
+        Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        estadoField.setBackground(new java.awt.Color(221, 221, 221));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(tipoField, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                    .addComponent(pisoField)
+                    .addComponent(Reservación)
+                    .addComponent(estadoField))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabel1)
-                .addContainerGap(284, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tipoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pisoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Reservación)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(estadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 490, 270));
+
+        registrarBoton.setBackground(new java.awt.Color(239, 35, 60));
+        registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        registrarBoton.setText("Registrar");
+        registrarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarBotonActionPerformed(evt);
+            }
+        });
+        add(registrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, 150, 50));
+
+        cancelarBoton.setBackground(new java.awt.Color(239, 35, 60));
+        cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cancelarBoton.setText("Cancelar");
+        cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBotonActionPerformed(evt);
+            }
+        });
+        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 400, 150, 50));
+
+        modificarBoton.setBackground(new java.awt.Color(239, 35, 60));
+        modificarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        modificarBoton.setText("Modificar");
+        modificarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarBotonActionPerformed(evt);
+            }
+        });
+        add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 400, 150, 50));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBotonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "No es posible registrar más habitaciones");
+    }//GEN-LAST:event_registrarBotonActionPerformed
+
+    private void cancelarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBotonActionPerformed
+        // TODO add your handling code here:
+        habitacionesTable.clearSelection();
+        tipoField.setText("");
+        pisoField.setText("");
+        estadoField.setText("");
+    }//GEN-LAST:event_cancelarBotonActionPerformed
+
+    private void modificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBotonActionPerformed
+        // TODO add your handling code here:
+        int fila = habitacionesTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) habitacionesTable.getModel();
+
+        int id = Integer.parseInt(model.getValueAt(fila, 0).toString());
+
+        String tipo = tipoField.getText();
+        TipoHabitacionRepository thr = new TipoHabitacionRepository();
+        TipoDeHabitacion tipohabitacion = thr.obtenerPorConcepto(tipo);
+
+        String piso = pisoField.getText();
+        String estado = estadoField.getText();
+
+        HabitacionRepository habirepo = new HabitacionRepository();
+        Habitacion habitacion = new Habitacion(id, tipohabitacion, piso, estado);
+        habirepo.actualizar(habitacion);
+        
+        model.setValueAt(tipoField.getText(), fila, 1);
+        model.setValueAt(pisoField.getText(), fila, 2);
+        model.setValueAt(estadoField.getText(), fila, 3);
+    }//GEN-LAST:event_modificarBotonActionPerformed
+
+    private void habitacionesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_habitacionesTableMouseClicked
+        // TODO add your handling code here:
+        int fila = habitacionesTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) habitacionesTable.getModel();
+
+        tipoField.setText(model.getValueAt(fila, 1).toString());
+        pisoField.setText(model.getValueAt(fila, 2).toString());
+        estadoField.setText(model.getValueAt(fila, 3).toString());
+    }//GEN-LAST:event_habitacionesTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel Reservación;
+    private javax.swing.JButton cancelarBoton;
+    private javax.swing.JTextField estadoField;
+    private javax.swing.JTable habitacionesTable;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modificarBoton;
+    private javax.swing.JTextField pisoField;
+    private javax.swing.JButton registrarBoton;
+    private javax.swing.JTextField tipoField;
     // End of variables declaration//GEN-END:variables
 }

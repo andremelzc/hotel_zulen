@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import modelo.Combo;
 
 public class HabitacionRepository implements IRepository<Habitacion> {
 
@@ -77,7 +79,7 @@ public class HabitacionRepository implements IRepository<Habitacion> {
 
     @Override
     public void actualizar(Habitacion objeto) {
-        String sql = "UPDATE habitaciones SET Piso = ?, Estado = ?, TIPO_DE_HABITACION_idCategoria = ? WHERE idHabitaciones = ?";
+        String sql = "UPDATE habitaciones SET Piso = ?, Estado = ?, TIPO_HAB_idCategoria = ? WHERE idHabitaciones = ?";
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, objeto.getPiso());
             stmt.setString(2, objeto.getEstado());
@@ -138,6 +140,27 @@ public class HabitacionRepository implements IRepository<Habitacion> {
             System.out.println("Error al actualizar el estado de las habitaciones: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public List<Habitacion> obtenerTodos() {
+        List<Habitacion> habitaciones = new ArrayList<>();
+        String sql = "SELECT * FROM habitaciones";
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                TipoDeHabitacion tipo = new TipoHabitacionRepository().obtener(rs.getInt("TIPO_HAB_idCategoria"));
+                Habitacion habitacion = new Habitacion(
+                        rs.getInt("idHabitaciones"),
+                        tipo,
+                        rs.getString("Piso"),
+                        rs.getString("Estado")
+                );
+                habitaciones.add(habitacion);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return habitaciones;
     }
 
 }
