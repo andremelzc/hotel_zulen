@@ -79,4 +79,25 @@ public class TipoHabitacionRepository implements IRepository<TipoDeHabitacion> {
         }
     }
     
+    public TipoDeHabitacion obtenerPorConcepto(String concepto) {
+    String sql = "SELECT * FROM tipo_hab WHERE Concepto = ?";
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, concepto); // Use concepto here
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return new TipoDeHabitacion(
+                rs.getInt("idCategoria"),
+                rs.getString("Concepto"),
+                rs.getDouble("Precio"),
+                rs.getString("Estado")
+            );
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null; // Si no se encuentra, retorna null
+}
+
+    
 }

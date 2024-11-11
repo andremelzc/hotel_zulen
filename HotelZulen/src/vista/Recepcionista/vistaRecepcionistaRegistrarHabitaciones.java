@@ -4,17 +4,45 @@
  */
 package vista.Recepcionista;
 
+import Persistencia.HabitacionRepository;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Habitacion;
+import modelo.Reservacion;
+import modelo.ServiciosAdicionales;
+
 /**
  *
  * @author PC
  */
 public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel {
 
+    DefaultTableModel mt = new DefaultTableModel();
+    List<Habitacion> listaHabitaciones = new ArrayList<>();
+    Reservacion reservacion = new Reservacion();
+    int contador = 0;
+
     /**
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaRecepcionistaRegistrarHabitaciones() {
         initComponents();
+        String ids[] = {"Nº Habitación", "Piso", "Tipo de Habitación"};
+        mt.setColumnIdentifiers(ids);
+        jTableHabitacion.setModel(mt);
+    }
+
+    public Reservacion getReservacion() {
+        return reservacion;
+    }
+
+    
+    
+    public List<Habitacion> getListaHabitaciones() {
+        return listaHabitaciones;
     }
 
     /**
@@ -26,18 +54,188 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelHabitacion1 = new javax.swing.JLabel();
+        jLabelTipoHabitacion = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabelNumHabitacion = new javax.swing.JLabel();
+        jTextFieldNumHabitacion = new javax.swing.JTextField();
+        jButtonComprobarHabitacion = new javax.swing.JButton();
+        jButtonRegistrarHabitación = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableHabitacion = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jComboBoxTipoHabitacion = new javax.swing.JComboBox<>();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelNombre2 = new javax.swing.JLabel();
+        jTextFieldHasta = new javax.swing.JTextField();
+        jTextFieldDesde = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("registrar habitacion");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, -1, -1));
+        jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelHabitacion1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelHabitacion1.setText("Datos Habitacion:");
+        add(jLabelHabitacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 210, 30));
+
+        jLabelTipoHabitacion.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelTipoHabitacion.setText("Tipo Habitación:");
+        add(jLabelTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(75, 76, 73));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1200, 10));
+
+        jLabelNumHabitacion.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNumHabitacion.setText("Nº Habitación:");
+        add(jLabelNumHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, -1, 20));
+
+        jTextFieldNumHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNumHabitacionActionPerformed(evt);
+            }
+        });
+        add(jTextFieldNumHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 70, 30));
+
+        jButtonComprobarHabitacion.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonComprobarHabitacion.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonComprobarHabitacion.setText("Asignar Habitación");
+        jButtonComprobarHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonComprobarHabitacionActionPerformed(evt);
+            }
+        });
+        add(jButtonComprobarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, 30));
+
+        jButtonRegistrarHabitación.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonRegistrarHabitación.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRegistrarHabitación.setText("Filtrar");
+        jButtonRegistrarHabitación.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarHabitaciónActionPerformed(evt);
+            }
+        });
+        add(jButtonRegistrarHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, -1, -1));
+
+        jTableHabitacion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableHabitacion);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 990, 210));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
+
+        jComboBoxTipoHabitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estandar", "Doble", "Suite", "Business" }));
+        add(jComboBoxTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 130, 20));
+
+        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNombre.setText("Hasta:");
+        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, -1));
+
+        jLabelNombre2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNombre2.setText("Desde:");
+        add(jLabelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+
+        jTextFieldHasta.setText("2024-11-20 09:30:00");
+        jTextFieldHasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldHastaActionPerformed(evt);
+            }
+        });
+        add(jTextFieldHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 140, 30));
+
+        jTextFieldDesde.setText("2024-11-11 09:30:00");
+        jTextFieldDesde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDesdeActionPerformed(evt);
+            }
+        });
+        add(jTextFieldDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonComprobarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprobarHabitacionActionPerformed
+        // TODO add your handling code here:
+        Habitacion habitacion = new Habitacion();
+        String habitacionSeleccionada = jComboBoxTipoHabitacion.getSelectedItem().toString();
+        int intHabitacionSeleccionada = 0;
+        switch (habitacionSeleccionada) {
+            case "Estandar" ->
+                intHabitacionSeleccionada = 1;
+            case "Doble" ->
+                intHabitacionSeleccionada = 2;
+            case "Suite" ->
+                intHabitacionSeleccionada = 3;
+            case "Business" ->
+                intHabitacionSeleccionada = 4;
+
+        }
+
+        habitacion = habitacion.obtenerxTipo(intHabitacionSeleccionada);
+        int idHabitacion = habitacion.getId();
+        habitacion.setId(habitacion.getId() + contador);
+        
+        listaHabitaciones.add(habitacion);
+
+        jTextFieldNumHabitacion.setText(String.valueOf(habitacion.getId()));
+
+        mt.addRow(new Object[]{habitacion.getId(), habitacion.getPiso(), habitacion.getTipoHabitacion().getConcepto()});
+        contador++;
+        reservacion.setNumHabitaciones(contador);
+    }//GEN-LAST:event_jButtonComprobarHabitacionActionPerformed
+
+    private void jTextFieldNumHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumHabitacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNumHabitacionActionPerformed
+
+    private void jTextFieldDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDesdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDesdeActionPerformed
+
+    private void jButtonRegistrarHabitaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarHabitaciónActionPerformed
+        // TODO add your handling code here:
+    
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime fechaHoraDesde = LocalDateTime.parse(jTextFieldDesde.getText(), formatter);
+        LocalDateTime fechaHoraHasta = LocalDateTime.parse(jTextFieldHasta.getText(), formatter);
+        reservacion.setIncioHuesped(fechaHoraDesde);
+        reservacion.setFinHuesped(fechaHoraHasta);
+        
+        reservacion.setEstado("confirmada");
+        reservacion.setFechaCrea(LocalDateTime.now());
+        reservacion.setCheckIn(LocalDateTime.now());
+        reservacion.setCheckOut(LocalDateTime.now());
+        
+
+    }//GEN-LAST:event_jButtonRegistrarHabitaciónActionPerformed
+
+    private void jTextFieldHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHastaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldHastaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonComprobarHabitacion;
+    private javax.swing.JButton jButtonRegistrarHabitación;
+    private javax.swing.JComboBox<String> jComboBoxTipoHabitacion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelHabitacion1;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelNombre2;
+    private javax.swing.JLabel jLabelNumHabitacion;
+    private javax.swing.JLabel jLabelTipoHabitacion;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTableHabitacion;
+    private javax.swing.JTextField jTextFieldDesde;
+    private javax.swing.JTextField jTextFieldHasta;
+    private javax.swing.JTextField jTextFieldNumHabitacion;
     // End of variables declaration//GEN-END:variables
 }

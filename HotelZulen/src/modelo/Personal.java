@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +23,8 @@ public abstract class Personal  {
     String usuario;
     String contrasena;
     String estado;
+    LocalDateTime FechaCrea;
+    LocalDateTime FechaMod;
 
     public Personal() {
 
@@ -39,6 +42,21 @@ public abstract class Personal  {
         this.estado = estado;
     }
 
+    public Personal(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado, LocalDateTime FechaCrea, LocalDateTime FechaMod) {
+        this.DNI = DNI;
+        this.funcion = funcion;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.estado = estado;
+        this.FechaCrea = FechaCrea;
+        this.FechaMod = FechaMod;
+    }
+    
+    
     
 
     //Constructor Agregado por Miguel para el Inicio de Usuario
@@ -114,6 +132,23 @@ public abstract class Personal  {
         return estado;
     }
 
+    public LocalDateTime getFechaCrea() {
+        return FechaCrea;
+    }
+
+    public LocalDateTime getFechaMod() {
+        return FechaMod;
+    }
+
+    public void setFechaCrea(LocalDateTime FechaCrea) {
+        this.FechaCrea = FechaCrea;
+    }
+
+    public void setFechaMod(LocalDateTime FechaMod) {
+        this.FechaMod = FechaMod;
+    }
+    
+    
     
     public void agregar(List<Personal> lista, Personal elemento) {
         lista.add(elemento);

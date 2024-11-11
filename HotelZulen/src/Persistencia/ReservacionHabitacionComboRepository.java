@@ -4,6 +4,12 @@
  */
 package Persistencia;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,8 +55,38 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
     public void eliminar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    public Map<Integer, Integer> obtenerCantPedidos(){
+        // Crear un mapa para almacenar el idCombo y su totalCantidad de pedidos
+        Map<Integer, Integer> estadisticasMap = new HashMap<>();
+        
+        // Consulta SQL para sumar la cantidad de pedidos (cantPedido) agrupados por id del combo (COMBO_idCOMBO)
+        String query = "SELECT COMBO_idCOMBO AS idCombo, SUM(cantPedido) AS totalCantidad " +
+                       "FROM reservaciones_has_habitaciones_has_combo " +
+                       "GROUP BY COMBO_idCOMBO";
+        
+        // try-with-resources para manejar automáticamente el cierre de la conexión y recursos
+        try(Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery()){
+            
+            while(resultSet.next()){ //inicialmente resultSet no apunta a ninguna fila en particular
+                int idCombo = resultSet.getInt("idCombo"); //devolvera cero si es NULL en la db 
+                
+                int totalCantidad = resultSet.getInt("totalCantidad");
+                
+                //agregar al mapa
+                estadisticasMap.put(idCombo, totalCantidad);
+                
+            }
+        }catch(SQLException e){
+             e.printStackTrace();
+        }
+        
+        return estadisticasMap;
+    }
 
-    public void asociarReservacionCombo(int idReservacion, int idHabitacion, Huesped huesped, int idCategoria, int idCombo, String estado, LocalDateTime fechaPedido) {
+    public void asociarReservacionCombo(int idReservacion, int idHabitacion, Huesped huesped, int idCategoria, int idCombo, int cantidad, String estado, LocalDateTime fechaPedido) {
         String sql = "INSERT INTO reservaciones_has_habitaciones_has_combo (RESERVA_has_HAB_RESERVA_idReserva, RESERVA_has_HAB_HAB_idHabitaciones, RESERVA_has_HAB_HAB_TIPO_HAB_idCategoria, COMBO_idCOMBO, Estado, FechaPedido, FechaEnvio) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -63,9 +99,10 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
             stmt.setInt(2, idHabitacion);
             stmt.setInt(3, idCategoria);
             stmt.setInt(4, idCombo);
-            stmt.setString(5, estado);
-            stmt.setTimestamp(6, fechaPedidoSQL); // Cambiado a setTimestamp para Timestamp
-            stmt.setNull(7, java.sql.Types.TIMESTAMP); // Establecer FechaEnvio como NULL
+            stmt.setInt(5, cantidad);
+            stmt.setString(6, estado);
+            stmt.setTimestamp(7, fechaPedidoSQL); // Cambiado a setTimestamp para Timestamp
+            stmt.setNull(8, java.sql.Types.TIMESTAMP); // Establecer FechaEnvio como NULL
 
             // Añadir la instrucción al lote
             stmt.addBatch();

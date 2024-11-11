@@ -4,19 +4,43 @@
  */
 package vista.Recepcionista;
 
+import Persistencia.HuespedRepository;
+import java.io.IOException;
+import java.lang.System.Logger;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Huesped;
+
 /**
  *
  * @author PC
  */
 public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
-
+    
+    DefaultTableModel mt = new DefaultTableModel();
+    List<Huesped> listaHuespedes = new ArrayList<>();
+    private int contador = 0;
     /**
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaRecepcionistaRegistrarHuespedes() {
         initComponents();
-    }
+        
+        // PARA LAS TABLAS
+        String ids[] = {"DNI", "Nombre", "Apellidos", "Correo"};
+        mt.setColumnIdentifiers(ids);
+        jTableHuespedes.setModel(mt);
+        
+        
+    }  
 
+    public List<Huesped> getListaHuespedes() {
+        return listaHuespedes;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,18 +50,210 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jLabelApellidoPaterno = new javax.swing.JLabel();
+        jTextFieldApellidoPaterno = new javax.swing.JTextField();
+        jLabelApelldoPaterno = new javax.swing.JLabel();
+        jTextFieldApellidoMaterno = new javax.swing.JTextField();
+        jLabelCelular = new javax.swing.JLabel();
+        jTextFieldCelular = new javax.swing.JTextField();
+        jLabelCorreo = new javax.swing.JLabel();
+        jTextFieldCorreo = new javax.swing.JTextField();
+        jLabelDNI = new javax.swing.JLabel();
+        jTextFieldDNI = new javax.swing.JTextField();
+        jButtonComprobarRegistroPrevio = new javax.swing.JButton();
+        jButtonRegistrarCliente = new javax.swing.JButton();
+        jLabelEstaRegistrado = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableHuespedes = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("registrar huesped");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Datos Cliente:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 30));
+
+        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNombre.setText("Nombres:");
+        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(75, 76, 73));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1200, 10));
+
+        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreActionPerformed(evt);
+            }
+        });
+        add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 240, 30));
+
+        jLabelApellidoPaterno.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelApellidoPaterno.setText("Apellido Paterno:");
+        add(jLabelApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
+        add(jTextFieldApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 230, 30));
+
+        jLabelApelldoPaterno.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelApelldoPaterno.setText("Apellido Materno:");
+        add(jLabelApelldoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, -1, -1));
+        add(jTextFieldApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 230, 30));
+
+        jLabelCelular.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelCelular.setText("Celular:");
+        add(jLabelCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, -1));
+        add(jTextFieldCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 230, 30));
+
+        jLabelCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelCorreo.setText("Correo:");
+        add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
+        add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 150, 240, 30));
+
+        jLabelDNI.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDNI.setText("DNI:");
+        add(jLabelDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+        add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 230, 30));
+
+        jButtonComprobarRegistroPrevio.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonComprobarRegistroPrevio.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonComprobarRegistroPrevio.setText("Comprobar Registro");
+        jButtonComprobarRegistroPrevio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonComprobarRegistroPrevioActionPerformed(evt);
+            }
+        });
+        add(jButtonComprobarRegistroPrevio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
+
+        jButtonRegistrarCliente.setBackground(new java.awt.Color(0, 102, 204));
+        jButtonRegistrarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRegistrarCliente.setText("Registrar");
+        jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarClienteActionPerformed(evt);
+            }
+        });
+        add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 150, -1, -1));
+
+        jLabelEstaRegistrado.setForeground(new java.awt.Color(0, 0, 0));
+        add(jLabelEstaRegistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 210, 30));
+
+        jTableHuespedes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableHuespedes);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 990, 210));
+
+        jPanel1.setBackground(new java.awt.Color(221, 221, 221));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 440));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonComprobarRegistroPrevioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprobarRegistroPrevioActionPerformed
+        // TODO add your handling code here:          
+        try {
+            int DNI = Integer.parseInt(jTextFieldDNI.getText());
+            Huesped huespedRegistrado = new Huesped();
+            HuespedRepository huespedActual = new HuespedRepository();
+            huespedRegistrado = huespedActual.obtener(DNI);
+            if (huespedRegistrado != null) {
+                String[] partes = huespedRegistrado.getApellido().split(" ", 2);
+                String apellido_materno = partes[0];
+                String apellido_paterno = partes[1];
+                jTextFieldNombre.setText(huespedRegistrado.getNombre());
+                jTextFieldApellidoMaterno.setText(apellido_materno);
+                jTextFieldApellidoPaterno.setText(apellido_paterno);
+                jTextFieldCelular.setText(String.valueOf(huespedRegistrado.getTelefono()));
+                jTextFieldCorreo.setText(huespedRegistrado.getDireccion());
+
+            } else {
+                jLabelEstaRegistrado.setText("Huesped no registrado...");
+                jTextFieldNombre.setText("");
+                jTextFieldApellidoMaterno.setText("");
+                jTextFieldApellidoPaterno.setText("");
+                jTextFieldCelular.setText("");
+                jTextFieldCorreo.setText("");
+                System.out.println("El usuario no está registrado...");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("El valor ingresado no es un número válido.");
+            // También podrías mostrar un mensaje al usuario o hacer algo más específico.
+        }
+
+    }//GEN-LAST:event_jButtonComprobarRegistroPrevioActionPerformed
+
+    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreActionPerformed
+
+    private void jButtonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarClienteActionPerformed
+        // TODO add your handling code here:
+
+        Huesped huesped = new Huesped();
+        huesped.setDNI(Integer.parseInt(jTextFieldDNI.getText()));
+        huesped.setNombre(jTextFieldNombre.getText());
+        huesped.setApellido(jTextFieldApellidoPaterno.getText() + " " + jTextFieldApellidoMaterno.getText());
+        huesped.setTelefono(Integer.parseInt(jTextFieldCelular.getText()));
+        huesped.setDireccion(jTextFieldCorreo.getText());
+        huesped.setEstado("Activo");
+        if (contador == 0) {
+            huesped.setEsTitular(Boolean.TRUE);
+        } else {
+            huesped.setEsTitular(Boolean.FALSE);
+        }
+        huesped.setUsuario(jTextFieldDNI.getText());
+        
+        String[] partes = jTextFieldNombre.getText().split(" ", 2);
+        huesped.setContrasena(partes[0] + "00");
+        huesped.setFechaCrea(LocalDateTime.now());
+        huesped.setFechaMod(LocalDateTime.now());
+        listaHuespedes.add(huesped);
+        contador++;
+        mt.addRow(new Object[]{ huesped.getDNI(), huesped.getNombre(), huesped.getApellido(), huesped.getDireccion()});
+        
+        jTextFieldDNI.setText("");
+        jTextFieldApellidoMaterno.setText("");
+        jTextFieldApellidoPaterno.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCelular.setText("");
+        jTextFieldCorreo.setText("");
+
+    }//GEN-LAST:event_jButtonRegistrarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonComprobarRegistroPrevio;
+    private javax.swing.JButton jButtonRegistrarCliente;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelApelldoPaterno;
+    private javax.swing.JLabel jLabelApellidoPaterno;
+    private javax.swing.JLabel jLabelCelular;
+    private javax.swing.JLabel jLabelCorreo;
+    private javax.swing.JLabel jLabelDNI;
+    private javax.swing.JLabel jLabelEstaRegistrado;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTableHuespedes;
+    private javax.swing.JTextField jTextFieldApellidoMaterno;
+    private javax.swing.JTextField jTextFieldApellidoPaterno;
+    private javax.swing.JTextField jTextFieldCelular;
+    private javax.swing.JTextField jTextFieldCorreo;
+    private javax.swing.JTextField jTextFieldDNI;
+    private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }
