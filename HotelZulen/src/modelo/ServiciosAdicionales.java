@@ -79,7 +79,9 @@ public class ServiciosAdicionales implements IActualizar<ServiciosAdicionales> {
         System.out.println("Servicio adicional agregado exitosamente.");
     }
     
-    public void obtenerServicioxString (String concepto){
-        repository.obtenerxString(concepto);
+    public ServiciosAdicionales obtenerServicioxString (String concepto){
+        return repository.obtenerxString(concepto);
     }
+
+    
 }

@@ -1,5 +1,6 @@
 package modelo;
 
+import Persistencia.HabitacionRepository;
 import Persistencia.TipoHabitacionRepository;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Habitacion implements IActualizar<Habitacion> {
     private TipoDeHabitacion tipoHabitacion;
     private String piso;
     private String estado;
+    private HabitacionRepository repo;
 
     public Habitacion(int id, TipoDeHabitacion tipoHabitacion, String piso, String estado) {
         this.id = id;
@@ -23,7 +25,9 @@ public class Habitacion implements IActualizar<Habitacion> {
     }
 
     public Habitacion() {
+        this.repo = new HabitacionRepository();
     }
+    
 
     public int getId() {
         return id;
@@ -57,5 +61,7 @@ public class Habitacion implements IActualizar<Habitacion> {
         this.estado = estado;
     }
 
-
+    public Habitacion obtenerxTipo(int tipoHabitacion){
+        return repo.obtenerxTipo(tipoHabitacion);
+    }
 }

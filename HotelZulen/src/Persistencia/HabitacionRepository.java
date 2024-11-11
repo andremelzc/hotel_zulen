@@ -17,8 +17,7 @@ public class HabitacionRepository implements IRepository<Habitacion> {
     @Override
     public void crear(Habitacion objeto) {
         String sql = "INSERT INTO habitaciones (idHabitaciones, Piso, Estado, TIPO_HAB_idCategoria) VALUES (?, ?, ?, ?)";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, objeto.getId());
             stmt.setInt(2, Integer.parseInt(objeto.getPiso()));
             stmt.setString(3, objeto.getEstado());
@@ -33,17 +32,41 @@ public class HabitacionRepository implements IRepository<Habitacion> {
     @Override
     public Habitacion obtener(int id) {
         String sql = "SELECT * FROM habitaciones WHERE idHabitaciones = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 TipoDeHabitacion tipo = new TipoHabitacionRepository().obtener(rs.getInt("TIPO_HAB_idCategoria"));
                 return new Habitacion(
-                    rs.getInt("idHabitaciones"),
-                    tipo,
-                    rs.getString("Piso"),
-                    rs.getString("Estado")
+                        rs.getInt("idHabitaciones"),
+                        tipo,
+                        rs.getString("Piso"),
+                        rs.getString("Estado")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Si no se encuentra, retorna null
+    }
+
+    public Habitacion obtenerxTipo(int tipoHabitacion) {
+        String sql = "SELECT * FROM habitaciones \n"
+                + "WHERE TIPO_HAB_idCategoria = ? \n"
+                + "AND Estado = 'Disponible' \n"
+                + "LIMIT 1;";
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setInt(1, tipoHabitacion);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                TipoDeHabitacion tipo = new TipoHabitacionRepository().obtener(rs.getInt("TIPO_HAB_idCategoria"));
+                return new Habitacion(
+                        rs.getInt("idHabitaciones"),
+                        tipo,
+                        rs.getString("Piso"),
+                        rs.getString("Estado")
                 );
             }
         } catch (SQLException e) {
@@ -55,8 +78,7 @@ public class HabitacionRepository implements IRepository<Habitacion> {
     @Override
     public void actualizar(Habitacion objeto) {
         String sql = "UPDATE habitaciones SET Piso = ?, Estado = ?, TIPO_DE_HABITACION_idCategoria = ? WHERE idHabitaciones = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, objeto.getPiso());
             stmt.setString(2, objeto.getEstado());
             stmt.setInt(3, objeto.getTipoHabitacion().getId());
@@ -71,8 +93,7 @@ public class HabitacionRepository implements IRepository<Habitacion> {
     @Override
     public void eliminar(int id) {
         String sql = "DELETE FROM habitaciones WHERE idHabitaciones = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
             System.out.println("Habitación eliminada con éxito.");
@@ -80,15 +101,34 @@ public class HabitacionRepository implements IRepository<Habitacion> {
             e.printStackTrace();
         }
     }
+
+    public void setReservado(List<Habitacion> listaHabitaciones) {
+        String sql = "UPDATE habitaciones SET Estado = ? WHERE idHabitaciones = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            for (Habitacion habitacion : listaHabitaciones) {
+                stmt.setString(1, "Reservado"); // Configura el estado a "ocupado"
+                stmt.setInt(2, habitacion.getId());
+                stmt.executeUpdate();
+            }
+
+            System.out.println("Habitaciones actualizadas a 'ocupado' exitosamente.");
+
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar el estado de las habitaciones: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public void setOcupados(List<Habitacion> listaHabitaciones) {
         String sql = "UPDATE habitaciones SET Estado = ? WHERE idHabitaciones = ?";
 
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             for (Habitacion habitacion : listaHabitaciones) {
                 stmt.setString(1, "Ocupado"); // Configura el estado a "ocupado"
-                stmt.setInt(2, habitacion.getId()); 
+                stmt.setInt(2, habitacion.getId());
                 stmt.executeUpdate();
             }
 
