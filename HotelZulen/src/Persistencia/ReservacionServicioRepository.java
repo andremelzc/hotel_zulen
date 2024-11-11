@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.sql.Statement; // <-- Agrega esta línea
+import java.util.ArrayList;
 /**
  *
  * @author Suyco
@@ -65,4 +66,35 @@ public class ReservacionServicioRepository implements IRepository<ReservacionSer
     public void eliminar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    public List<ServiciosAdicionales> obtenerServiciosXIdReserva(int idReserva) {
+        List<ServiciosAdicionales> servicios = new ArrayList<>();
+        String sql = "SELECT sa.idSERVICIOS_UNICO, sa.NombreServicio, sa.Costo, sa.Estado " +
+                     "FROM reservaciones_has_servicios_adicionales rsa " +
+                     "INNER JOIN servicios_adicionales sa ON rsa.SERVICIOS_ADICIONALES_idSERVICIOS_UNICO = sa.idSERVICIOS_UNICO " +
+                     "WHERE rsa.RESERVACIONES_idReservaciones = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            // Establecer el idReserva en el PreparedStatement
+            stmt.setInt(1, idReserva);
+
+            ResultSet rs = stmt.executeQuery();
+
+            // Mapear los resultados a objetos ServiciosAdicionales
+            while (rs.next()) {
+                ServiciosAdicionales servicio = new ServiciosAdicionales();
+                servicio.setId(rs.getInt("idSERVICIOS_UNICO"));
+                servicio.setConcepto(rs.getString("NombreServicio"));
+                servicio.setCosto(rs.getDouble("Costo"));
+                servicio.setEstado(rs.getString("Estado"));
+                servicios.add(servicio);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    return servicios;
+    }
+
 }

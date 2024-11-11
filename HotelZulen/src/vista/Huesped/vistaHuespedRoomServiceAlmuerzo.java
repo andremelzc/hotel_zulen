@@ -180,6 +180,11 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
 
         reservacionesCombo.setBackground(new java.awt.Color(221, 221, 221));
         reservacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        reservacionesCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservacionesComboActionPerformed(evt);
+            }
+        });
 
         Reservación1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación1.setForeground(new java.awt.Color(45, 45, 44));
@@ -337,6 +342,10 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         comboSeleccionadoField.setText(model.getValueAt(fila, 1).toString());
         precioSeleccionadoField.setText(model.getValueAt(fila, 2).toString());
     }//GEN-LAST:event_tablaCombosMouseClicked
+
+    private void reservacionesComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservacionesComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reservacionesComboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

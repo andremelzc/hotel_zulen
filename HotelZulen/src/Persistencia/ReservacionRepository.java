@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.sql.Statement; // <-- Agrega esta línea
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.Combo;
 
 public class ReservacionRepository implements IRepository <Reservacion>{ 
@@ -143,6 +145,81 @@ public class ReservacionRepository implements IRepository <Reservacion>{
             return -1;
         }
     }
+    
+    public List<Reservacion> obtenerReservasPorHuespedYEstado(int dni, String estado) {
+        List<Reservacion> reservas = new ArrayList<>();
+        
+        String sql = "SELECT r.* FROM reservaciones r " +
+                     "JOIN reservaciones_has_huespedes rhh ON r.idReservaciones = rhh.RESERVACIONES_idReservaciones " +
+                     "WHERE rhh.HUESPEDES_DNI = ? " +
+                     (estado.equalsIgnoreCase("Todos") ? "" : "AND r.Estado = ?");
+        
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            
+            stmt.setInt(1, dni);
+            if (!estado.equalsIgnoreCase("Todos")) {
+                stmt.setString(2, estado);
+            }
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                LocalDateTime fechaInicio = rs.getTimestamp("FechaInicio").toLocalDateTime();
+                LocalDateTime fechaFinal = rs.getTimestamp("FechaFinal").toLocalDateTime();
+                LocalDateTime fechaCreacion = rs.getTimestamp("FechaCreacion").toLocalDateTime();
+                
+                // Verificar si CheckIn y CheckOut son null
+                Timestamp checkInTimestamp = rs.getTimestamp("CheckIn");
+                Timestamp checkOutTimestamp = rs.getTimestamp("CheckOut");
+
+                // Construir el objeto Reservacion según los valores de CheckIn y CheckOut
+                if (checkInTimestamp != null && checkOutTimestamp != null) {
+                    LocalDateTime checkIn = checkInTimestamp.toLocalDateTime();
+                    LocalDateTime checkOut = checkOutTimestamp.toLocalDateTime();
+                    Reservacion reservacion = new Reservacion(
+                        rs.getInt("idReservaciones"),
+                        rs.getInt("NumeroHabitaciones"),
+                        rs.getString("Estado"),
+                        fechaInicio,
+                        fechaFinal,
+                        fechaCreacion,
+                        checkIn,
+                        checkOut
+                    );
+                    reservas.add(reservacion);
+                } else if (checkInTimestamp != null) {
+                    LocalDateTime checkIn = checkInTimestamp.toLocalDateTime();
+                    Reservacion reservacion = new Reservacion(
+                        rs.getInt("idReservaciones"),
+                        rs.getInt("NumeroHabitaciones"),
+                        rs.getString("Estado"),
+                        fechaInicio,
+                        fechaFinal,
+                        fechaCreacion,
+                        checkIn, 
+                        null
+                    );
+                    reservas.add(reservacion);
+                } else {
+                    Reservacion reservacion = new Reservacion(
+                        rs.getInt("idReservaciones"),
+                        rs.getInt("NumeroHabitaciones"),
+                        rs.getString("Estado"),
+                        fechaInicio,
+                        fechaFinal,
+                        fechaCreacion
+                    );
+                    reservas.add(reservacion);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return reservas;
+    }
+    
 
 
 }

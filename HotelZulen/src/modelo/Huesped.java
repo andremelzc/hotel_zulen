@@ -48,6 +48,7 @@ public class Huesped   {
         this.esTitular = esTitular;
         this.FechaCrea = FechaCrea;
         this.FechaMod = FechaMod;
+        this.repo = new HuespedRepository();
     }
     
     
@@ -155,6 +156,9 @@ public class Huesped   {
     }
     public void eliminarHuesped(){
         
+    }
+    public Huesped obtenerHuespedTitularXidReserva(int idReserva){
+        return repo.obtenerHuespedTitutlarxIdReserva(idReserva);
     }
 
 
