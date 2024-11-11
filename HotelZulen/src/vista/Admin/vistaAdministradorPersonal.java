@@ -7,9 +7,11 @@ package vista.Admin;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Persistencia.*;
+import java.time.LocalDateTime;
 import modelo.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author PC
@@ -23,23 +25,29 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
      */
     public vistaAdministradorPersonal() {
         initComponents();
-        
-        String ids[] = {"DNI", "Cargo", "Nombres", "Apellidos", "Telefono", "Direccion", "Estado"};
+
+        String ids[] = {"DNI", "Cargo", "Nombres", "Apellidos", "Telefono", "Direccion", "Estado", "Usuario", "Contraseña"};
         mt.setColumnIdentifiers(ids);
-        
+
         List<Personal> personal = new ArrayList<>();
         PersonalRepository personalRepository = new PersonalRepository();
         personal = personalRepository.obtenerTodos();
-        
-        for(Personal personal1 : personal){
-            Object[] fila = {personal1.getDNI(), personal1.getFuncion(), personal1.getNombre(), personal1.getApellido(),
-            personal1.getTelefono(), personal1.getDireccion(),personal1.getEstado()};
+
+        for (Personal personal1 : personal) {
+            Object[] fila = {
+                personal1.getDNI(),
+                personal1.getFuncion(),
+                personal1.getNombre(),
+                personal1.getApellido(),
+                personal1.getTelefono(),
+                personal1.getDireccion(),
+                personal1.getEstado(),
+                personal1.getUsuario(),
+                "*".repeat(personal1.getContrasena().length())};
             mt.addRow(fila);
         }
-        
+
         personalTable.setModel(mt);
-        
-        
 
     }
 
@@ -70,22 +78,27 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         direccionField = new javax.swing.JTextField();
         Nombre2 = new javax.swing.JLabel();
         estadoField = new javax.swing.JTextField();
+        Nombre3 = new javax.swing.JLabel();
+        usuarioField = new javax.swing.JTextField();
+        Nombre4 = new javax.swing.JLabel();
+        contrasenaField = new javax.swing.JPasswordField();
         registrarBoton = new javax.swing.JButton();
         cancelarBoton = new javax.swing.JButton();
         modificarBoton = new javax.swing.JButton();
+        deshabilitarBoton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         personalTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DNI", "Cargo", "Nombres", "Apellidos", "Telefono", "Direccion", "Estado"
+                "DNI", "Cargo", "Nombres", "Apellidos", "Telefono", "Direccion", "Estado", "Usuario", "Contraseña"
             }
         ));
         personalTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,12 +108,12 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(personalTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 690, 427));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 750, 427));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(45, 45, 44));
         jLabel4.setText("Datos de personal");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 50, 241, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, 241, -1));
 
         jPanel1.setBackground(new java.awt.Color(141, 153, 174));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -109,25 +122,25 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         dni.setForeground(new java.awt.Color(45, 45, 44));
         dni.setText("DNI:");
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         nombreField.setBackground(new java.awt.Color(221, 221, 221));
-        jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 183, 40));
+        jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre.setForeground(new java.awt.Color(45, 45, 44));
         Nombre.setText("Nombre:");
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         dniField.setBackground(new java.awt.Color(221, 221, 221));
-        jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 183, 40));
+        jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 40));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setForeground(new java.awt.Color(45, 45, 44));
         Reservación.setText("Apellido:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+        jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
 
         apellidoField.setBackground(new java.awt.Color(221, 221, 221));
         apellidoField.addActionListener(new java.awt.event.ActionListener() {
@@ -135,45 +148,64 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
                 apellidoFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 210, 40));
+        jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 200, 40));
 
         dni1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         dni1.setForeground(new java.awt.Color(45, 45, 44));
         dni1.setText("Cargo");
         dni1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(dni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+        jPanel1.add(dni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 70, -1));
 
         cargoField.setBackground(new java.awt.Color(221, 221, 221));
-        jPanel1.add(cargoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 209, 40));
+        jPanel1.add(cargoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 200, 40));
 
         Nombre1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre1.setForeground(new java.awt.Color(45, 45, 44));
         Nombre1.setText("Estado:");
         Nombre1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, 30));
+        jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 80, 30));
 
         telefonoField.setBackground(new java.awt.Color(221, 221, 221));
-        jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 183, 40));
+        jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 40));
 
         direccin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         direccin.setForeground(new java.awt.Color(45, 45, 44));
         direccin.setText("Direccion:");
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         direccionField.setBackground(new java.awt.Color(221, 221, 221));
-        jPanel1.add(direccionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 410, 40));
+        jPanel1.add(direccionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 420, 40));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre2.setForeground(new java.awt.Color(45, 45, 44));
         Nombre2.setText("Telefono:");
         Nombre2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+        jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         estadoField.setBackground(new java.awt.Color(221, 221, 221));
-        jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 210, 40));
+        jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 200, 40));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, 470, 320));
+        Nombre3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Nombre3.setForeground(new java.awt.Color(45, 45, 44));
+        Nombre3.setText("Contraseña:");
+        Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 130, -1));
+
+        usuarioField.setBackground(new java.awt.Color(221, 221, 221));
+        jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 40));
+
+        Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Nombre4.setForeground(new java.awt.Color(45, 45, 44));
+        Nombre4.setText("Usuario:");
+        Nombre4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(Nombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+
+        contrasenaField.setBackground(new java.awt.Color(221, 221, 221));
+        contrasenaField.setText("jPasswordField1");
+        jPanel1.add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 40));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 460, 380));
 
         registrarBoton.setBackground(new java.awt.Color(239, 35, 60));
         registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -183,7 +215,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
                 registrarBotonActionPerformed(evt);
             }
         });
-        add(registrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 430, 150, 50));
+        add(registrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 450, 110, 50));
 
         cancelarBoton.setBackground(new java.awt.Color(239, 35, 60));
         cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -193,7 +225,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
                 cancelarBotonActionPerformed(evt);
             }
         });
-        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 430, 140, 50));
+        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 450, 100, 50));
 
         modificarBoton.setBackground(new java.awt.Color(239, 35, 60));
         modificarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -203,7 +235,17 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
                 modificarBotonActionPerformed(evt);
             }
         });
-        add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 430, 150, 50));
+        add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 450, 110, 50));
+
+        deshabilitarBoton.setBackground(new java.awt.Color(239, 35, 60));
+        deshabilitarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deshabilitarBoton.setText("Deshabilitar");
+        deshabilitarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deshabilitarBotonActionPerformed(evt);
+            }
+        });
+        add(deshabilitarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 450, 120, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void personalTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personalTableMouseClicked
@@ -218,6 +260,8 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         telefonoField.setText(model.getValueAt(fila, 4).toString());
         direccionField.setText(model.getValueAt(fila, 5).toString());
         estadoField.setText(model.getValueAt(fila, 6).toString());
+        usuarioField.setText(model.getValueAt(fila, 7).toString());
+        contrasenaField.setText(model.getValueAt(fila, 8).toString());
     }//GEN-LAST:event_personalTableMouseClicked
 
     private void registrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBotonActionPerformed
@@ -228,8 +272,22 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         String apellido = apellidoField.getText();
         int telefono = Integer.parseInt(telefonoField.getText());
         String direccion = direccionField.getText();
+        String estado = estadoField.getText();
+        String usuario = usuarioField.getText();
+        String contrasena = contrasenaField.getText();
         
+        LocalDateTime fechaActual = LocalDateTime.now();
         
+        Personal personalNuevo = new Personal(DNI, funcionalidad, nombre, apellido, telefono, direccion, usuario, contrasena, estado, fechaActual, fechaActual) {
+        };
+        
+        PersonalRepository personalRepository = new PersonalRepository();
+        personalRepository.crear(personalNuevo);
+        
+        Object[] filaNueva = {
+          DNI, funcionalidad, nombre, apellido, telefono, direccion, estado, usuario, "*".repeat(contrasena.length())  
+        };
+        mt.addRow(filaNueva);
     }//GEN-LAST:event_registrarBotonActionPerformed
 
     private void cancelarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBotonActionPerformed
@@ -242,21 +300,57 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
 
     private void modificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBotonActionPerformed
         // TODO add your handling code here:
+        PersonalRepository personalRepository = new PersonalRepository();
+        
+        int DNI = Integer.parseInt(dniField.getText());
+        String funcionalidad = cargoField.getText();
+        String nombre = nombreField.getText();
+        String apellido = apellidoField.getText();
+        int telefono = Integer.parseInt(telefonoField.getText());
+        String direccion = direccionField.getText();
+        String estado = estadoField.getText();
+        String usuario = usuarioField.getText();
+        
+        Personal personal = personalRepository.obtener(DNI);
+        
+        String contrasena = personal.getContrasena();
+        
+        LocalDateTime fechaModificacion = LocalDateTime.now();
+        
+        // No se usará la fechaCreacion, solo se pasa un parámetro porque el constructor lo pide
+        Personal personalNuevo = new Personal(DNI, funcionalidad, nombre, apellido, telefono, direccion, usuario, contrasena, estado, fechaModificacion, fechaModificacion) {
+        };
+        
+        
+        personalRepository.actualizar(personalNuevo);
     }//GEN-LAST:event_modificarBotonActionPerformed
 
     private void apellidoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoFieldActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_apellidoFieldActionPerformed
+
+    private void deshabilitarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deshabilitarBotonActionPerformed
+        // TODO add your handling code here:
+        int DNI = Integer.parseInt(dniField.getText());
+        
+        PersonalRepository personalRepository = new PersonalRepository();
+        personalRepository.eliminar(DNI);
+    }//GEN-LAST:event_deshabilitarBotonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nombre;
     private javax.swing.JLabel Nombre1;
     private javax.swing.JLabel Nombre2;
+    private javax.swing.JLabel Nombre3;
+    private javax.swing.JLabel Nombre4;
     private javax.swing.JLabel Reservación;
     private javax.swing.JTextField apellidoField;
     private javax.swing.JButton cancelarBoton;
     private javax.swing.JTextField cargoField;
+    private javax.swing.JPasswordField contrasenaField;
+    private javax.swing.JButton deshabilitarBoton;
     private javax.swing.JLabel direccin;
     private javax.swing.JTextField direccionField;
     private javax.swing.JLabel dni;
@@ -271,5 +365,6 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
     private javax.swing.JTable personalTable;
     private javax.swing.JButton registrarBoton;
     private javax.swing.JTextField telefonoField;
+    private javax.swing.JTextField usuarioField;
     // End of variables declaration//GEN-END:variables
 }
