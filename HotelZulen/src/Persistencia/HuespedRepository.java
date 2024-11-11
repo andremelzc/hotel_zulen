@@ -133,38 +133,61 @@ public void actualizar(Huesped huesped) {
         }
     }
     
-public void crearHuespedes(List<Huesped> huespedes) {
-    String sql = "INSERT INTO huespedes (DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular,FechaCrea,FechaMod) VALUES (?, ?, ?, ?, ?, ?,?,?, ?, ?, ?)";
+    public void crearHuespedes(List<Huesped> huespedes) {
+        String sql = "INSERT INTO huespedes (DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular,FechaCrea,FechaMod) VALUES (?, ?, ?, ?, ?, ?,?,?, ?, ?, ?)";
 
-    try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-        for (Huesped huesped : huespedes) {
-            stmt.setInt(1, huesped.getDNI());
-            stmt.setString(2, huesped.getNombre());
-            stmt.setString(3, huesped.getApellido());
-            stmt.setString(4, String.valueOf(huesped.getTelefono())); // Convertir telefono a String si es int en el objeto
-            stmt.setString(5, huesped.getDireccion());
-            stmt.setString(6, huesped.getUsuario());
-            stmt.setString(7, huesped.getContrasena());
-            stmt.setString(8, huesped.getEstado());
-            stmt.setBoolean(9, huesped.getEsTitular());
-            stmt.setTimestamp(10, Timestamp.valueOf(huesped.getFechaCrea())); 
-            stmt.setTimestamp(11, Timestamp.valueOf(huesped.getFechaMod() ));
-            
+            for (Huesped huesped : huespedes) {
+                stmt.setInt(1, huesped.getDNI());
+                stmt.setString(2, huesped.getNombre());
+                stmt.setString(3, huesped.getApellido());
+                stmt.setString(4, String.valueOf(huesped.getTelefono())); // Convertir telefono a String si es int en el objeto
+                stmt.setString(5, huesped.getDireccion());
+                stmt.setString(6, huesped.getUsuario());
+                stmt.setString(7, huesped.getContrasena());
+                stmt.setString(8, huesped.getEstado());
+                stmt.setBoolean(9, huesped.getEsTitular());
+                stmt.setTimestamp(10, Timestamp.valueOf(huesped.getFechaCrea())); 
+                stmt.setTimestamp(11, Timestamp.valueOf(huesped.getFechaMod() ));
 
-            stmt.addBatch(); // Agregar a la tanda de inserciones
+
+                stmt.addBatch(); // Agregar a la tanda de inserciones
+            }
+
+            int[] rowsInserted = stmt.executeBatch(); // Ejecutar la tanda de inserciones
+            System.out.println(rowsInserted.length + " huespedes creados exitosamente!");
+
+        } catch (SQLException e) {
+            System.out.println("Error al crear los huespedes: " + e.getMessage());
         }
-
-        int[] rowsInserted = stmt.executeBatch(); // Ejecutar la tanda de inserciones
-        System.out.println(rowsInserted.length + " huespedes creados exitosamente!");
-
-    } catch (SQLException e) {
-        System.out.println("Error al crear los huespedes: " + e.getMessage());
     }
-}
-
     
+    private int obtenerDniHuespedTitularXidReserva(int id) {
+        String sql = "SELECT h.DNI " +
+                     "FROM huespedes h " +
+                     "JOIN reservaciones_has_huespedes rh ON rh.HUESPEDES_DNI = h.DNI " +
+                     "JOIN reservaciones r ON rh.RESERVACIONES_idReservaciones = r.idReservaciones " +
+                     "WHERE r.idReservaciones = ? AND h.EsTitular = 1";
+
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("DNI");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return -1;  // Si no se encuentra, devolvemos -1 como valor indicativo
+    }
+    public Huesped obtenerHuespedTitutlarxIdReserva(int id){
+        int dni= obtenerDniHuespedTitularXidReserva(id);
+        return obtener(dni);
+    }
 }
 
 

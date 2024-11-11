@@ -12,6 +12,7 @@ import Persistencia.ReservacionRepository;
 import Persistencia.ReservacionServicioRepository;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.swing.JTable;
 
 
 public class Reservacion implements IActualizar<Reservacion>{
@@ -233,5 +234,44 @@ public class Reservacion implements IActualizar<Reservacion>{
         }
 
    }
-    
+   
+   public List<Reservacion> obtenerXDniYEstado(int dni,String stado){
+       return repoReserva.obtenerReservasPorHuespedYEstado(dni, stado);    
+   }
+   
+   public int seleccionarReserva(JTable Tabla) {
+        try {
+            int fila = Tabla.getSelectedRow();
+            // Verificar si se ha seleccionado una fila
+            if (fila >= 0) {
+                // Asignar valores con validaciones para evitar errores de formato
+                int id = Integer.parseInt(Tabla.getValueAt(fila, 0).toString());
+                return id;
+            } else {
+                System.out.println("No se ha seleccionado ninguna fila.");
+                return -1;
+            }
+        } catch (Exception e) {
+            System.out.println("Error al seleccionar la fila: " + e.getMessage());
+            e.printStackTrace(); // Para depuración
+            return -1;
+        }
+        
+    }
+   public List<Habitacion> obtenerHabitacionesPorReservacion(int id) {
+       List<Habitacion> listaHabitaciones = repoReservaHab.obtenerHabitacionesPorReservacion(id);
+       return listaHabitaciones;
+   }
+   /*public List<ServiciosAdicionales> obtenerServiciosPorReservacion(int id){
+       List<ServiciosAdicionales> listaServicios = repoReservaServ.obtener(id);
+       return listaServicios
+   }*/
+    public List<Huesped> obtenerHuespedesXReserva(int id){
+       List<Huesped> listaHuespedes = repoReservaHuesped.obtenerHuespedesPorReserva(idReserva);
+       return listaHuespedes;
+   }
+   public Reservacion obtenerReserva (int id){
+       return repoReserva.obtener(id);
+   }
+   
 }
