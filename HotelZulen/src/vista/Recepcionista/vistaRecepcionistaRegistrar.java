@@ -5,12 +5,28 @@
 package vista.Recepcionista;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import modelo.Habitacion;
+import modelo.Huesped;
+import modelo.Reservacion;
+import modelo.ServiciosAdicionales;
 
 /**
  *
  * @author PC
  */
 public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
+
+    vistaRecepcionistaRegistrarHabitaciones visRecRegisHab = new vistaRecepcionistaRegistrarHabitaciones();
+    vistaRecepcionistaRegistrarHuespedes visRecRegisHues = new vistaRecepcionistaRegistrarHuespedes();
+    vistaRecepcionistaRegistrarServicios visRecRegisServi = new vistaRecepcionistaRegistrarServicios();
+    List<Habitacion> listaHabitaciones = new ArrayList<>();
+    List<ServiciosAdicionales> listaServicios = new ArrayList<>();
+    List<Huesped> listaHuespedes = new ArrayList<>();
+    Reservacion reservacion = new Reservacion();
 
     /**
      * Creates new form vistaRecepcionistaRegistrar
@@ -30,7 +46,9 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
 
         huespedesBoton = new javax.swing.JButton();
         subcontent = new javax.swing.JPanel();
+        verRegistroBoton = new javax.swing.JButton();
         habitacionesBoton = new javax.swing.JButton();
+        serviciosBoton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(221, 221, 221));
         setPreferredSize(new java.awt.Dimension(1280, 520));
@@ -44,7 +62,7 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
                 huespedesBotonActionPerformed(evt);
             }
         });
-        add(huespedesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 260, 50));
+        add(huespedesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 260, 50));
 
         subcontent.setBackground(new java.awt.Color(221, 221, 221));
 
@@ -61,6 +79,16 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
 
         add(subcontent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1280, 440));
 
+        verRegistroBoton.setBackground(new java.awt.Color(239, 35, 60));
+        verRegistroBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        verRegistroBoton.setText("Ver Registro");
+        verRegistroBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verRegistroBotonActionPerformed(evt);
+            }
+        });
+        add(verRegistroBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, 257, 50));
+
         habitacionesBoton.setBackground(new java.awt.Color(239, 35, 60));
         habitacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         habitacionesBoton.setText("Habitaciones");
@@ -69,7 +97,17 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
                 habitacionesBotonActionPerformed(evt);
             }
         });
-        add(habitacionesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 257, 50));
+        add(habitacionesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 270, 50));
+
+        serviciosBoton.setBackground(new java.awt.Color(239, 35, 60));
+        serviciosBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        serviciosBoton.setText("Servicios");
+        serviciosBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serviciosBotonActionPerformed(evt);
+            }
+        });
+        add(serviciosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 257, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void huespedesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huespedesBotonActionPerformed
@@ -81,7 +119,34 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         subcontent.add(recepcionistaRegistrarHuespedes, BorderLayout.CENTER);
         subcontent.revalidate();
         subcontent.repaint();
+        listaHuespedes = recepcionistaRegistrarHuespedes.getListaHuespedes();
     }//GEN-LAST:event_huespedesBotonActionPerformed
+
+    private void verRegistroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistroBotonActionPerformed
+        // Crear instancia de la vista de recepción
+        vistaRecepcionistaRegistrarVerRegistro recepcionistaRegistrarVerRegistro = new vistaRecepcionistaRegistrarVerRegistro();
+        recepcionistaRegistrarVerRegistro.setSize(1280, 440);
+        recepcionistaRegistrarVerRegistro.setLocation(0, 0);
+
+        // Configurar el subcontent
+        subcontent.removeAll();
+        subcontent.add(recepcionistaRegistrarVerRegistro, BorderLayout.CENTER);
+        subcontent.revalidate();
+        subcontent.repaint();
+
+        // Generar el resumen en la vista de recepción
+        recepcionistaRegistrarVerRegistro.generarResumen(reservacion, listaHuespedes, listaHabitaciones, listaServicios);
+
+        // Añadir el ActionListener al botón de registrar en la vista de recepción
+        recepcionistaRegistrarVerRegistro.jButtonRegistrar.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                // Llamada a la función cuando se presiona el botón
+                reservacion.crearReservacion(reservacion, listaHuespedes, listaHabitaciones, listaServicios);
+            }
+        });
+    }//GEN-LAST:event_verRegistroBotonActionPerformed
 
     private void habitacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionesBotonActionPerformed
         // TODO add your handling code here:
@@ -92,12 +157,28 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         subcontent.add(recepcionistaRegistrarHabitaciones, BorderLayout.CENTER);
         subcontent.revalidate();
         subcontent.repaint();
+        listaHabitaciones = recepcionistaRegistrarHabitaciones.getListaHabitaciones();
+        reservacion = recepcionistaRegistrarHabitaciones.getReservacion();
     }//GEN-LAST:event_habitacionesBotonActionPerformed
+
+    private void serviciosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviciosBotonActionPerformed
+        // TODO add your handling code here:
+        vistaRecepcionistaRegistrarServicios recepcionistaRegistrarServicios = new vistaRecepcionistaRegistrarServicios();
+        recepcionistaRegistrarServicios.setSize(1280, 440); // Ajusta el tamaño a 1280x440 o al tamaño de subcontent
+        recepcionistaRegistrarServicios.setLocation(0, 0);
+        subcontent.removeAll();
+        subcontent.add(recepcionistaRegistrarServicios, BorderLayout.CENTER);
+        subcontent.revalidate();
+        subcontent.repaint();
+        listaServicios = recepcionistaRegistrarServicios.getListaServicios();
+    }//GEN-LAST:event_serviciosBotonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton habitacionesBoton;
     private javax.swing.JButton huespedesBoton;
+    private javax.swing.JButton serviciosBoton;
     private javax.swing.JPanel subcontent;
+    private javax.swing.JButton verRegistroBoton;
     // End of variables declaration//GEN-END:variables
 }

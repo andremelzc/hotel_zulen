@@ -245,6 +245,9 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         content.add(recepcionistaRegistrar, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        
+        
+        
     }//GEN-LAST:event_registrarBotonActionPerformed
 
     private void consultarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarBotonMouseClicked
