@@ -17,6 +17,17 @@ public class ReservacionHabitacionCombo {
     private TipoDeHabitacion tipoDeHabitacion;
     private Combo combo;
     private int cantPedido;
+    
+    private int idPedido;
+    private int idHabitacion;
+    private int piso;
+    private int categoria;//Debería mostrar nombre -> Futuro
+    private int idCombo;
+    private String nombreCombo;
+    private String descripcionCombo;
+    private String fPedido;
+    private String fEnvio;
+    
     private String estado;
     private LocalDateTime fechaPedido;
     private LocalDateTime fechaEnvio;
@@ -109,6 +120,91 @@ public class ReservacionHabitacionCombo {
     public void setFechaEnvio(LocalDateTime fechaEnvio) {
         this.fechaEnvio = fechaEnvio;
     }
+
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public int getIdHabitacion() {
+        return idHabitacion;
+    }
+
+    public void setIdHabitacion(int idHabitacion) {
+        this.idHabitacion = idHabitacion;
+    }
+
+    public int getPiso() {
+        return piso;
+    }
+
+    public void setPiso(int piso) {
+        this.piso = piso;
+    }
+
+    public int getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getIdCombo() {
+        return idCombo;
+    }
+
+    public void setIdCombo(int idCombo) {
+        this.idCombo = idCombo;
+    }
+
+    public String getNombreCombo() {
+        return nombreCombo;
+    }
+
+    public void setNombreCombo(String nombreCombo) {
+        this.nombreCombo = nombreCombo;
+    }
+
+    public String getDescripcionCombo() {
+        return descripcionCombo;
+    }
+
+    public void setDescripcionCombo(String descripcionCombo) {
+        this.descripcionCombo = descripcionCombo;
+    }
+
+    public String getfPedido() {
+        return fPedido;
+    }
+
+    public void setfPedido(String fPedido) {
+        this.fPedido = fPedido;
+    }
+
+    public String getfEnvio() {
+        return fEnvio;
+    }
+
+    public void setfEnvio(String fEnvio) {
+        this.fEnvio = fEnvio;
+    }
     
-    
+    public void mostrarInfos(){
+        
+        System.out.println("----------------------------------------");
+        System.out.println("Pedido ID: " + getIdPedido());
+        System.out.println("ID Habitacion: "+ getIdHabitacion());
+        System.out.println("Piso: "+getPiso());
+        System.out.println("Categoria: "+ getCategoria());
+        System.out.println("ID Combo: "+ getIdCombo());
+        System.out.println("Nombre Combo: "+getNombreCombo());
+        System.out.println("Descripcion Combo: "+ getDescripcionCombo());
+        System.out.println("Estado: "+getEstado());
+        System.out.println("FPedido: "+ getfPedido());
+        System.out.println("FEnvio: "+ getfEnvio());
+    }
 }

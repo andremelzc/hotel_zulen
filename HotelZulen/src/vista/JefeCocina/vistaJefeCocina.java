@@ -8,7 +8,8 @@ import vista.Admin.*;
 import java.awt.BorderLayout;
 import vista.Recepcionista.vistaRecepcionistaFacturar;
 import vista.Recepcionista.vistaRecepcionistaRegistrar;
-
+import Persistencia.ReservacionHabitacionComboRepository;
+import modelo.ReservacionHabitacionCombo;
 /**
  *
  * @author PC
@@ -39,7 +40,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         cartaBoton = new javax.swing.JButton();
         estadisticasBoton = new javax.swing.JButton();
         content = new javax.swing.JPanel();
-        cerrarSesion = new javax.swing.JButton();
+        cerrarSesion1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,7 +145,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(iniciarSesion)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 120));
@@ -164,15 +165,15 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
         background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1280, 520));
 
-        cerrarSesion.setBackground(new java.awt.Color(239, 35, 60));
-        cerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cerrarSesion.setText("Cerrar Sesión");
-        cerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+        cerrarSesion1.setBackground(new java.awt.Color(239, 35, 60));
+        cerrarSesion1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cerrarSesion1.setText("Cerrar Sesión");
+        cerrarSesion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarSesionActionPerformed(evt);
+                cerrarSesion1ActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 220, 50));
+        background.add(cerrarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 650, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,7 +198,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
     private void principalBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_principalBotonActionPerformed
         // TODO add your handling code here:
-        System.out.println("princiapl");
+        System.out.println("principal");
         vistaJefeCocinaPrincipal jefeCocinaPrincipal = new vistaJefeCocinaPrincipal();
         jefeCocinaPrincipal.setSize(1280, 720);
         jefeCocinaPrincipal.setLocation(0, 0);
@@ -239,6 +240,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
     private void estadisticasBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadisticasBotonMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_estadisticasBotonMouseClicked
 
     private void estadisticasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadisticasBotonActionPerformed
@@ -253,50 +255,19 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_estadisticasBotonActionPerformed
 
-    private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
+    private void cerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesion1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cerrarSesionActionPerformed
+    }//GEN-LAST:event_cerrarSesion1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vistaJefeCocina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vistaJefeCocina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vistaJefeCocina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vistaJefeCocina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new vistaJefeCocina().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JButton cartaBoton;
-    private javax.swing.JButton cerrarSesion;
+    private javax.swing.JButton cerrarSesion1;
     private javax.swing.JPanel content;
     private javax.swing.JButton estadisticasBoton;
     private javax.swing.JLabel iniciarSesion;
@@ -304,4 +275,5 @@ public class vistaJefeCocina extends javax.swing.JFrame {
     private javax.swing.JButton pedidosBoton;
     private javax.swing.JButton principalBoton;
     // End of variables declaration//GEN-END:variables
+    private ReservacionHabitacionCombo objPedido1 = new ReservacionHabitacionCombo();
 }

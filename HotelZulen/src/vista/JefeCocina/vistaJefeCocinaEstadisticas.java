@@ -100,7 +100,8 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         }
         
     }
-    
+    /*
+    //Método main para pruebas independientes de vistaJefeCocinaEstadisticas
     public static void main(String args[]){
         java.awt.EventQueue.invokeLater(new Runnable(){
             public void run(){
@@ -116,7 +117,8 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         });
             
     }
-
+    */
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -127,133 +129,30 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
-        panelIzquierda = new javax.swing.JPanel();
-        iniciarSesion = new javax.swing.JLabel();
-        principalBoton = new javax.swing.JButton();
-        pedidosBoton = new javax.swing.JButton();
-        cartaBoton = new javax.swing.JButton();
-        estadisticasBoton = new javax.swing.JButton();
-        content = new javax.swing.JPanel();
-        BebidasName = new javax.swing.JLabel();
+        cerrarSesion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         title1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         contentTableEst = new javax.swing.JTable();
         title2 = new javax.swing.JLabel();
-        cerrarSesion = new javax.swing.JButton();
+        content = new javax.swing.JPanel();
+        BebidasName = new javax.swing.JLabel();
+        BebidasName1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(221, 221, 221));
 
         background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(43, 45, 66));
-
-        iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
-        iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        iniciarSesion.setText("Hotel Zulen");
-
-        principalBoton.setBackground(new java.awt.Color(141, 153, 174));
-        principalBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        principalBoton.setText("Principal");
-        principalBoton.setBorder(null);
-        principalBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                principalBotonMouseClicked(evt);
-            }
-        });
-        principalBoton.addActionListener(new java.awt.event.ActionListener() {
+        cerrarSesion.setBackground(new java.awt.Color(239, 35, 60));
+        cerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cerrarSesion.setText("Cerrar Sesión");
+        cerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                principalBotonActionPerformed(evt);
+                cerrarSesionActionPerformed(evt);
             }
         });
-
-        pedidosBoton.setBackground(new java.awt.Color(141, 153, 174));
-        pedidosBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        pedidosBoton.setText("Ver pedidos");
-        pedidosBoton.setBorder(null);
-        pedidosBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pedidosBotonMouseClicked(evt);
-            }
-        });
-        pedidosBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pedidosBotonActionPerformed(evt);
-            }
-        });
-
-        cartaBoton.setBackground(new java.awt.Color(141, 153, 174));
-        cartaBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        cartaBoton.setText("Modificar carta");
-        cartaBoton.setBorder(null);
-        cartaBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cartaBotonMouseClicked(evt);
-            }
-        });
-        cartaBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cartaBotonActionPerformed(evt);
-            }
-        });
-
-        estadisticasBoton.setBackground(new java.awt.Color(141, 153, 174));
-        estadisticasBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        estadisticasBoton.setText("Ver estadísticas");
-        estadisticasBoton.setBorder(null);
-        estadisticasBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                estadisticasBotonMouseClicked(evt);
-            }
-        });
-        estadisticasBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estadisticasBotonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelIzquierdaLayout = new javax.swing.GroupLayout(panelIzquierda);
-        panelIzquierda.setLayout(panelIzquierdaLayout);
-        panelIzquierdaLayout.setHorizontalGroup(
-            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(iniciarSesion)
-                .addGap(67, 67, 67)
-                .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(pedidosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(cartaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(estadisticasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
-        );
-        panelIzquierdaLayout.setVerticalGroup(
-            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pedidosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cartaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(estadisticasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(iniciarSesion)))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-
-        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 120));
-
-        content.setBackground(new java.awt.Color(221, 221, 221));
-
-        BebidasName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        BebidasName.setText("Combos");
+        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 220, 50));
 
         title1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         title1.setText("Resumen de pedidos del día");
@@ -274,6 +173,25 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         title2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         title2.setText("(De más a menos ganancias)");
 
+        content.setBackground(new java.awt.Color(221, 221, 221));
+
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1280, Short.MAX_VALUE)
+        );
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 520, Short.MAX_VALUE)
+        );
+
+        BebidasName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BebidasName.setText("Combos más");
+
+        BebidasName1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        BebidasName1.setText("pedidos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -281,16 +199,24 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(285, 285, 285)
+                        .addGap(146, 146, 146)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BebidasName)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(BebidasName1)
+                                .addGap(23, 23, 23)))
+                        .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
+                        .addGap(303, 303, 303)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(title2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(title1)))))
-                .addContainerGap(644, Short.MAX_VALUE))
+                .addGap(79, 79, 79)
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(930, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,126 +225,34 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
                 .addComponent(title1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(title2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(295, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(BebidasName)
-                .addGap(48, 48, 48)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(BebidasName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BebidasName1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contentLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(contentLayout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(BebidasName)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 185, Short.MAX_VALUE))
         );
 
-        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1280, 520));
-
-        cerrarSesion.setBackground(new java.awt.Color(239, 35, 60));
-        cerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cerrarSesion.setText("Cerrar Sesión");
-        cerrarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cerrarSesionActionPerformed(evt);
-            }
-        });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 220, 50));
+        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2259, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void principalBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_principalBotonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_principalBotonMouseClicked
-
-    private void principalBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_principalBotonActionPerformed
-        // TODO add your handling code here:
-        System.out.println("princiapl");
-        vistaJefeCocinaPrincipal jefeCocinaPrincipal = new vistaJefeCocinaPrincipal();
-        jefeCocinaPrincipal.setSize(1280, 720);
-        jefeCocinaPrincipal.setLocation(0, 0);
-        content.removeAll();
-        content.add(jefeCocinaPrincipal, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_principalBotonActionPerformed
-
-    private void pedidosBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidosBotonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pedidosBotonMouseClicked
-
-    private void pedidosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosBotonActionPerformed
-        // TODO add your handling code here:
-        vistaJefeCocinaPedidos jefeCocinaPedidos = new vistaJefeCocinaPedidos();
-        jefeCocinaPedidos.setSize(1280, 720);
-        jefeCocinaPedidos.setLocation(0, 0);
-        content.removeAll();
-        content.add(jefeCocinaPedidos, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_pedidosBotonActionPerformed
-
-    private void cartaBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cartaBotonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cartaBotonMouseClicked
-
-    private void cartaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartaBotonActionPerformed
-        // TODO add your handling code here:
-        vistaJefeCocinaCarta jefeCocinaCarta = new vistaJefeCocinaCarta();
-        jefeCocinaCarta.setSize(1280, 720);
-        jefeCocinaCarta.setLocation(0, 0);
-        content.removeAll();
-        content.add(jefeCocinaCarta, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_cartaBotonActionPerformed
-
-    private void estadisticasBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadisticasBotonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estadisticasBotonMouseClicked
-
-    private void estadisticasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadisticasBotonActionPerformed
-        // TODO add your handling code here:
-        System.out.println("estadticas");
-        vistaJefeCocinaEstadisticas jefeCocinaEstadisticas = new vistaJefeCocinaEstadisticas();
-        jefeCocinaEstadisticas.setSize(1280, 720);
-        jefeCocinaEstadisticas.setLocation(0, 0);
-        content.removeAll();
-        content.add(jefeCocinaEstadisticas, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_estadisticasBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
         // TODO add your handling code here:
@@ -427,18 +261,13 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BebidasName;
+    private javax.swing.JLabel BebidasName1;
     private javax.swing.JPanel background;
-    private javax.swing.JButton cartaBoton;
     private javax.swing.JButton cerrarSesion;
     private javax.swing.JPanel content;
     private javax.swing.JTable contentTableEst;
-    private javax.swing.JButton estadisticasBoton;
-    private javax.swing.JLabel iniciarSesion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panelIzquierda;
-    private javax.swing.JButton pedidosBoton;
-    private javax.swing.JButton principalBoton;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel title2;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,11 @@
  */
 package vista;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.InicioSession;
+
 /**
  *
  * @author PC
@@ -27,8 +32,8 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        usuarioField = new javax.swing.JTextField();
+        contrasenaField = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -43,16 +48,16 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         jLabel3.setText("Usuario");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 30));
 
-        jTextField2.setText("Ingrese su usuario...");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        usuarioField.setText("Ingrese su usuario...");
+        usuarioField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                usuarioFieldActionPerformed(evt);
             }
         });
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 430, 40));
+        add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 430, 40));
 
-        jPasswordField1.setText("jPasswordField1");
-        add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 430, 40));
+        contrasenaField.setText("jPasswordField1");
+        add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 430, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(75, 76, 73));
@@ -88,9 +93,9 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 200, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void usuarioFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_usuarioFieldActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         // TODO add your handling code here:
@@ -98,17 +103,26 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
         // TODO add your handling code here:
+        String usuario = usuarioField.getText();
+        String contrasena = contrasenaField.getText();
+        InicioSession usuarioActual = new InicioSession();
+        
+        try {
+            usuarioActual.iniciarSesionHuesped(usuario, contrasena);
+        } catch (IOException ex) {
+            Logger.getLogger(iniciarSesionHuesped.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_iniciarSesionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrar;
+    private javax.swing.JPasswordField contrasenaField;
     private javax.swing.JButton iniciarSesion;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField usuarioField;
     // End of variables declaration//GEN-END:variables
 }

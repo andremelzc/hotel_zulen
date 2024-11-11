@@ -8,6 +8,7 @@ import vista.AmaLlaves.*;
 import vista.JefeCocina.*;
 import vista.Admin.*;
 import java.awt.BorderLayout;
+import modelo.Huesped;
 import vista.Recepcionista.vistaRecepcionistaFacturar;
 import vista.Recepcionista.vistaRecepcionistaRegistrar;
 
@@ -16,14 +17,26 @@ import vista.Recepcionista.vistaRecepcionistaRegistrar;
  * @author PC
  */
 public class vistaHuesped extends javax.swing.JFrame {
+    public Huesped huesped;
 
     /**
      * Creates new form vistaAdministrador
      */
-    public vistaHuesped() {
+    public vistaHuesped(Huesped huesped) {
         initComponents();
+        this.huesped = huesped;
+        
     }
-
+    
+    private void mostrarInfo() {
+        // Ejemplo: mostrar el nombre y el ID del recepcionista en etiquetas o campos de la interfaz
+        if (huesped != null) {
+            // Aquí puedes asignar los valores a componentes de la interfaz
+            // Ejemplo: labelNombre.setText(recepcionista.getNombre());
+            System.out.println("Nombre del huesped: " + huesped.getNombre());
+            System.out.println("ID del huesped: " + huesped.getDNI());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,7 +187,7 @@ public class vistaHuesped extends javax.swing.JFrame {
                 cerrarSesionActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 220, 50));
+        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 640, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,7 +224,7 @@ public class vistaHuesped extends javax.swing.JFrame {
 
     private void serviceBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceBotonActionPerformed
         // TODO add your handling code here:
-        vistaHuespedRoomService huespedRoomService = new vistaHuespedRoomService();
+        vistaHuespedRoomService huespedRoomService = new vistaHuespedRoomService(huesped);
         huespedRoomService.setSize(1280, 720);
         huespedRoomService.setLocation(0, 0);
         content.removeAll();
@@ -257,12 +270,12 @@ public class vistaHuesped extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -289,12 +302,12 @@ public class vistaHuesped extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaHuesped().setVisible(true);
+                new vistaHuesped(Hu).setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;

@@ -17,7 +17,7 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
 
     /**
      * Creates new form iniciarSesionHuesped
-     */
+     */ 
     public iniciarSesionPersonal() {
         initComponents();
     }
@@ -95,6 +95,7 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed

@@ -6,12 +6,22 @@ package vista.Huesped;
 
 import Persistencia.ComboConsumibleRepository;
 import Persistencia.ComboRepository;
+import Persistencia.HabitacionRepository;
+import Persistencia.ReservacionHabitacionComboRepository;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import modelo.Combo;
 import modelo.Consumible;
+import modelo.Huesped;
+import modelo.Reservacion;
 import vista.Recepcionista.*;
+import Persistencia.ReservacionHuespedRepository;
+import Persistencia.ReservacionHabitacionesRepository;
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
+import modelo.Habitacion;
 
 /**
  *
@@ -19,14 +29,43 @@ import vista.Recepcionista.*;
  */
 public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
 
+    public Huesped huesped;
     DefaultTableModel mt = new DefaultTableModel();
+    JComboBox<String> comboBox = new JComboBox<>();
 
     /**
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
-    public vistaHuespedRoomServiceCena() {
+    public vistaHuespedRoomServiceCena(Huesped huesped) {
         initComponents();
+        this.huesped = huesped;
 
+        ReservacionHuespedRepository reseHueRepo = new ReservacionHuespedRepository();
+        List<Reservacion> reservaciones = reseHueRepo.obtenerReservasPorHuesped(huesped.getDNI());
+        
+        ReservacionHabitacionesRepository reseHaRepo = new ReservacionHabitacionesRepository();
+        // Sacar todas las habitaciones
+        List<Habitacion> habitaciones = new ArrayList<>();
+        for(Reservacion reservacion : reservaciones){
+            List<Habitacion> subHabitaciones = reseHaRepo.obtenerHabitacionesPorReservacion(reservacion.getIdReserva());
+            habitaciones.addAll(subHabitaciones);
+        }
+
+        System.out.println(huesped.getNombre());
+
+        // COMBO BOX PARA SELECCIONAR RESERVA
+        reservacionesCombo.removeAllItems();
+        for (Reservacion rese : reservaciones) {
+            reservacionesCombo.addItem(String.valueOf(rese.getIdReserva()));
+        }
+        
+        // COMBO BOX PARA SELECCIONAR HABITACION
+        habitacionesCombo.removeAllItems();
+        for (Habitacion habi : habitaciones){
+            habitacionesCombo.addItem(String.valueOf(habi.getId()));
+        }
+
+        // PARA LAS TABLAS
         String ids[] = {"ID", "Combo", "Precio"};
         mt.setColumnIdentifiers(ids);
         System.out.println("dsada");
@@ -85,6 +124,12 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
         precioSeleccionadoField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         comboSeleccionadoField = new javax.swing.JTextField();
+        Reservación = new javax.swing.JLabel();
+        reservacionesCombo = new javax.swing.JComboBox<>();
+        Reservación1 = new javax.swing.JLabel();
+        habitacionesCombo = new javax.swing.JComboBox<>();
+        Reservación2 = new javax.swing.JLabel();
+        cantidadField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         pedirBoton = new javax.swing.JButton();
         borrarBoton = new javax.swing.JButton();
@@ -110,7 +155,7 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaCombos);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, 330));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, 330));
 
         jPanel1.setBackground(new java.awt.Color(141, 153, 174));
 
@@ -128,39 +173,93 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
 
         comboSeleccionadoField.setBackground(new java.awt.Color(221, 221, 221));
 
+        Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación.setForeground(new java.awt.Color(45, 45, 44));
+        Reservación.setText("Reservacion");
+        Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        reservacionesCombo.setBackground(new java.awt.Color(221, 221, 221));
+        reservacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        Reservación1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación1.setForeground(new java.awt.Color(45, 45, 44));
+        Reservación1.setText("Habitación");
+        Reservación1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        habitacionesCombo.setBackground(new java.awt.Color(221, 221, 221));
+        habitacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        Reservación2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación2.setForeground(new java.awt.Color(45, 45, 44));
+        Reservación2.setText("Cantidad");
+        Reservación2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        cantidadField.setBackground(new java.awt.Color(221, 221, 221));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                    .addComponent(precioSeleccionadoField))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(191, 191, 191)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Reservación2)
+                                    .addComponent(cantidadField)))
+                            .addComponent(jLabel2)
+                            .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Reservación)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Reservación1)
+                        .addGap(129, 129, 129))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(reservacionesCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 212, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(habitacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Reservación2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cantidadField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Reservación)
+                    .addComponent(Reservación1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reservacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(habitacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 110, 500, 190));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 500, 260));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(45, 45, 44));
         jLabel4.setText("Seleccione el combo que desee pedir");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
 
         pedirBoton.setBackground(new java.awt.Color(239, 35, 60));
         pedirBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -170,7 +269,7 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
                 pedirBotonActionPerformed(evt);
             }
         });
-        add(pedirBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, 240, 50));
+        add(pedirBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 360, 240, 50));
 
         borrarBoton.setBackground(new java.awt.Color(239, 35, 60));
         borrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -180,12 +279,47 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
                 borrarBotonActionPerformed(evt);
             }
         });
-        add(borrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 320, 240, 50));
+        add(borrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 360, 240, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void pedirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedirBotonActionPerformed
         // TODO add your handling code here:
         
+        
+        
+        int fila = tablaCombos.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) tablaCombos.getModel();
+        int idCombo = Integer.parseInt(model.getValueAt(fila, 0).toString());
+        
+        int cantidad = Integer.parseInt(cantidadField.getText());
+        
+        ReservacionHabitacionComboRepository rhcr = new ReservacionHabitacionComboRepository();
+        int idReservacion = Integer.parseInt((String) reservacionesCombo.getSelectedItem());
+        int idHabitacion = Integer.parseInt((String) habitacionesCombo.getSelectedItem());
+        HabitacionRepository habirepo = new HabitacionRepository();
+        
+        // Verificamos si hay relacion entre la habitacion y la reserva
+        ReservacionHabitacionesRepository rhr = new ReservacionHabitacionesRepository();
+        if(!(rhr.relacionHabitacionReserva(idHabitacion, idReservacion))){
+            JOptionPane.showMessageDialog(null, "La habitación escodiga no correspondo a la reserva echa");
+            return;
+        }
+        
+        LocalDateTime fechaActual = LocalDateTime.now();
+        
+        Habitacion habitacion = habirepo.obtener(idHabitacion);
+        
+        //  idReserva, idHabitacion, huesped, idTipoHabitacion, idCombo, cantidad, estado, fechaPedido, fechaEnvio: SERÁ NULL
+        rhcr.asociarReservacionCombo(
+                idReservacion, 
+                idHabitacion, 
+                huesped, 
+                habitacion.getTipoHabitacion().getId(),
+                idCombo,
+                cantidad, 
+                "Enviado",
+                fechaActual);
+
     }//GEN-LAST:event_pedirBotonActionPerformed
 
     private void borrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarBotonActionPerformed
@@ -197,8 +331,8 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
     private void tablaCombosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCombosMouseClicked
         // TODO add your handling code here:
         int fila = tablaCombos.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)tablaCombos.getModel();
-        
+        DefaultTableModel model = (DefaultTableModel) tablaCombos.getModel();
+
         // Obtener valores
         comboSeleccionadoField.setText(model.getValueAt(fila, 1).toString());
         precioSeleccionadoField.setText(model.getValueAt(fila, 2).toString());
@@ -206,8 +340,13 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Reservación;
+    private javax.swing.JLabel Reservación1;
+    private javax.swing.JLabel Reservación2;
     private javax.swing.JButton borrarBoton;
+    private javax.swing.JTextField cantidadField;
     private javax.swing.JTextField comboSeleccionadoField;
+    private javax.swing.JComboBox<String> habitacionesCombo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -215,6 +354,7 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton pedirBoton;
     private javax.swing.JTextField precioSeleccionadoField;
+    private javax.swing.JComboBox<String> reservacionesCombo;
     private javax.swing.JTable tablaCombos;
     // End of variables declaration//GEN-END:variables
 }
