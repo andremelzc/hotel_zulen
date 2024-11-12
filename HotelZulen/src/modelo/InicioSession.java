@@ -7,9 +7,11 @@ package modelo;
 import Persistencia.InicioSesionRepository;
 import java.io.IOException;
 import vista.Admin.vistaAdministrador;
+import vista.AmaLlaves.vistaAmaLLaves;
 import vista.Huesped.vistaHuesped;
 import vista.Recepcionista.vistaRecepcionista;
 import vista.JefeCocina.vistaJefeCocina;
+import vista.iniciarSesion;
 
 /**
  *
@@ -19,12 +21,15 @@ public class InicioSession {
     
     private static Personal usuarioActual;
     private static Huesped huespedActual;
+
     
     public static void iniciarSesion(String usuario, String contraseña) throws IOException {
         InicioSesionRepository identificarUsuario = new InicioSesionRepository();
         usuarioActual = identificarUsuario.iniciarSesion(usuario, contraseña);
 
         if (usuarioActual != null) {
+            iniciarSesion LogIn = new iniciarSesion();
+            LogIn.setVisible(false);
             mostrarVistaCorrespondiente();
         } else {
             System.out.println("Usuario o contraseña incorrectos.");
@@ -36,6 +41,8 @@ public class InicioSession {
         huespedActual = identificarUsuario.iniciarSesionHuesped(usuario, contraseña);
         
         if (huespedActual != null){
+            iniciarSesion LogIn = new iniciarSesion();
+            LogIn.setVisible(false);
             vistaHuesped vistaHuesped = new vistaHuesped(huespedActual);
             vistaHuesped.setVisible(true);
         } else {
@@ -57,13 +64,13 @@ public class InicioSession {
         } else if(usuarioActual instanceof AmaDeLlaves) { 
             AmaDeLlaves amaLlaves = (AmaDeLlaves) usuarioActual;
             System.out.println("Abriendo vista del ama de llaves");
-            //new VistaAmaLlaves().mostrar()
+            vistaAmaLLaves vistaAma = new vistaAmaLLaves(amaLlaves);
+            vistaAma.setVisible(true);
         } else if (usuarioActual instanceof KitchenManager){
             KitchenManager jefeCocina = (KitchenManager) usuarioActual;
             System.out.println("Abriendo vista del jefe de cocina");
-            vistaJefeCocina vistaCocina = new vistaJefeCocina();
+            vistaJefeCocina vistaCocina = new vistaJefeCocina(jefeCocina);
             vistaCocina.setVisible(true);
-            //new VistaKitchenManager().mostrar()
         } else {
             System.out.println("Tipo de usuario no reconocido.");
         }
@@ -71,7 +78,16 @@ public class InicioSession {
 
     public static void cerrarSesion() {
         usuarioActual = null;
+        huespedActual = null;
+        java.awt.Window[] windows = java.awt.Window.getWindows();
+        for (java.awt.Window window : windows) {
+            window.dispose(); // Cerrar todas las ventanas abiertas
+        }
+        iniciarSesion LogIn = new iniciarSesion();
+        LogIn.setVisible(true);
         System.out.println("Sesion cerrada. Volviendo a la vista de inicio de sesion.");
     }
+    
+    
 
 }

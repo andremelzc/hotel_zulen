@@ -4,11 +4,10 @@
  */
 package vista.JefeCocina;
 
-import vista.Admin.*;
+
 import java.awt.BorderLayout;
-import vista.Recepcionista.vistaRecepcionistaFacturar;
-import vista.Recepcionista.vistaRecepcionistaRegistrar;
-import Persistencia.ReservacionHabitacionComboRepository;
+import static modelo.InicioSession.cerrarSesion;
+import modelo.KitchenManager;
 import modelo.ReservacionHabitacionCombo;
 /**
  *
@@ -19,7 +18,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
     /**
      * Creates new form vistaAdministrador
      */
-    public vistaJefeCocina() {
+    public vistaJefeCocina(KitchenManager JefeCocina) {
         initComponents();
     }
 
@@ -173,7 +172,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
                 cerrarSesion1ActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 650, 220, 50));
+        background.add(cerrarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,7 +255,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
     }//GEN-LAST:event_estadisticasBotonActionPerformed
 
     private void cerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesion1ActionPerformed
-        // TODO add your handling code here:
+       cerrarSesion();
     }//GEN-LAST:event_cerrarSesion1ActionPerformed
 
     /**
