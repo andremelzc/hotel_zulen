@@ -1,16 +1,26 @@
-# Para NetBeans
-/nbproject/
-/build/
+# NetBeans files
+nbproject/
+build/
+dist/
+nbbuild/
+nbdist/
+.nb-gradle/
+*.bak
 
-# Para IntellijIdea
-/.idea/
+# NetBeans project-specific files
+nbproject/private/
+nbproject/Makefile-*
+nbproject/configs/
+
+# IntelliJ IDEA files
+.idea/
 *.iml
 out/
 
-# Compiled class file
+# Compiled class files
 *.class
 
-# Log file
+# Log files
 *.log
 
 # BlueJ files
@@ -19,7 +29,7 @@ out/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.nar
@@ -28,9 +38,20 @@ out/
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Ant generated files
+build.xml.bak
+build/classes/
+build/test/classes/
+build/test/results/
+build/test/reports/
+build/test/logs/
+
+# JVM crash logs
 hs_err_pid*
 replay_pid*
+
+# Exclude specific project folders
 /HotelZulen/nbproject/private/
 /HotelZulen/build/
 /HotelZulen_Respaldo/nbproject/private/
+
