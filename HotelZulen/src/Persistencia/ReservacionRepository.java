@@ -18,13 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Combo;
 
+
 public class ReservacionRepository implements IRepository <Reservacion>{ 
     
     
     @Override
     public Reservacion obtener(int id) {
         String sql = "SELECT * FROM reservaciones WHERE idReservaciones = ?";
-        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); 
+            PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -37,14 +39,46 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                 
                 Timestamp fechaCreacionSQL = rs.getTimestamp("FechaCreacion");
                 LocalDateTime fechaCreacion = fechaCreacionSQL.toLocalDateTime();
+                // Verificar si CheckIn y CheckOut son null
+                Timestamp checkInTimestamp = rs.getTimestamp("CheckIn");
+                Timestamp checkOutTimestamp = rs.getTimestamp("CheckOut");
                 
-                return new Reservacion(
+                if(checkInTimestamp != null && checkOutTimestamp != null){
+                    LocalDateTime checkIn = checkInTimestamp.toLocalDateTime();
+                    LocalDateTime checkOut = checkOutTimestamp.toLocalDateTime();
+                    return new Reservacion(
                         rs.getInt("idReservaciones"), 
                         rs.getInt("NumeroHabitaciones"), 
                         rs.getString("Estado"), 
                         fechaComienzo, 
                         fechaFin, 
-                        fechaCreacion);
+                        fechaCreacion,
+                        checkIn,
+                        checkOut
+                    );
+                }else if (checkInTimestamp != null && checkOutTimestamp ==null ){
+                    LocalDateTime checkIn = checkInTimestamp.toLocalDateTime();
+                    return new Reservacion(
+                        rs.getInt("idReservaciones"),
+                        rs.getInt("NumeroHabitaciones"),
+                        rs.getString("Estado"),
+                        fechaComienzo,
+                        fechaFin,
+                        fechaCreacion,
+                        checkIn, 
+                        null
+                    );
+                }else {
+                    return new Reservacion(
+                    rs.getInt("idReservaciones"),
+                    rs.getInt("NumeroHabitaciones"),
+                    rs.getString("Estado"),
+                    fechaComienzo,
+                    fechaFin,
+                    fechaCreacion
+                    );
+                }
+                
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,6 +89,26 @@ public class ReservacionRepository implements IRepository <Reservacion>{
     @Override
     public void actualizar(Reservacion objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void actualizarCheckIn(Reservacion reserva) {
+        String sql = "UPDATE reservaciones SET CheckIn = ? WHERE idReservaciones = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            if (reserva.getCheckIn() != null) {
+                stmt.setTimestamp(1, Timestamp.valueOf(reserva.getCheckIn()));
+            } else {
+                stmt.setNull(1, java.sql.Types.TIMESTAMP); // Nunca pasará, pero esta bueno
+            }
+            
+            stmt.setInt(2, reserva.getIdReserva());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -81,8 +135,9 @@ public class ReservacionRepository implements IRepository <Reservacion>{
             stmt.setTimestamp(3, Timestamp.valueOf(reservacion.getFinHuesped())); // Fecha final
             stmt.setString(4, reservacion.getEstado()); // Estado de la reserva
             stmt.setTimestamp(5, Timestamp.valueOf(reservacion.getFechaCrea())); // Fecha final
-            stmt.setTimestamp(6, Timestamp.valueOf(reservacion.getIncioHuesped()));
-            stmt.setTimestamp(7, Timestamp.valueOf(reservacion.getFinHuesped()));
+            
+            stmt.setNull(6, java.sql.Types.NULL); // CheckIn a NULL
+            stmt.setNull(7, java.sql.Types.NULL);
 
             // Ejecutar la inserción de la reserva
             int affectedRows = stmt.executeUpdate();
@@ -188,7 +243,7 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                         checkOut
                     );
                     reservas.add(reservacion);
-                } else if (checkInTimestamp != null) {
+                } else if (checkInTimestamp != null && checkOutTimestamp == null) {
                     LocalDateTime checkIn = checkInTimestamp.toLocalDateTime();
                     Reservacion reservacion = new Reservacion(
                         rs.getInt("idReservaciones"),

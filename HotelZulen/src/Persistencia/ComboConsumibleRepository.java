@@ -44,12 +44,18 @@ public class ComboConsumibleRepository implements IRepository<ComboConsumible> {
 
     public List<Consumible> obtenerConsumiblesPorCombo(int comboId) {
         List<Consumible> consumibles = new ArrayList<>();
-        String sql = "SELECT * FROM combo_has_consumible WHERE COMBO_idCOMBO = ?";
+        String sql = "SELECT c.idCONSUMIBLE, c.NombreConsumible, c.Precio " +
+                 "FROM combo_has_consumible chc " +
+                 "JOIN consumible c ON chc.CONSUMIBLE_idCONSUMIBLE = c.idCONSUMIBLE " +
+                 "WHERE chc.COMBO_idCOMBO = ?";
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, comboId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Consumible consumible = new ConsumibleRepository().obtener(rs.getInt("CONSUMIBLE_idCONSUMIBLE"));
+                Consumible consumible = new Consumible();
+                consumible.setId(rs.getInt("idCONSUMIBLE"));
+                consumible.setNombre(rs.getString("NombreConsumible"));
+                consumible.setPrecio((float)rs.getDouble("Precio"));
                 consumibles.add(consumible);
             }
         } catch (SQLException e) {

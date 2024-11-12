@@ -74,11 +74,9 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelHabitacion1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelHabitacion1.setText("Datos Habitacion:");
         add(jLabelHabitacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 210, 30));
 
-        jLabelTipoHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTipoHabitacion.setText("Tipo Habitación:");
         add(jLabelTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
@@ -86,7 +84,6 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1200, 10));
 
-        jLabelNumHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNumHabitacion.setText("Nº Habitación:");
         add(jLabelNumHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, -1, 20));
 
@@ -109,7 +106,7 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
 
         jButtonRegistrarHabitación.setBackground(new java.awt.Color(0, 102, 204));
         jButtonRegistrarHabitación.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonRegistrarHabitación.setText("Filtrar");
+        jButtonRegistrarHabitación.setText("Guardar fecha de reserva");
         jButtonRegistrarHabitación.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarHabitaciónActionPerformed(evt);
@@ -136,11 +133,9 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         jComboBoxTipoHabitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estandar", "Doble", "Suite", "Business" }));
         add(jComboBoxTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 130, 20));
 
-        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre.setText("Hasta:");
         add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, -1));
 
-        jLabelNombre2.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre2.setText("Desde:");
         add(jLabelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
 

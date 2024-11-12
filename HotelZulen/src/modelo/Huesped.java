@@ -160,6 +160,9 @@ public class Huesped   {
     public Huesped obtenerHuespedTitularXidReserva(int idReserva){
         return repo.obtenerHuespedTitutlarxIdReserva(idReserva);
     }
-
+    
+    public Huesped obtenerXDni(int DNI){
+        return repo.obtener(DNI);
+    }
 
 }

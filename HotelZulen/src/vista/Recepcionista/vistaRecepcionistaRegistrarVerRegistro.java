@@ -4,6 +4,8 @@
  */
 package vista.Recepcionista;
 
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Habitacion;
@@ -28,7 +30,9 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
 
     public void generarResumen(Reservacion reservacion, List<Huesped> listaHuespedes, List<Habitacion> listaHabitaciones, List<ServiciosAdicionales> listaServicios) {
         StringBuilder resumen = new StringBuilder();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         double precioTotal = 0;
+        long diasDiferencia = ChronoUnit.DAYS.between(reservacion.getIncioHuesped().toLocalDate(), reservacion.getFinHuesped().toLocalDate());
         // Asumiendo que Reservacion tiene un método getTitular para obtener el nombre del titular
         resumen.append("Nombre del titular: ").append(listaHuespedes.getFirst().getNombre() + " " + listaHuespedes.getFirst().getApellido()).append("\n\n");
 
@@ -44,7 +48,7 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
                     .append(" - Piso ").append(habitacion.getPiso())
                     .append(" - Tipo ").append(habitacion.getTipoHabitacion().getConcepto())
                     .append(" - Precio ").append(habitacion.getTipoHabitacion().getPrecio()).append("\n");
-            precioTotal += habitacion.getTipoHabitacion().getPrecio();
+            precioTotal += habitacion.getTipoHabitacion().getPrecio()*diasDiferencia;
         }
         resumen.append("\n");
 
@@ -56,9 +60,11 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
         resumen.append("\n");
 
         resumen.append("Fecha de inicio de la reserva: ");
-        resumen.append(reservacion.getIncioHuesped().toString()).append("\n");
+        resumen.append(reservacion.getIncioHuesped().format(formatter)).append("\n");
         resumen.append("Fecha de fin de la reserva: ");
-        resumen.append(reservacion.getFinHuesped().toString()).append("\n");
+        resumen.append(reservacion.getFinHuesped().format(formatter)).append("\n");
+        
+        resumen.append("Duración de la reserva: ").append(diasDiferencia).append(" días\n");
 
         // Asumiendo que Reservacion tiene un método getPrecioTotal
         resumen.append("Precio Total: ").append(precioTotal).append("\n");

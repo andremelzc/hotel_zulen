@@ -7,8 +7,10 @@ package vista.Recepcionista;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import modelo.Habitacion;
 import modelo.Huesped;
 import modelo.Reservacion;
@@ -143,7 +145,18 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 // Llamada a la función cuando se presiona el botón
-                reservacion.crearReservacion(reservacion, listaHuespedes, listaHabitaciones, listaServicios);
+                int resultado = JOptionPane.showConfirmDialog(null, "¿Deseas continuar=?", "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
+        
+                if (resultado == JOptionPane.YES_OPTION) {
+                    System.out.println("El recepcionista dio click a registrar reserva.");
+                    reservacion.crearReservacion(reservacion, listaHuespedes, listaHabitaciones, listaServicios);
+                    JOptionPane.showMessageDialog(null, "La reserva se ha registrado correctamente en la base de datos.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+
+                }
+                
+                
             }
         });
     }//GEN-LAST:event_verRegistroBotonActionPerformed

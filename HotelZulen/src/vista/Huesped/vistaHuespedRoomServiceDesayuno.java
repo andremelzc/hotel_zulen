@@ -68,12 +68,12 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
         // PARA LAS TABLAS
         String ids[] = {"ID", "Combo", "Precio"};
         mt.setColumnIdentifiers(ids);
-        System.out.println("dsada");
+        System.out.println("Tabla creada");
         tablaCombos.setModel(mt);
 
         // Inicializar para tener todos los combos
         List<Combo> combos = new ArrayList<>();
-        System.out.println("hola");
+        System.out.println("Creacion de tabla");
         ComboRepository comborepo = new ComboRepository();
         ComboConsumibleRepository comboconsurepo = new ComboConsumibleRepository();
 
