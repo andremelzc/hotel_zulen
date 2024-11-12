@@ -86,7 +86,8 @@ public class PersonalRepository implements IRepository<Personal> {
     public void actualizar(Personal personal) {
         String sql = "UPDATE personal SET TipoPersonal = ?, Nombre = ?, Apellidos = ?, Telefono = ?, Direccion = ?, Usuario = ?, Contraseña = ?, Estado = ?, FechaMod = ? WHERE DNI = ?";
 
-        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); 
+            PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             // Convertir LocalDateTime a Timestamp para FechaCrea y FechaMod
             Timestamp fechaModSQL = Timestamp.valueOf(personal.getFechaMod());
