@@ -6,6 +6,7 @@ package vista.Admin;
 
 import java.awt.BorderLayout;
 import modelo.Administrador;
+import static modelo.InicioSession.cerrarSesion;
 import vista.Recepcionista.vistaRecepcionistaFacturar;
 import vista.Recepcionista.vistaRecepcionistaRegistrar;
 
@@ -200,7 +201,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                 cerrarSesionActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 220, 50));
+        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,7 +309,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_finanzasBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
-        // TODO add your handling code here:
+       cerrarSesion();
     }//GEN-LAST:event_cerrarSesionActionPerformed
 
 
