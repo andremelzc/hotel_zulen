@@ -34,6 +34,9 @@ public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
         Reservacion reserva = new Reservacion();
         List<Reservacion> listaReserva = new ArrayList<>();
         listaReserva = reserva.obtenerXDniYEstado(Integer.parseInt(dniHuesped.getText()),(String) desplegable.getSelectedItem());
+        Huesped huesped = new Huesped();
+        huesped = huesped.obtenerXDni(Integer.parseInt(dniHuesped.getText()));
+        nombreHuesped.setText(huesped.getNombre()+" "+huesped.getApellido());
         // Limpiar la tabla antes de agregar los nuevos datos
         modelo.setRowCount(0);
     
@@ -64,8 +67,8 @@ public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         dniHuesped = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        nombreHuesped = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,10 +81,7 @@ public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 " idReserva", "# Habitaciones", "Fecha Inicio", "Fecha Final", "Fecha Creacion"
@@ -93,7 +93,7 @@ public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
             Tabla.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 700, 240));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 1050, 240));
 
         desplegable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "confirmada", "vigente", "cancelada", "finalizada" }));
         add(desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 130, -1));
@@ -110,7 +110,6 @@ public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, -1, -1));
         add(dniHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 100, -1));
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 110, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 255, 255));
         jButton2.setText("Ver Reserva");
@@ -119,7 +118,8 @@ public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 250, -1, -1));
+        add(nombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 110, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -145,7 +145,7 @@ public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel nombreHuesped;
     // End of variables declaration//GEN-END:variables
 }
 
