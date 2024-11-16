@@ -76,7 +76,7 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         
         for ( Object[] row : datosCombos ){
             Integer cantidad = estadisticas.get(row[0]);
-            if (cantidad != null && cantidad != 0) {
+            if (cantidad != null) {
                 System.out.println("El total de cantidad para el combo " + row[0]+ " es: " + cantidad);
                 float totalPrecio = ((Float) row[2])*cantidad;
                 row[2] = totalPrecio;              
