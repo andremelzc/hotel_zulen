@@ -174,7 +174,11 @@ public class Reservacion implements IActualizar<Reservacion> {
     public LocalDateTime getCheckIn() {
         return checkIn;
     }
-
+    //Para crear
+    public void setCheckIn() {
+        this.checkIn = LocalDateTime.now();
+    }
+    //Para recibir
     public void setCheckIn(LocalDateTime checkIn) {
         this.checkIn = checkIn;
     }
@@ -265,6 +269,8 @@ public class Reservacion implements IActualizar<Reservacion> {
    public Reservacion obtenerReserva (int id){
        return repoReserva.obtener(id);
    }
-   
+   public void actualizarCheckIn (Reservacion obj){
+       repoReserva.actualizarCheckIn(obj);
+   }
 }
 
