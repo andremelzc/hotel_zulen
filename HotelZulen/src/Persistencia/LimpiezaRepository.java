@@ -23,7 +23,7 @@ public class LimpiezaRepository implements IRepository<Limpieza> {
 
     @Override
     public void crear(Limpieza objeto) {
-
+        int indice = 1;
         String query = "INSERT INTO hotel_zulen.Limpiezas (HABITACIONES_idHabitaciones, HABITACIONES_TIPO_HAB_idCategoria, PERSONAL_DNI, FechaLimpieza, TipoLimpieza, estadoLimpieza) VALUES (?,?,?,?,?,?)";
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, objeto.getIdHabitacion());      // idHabitacion
@@ -33,7 +33,7 @@ public class LimpiezaRepository implements IRepository<Limpieza> {
             stmt.setString(5, objeto.getTipoLimpieza());  // tipoLimpieza
             stmt.setString(6, objeto.getEstadoLimpieza());// estadoLimpieza
             stmt.executeUpdate();
-            System.out.println("Limpieza asignada con exito");
+            System.out.println("Limpieza asignada con exito" + indice++);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -107,14 +107,30 @@ public class LimpiezaRepository implements IRepository<Limpieza> {
             int peso = fila[1];
             int idCategoria = fila[2];  // Recuperamos la categoría
 
-            nuevosRegistros.add(new Limpieza(idHabitacion, aux[1], idCategoria, "Profunda", "asignada", fechaHoy));
+            String tipoLimpieza;
+            switch (peso) {
+                case 4:
+                    tipoLimpieza = "Profunda";
+                    break;
+                case 3:
+                    tipoLimpieza = "Intermedia";
+                    break;
+                case 2:
+                    tipoLimpieza = "Ligera";
+                    break;
+                default:
+                    tipoLimpieza = "Chequeo simple";
+                    break;
+            }
+            
+            nuevosRegistros.add(new Limpieza(idHabitacion, aux[1], idCategoria, tipoLimpieza, "asignada", fechaHoy));
 
             aux[0] += peso; //sumando el peso de la habitacion al peso acumulado del housekeeper                     
 
             housekeepers.add(aux);
         }
-        
-        for(Limpieza registro : nuevosRegistros){
+
+        for (Limpieza registro : nuevosRegistros) {
             crear(registro);
         }
     }
