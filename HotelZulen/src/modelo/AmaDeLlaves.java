@@ -4,11 +4,16 @@
  */
 package modelo;
 
+import Persistencia.PersonalRepository;
+import java.util.List;
+
 /**
  *
  * @author Suyco
  */
 public class AmaDeLlaves extends Personal {
+    
+    private PersonalRepository repoPersonal;
     
     public AmaDeLlaves(int DNI, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado) {
         this.DNI = DNI;
@@ -19,9 +24,11 @@ public class AmaDeLlaves extends Personal {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.estado = estado;
+        this.repoPersonal = new PersonalRepository();
     }
 
     public AmaDeLlaves() {
+        this.repoPersonal = new PersonalRepository();
     }
 
     public String getNombre() {
@@ -87,5 +94,15 @@ public class AmaDeLlaves extends Personal {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    
+    public Housekeeper obtenerHousekeeper(int dni){
+        return repoPersonal.obtenerHouskeeper(dni);
+    }
+    public List<Housekeeper> obtenerListaHouseActivos(){
+        return repoPersonal.obtenerHousekeeperActivos();
+    }
+    
+    public List<Housekeeper> obtenerListaHouseInactivos(){
+        return repoPersonal.obtenerHousekeeperInactivos();
+    }
 }

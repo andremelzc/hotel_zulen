@@ -22,6 +22,7 @@ public class Habitacion implements IActualizar<Habitacion> {
         this.tipoHabitacion = tipoHabitacion;
         this.piso = piso;
         this.estado = estado;
+        this.repo = new HabitacionRepository();
     }
 
     public Habitacion() {
@@ -63,5 +64,13 @@ public class Habitacion implements IActualizar<Habitacion> {
 
     public Habitacion obtenerxTipo(int tipoHabitacion){
         return repo.obtenerxTipo(tipoHabitacion);
+    }
+    
+    public List<Habitacion> obtenerListaXPisoANDTipo(String piso,String tipoHab){
+        return repo.filtrarHabitaciones(piso, tipoHab);
+    }
+    
+    public Habitacion obtenerHabxId(int id){
+        return repo.obtener(id);
     }
 }

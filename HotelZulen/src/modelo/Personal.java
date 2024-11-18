@@ -40,9 +40,12 @@ public abstract class Personal  {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.estado = estado;
+        this.FechaCrea = LocalDateTime.now();
+        this.FechaMod = LocalDateTime.now();
     }
 
-    public Personal(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado, LocalDateTime FechaCrea, LocalDateTime FechaMod) {
+    //Cuadno personal ya esta creado anteriormente
+    public Personal(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado, LocalDateTime FechaCrea, LocalDateTime FechaMod){
         this.DNI = DNI;
         this.funcion = funcion;
         this.nombre = nombre;

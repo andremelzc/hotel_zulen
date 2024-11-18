@@ -22,6 +22,7 @@ public class Reservacion implements IActualizar<Reservacion> {
     private LocalDateTime incioHuesped;
     private LocalDateTime finHuesped;
     private LocalDateTime fechaCrea;
+    private LocalDateTime fechaMod;
     private LocalDateTime checkIn;
     private LocalDateTime checkOut;
     private HuespedRepository repoHuesped;
@@ -48,6 +49,7 @@ public class Reservacion implements IActualizar<Reservacion> {
         this.incioHuesped = incioHuesped;
         this.finHuesped = finHuesped;
         this.fechaCrea = LocalDateTime.now();
+        this.fechaMod = null;
         this.repoHuesped = new HuespedRepository();
         this.repoHab = new HabitacionRepository();
         this.repoReserva = new ReservacionRepository();
@@ -63,6 +65,7 @@ public class Reservacion implements IActualizar<Reservacion> {
         this.incioHuesped = incioHuesped;
         this.finHuesped = finHuesped;
         this.fechaCrea = LocalDateTime.now();
+        this.fechaMod = null;
         this.checkIn = checkIn;
         this.repoHuesped = new HuespedRepository();
         this.repoHab = new HabitacionRepository();
@@ -106,13 +109,14 @@ public class Reservacion implements IActualizar<Reservacion> {
     }
 
     //Al momento de recuperar una reserva y tiene todos los campos llenos
-    public Reservacion(int idReserva, int numHabitaciones, String estado, LocalDateTime incioHuesped, LocalDateTime finHuesped, LocalDateTime fechaCrea, LocalDateTime checkIn, LocalDateTime checkOut) {
+    public Reservacion(int idReserva, int numHabitaciones, String estado, LocalDateTime incioHuesped, LocalDateTime finHuesped, LocalDateTime fechaCrea,LocalDateTime fechaMod, LocalDateTime checkIn, LocalDateTime checkOut) {
         this.idReserva = idReserva;
         this.numHabitaciones = numHabitaciones;
         this.estado = estado;
         this.incioHuesped = incioHuesped;
         this.finHuesped = finHuesped;
         this.fechaCrea = fechaCrea;
+        this.fechaMod = fechaMod;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.repoHuesped = new HuespedRepository();
@@ -169,6 +173,14 @@ public class Reservacion implements IActualizar<Reservacion> {
 
     public void setFechaCrea(LocalDateTime fechaCrea) {
         this.fechaCrea = fechaCrea;
+    }
+
+    public LocalDateTime getFechaMod() {
+        return fechaMod;
+    }
+
+    public void setFechaMod(LocalDateTime fechaMod) {
+        this.fechaMod = fechaMod;
     }
 
     public LocalDateTime getCheckIn() {
@@ -238,9 +250,8 @@ public class Reservacion implements IActualizar<Reservacion> {
    public int seleccionarReserva(JTable Tabla) {
         try {
             int fila = Tabla.getSelectedRow();
-            // Verificar si se ha seleccionado una fila
+
             if (fila >= 0) {
-                // Asignar valores con validaciones para evitar errores de formato
                 int id = Integer.parseInt(Tabla.getValueAt(fila, 0).toString());
                 return id;
             } else {
@@ -271,6 +282,9 @@ public class Reservacion implements IActualizar<Reservacion> {
    }
    public void actualizarCheckIn (Reservacion obj){
        repoReserva.actualizarCheckIn(obj);
+   }
+   public int obteneridReservaXidHabitacion(int idHabitacion){
+       return repoReservaHab.obtenerIdReservaXHabitacion(idHabitacion);
    }
 }
 

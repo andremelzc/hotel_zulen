@@ -163,4 +163,47 @@ public class HabitacionRepository implements IRepository<Habitacion> {
         return habitaciones;
     }
 
+    public List<Habitacion> filtrarHabitaciones(String piso, String tipoHabitacion) {
+        List<Habitacion> habitaciones = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT * FROM habitaciones WHERE 1=1");
+
+        // Construcción dinámica de la consulta
+        if (!"Ninguno".equalsIgnoreCase(piso)) {
+            sql.append(" AND Piso = ?");
+        }
+        if (!"Ninguno".equalsIgnoreCase(tipoHabitacion)) {
+            sql.append(" AND TIPO_HAB_idCategoria = (SELECT idCategoria FROM tipo_hab WHERE Concepto = ?)");
+        }
+
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
+
+            int paramIndex = 1;
+
+            // Seteo de parámetros en PreparedStatement
+            if (!"ninguno".equalsIgnoreCase(piso)) {
+                stmt.setInt(paramIndex++, Integer.parseInt(piso));
+            }
+            if (!"ninguno".equalsIgnoreCase(tipoHabitacion)) {
+                stmt.setString(paramIndex++, tipoHabitacion);
+            }
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TipoDeHabitacion tipo = new TipoHabitacionRepository().obtener(rs.getInt("TIPO_HAB_idCategoria"));
+                Habitacion habitacion = new Habitacion(
+                        rs.getInt("idHabitaciones"),
+                        tipo,
+                        rs.getString("Piso"),
+                        rs.getString("Estado")
+                );
+                habitaciones.add(habitacion);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return habitaciones;
+    }
+
 }

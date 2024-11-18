@@ -4,8 +4,9 @@
  */
 package vista.Recepcionista;
 
+import vista.vistaConsultarHuesped;
+import vista.vistaConsultarHabitacion;
 import java.awt.BorderLayout;
-import javax.crypto.AEADBadTagException;
 /**
  *
  * @author PC
@@ -74,7 +75,7 @@ public class vistaRecepcionistaConsultar extends javax.swing.JPanel {
 
     private void huespedesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huespedesBotonActionPerformed
         // TODO add your handling code here:
-        vistaRecepcionistaConsultarHuesped recepcionistaConsultarHuesped = new vistaRecepcionistaConsultarHuesped();
+        vistaConsultarHuesped recepcionistaConsultarHuesped = new vistaConsultarHuesped();
         recepcionistaConsultarHuesped.setSize(1280, 720);
         recepcionistaConsultarHuesped.setLocation(0, 0);
         subcontent.removeAll();
@@ -85,7 +86,7 @@ public class vistaRecepcionistaConsultar extends javax.swing.JPanel {
 
     private void habitacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionesBotonActionPerformed
         // TODO add your handling code here:
-        vistaRecepcionistaConsultarHabitacion recepcionistaConsultarHabitacion = new vistaRecepcionistaConsultarHabitacion();
+        vistaConsultarHabitacion recepcionistaConsultarHabitacion = new vistaConsultarHabitacion();
         recepcionistaConsultarHabitacion.setSize(1280, 720);
         recepcionistaConsultarHabitacion.setLocation(0, 0);
         subcontent.removeAll();

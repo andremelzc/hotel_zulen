@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Fabrizio Mantari
@@ -18,6 +20,10 @@ public class Housekeeper extends Personal{
         super(DNI, funcion, nombre, apellido, telefono, direccion, usuario, contrasena, estado);
     }
 
+    public Housekeeper(int DNI, String funcion, String nombre, String apellido, int telefono, String direccion, String usuario, String contrasena, String estado, LocalDateTime FechaCrea, LocalDateTime FechaMod) {
+        super(DNI, funcion, nombre, apellido, telefono, direccion, usuario, contrasena, estado, FechaCrea, FechaMod);
+    }
+    
     public int getDNI() {
         return DNI;
     }

@@ -46,7 +46,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
         personalBoton = new javax.swing.JButton();
         serviciosBoton = new javax.swing.JButton();
         habitacionesBoton = new javax.swing.JButton();
-        reservacionesBoton = new javax.swing.JButton();
+        consultarBoton = new javax.swing.JButton();
         finanzasBoton = new javax.swing.JButton();
         content = new javax.swing.JPanel();
         cerrarSesion = new javax.swing.JButton();
@@ -108,18 +108,18 @@ public class vistaAdministrador extends javax.swing.JFrame {
             }
         });
 
-        reservacionesBoton.setBackground(new java.awt.Color(141, 153, 174));
-        reservacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        reservacionesBoton.setText("Reservaciones");
-        reservacionesBoton.setBorder(null);
-        reservacionesBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+        consultarBoton.setBackground(new java.awt.Color(141, 153, 174));
+        consultarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        consultarBoton.setText("Consultar");
+        consultarBoton.setBorder(null);
+        consultarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                reservacionesBotonMouseClicked(evt);
+                consultarBotonMouseClicked(evt);
             }
         });
-        reservacionesBoton.addActionListener(new java.awt.event.ActionListener() {
+        consultarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservacionesBotonActionPerformed(evt);
+                consultarBotonActionPerformed(evt);
             }
         });
 
@@ -153,7 +153,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(reservacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(finanzasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -168,7 +168,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                             .addComponent(personalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(serviciosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reservacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(finanzasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -271,11 +271,11 @@ public class vistaAdministrador extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_habitacionesBotonActionPerformed
 
-    private void reservacionesBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservacionesBotonMouseClicked
+    private void consultarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarBotonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_reservacionesBotonMouseClicked
+    }//GEN-LAST:event_consultarBotonMouseClicked
 
-    private void reservacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservacionesBotonActionPerformed
+    private void consultarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarBotonActionPerformed
         // TODO add your handling code here:
         vistaAdministradorReservaciones administradorReservaciones = new vistaAdministradorReservaciones();
         administradorReservaciones.setSize(1280, 720);
@@ -284,7 +284,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
         content.add(administradorReservaciones, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-    }//GEN-LAST:event_reservacionesBotonActionPerformed
+    }//GEN-LAST:event_consultarBotonActionPerformed
 
     private void finanzasBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finanzasBotonMouseClicked
         // TODO add your handling code here:
@@ -316,13 +316,13 @@ public class vistaAdministrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JButton cerrarSesion;
+    private javax.swing.JButton consultarBoton;
     private javax.swing.JPanel content;
     private javax.swing.JButton finanzasBoton;
     private javax.swing.JButton habitacionesBoton;
     private javax.swing.JLabel iniciarSesion;
     private javax.swing.JPanel panelIzquierda;
     private javax.swing.JButton personalBoton;
-    private javax.swing.JButton reservacionesBoton;
     private javax.swing.JButton serviciosBoton;
     // End of variables declaration//GEN-END:variables
 }

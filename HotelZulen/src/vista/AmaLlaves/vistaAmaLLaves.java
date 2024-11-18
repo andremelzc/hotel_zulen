@@ -18,11 +18,10 @@ import vista.Recepcionista.vistaRecepcionistaRegistrar;
  */
 public class vistaAmaLLaves extends javax.swing.JFrame {
 
-    /**
-     * Creates new form vistaAdministrador
-     */
+    private AmaDeLlaves amaLlaves;
     public vistaAmaLLaves(AmaDeLlaves amaLlaves) {
         initComponents();
+        this.amaLlaves = amaLlaves;
     }
 
     @SuppressWarnings("unchecked")
@@ -151,7 +150,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
                 cerrarSesionActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 650, 220, 50));
+        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 640, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,7 +188,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
 
     private void habitacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionesBotonActionPerformed
         // TODO add your handling code here:
-        vistaAmaLLavesHabitaciones amaLLavesHabitaciones = new vistaAmaLLavesHabitaciones();
+        vistaAmaLLavesHabitaciones amaLLavesHabitaciones = new vistaAmaLLavesHabitaciones(amaLlaves);
         amaLLavesHabitaciones.setSize(1280, 720);
         amaLLavesHabitaciones.setLocation(0, 0);
         content.removeAll();
@@ -204,7 +203,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
 
     private void houseKeepersBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseKeepersBotonActionPerformed
         // TODO add your handling code here:
-        vistaAmaLLavesHouseKeeper amaLLavesHouseKeeper = new vistaAmaLLavesHouseKeeper();
+        vistaAmaLLavesHouseKeeper amaLLavesHouseKeeper = new vistaAmaLLavesHouseKeeper(amaLlaves);
         amaLLavesHouseKeeper.setSize(1280, 720);
         amaLLavesHouseKeeper.setLocation(0, 0);
         content.removeAll();
