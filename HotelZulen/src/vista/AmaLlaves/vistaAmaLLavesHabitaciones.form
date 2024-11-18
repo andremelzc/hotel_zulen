@@ -21,9 +21,9 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,34 +43,39 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="verDatos" min="-2" pref="93" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="JPiso" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="tipoHab" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="NumHab" min="-2" pref="104" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Component id="filtro" min="-2" pref="124" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="362" max="-2" attributes="0"/>
+                          <Component id="verDatos" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="140" pref="140" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="90" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="802" max="-2" attributes="0"/>
-                      <EmptySpace pref="154" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="528" max="-2" attributes="0"/>
+                      <EmptySpace pref="606" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -80,33 +85,31 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="filtro" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="JPiso" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tipoHab" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="NumHab" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="verDatos" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="filtro" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Component id="jPanel2" min="-2" pref="330" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="251" max="32767" attributes="0"/>
-                  <Component id="verDatos" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                  <EmptySpace pref="95" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="355" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -139,13 +142,6 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Numero de habitacion: "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="NumHab">
-        </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -175,7 +171,10 @@
         </Container>
         <Component class="javax.swing.JButton" name="verDatos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver info"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ver Housekeeper asignado"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verDatosActionPerformed"/>
@@ -208,14 +207,166 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="24" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="2c" green="2d" red="2d" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Datos de habitaci&#xf3;n"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-          </Events>
         </Component>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="99" red="8d" type="rgb"/>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tipoField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="pisoField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Reservación" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="estadoField" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel8" max="32767" attributes="0"/>
+                                  <Component id="NumHab" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="63" max="32767" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButton1" pref="37" max="32767" attributes="0"/>
+                          <Component id="NumHab" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tipoField" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="pisoField" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Reservación" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="estadoField" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2c" green="2d" red="2d" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tipo:"/>
+                <Property name="verticalAlignment" type="int" value="1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="pisoField">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2c" green="2d" red="2d" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Piso:"/>
+                <Property name="verticalAlignment" type="int" value="1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tipoField">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Reservaci&#xf3;n">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2c" green="2d" red="2d" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Estado:"/>
+                <Property name="verticalAlignment" type="int" value="1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="estadoField">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel8">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="2c" green="2d" red="2d" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Numero de habitacion: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="3c" green="23" red="ef" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="NumHab">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

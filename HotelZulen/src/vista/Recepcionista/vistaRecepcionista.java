@@ -84,7 +84,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
 
         registrarBoton.setBackground(new java.awt.Color(141, 153, 174));
         registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        registrarBoton.setText("Registrar");
+        registrarBoton.setText("Registrar reserva");
         registrarBoton.setBorder(null);
         registrarBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

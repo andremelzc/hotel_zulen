@@ -80,7 +80,7 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
                 iniciarSesionActionPerformed(evt);
             }
         });
-        add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, 50));
+        add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 200, 50));
 
         borrar.setBackground(new java.awt.Color(239, 35, 60));
         borrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -90,7 +90,7 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
                 borrarActionPerformed(evt);
             }
         });
-        add(borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 200, 50));
+        add(borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 200, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

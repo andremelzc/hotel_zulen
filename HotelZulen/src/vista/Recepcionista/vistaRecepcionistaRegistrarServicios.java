@@ -58,7 +58,6 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Servicios Adicionales");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 240, 30));
 
@@ -75,11 +74,14 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, 30));
-
-        jLabelEstaRegistrado.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(jLabelEstaRegistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 210, 30));
 
         jComboBoxServicios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FitnessCenter", "Masaje Tantrico", "Piscina", "Sauna" }));
+        jComboBoxServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxServiciosActionPerformed(evt);
+            }
+        });
         jPanel2.add(jComboBoxServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 280, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -112,7 +114,6 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 700, 190));
 
-        jLabelNombre1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre1.setText("Servicio:");
         jPanel2.add(jLabelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, 20));
 
@@ -141,6 +142,10 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         mt.addRow(new Object[]{servicio.getConcepto(), servicio.getCosto()});
 
     }//GEN-LAST:event_jButtonRegistrarClienteActionPerformed
+
+    private void jComboBoxServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServiciosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxServiciosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
