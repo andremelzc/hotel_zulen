@@ -6,6 +6,7 @@ nbbuild/
 nbdist/
 .nb-gradle/
 *.bak
+build*.properties
 
 # NetBeans project-specific files
 nbproject/private/
