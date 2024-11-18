@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Suyco
  */
-public class ServiciosAdicionales implements IActualizar<ServiciosAdicionales> {
+public class ServiciosAdicionales  {
     int id;
     String concepto;
     double costo;

@@ -21,7 +21,7 @@ public class ReservacionHabitacionCombo {
     private int idPedido;
     private int idHabitacion;
     private int piso;
-    private int categoria;//Debería mostrar nombre -> Futuro
+    private int categoria;
     private int idCombo;
     private String nombreCombo;
     private String descripcionCombo;

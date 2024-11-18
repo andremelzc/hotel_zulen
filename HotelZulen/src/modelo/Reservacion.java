@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import javax.swing.JTable;
 
-public class Reservacion implements IActualizar<Reservacion> {
+public class Reservacion   {
 
     private int idReserva;
     private int numHabitaciones;

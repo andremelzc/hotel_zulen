@@ -9,8 +9,9 @@ package modelo;
  * @author Fabrizio Mantari
  */
 public class Facturas {
-    private int id;
-    private Reservacion reserva;
+    private int idFactura;
+    private Huesped huesped;
+    private String MetodoPago;
 
 
     

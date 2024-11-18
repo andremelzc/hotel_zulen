@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservacionServicio implements IActualizar<ReservacionServicio> {
+public class ReservacionServicio  {
     private Reservacion reserva;
     private ServiciosAdicionales servicio;
 

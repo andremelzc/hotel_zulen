@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Suyco
  */
-public class TipoDeHabitacion implements IActualizar <TipoDeHabitacion>{
+public class TipoDeHabitacion {
     int id;
     String concepto;
     double precio;

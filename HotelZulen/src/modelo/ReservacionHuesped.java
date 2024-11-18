@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Suyco
  */
-public class ReservacionHuesped implements IActualizar<ReservacionHuesped> {
+public class ReservacionHuesped  {
     Reservacion reserva;
     Huesped huesped;
 
