@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import Persistencia.LimpiezaRepository;
 import Persistencia.PersonalRepository;
 import java.util.List;
 
@@ -104,5 +105,9 @@ public class AmaDeLlaves extends Personal {
     
     public List<Housekeeper> obtenerListaHouseInactivos(){
         return repoPersonal.obtenerHousekeeperInactivos();
+    }
+    public void asignarLimpiezas(){
+        LimpiezaRepository repoLimpieza = new LimpiezaRepository();
+        repoLimpieza.asignarLimpiezas();
     }
 }

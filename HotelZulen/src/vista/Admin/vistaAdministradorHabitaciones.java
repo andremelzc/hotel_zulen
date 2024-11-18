@@ -286,11 +286,16 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
 
         btnVerLimpieza.setBackground(new java.awt.Color(0, 204, 255));
         btnVerLimpieza.setText("Ver Limpieza");
+        btnVerLimpieza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerLimpiezaActionPerformed(evt);
+            }
+        });
         add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 180, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBotonActionPerformed
-        // TODO add your handling code here:
+        
         JOptionPane.showMessageDialog(null, "No es posible registrar más habitaciones");
     }//GEN-LAST:event_registrarBotonActionPerformed
 
@@ -354,13 +359,18 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
        int id = reserva.obteneridReservaXidHabitacion(idHabitacione);
        if(id !=0 ){
            System.out.println("id seleccionado: "+id);
+           VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
+           vistaDatos.setVisible(true);
        }else{
            System.out.println("No se encuentra reserva asociada");
        }
 
-       VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
-       vistaDatos.setVisible(true);
     }//GEN-LAST:event_btnVerReservaActionPerformed
+
+    private void btnVerLimpiezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerLimpiezaActionPerformed
+       vistaDatosLimpieza_Habitacion vistaHabLimpie = new vistaDatosLimpieza_Habitacion(idHabitacione);
+       vistaHabLimpie.setVisible(true);
+    }//GEN-LAST:event_btnVerLimpiezaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

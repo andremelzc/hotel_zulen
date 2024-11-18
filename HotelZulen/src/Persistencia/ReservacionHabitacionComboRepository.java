@@ -27,8 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
 
 /**
  *
@@ -87,7 +86,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
     }
 
     public void asociarReservacionCombo(int idReservacion, int idHabitacion, Huesped huesped, int idCategoria, int idCombo, int cantidad, String estado, LocalDateTime fechaPedido) {
-        String sql = "INSERT INTO reservaciones_has_habitaciones_has_combo (RESERVA_has_HAB_RESERVA_idReserva, RESERVA_has_HAB_HAB_idHabitaciones, RESERVA_has_HAB_HAB_TIPO_HAB_idCategoria, COMBO_idCOMBO, Estado, FechaPedido, FechaEnvio) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO reservaciones_has_habitaciones_has_combo (RESERVA_has_HAB_RESERVA_idReserva, RESERVA_has_HAB_HAB_idHabitaciones, RESERVA_has_HAB_HAB_TIPO_HAB_idCategoria, COMBO_idCOMBO,cantPedido, Estado, FechaPedido, FechaEnvio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
 

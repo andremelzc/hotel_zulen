@@ -19,6 +19,10 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
     private ReservacionHabitacionCombo objPedido1 = new ReservacionHabitacionCombo();
     private ReservacionHabitacionComboRepository obj = new ReservacionHabitacionComboRepository();
     private Timer autoUpdateTimer;  // Variable para almacenar el Timer
+
+    public void setAutoUpdateTimer() {
+        this.autoUpdateTimer = null;
+    }
     
     public vistaJefeCocinaPedidos() {
         initComponents();

@@ -289,8 +289,7 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
 
     private void pedirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedirBotonActionPerformed
         // TODO add your handling code here:
-
-        
+  
         int fila = tablaCombos.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tablaCombos.getModel();
         int idCombo = Integer.parseInt(model.getValueAt(fila, 0).toString());

@@ -45,7 +45,8 @@ public class ReservacionHuespedRepository {
         List<Reservacion> reservas = new ArrayList<>();
         ReservacionRepository rr = new ReservacionRepository();
         String sql = "SELECT * FROM reservaciones_has_huespedes WHERE HUESPEDES_DNI = ?";
-        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, dni);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {

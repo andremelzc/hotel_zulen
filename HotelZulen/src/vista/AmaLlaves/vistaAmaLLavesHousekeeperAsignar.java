@@ -4,7 +4,10 @@
  */
 package vista.AmaLlaves;
 
+import Persistencia.LimpiezaRepository;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import modelo.AmaDeLlaves;
 
 /**
@@ -13,10 +16,16 @@ import modelo.AmaDeLlaves;
  */
 public class vistaAmaLLavesHousekeeperAsignar extends javax.swing.JPanel {
 
-    private static LocalDateTime fechaUltimoClick = null;
+    private static AmaDeLlaves amaLlavesActual;
     
     public vistaAmaLLavesHousekeeperAsignar(AmaDeLlaves amaLlaves) {
         initComponents();
+        this.amaLlavesActual = amaLlaves;
+        LimpiezaRepository repoLimpieza = new LimpiezaRepository(); 
+        if(repoLimpieza.registroHechoHoyParaHabitacion1()){
+            System.out.println("Ya se han asignado limpiezas el dia de hoy");
+             btnAsignar.setEnabled(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -24,21 +33,18 @@ public class vistaAmaLLavesHousekeeperAsignar extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        btnAsignar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1280, 520));
 
         jLabel1.setText("jLabel1");
 
-        jButton1.setText("Asignar Reservas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAsignar.setText("Asignar Reservas");
+        btnAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAsignarActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -47,10 +53,9 @@ public class vistaAmaLLavesHousekeeperAsignar extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(1118, Short.MAX_VALUE))
+                    .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(1038, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -58,23 +63,25 @@ public class vistaAmaLLavesHousekeeperAsignar extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jButton1)
-                .addGap(72, 72, 72)
-                .addComponent(jLabel2)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(389, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        int resultado = JOptionPane.showConfirmDialog(null, "¿Deseas continuar=?", "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {    
+            amaLlavesActual.asignarLimpiezas();
+            JOptionPane.showMessageDialog(null, "Las limpiezas han sido asignadas correctamente en la BD.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            btnAsignar.setEnabled(false); 
+        }
        
-       fechaUltimoClick = LocalDateTime.now();
-       System.out.println("Se asigno limpiezas a las " + fechaUltimoClick);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAsignarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAsignar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

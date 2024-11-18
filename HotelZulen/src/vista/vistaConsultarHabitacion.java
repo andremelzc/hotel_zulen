@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Habitacion;
 import modelo.Reservacion;
+import vista.Admin.vistaDatosLimpieza_Habitacion;
 
 /**
  *
@@ -240,6 +241,11 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
 
         btnVerLimpieza.setBackground(new java.awt.Color(0, 204, 255));
         btnVerLimpieza.setText("Ver Limpieza");
+        btnVerLimpieza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerLimpiezaActionPerformed(evt);
+            }
+        });
         add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 180, -1));
 
         habitacionesTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -306,6 +312,11 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         pisoField.setText(model.getValueAt(fila, 2).toString());
         estadoField.setText(model.getValueAt(fila, 3).toString());
     }//GEN-LAST:event_habitacionesTableMouseClicked
+
+    private void btnVerLimpiezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerLimpiezaActionPerformed
+        vistaDatosLimpieza_Habitacion vistaHabLimpie = new vistaDatosLimpieza_Habitacion(idHabitacione);
+       vistaHabLimpie.setVisible(true);
+    }//GEN-LAST:event_btnVerLimpiezaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
