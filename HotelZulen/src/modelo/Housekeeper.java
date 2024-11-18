@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import Persistencia.LimpiezaRepository;
+import Persistencia.PersonalRepository;
 import java.time.LocalDateTime;
 
 /**
@@ -95,6 +97,14 @@ public class Housekeeper extends Personal{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    
+    public Housekeeper obtener(int idHousekeeper){
+        PersonalRepository repoPersonal = new PersonalRepository();
+        return repoPersonal.obtenerHouskeeper(idHousekeeper);
+    }
+    public Housekeeper obtenerHousekeeperXidHabitacion(int idHabitacion){
+        LimpiezaRepository repoLimpieza = new LimpiezaRepository();
+        return repoLimpieza.obtenerHousekeeperxidHabitacion(idHabitacion);
+    }
     
 }

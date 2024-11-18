@@ -16,7 +16,6 @@ import modelo.Combo;
 import modelo.Consumible;
 import modelo.Huesped;
 import modelo.Reservacion;
-import vista.Recepcionista.*;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionHabitacionesRepository;
 import java.time.LocalDateTime;
@@ -42,7 +41,7 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
 
         ReservacionHuespedRepository reseHueRepo = new ReservacionHuespedRepository();
         List<Reservacion> reservaciones = reseHueRepo.obtenerReservasPorHuesped(huesped.getDNI());
-        
+        System.out.println("Tamano lista " + reservaciones.size());
         ReservacionHabitacionesRepository reseHaRepo = new ReservacionHabitacionesRepository();
         // Sacar todas las habitaciones
         List<Habitacion> habitaciones = new ArrayList<>();
@@ -56,15 +55,17 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
         // COMBO BOX PARA SELECCIONAR RESERVA
         reservacionesCombo.removeAllItems();
         for (Reservacion rese : reservaciones) {
+            System.out.println("reservacion id > "+rese.getIdReserva());
             reservacionesCombo.addItem(String.valueOf(rese.getIdReserva()));
         }
         
         // COMBO BOX PARA SELECCIONAR HABITACION
         habitacionesCombo.removeAllItems();
         for (Habitacion habi : habitaciones){
+            System.out.println("habitacion id> "+habi.getId());
             habitacionesCombo.addItem(String.valueOf(habi.getId()));
         }
-
+        System.out.println("Evade");
         // PARA LAS TABLAS
         String ids[] = {"ID", "Combo", "Precio"};
         mt.setColumnIdentifiers(ids);

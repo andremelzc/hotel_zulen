@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,6 +30,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
     
     public VistaDatosReserva(int idReserva) {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JScrollPane scrollPane = new JScrollPane(jPanel1);
         this.add(scrollPane);
         reservaActual = obtenerReserva(idReserva);
@@ -281,6 +283,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             CheckIN.setText(reservaActual.getCheckIn().format(formatter));
             CheckIn.setEnabled(false); 
+            JOptionPane.showMessageDialog(null, "Se registro el CheckIn en la BD correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             
@@ -518,7 +521,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         panelHuesped.setLayout((new BoxLayout(panelHuesped, BoxLayout.Y_AXIS)));
         for (Huesped huesped : listaHuesped) {
             JPanel panelIndividual = crearPanelHuesped(huesped);
-        panelHuesped.add(panelIndividual);
+            panelHuesped.add(panelIndividual);
         }
     }
     private void ImprimirHabitaciones(int idReserva){
@@ -528,7 +531,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         panelHabitacion.setLayout((new BoxLayout(panelHabitacion, BoxLayout.Y_AXIS)));
         for (Habitacion habitacion : listaHabitacion) {
             JPanel panelIndividual = crearPanelHabitacion(habitacion);
-        panelHabitacion.add(panelIndividual);
+            panelHabitacion.add(panelIndividual);
         }
     }
     private void ImprimirServicios(int idReserva){

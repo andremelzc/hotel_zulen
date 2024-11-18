@@ -162,7 +162,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1280, 520));
+        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1280, 520));
 
         cerrarSesion1.setBackground(new java.awt.Color(239, 35, 60));
         cerrarSesion1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -197,6 +197,8 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
     private void principalBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_principalBotonActionPerformed
         // TODO add your handling code here:
+        vistaJefeCocinaPedidos jefeCocinaPedidos = new vistaJefeCocinaPedidos();
+        jefeCocinaPedidos.setAutoUpdateTimer();
         System.out.println("principal");
         vistaJefeCocinaPrincipal jefeCocinaPrincipal = new vistaJefeCocinaPrincipal();
         jefeCocinaPrincipal.setSize(1280, 720);
@@ -213,6 +215,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
     private void pedidosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosBotonActionPerformed
         // TODO add your handling code here:
+        
         vistaJefeCocinaPedidos jefeCocinaPedidos = new vistaJefeCocinaPedidos();
         jefeCocinaPedidos.setSize(1280, 720);
         jefeCocinaPedidos.setLocation(0, 0);
@@ -228,6 +231,9 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
     private void cartaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartaBotonActionPerformed
         // TODO add your handling code here:
+        
+        vistaJefeCocinaPedidos jefeCocinaPedidos = new vistaJefeCocinaPedidos();
+        jefeCocinaPedidos.setAutoUpdateTimer();
         vistaJefeCocinaCarta jefeCocinaCarta = new vistaJefeCocinaCarta();
         jefeCocinaCarta.setSize(1280, 720);
         jefeCocinaCarta.setLocation(0, 0);
@@ -244,6 +250,8 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
     private void estadisticasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadisticasBotonActionPerformed
         // TODO add your handling code here:
+        vistaJefeCocinaPedidos jefeCocinaPedidos = new vistaJefeCocinaPedidos();
+        jefeCocinaPedidos.setAutoUpdateTimer();
         System.out.println("estadticas");
         vistaJefeCocinaEstadisticas jefeCocinaEstadisticas = new vistaJefeCocinaEstadisticas();
         jefeCocinaEstadisticas.setSize(1280, 720);

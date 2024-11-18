@@ -129,7 +129,7 @@ public class ReservacionRepository implements IRepository <Reservacion>{
     
     public int crearReserva(Reservacion reservacion) {
         // Consulta SQL para insertar una nueva reserva
-        String sql = "INSERT INTO reservaciones (NumeroHabitaciones, FechaInicio, FechaFinal, Estado,FechaCreacion, CheckIn, CheckOut) VALUES (?, ?, ?, ?,?,?,?)";
+        String sql = "INSERT INTO reservaciones (NumeroHabitaciones, FechaInicio, FechaFinal, Estado,FechaCreacion,FechaMod, CheckIn, CheckOut) VALUES (?, ?, ?, ?, ?,?,?,?)";
 
         // Establecer la conexión y preparar la declaración
         try (Connection connection = DatabaseConnection.getConnection();
@@ -140,10 +140,10 @@ public class ReservacionRepository implements IRepository <Reservacion>{
             stmt.setTimestamp(2, Timestamp.valueOf(reservacion.getIncioHuesped())); // Fecha de inicio
             stmt.setTimestamp(3, Timestamp.valueOf(reservacion.getFinHuesped())); // Fecha final
             stmt.setString(4, reservacion.getEstado()); // Estado de la reserva
-            stmt.setTimestamp(5, Timestamp.valueOf(reservacion.getFechaCrea())); // Fecha final
-            
-            stmt.setNull(6, java.sql.Types.NULL); // CheckIn a NULL
-            stmt.setNull(7, java.sql.Types.NULL);
+            stmt.setTimestamp(5, Timestamp.valueOf(reservacion.getFechaCrea())); //
+            stmt.setTimestamp(6, Timestamp.valueOf(reservacion.getFechaCrea())); //siempre fechaCrea
+            stmt.setNull(7, java.sql.Types.NULL); // CheckIn a NULL
+            stmt.setNull(8, java.sql.Types.NULL);
 
             // Ejecutar la inserción de la reserva
             int affectedRows = stmt.executeUpdate();
@@ -171,7 +171,7 @@ public class ReservacionRepository implements IRepository <Reservacion>{
     }
     public int reservarAhora(Reservacion reservacion) {
         // Consulta SQL para insertar una nueva reserva con checkIn y datetime
-        String sql = "INSERT INTO reservaciones (NumeroHabitaciones, FechaInicio, FechaFinal, Estado, FechaCreacion, CheckIn) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO reservaciones (NumeroHabitaciones, FechaInicio, FechaFinal, Estado, FechaCreacion,FechaMod, CheckIn) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -182,7 +182,8 @@ public class ReservacionRepository implements IRepository <Reservacion>{
             stmt.setTimestamp(3, Timestamp.valueOf(reservacion.getFinHuesped())); // Fecha final
             stmt.setString(4, reservacion.getEstado()); // Estado de la reserva
             stmt.setTimestamp(5, Timestamp.valueOf(reservacion.getFechaCrea())); // Fecha de creación
-            stmt.setTimestamp(6, Timestamp.valueOf(reservacion.getIncioHuesped())); // CheckIn, igual a inicioHuesped
+            stmt.setTimestamp(6, Timestamp.valueOf(reservacion.getFechaCrea())); // Fecha de creación
+            stmt.setTimestamp(7, Timestamp.valueOf(reservacion.getIncioHuesped())); // CheckIn, igual a inicioHuesped
 
             // Ejecutar la inserción de la reserva
             int affectedRows = stmt.executeUpdate();

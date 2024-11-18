@@ -5,7 +5,6 @@
 package modelo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  *
@@ -19,6 +18,8 @@ public class Limpieza {
     private String estadoLimpieza;
     private LocalDate fechaLimpieza;
 
+    public Limpieza() {
+    }
     public Limpieza(int idHabitacion, int personalDNI, int categoriaHab, String tipoLimpieza, String estadoLimpieza, LocalDate fechaLimpieza) {
         this.idHabitacion = idHabitacion;
         this.personalDNI = personalDNI;
