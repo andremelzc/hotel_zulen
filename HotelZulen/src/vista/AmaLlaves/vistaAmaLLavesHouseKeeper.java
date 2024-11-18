@@ -4,6 +4,8 @@
  */
 package vista.AmaLlaves;
 
+import java.awt.BorderLayout;
+import modelo.AmaDeLlaves;
 import vista.JefeCocina.*;
 import vista.Admin.*;
 
@@ -13,11 +15,11 @@ import vista.Admin.*;
  */
 public class vistaAmaLLavesHouseKeeper extends javax.swing.JPanel {
 
-    /**
-     * Creates new form vistaAdministradorPersonal
-     */
-    public vistaAmaLLavesHouseKeeper() {
+    private AmaDeLlaves amaLlaves;
+    
+    public vistaAmaLLavesHouseKeeper(AmaDeLlaves amaLlaves) {
         initComponents();
+        this.amaLlaves = amaLlaves;
     }
 
     /**
@@ -29,33 +31,89 @@ public class vistaAmaLLavesHouseKeeper extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        housekkeepers = new javax.swing.JLabel();
+        btnAsignar = new javax.swing.JButton();
+        btnCRUD = new javax.swing.JButton();
+        container = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(221, 221, 221));
 
-        housekkeepers.setForeground(new java.awt.Color(0, 0, 0));
-        housekkeepers.setText("housekeepers");
+        btnAsignar.setBackground(new java.awt.Color(255, 51, 102));
+        btnAsignar.setText("Asignar habitaciones");
+        btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarActionPerformed(evt);
+            }
+        });
+
+        btnCRUD.setBackground(new java.awt.Color(255, 51, 102));
+        btnCRUD.setText("Personal");
+        btnCRUD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCRUDActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
+        container.setLayout(containerLayout);
+        containerLayout.setHorizontalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        containerLayout.setVerticalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 437, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(616, 616, 616)
-                .addComponent(housekkeepers)
-                .addContainerGap(592, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
+                .addComponent(btnCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(214, 214, 214))
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(housekkeepers)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCRUDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCRUDActionPerformed
+        System.out.println("Pestaña - CRUD Housekeeper");
+        vistaAmaLLavesHousekeeperCRUD amaLLavesCRUD= new vistaAmaLLavesHousekeeperCRUD(amaLlaves);
+        amaLLavesCRUD.setSize(1280, 720);
+        amaLLavesCRUD.setLocation(0, 0);
+        container.removeAll();
+        container.add(amaLLavesCRUD, BorderLayout.CENTER);
+        container.revalidate();
+        container.repaint();
+    }//GEN-LAST:event_btnCRUDActionPerformed
+
+    private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        System.out.println("Pestaña - Asignacion de habitaciones");
+        vistaAmaLLavesHousekeeperAsignar amaLLavesAsignar = new vistaAmaLLavesHousekeeperAsignar(amaLlaves);
+        amaLLavesAsignar.setSize(1280, 720);
+        amaLLavesAsignar.setLocation(0, 0);
+        container.removeAll();
+        container.add(amaLLavesAsignar, BorderLayout.CENTER);
+        container.revalidate();
+        container.repaint();
+    }//GEN-LAST:event_btnAsignarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel housekkeepers;
+    private javax.swing.JButton btnAsignar;
+    private javax.swing.JButton btnCRUD;
+    private javax.swing.JPanel container;
     // End of variables declaration//GEN-END:variables
 }

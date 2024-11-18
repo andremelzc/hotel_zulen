@@ -51,7 +51,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         principalBoton = new javax.swing.JButton();
         registrarBoton = new javax.swing.JButton();
         consultarBoton = new javax.swing.JButton();
-        reservacionesBoton = new javax.swing.JButton();
         facturarBoton = new javax.swing.JButton();
         content = new javax.swing.JPanel();
         cerrarSesion = new javax.swing.JButton();
@@ -113,21 +112,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
             }
         });
 
-        reservacionesBoton.setBackground(new java.awt.Color(141, 153, 174));
-        reservacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        reservacionesBoton.setText("Reservaciones");
-        reservacionesBoton.setBorder(null);
-        reservacionesBoton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                reservacionesBotonMouseClicked(evt);
-            }
-        });
-        reservacionesBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservacionesBotonActionPerformed(evt);
-            }
-        });
-
         facturarBoton.setBackground(new java.awt.Color(141, 153, 174));
         facturarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         facturarBoton.setText("Facturar");
@@ -150,17 +134,15 @@ public class vistaRecepcionista extends javax.swing.JFrame {
             .addGroup(panelIzquierdaLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(iniciarSesion)
-                .addGap(42, 42, 42)
+                .addGap(119, 119, 119)
                 .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(reservacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(30, 30, 30)
                 .addComponent(facturarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(155, 155, 155))
         );
         panelIzquierdaLayout.setVerticalGroup(
             panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +154,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                             .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reservacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(facturarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -265,21 +246,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_consultarBotonActionPerformed
 
-    private void reservacionesBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservacionesBotonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reservacionesBotonMouseClicked
-
-    private void reservacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservacionesBotonActionPerformed
-        // TODO add your handling code here:
-        vistaRecepcionistaReservaciones recepcionistaReservaciones = new vistaRecepcionistaReservaciones();
-        recepcionistaReservaciones.setSize(1280 , 720);
-        recepcionistaReservaciones.setLocation(0,0);
-        content.removeAll();
-        content.add(recepcionistaReservaciones, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_reservacionesBotonActionPerformed
-
     private void facturarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facturarBotonMouseClicked
         // TODO add your handling code here:
         vistaRecepcionistaFacturar recepcionistaFacturar = new vistaRecepcionistaFacturar();
@@ -311,6 +277,5 @@ public class vistaRecepcionista extends javax.swing.JFrame {
     private javax.swing.JPanel panelIzquierda;
     private javax.swing.JButton principalBoton;
     private javax.swing.JButton registrarBoton;
-    private javax.swing.JButton reservacionesBoton;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,13 +10,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.sql.Statement; // <-- Agrega esta línea
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Combo;
+
 
 
 public class ReservacionRepository implements IRepository <Reservacion>{ 
@@ -42,6 +41,8 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                 // Verificar si CheckIn y CheckOut son null
                 Timestamp checkInTimestamp = rs.getTimestamp("CheckIn");
                 Timestamp checkOutTimestamp = rs.getTimestamp("CheckOut");
+                LocalDateTime FechaMod = rs.getTimestamp("FechaMod") != null ? rs.getTimestamp("FechaMod").toLocalDateTime() : null;
+                
                 
                 if(checkInTimestamp != null && checkOutTimestamp != null){
                     LocalDateTime checkIn = checkInTimestamp.toLocalDateTime();
@@ -53,6 +54,7 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                         fechaComienzo, 
                         fechaFin, 
                         fechaCreacion,
+                        FechaMod,
                         checkIn,
                         checkOut
                     );
@@ -65,6 +67,7 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                         fechaComienzo,
                         fechaFin,
                         fechaCreacion,
+                        FechaMod,
                         checkIn, 
                         null
                     );
@@ -75,7 +78,10 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                     rs.getString("Estado"),
                     fechaComienzo,
                     fechaFin,
-                    fechaCreacion
+                    fechaCreacion,
+                    FechaMod,
+                    null,
+                    null
                     );
                 }
                 
@@ -227,6 +233,7 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                 // Verificar si CheckIn y CheckOut son null
                 Timestamp checkInTimestamp = rs.getTimestamp("CheckIn");
                 Timestamp checkOutTimestamp = rs.getTimestamp("CheckOut");
+                LocalDateTime FechaMod = rs.getTimestamp("FechaMod").toLocalDateTime();
 
                 // Construir el objeto Reservacion según los valores de CheckIn y CheckOut
                 if (checkInTimestamp != null && checkOutTimestamp != null) {
@@ -239,6 +246,7 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                         fechaInicio,
                         fechaFinal,
                         fechaCreacion,
+                        FechaMod,
                         checkIn,
                         checkOut
                     );
@@ -252,6 +260,7 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                         fechaInicio,
                         fechaFinal,
                         fechaCreacion,
+                        FechaMod,
                         checkIn, 
                         null
                     );
@@ -263,7 +272,10 @@ public class ReservacionRepository implements IRepository <Reservacion>{
                         rs.getString("Estado"),
                         fechaInicio,
                         fechaFinal,
-                        fechaCreacion
+                        fechaCreacion,
+                        FechaMod,
+                        null,
+                        null
                     );
                     reservas.add(reservacion);
                 }

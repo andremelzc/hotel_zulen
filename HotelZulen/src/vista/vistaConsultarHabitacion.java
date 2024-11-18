@@ -2,39 +2,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package vista.Admin;
+package vista;
 
-import Persistencia.HabitacionRepository;
-import Persistencia.TipoHabitacionRepository;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Habitacion;
 import modelo.Reservacion;
-import modelo.TipoDeHabitacion;
-import vista.VistaDatosReserva;
 
 /**
  *
  * @author PC
  */
-public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
+public class vistaConsultarHabitacion extends javax.swing.JPanel {
 
     DefaultTableModel modelo; 
     int idHabitacione;
     String estado;
     
-    public vistaAdministradorHabitaciones() {
+    public vistaConsultarHabitacion() {
         initComponents();
         modelo = (DefaultTableModel) habitacionesTable.getModel();
         Object[] Habitaciones = new Object[3];
         btnVerReserva.setEnabled(false);
         configurar(habitacionesTable);
-        
     }
-    
+
     private void mostrarTabla(List<Habitacion> listaHab){
         
         modelo.setRowCount(0);
@@ -87,32 +81,166 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        habitacionesTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         pisoField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         tipoField = new javax.swing.JTextField();
         Reservación = new javax.swing.JLabel();
         estadoField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         numHab = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        registrarBoton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         cancelarBoton = new javax.swing.JButton();
-        modificarBoton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         JPiso = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         tipoHab = new javax.swing.JComboBox<>();
         filtro = new javax.swing.JButton();
         btnVerReserva = new javax.swing.JButton();
         btnVerLimpieza = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        habitacionesTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 30, 20));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel5.setText("Datos de habitación");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(141, 153, 174));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel6.setText("Tipo:");
+        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        pisoField.setBackground(new java.awt.Color(221, 221, 221));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel7.setText("Piso:");
+        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        tipoField.setBackground(new java.awt.Color(221, 221, 221));
+
+        Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación.setForeground(new java.awt.Color(45, 45, 44));
+        Reservación.setText("Estado:");
+        Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        estadoField.setBackground(new java.awt.Color(221, 221, 221));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel8.setText("Numero de habitacion: ");
+
+        numHab.setBackground(new java.awt.Color(221, 221, 221));
+
+        jButton2.setBackground(new java.awt.Color(239, 35, 60));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
+                    .addComponent(tipoField, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                    .addComponent(pisoField)
+                    .addComponent(Reservación)
+                    .addComponent(estadoField)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(numHab, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numHab, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tipoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pisoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Reservación)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(estadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 490, 330));
+
+        cancelarBoton.setBackground(new java.awt.Color(239, 35, 60));
+        cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cancelarBoton.setText("Cancelar");
+        cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBotonActionPerformed(evt);
+            }
+        });
+        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 390, 150, 50));
+
+        jLabel9.setText("Piso: ");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        JPiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "2", "3", "4", "5", "6", "7", " " }));
+        add(JPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+
+        jLabel10.setText("Tipo: ");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+
+        tipoHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Estandard", "Doble", "Suite", "Business" }));
+        add(tipoHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        filtro.setText("Filtrar");
+        filtro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroActionPerformed(evt);
+            }
+        });
+        add(filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
+
+        btnVerReserva.setBackground(new java.awt.Color(0, 204, 255));
+        btnVerReserva.setText("Ver Reserva");
+        btnVerReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerReservaActionPerformed(evt);
+            }
+        });
+        add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 160, -1));
+
+        btnVerLimpieza.setBackground(new java.awt.Color(0, 204, 255));
+        btnVerLimpieza.setText("Ver Limpieza");
+        add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 180, -1));
 
         habitacionesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,167 +260,14 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(habitacionesTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 610, 320));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(45, 45, 44));
-        jLabel4.setText("Datos de habitación");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, -1, -1));
-
-        jPanel1.setBackground(new java.awt.Color(141, 153, 174));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(45, 45, 44));
-        jLabel2.setText("Tipo:");
-        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        pisoField.setBackground(new java.awt.Color(221, 221, 221));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(45, 45, 44));
-        jLabel3.setText("Piso:");
-        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        tipoField.setBackground(new java.awt.Color(221, 221, 221));
-
-        Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setForeground(new java.awt.Color(45, 45, 44));
-        Reservación.setText("Estado:");
-        Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        estadoField.setBackground(new java.awt.Color(221, 221, 221));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(45, 45, 44));
-        jLabel1.setText("Numero de habitacion: ");
-
-        numHab.setBackground(new java.awt.Color(221, 221, 221));
-
-        jButton1.setBackground(new java.awt.Color(239, 35, 60));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(tipoField, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                    .addComponent(pisoField)
-                    .addComponent(Reservación)
-                    .addComponent(estadoField)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(numHab, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numHab, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tipoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pisoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Reservación)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(estadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 490, 330));
-
-        registrarBoton.setBackground(new java.awt.Color(239, 35, 60));
-        registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        registrarBoton.setText("Registrar");
-        registrarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarBotonActionPerformed(evt);
-            }
-        });
-        add(registrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 410, 150, 50));
-
-        cancelarBoton.setBackground(new java.awt.Color(239, 35, 60));
-        cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cancelarBoton.setText("Cancelar");
-        cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarBotonActionPerformed(evt);
-            }
-        });
-        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 410, 150, 50));
-
-        modificarBoton.setBackground(new java.awt.Color(239, 35, 60));
-        modificarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        modificarBoton.setText("Modificar");
-        modificarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarBotonActionPerformed(evt);
-            }
-        });
-        add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 410, 150, 50));
-
-        jLabel5.setText("Piso: ");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
-
-        JPiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "2", "3", "4", "5", "6", "7", " " }));
-        add(JPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
-
-        jLabel6.setText("Tipo: ");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
-
-        tipoHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Estandard", "Doble", "Suite", "Business" }));
-        add(tipoHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
-
-        filtro.setText("Filtrar");
-        filtro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtroActionPerformed(evt);
-            }
-        });
-        add(filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
-
-        btnVerReserva.setBackground(new java.awt.Color(0, 204, 255));
-        btnVerReserva.setText("Ver Reserva");
-        btnVerReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerReservaActionPerformed(evt);
-            }
-        });
-        add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 160, -1));
-
-        btnVerLimpieza.setBackground(new java.awt.Color(0, 204, 255));
-        btnVerLimpieza.setText("Ver Limpieza");
-        add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 180, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 610, 320));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBotonActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "No es posible registrar más habitaciones");
-    }//GEN-LAST:event_registrarBotonActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Habitacion hab = new Habitacion();
+        hab = hab.obtenerHabxId(Integer.parseInt(numHab.getText()));
+        MostrarTabla(hab);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void cancelarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBotonActionPerformed
         // TODO add your handling code here:
@@ -302,28 +277,25 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         estadoField.setText("");
     }//GEN-LAST:event_cancelarBotonActionPerformed
 
-    private void modificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBotonActionPerformed
-        // TODO add your handling code here:
-        int fila = habitacionesTable.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) habitacionesTable.getModel();
+    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
+        Habitacion hab = new Habitacion();
+        List<Habitacion> listaHab = new ArrayList<>();
+        listaHab = hab.obtenerListaXPisoANDTipo((String) JPiso.getSelectedItem(),(String) tipoHab.getSelectedItem());
+        mostrarTabla(listaHab);
+    }//GEN-LAST:event_filtroActionPerformed
 
-        int id = Integer.parseInt(model.getValueAt(fila, 0).toString());
+    private void btnVerReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReservaActionPerformed
+        Reservacion reserva = new Reservacion();
+        int id = reserva.obteneridReservaXidHabitacion(idHabitacione);
+        if(id !=0 ){
+            System.out.println("id seleccionado: "+id);
+        }else{
+            System.out.println("No se encuentra reserva asociada");
+        }
 
-        String tipo = tipoField.getText();
-        TipoHabitacionRepository thr = new TipoHabitacionRepository();
-        TipoDeHabitacion tipohabitacion = thr.obtenerPorConcepto(tipo);
-
-        String piso = pisoField.getText();
-        String estado = estadoField.getText();
-
-        HabitacionRepository habirepo = new HabitacionRepository();
-        Habitacion habitacion = new Habitacion(id, tipohabitacion, piso, estado);
-        habirepo.actualizar(habitacion);
-        
-        model.setValueAt(tipoField.getText(), fila, 1);
-        model.setValueAt(pisoField.getText(), fila, 2);
-        model.setValueAt(estadoField.getText(), fila, 3);
-    }//GEN-LAST:event_modificarBotonActionPerformed
+        VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
+        vistaDatos.setVisible(true);
+    }//GEN-LAST:event_btnVerReservaActionPerformed
 
     private void habitacionesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_habitacionesTableMouseClicked
         // TODO add your handling code here:
@@ -335,33 +307,6 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         estadoField.setText(model.getValueAt(fila, 3).toString());
     }//GEN-LAST:event_habitacionesTableMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Habitacion hab = new Habitacion();
-        hab = hab.obtenerHabxId(Integer.parseInt(numHab.getText()));
-        MostrarTabla(hab);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
-        Habitacion hab = new Habitacion();
-        List<Habitacion> listaHab = new ArrayList<>();
-        listaHab = hab.obtenerListaXPisoANDTipo((String) JPiso.getSelectedItem(),(String) tipoHab.getSelectedItem());
-        mostrarTabla(listaHab);
-
-    }//GEN-LAST:event_filtroActionPerformed
-
-    private void btnVerReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReservaActionPerformed
-       Reservacion reserva = new Reservacion();
-       int id = reserva.obteneridReservaXidHabitacion(idHabitacione);
-       if(id !=0 ){
-           System.out.println("id seleccionado: "+id);
-       }else{
-           System.out.println("No se encuentra reserva asociada");
-       }
-
-       VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
-       vistaDatos.setVisible(true);
-    }//GEN-LAST:event_btnVerReservaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JPiso;
@@ -372,19 +317,18 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
     private javax.swing.JTextField estadoField;
     private javax.swing.JButton filtro;
     private javax.swing.JTable habitacionesTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton modificarBoton;
     private javax.swing.JTextField numHab;
     private javax.swing.JTextField pisoField;
-    private javax.swing.JButton registrarBoton;
     private javax.swing.JTextField tipoField;
     private javax.swing.JComboBox<String> tipoHab;
     // End of variables declaration//GEN-END:variables

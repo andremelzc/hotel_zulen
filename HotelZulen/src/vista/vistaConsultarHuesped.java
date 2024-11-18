@@ -2,14 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package vista.Recepcionista;
+package vista;
 
-import Persistencia.ReservacionHuespedRepository;
-import Persistencia.ReservacionRepository;
+import vista.VistaDatosReserva;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import modelo.Habitacion;
 import modelo.Huesped;
 import modelo.Reservacion;
 
@@ -17,13 +15,13 @@ import modelo.Reservacion;
  *
  * @author PC
  */
-public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
+public class vistaConsultarHuesped extends javax.swing.JPanel {
     
     DefaultTableModel modelo;
     /**
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
-    public vistaRecepcionistaConsultarHuesped() {
+    public vistaConsultarHuesped() {
         initComponents();
         modelo = (DefaultTableModel) Tabla.getModel();
         Object[] reserva = new Object[4];
@@ -119,7 +117,7 @@ public class vistaRecepcionistaConsultarHuesped extends javax.swing.JPanel {
             }
         });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 250, -1, -1));
-        add(nombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 110, 20));
+        add(nombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 180, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

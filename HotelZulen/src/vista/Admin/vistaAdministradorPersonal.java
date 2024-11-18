@@ -20,9 +20,6 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
 
     DefaultTableModel mt = new DefaultTableModel();
 
-    /**
-     * Creates new form vistaAdministradorPersonal
-     */
     public vistaAdministradorPersonal() {
         initComponents();
 
@@ -34,32 +31,32 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
     }
 
    private void resetearTabla() {
-    // Limpiar todas las filas de la tabla
-    mt.setRowCount(0);
+        // Limpiar todas las filas de la tabla
+        mt.setRowCount(0);
 
-    // Obtener los datos actualizados de la base de datos o de alguna otra fuente
-    List<Personal> personal = new ArrayList<>();
-    PersonalRepository personalRepository = new PersonalRepository();
-    personal = personalRepository.obtenerTodos();
+        // Obtener los datos actualizados de la base de datos o de alguna otra fuente
+        List<Personal> personal = new ArrayList<>();
+        PersonalRepository personalRepository = new PersonalRepository();
+        personal = personalRepository.obtenerTodos();
 
-    // Volver a agregar los datos a la tabla
-    for (Personal personal1 : personal) {
-        Object[] fila = {
-            personal1.getDNI(),
-            personal1.getFuncion(),
-            personal1.getNombre(),
-            personal1.getApellido(),
-            personal1.getTelefono(),
-            personal1.getDireccion(),
-            personal1.getEstado(),
-            personal1.getUsuario(),
-            "*".repeat(personal1.getContrasena().length())};
-        mt.addRow(fila);
+        // Volver a agregar los datos a la tabla
+        for (Personal personal1 : personal) {
+            Object[] fila = {
+                personal1.getDNI(),
+                personal1.getFuncion(),
+                personal1.getNombre(),
+                personal1.getApellido(),
+                personal1.getTelefono(),
+                personal1.getDireccion(),
+                personal1.getEstado(),
+                personal1.getUsuario(),
+                "*".repeat(personal1.getContrasena().length())};
+            mt.addRow(fila);
+        }
+
+        // Refrescar la vista de la tabla (opcional, pero a veces ayuda a garantizar que los cambios se vean reflejados)
+        personalTable.setModel(mt);
     }
-
-    // Refrescar la vista de la tabla (opcional, pero a veces ayuda a garantizar que los cambios se vean reflejados)
-    personalTable.setModel(mt);
-}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -239,7 +236,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
                 modificarBotonActionPerformed(evt);
             }
         });
-        add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 450, 110, 50));
+        add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 450, 100, 50));
 
         deshabilitarBoton.setBackground(new java.awt.Color(239, 35, 60));
         deshabilitarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -249,7 +246,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
                 deshabilitarBotonActionPerformed(evt);
             }
         });
-        add(deshabilitarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 450, 120, 50));
+        add(deshabilitarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 450, 120, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void personalTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personalTableMouseClicked

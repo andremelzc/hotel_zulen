@@ -9,8 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Housekeeper;
 import modelo.Personal;
 
 /**
@@ -89,10 +91,10 @@ public class PersonalRepository implements IRepository<Personal> {
         try (Connection connection = DatabaseConnection.getConnection(); 
             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            // Convertir LocalDateTime a Timestamp para FechaCrea y FechaMod
-            Timestamp fechaModSQL = Timestamp.valueOf(personal.getFechaMod());
+            
+            Timestamp fechaModSQL = Timestamp.valueOf(LocalDateTime.now());
 
-            // Establecemos los valores en el PreparedStatement en el orden especificado
+            
             stmt.setString(1, personal.getFuncion());
             stmt.setString(2, personal.getNombre());
             stmt.setString(3, personal.getApellido());
@@ -101,10 +103,10 @@ public class PersonalRepository implements IRepository<Personal> {
             stmt.setString(6, personal.getUsuario());
             stmt.setString(7, personal.getContrasena());
             stmt.setString(8, personal.getEstado());
-            stmt.setTimestamp(9, fechaModSQL); // Fecha de modificación
-            stmt.setInt(10, personal.getDNI()); // Condición para encontrar el registro a actualizar (DNI)
+            stmt.setTimestamp(9, fechaModSQL); 
+            stmt.setInt(10, personal.getDNI());
 
-            // Ejecutamos la actualización
+           
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Registro actualizado exitosamente.");
@@ -144,7 +146,8 @@ public class PersonalRepository implements IRepository<Personal> {
         List<Personal> personalList = new ArrayList<>();
         String sql = "SELECT DNI, TipoPersonal, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, FechaCrea, FechaMod FROM personal";
 
-        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Personal personal = new Personal(
@@ -166,5 +169,101 @@ public class PersonalRepository implements IRepository<Personal> {
         }
 
         return personalList;
+    }
+    
+    public Housekeeper obtenerHouskeeper(int dni){
+        String sql = "SELECT DNI, TipoPersonal, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, FechaCrea, FechaMod FROM personal WHERE DNI = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            // Establecemos el DNI en el PreparedStatement
+            stmt.setInt(1, dni);
+
+            // Ejecutamos la consulta
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Timestamp FechaCreaTimestamps = rs.getTimestamp("FechaCrea");
+                Timestamp FechaModTimestamps = rs.getTimestamp("FechaMod");
+                LocalDateTime FechaCrea = FechaCreaTimestamps.toLocalDateTime();
+                LocalDateTime FechaMod = FechaModTimestamps.toLocalDateTime();
+                
+                Housekeeper housekeeper = new Housekeeper(
+                            rs.getInt("DNI"),
+                            rs.getString("TipoPersonal"),
+                            rs.getString("Nombre"),
+                            rs.getString("Apellidos"),
+                            rs.getInt("Telefono"),
+                            rs.getString("Direccion"),
+                            rs.getString("Usuario"),
+                            rs.getString("Contraseña"),
+                            rs.getString("Estado"),
+                            FechaCrea,
+                            FechaMod) {
+                    };
+                return housekeeper;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el housekeeper: " + e.getMessage());
+        }
+        return null;
+    }
+    public List<Housekeeper> obtenerHousekeeperActivos() {
+        List<Housekeeper> lista = new ArrayList<>();
+        String sql = "SELECT DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, FechaCrea, FechaMod "
+                   + "FROM personal WHERE TipoPersonal = 'Housekeeper' AND Estado = 'Activo'";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement pst = connection.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+                int dni = rs.getInt("DNI");
+                String nombre = rs.getString("Nombre");
+                String apellidos = rs.getString("Apellidos");
+                int telefono = rs.getInt("Telefono");
+                String direccion = rs.getString("Direccion");
+                String usuario = rs.getString("Usuario");
+                String contrasena = rs.getString("Contraseña");
+                String estado = rs.getString("Estado");
+                LocalDateTime fechaCrea = rs.getTimestamp("FechaCrea").toLocalDateTime();
+                LocalDateTime fechaMod = rs.getTimestamp("FechaMod").toLocalDateTime();
+
+                Housekeeper housekeeper = new Housekeeper(dni, "Housekeeper", nombre, apellidos, telefono, direccion, usuario, contrasena, estado, fechaCrea, fechaMod);
+                lista.add(housekeeper);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return lista;
+    }
+    public List<Housekeeper> obtenerHousekeeperInactivos() {
+        List<Housekeeper> lista = new ArrayList<>();
+        String sql = "SELECT DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, FechaCrea, FechaMod "
+                   + "FROM personal WHERE TipoPersonal = 'Housekeeper' AND Estado = 'Inactivo'";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement pst = connection.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+                int dni = rs.getInt("DNI");
+                String nombre = rs.getString("Nombre");
+                String apellidos = rs.getString("Apellidos");
+                int telefono = rs.getInt("Telefono");
+                String direccion = rs.getString("Direccion");
+                String usuario = rs.getString("Usuario");
+                String contrasena = rs.getString("Contraseña");
+                String estado = rs.getString("Estado");
+                LocalDateTime fechaCrea = rs.getTimestamp("FechaCrea").toLocalDateTime();
+                LocalDateTime fechaMod = rs.getTimestamp("FechaMod").toLocalDateTime();
+
+                Housekeeper housekeeper = new Housekeeper(dni, "Housekeeper", nombre, apellidos, telefono, direccion, usuario, contrasena, estado, fechaCrea, fechaMod);
+                lista.add(housekeeper);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return lista;
     }
 }
