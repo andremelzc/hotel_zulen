@@ -4,14 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/ServiciosAdicionales.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Habitacion.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/ResevacionHabitacion.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Reservacion.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/ReservacionServicio.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/ReservacionHabitacionCombo.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Facturas.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/ReservacionHuesped.java</file>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/TipoDeHabitacion.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Admin/vistaAdministradorHabitaciones.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Admin/vistaAdministrador.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Admin/vistaAdministradorServicios.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Admin/vistaAdministradorFinanzas.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Persistencia/ServiciosAdicionalesRepository.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/JefeCocina/vistaJefeCocina.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/AmaLlaves/vistaAmaLLavesHabitaciones.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Admin/vistaAdministradorReservaciones.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/JefeCocina/vistaJefeCocinaCarta.java</file>
         </group>
     </open-files>
 </project-private>

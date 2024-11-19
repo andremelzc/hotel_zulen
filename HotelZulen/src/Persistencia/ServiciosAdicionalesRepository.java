@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -104,5 +106,26 @@ public class ServiciosAdicionalesRepository implements IRepository<ServiciosAdic
         }
 
         return null; 
+    }
+    
+    public List<ServiciosAdicionales> obtenerServicios (){
+        List<ServiciosAdicionales> listaServicios = new ArrayList<>();
+        String sql = "SELECT * FROM servicios_adicionales";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareCall(sql);
+             ResultSet resultSet = stmt.executeQuery()){
+            
+            while(resultSet.next()){
+                ServiciosAdicionales servicio = new ServiciosAdicionales(resultSet.getInt("idSERVICIOS_UNICO"),
+                                                                        resultSet.getString("NombreServicio"), 
+                                                                        resultSet.getInt("Costo"), 
+                                                                        resultSet.getString("Estado"));
+                listaServicios.add(servicio);
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error al obtener los servicios adicionales: " + e.getMessage());
+        }
+        return listaServicios;
     }
 }
