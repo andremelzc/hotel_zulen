@@ -323,7 +323,7 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
                 habitacion.getTipoHabitacion().getId(),
                 idCombo,
                 cantidad, 
-                "Pendiente",
+                "Pedido",
                 fechaActual);
 
     }//GEN-LAST:event_pedirBotonActionPerformed
