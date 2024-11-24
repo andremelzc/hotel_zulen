@@ -18,11 +18,10 @@ import vista.iniciarSesion;
  * @author Suyco
  */
 public class InicioSession {
-    
+
     private static Personal usuarioActual;
     private static Huesped huespedActual;
 
-    
     public static void iniciarSesion(String usuario, String contraseña) throws IOException {
         InicioSesionRepository identificarUsuario = new InicioSesionRepository();
         usuarioActual = identificarUsuario.iniciarSesion(usuario, contraseña);
@@ -35,16 +34,17 @@ public class InicioSession {
             System.out.println("Usuario o contraseña incorrectos.");
         }
     }
-    
-    public static void iniciarSesionHuesped(String usuario, String contraseña) throws IOException{
+
+    public static void iniciarSesionHuesped(String usuario, String contraseña) throws IOException {
         InicioSesionRepository identificarUsuario = new InicioSesionRepository();
         huespedActual = identificarUsuario.iniciarSesionHuesped(usuario, contraseña);
-        
-        if (huespedActual != null){
+
+        if (huespedActual != null) {
             iniciarSesion LogIn = new iniciarSesion();
             LogIn.setVisible(false);
             vistaHuesped vistaHuesped = new vistaHuesped(huespedActual);
-            vistaHuesped.setVisible(true);
+            vistaHuesped.setVisible(true);   
+            vistaHuesped.getPrincipalBoton().doClick();
         } else {
             System.out.println("Usuario o contraseña incorrectos.");
         }
@@ -54,22 +54,27 @@ public class InicioSession {
         if (usuarioActual instanceof Administrador) {
             Administrador administrador = (Administrador) usuarioActual;
             System.out.println("Abriendo vista de administrador");
-           vistaAdministrador vistaAdmin = new vistaAdministrador(administrador);
+            vistaAdministrador vistaAdmin = new vistaAdministrador(administrador);
+            vistaAdmin.getPersonalBoton().doClick();
             vistaAdmin.setVisible(true);
+
         } else if (usuarioActual instanceof Recepcionista) {
             Recepcionista recepcionista = (Recepcionista) usuarioActual;
             System.out.println("Abriendo vista de recepcionista");
             vistaRecepcionista vistaRecepionista = new vistaRecepcionista(recepcionista);
+            vistaRecepionista.getPrincipalBoton().doClick();
             vistaRecepionista.setVisible(true);
-        } else if(usuarioActual instanceof AmaDeLlaves) { 
+        } else if (usuarioActual instanceof AmaDeLlaves) {
             AmaDeLlaves amaLlaves = (AmaDeLlaves) usuarioActual;
             System.out.println("Abriendo vista del ama de llaves");
             vistaAmaLLaves vistaAma = new vistaAmaLLaves(amaLlaves);
+            vistaAma.getPrincipalBoton().doClick();
             vistaAma.setVisible(true);
-        } else if (usuarioActual instanceof KitchenManager){
+        } else if (usuarioActual instanceof KitchenManager) {
             KitchenManager jefeCocina = (KitchenManager) usuarioActual;
             System.out.println("Abriendo vista del jefe de cocina");
             vistaJefeCocina vistaCocina = new vistaJefeCocina(jefeCocina);
+            vistaCocina.getPrincipalBoton().doClick();
             vistaCocina.setVisible(true);
         } else {
             System.out.println("Tipo de usuario no reconocido.");
@@ -85,9 +90,9 @@ public class InicioSession {
         }
         iniciarSesion LogIn = new iniciarSesion();
         LogIn.setVisible(true);
+        LogIn.getIngresarPersonal().doClick();
         System.out.println("Sesion cerrada. Volviendo a la vista de inicio de sesion.");
+ 
     }
-    
-    
 
 }
