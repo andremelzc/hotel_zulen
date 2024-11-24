@@ -72,7 +72,6 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         jTextFieldHasta = new javax.swing.JTextField();
         jTextFieldDesde = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N

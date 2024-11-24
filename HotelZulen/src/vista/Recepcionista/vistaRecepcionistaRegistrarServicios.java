@@ -56,7 +56,6 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         jTableServiciosAdquiridos = new javax.swing.JTable();
         jLabelNombre1 = new javax.swing.JLabel();
 
-        jPanel2.setBackground(new java.awt.Color(221, 221, 221));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N

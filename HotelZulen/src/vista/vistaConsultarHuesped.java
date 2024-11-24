@@ -70,7 +70,6 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         nombreHuesped = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Filtro:");
@@ -101,7 +100,6 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
         jLabel3.setText("DNI del huesped: ");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 255));
         jButton1.setText("Aplicar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +109,6 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, -1, -1));
         add(dniHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 100, -1));
 
-        jButton2.setBackground(new java.awt.Color(0, 255, 255));
         jButton2.setText("Ver Reserva");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

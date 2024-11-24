@@ -62,14 +62,12 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(43, 45, 66));
+        panelIzquierda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 204)));
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setText("Hotel Zulen");
 
-        principalBoton.setBackground(new java.awt.Color(141, 153, 174));
         principalBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         principalBoton.setText("Principal");
         principalBoton.setBorder(null);
@@ -84,7 +82,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
             }
         });
 
-        registrarBoton.setBackground(new java.awt.Color(141, 153, 174));
         registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         registrarBoton.setText("Registrar reserva");
         registrarBoton.setBorder(null);
@@ -99,7 +96,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
             }
         });
 
-        consultarBoton.setBackground(new java.awt.Color(141, 153, 174));
         consultarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         consultarBoton.setText("Consultar");
         consultarBoton.setBorder(null);
@@ -114,7 +110,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
             }
         });
 
-        facturarBoton.setBackground(new java.awt.Color(141, 153, 174));
         facturarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         facturarBoton.setText("Facturar");
         facturarBoton.setBorder(null);
@@ -138,7 +133,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                 .addComponent(iniciarSesion)
                 .addGap(119, 119, 119)
                 .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,12 +155,10 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(iniciarSesion)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 120));
-
-        content.setBackground(new java.awt.Color(221, 221, 221));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);

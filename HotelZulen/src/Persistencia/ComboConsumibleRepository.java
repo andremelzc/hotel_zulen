@@ -41,7 +41,25 @@ public class ComboConsumibleRepository implements IRepository<ComboConsumible> {
     public ComboConsumible obtener(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
+    public int obtenerPrecioCombo (int comboID){
+        int precio=0;
+        String sql = "SELECT c.Precio " +
+                 "FROM combo_has_consumible chc " +
+                 "JOIN consumible c ON chc.CONSUMIBLE_idCONSUMIBLE = c.idCONSUMIBLE " +
+                 "WHERE chc.COMBO_idCOMBO = ?";
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, comboID);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Consumible consumible = new Consumible();
+                precio = precio + (int)rs.getDouble("Precio");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return precio;
+    }
     public List<Consumible> obtenerConsumiblesPorCombo(int comboId) {
         List<Consumible> consumibles = new ArrayList<>();
         String sql = "SELECT c.idCONSUMIBLE, c.NombreConsumible, c.Precio " +

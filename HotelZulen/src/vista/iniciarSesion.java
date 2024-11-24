@@ -4,10 +4,10 @@
  */
 package vista;
 
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
+
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
-import javax.swing.*;
+
 
 /**
  *
@@ -19,9 +19,8 @@ public class iniciarSesion extends javax.swing.JFrame {
      * Creates new form iniciarSesion
      */
     public iniciarSesion() {
-        FlatLightOwlIJTheme.setup();
+        FlatNightOwlIJTheme.setup();
         initComponents();
-        
         iniciarSesion.setSize(1280, 720);
     }
 
@@ -51,12 +50,10 @@ public class iniciarSesion extends javax.swing.JFrame {
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setText("Hotel Zulen");
 
         iniciarSesion1.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        iniciarSesion1.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSesion1.setText("INICIO DE SESIÓN");
 
         ingresarPersonal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -141,12 +138,10 @@ public class iniciarSesion extends javax.swing.JFrame {
         background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("En el panel de la izquierda puede seleccionar con");
         background.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("qué tipo de cuenta ingresará al sistema.");
         background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, -1, -1));
 

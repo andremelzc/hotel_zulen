@@ -10,6 +10,7 @@ import modelo.Administrador;
 import static modelo.InicioSession.cerrarSesion;
 import vista.Recepcionista.vistaRecepcionistaFacturar;
 import vista.Recepcionista.vistaRecepcionistaRegistrar;
+import vista.vistaConsultarHuesped;
 
 /**
  *
@@ -58,14 +59,10 @@ public class vistaAdministrador extends javax.swing.JFrame {
         background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(43, 45, 66));
-
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setText("Hotel Zulen");
 
-        personalBoton.setBackground(new java.awt.Color(141, 153, 174));
         personalBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         personalBoton.setText("Personal");
         personalBoton.setBorder(null);
@@ -80,7 +77,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
             }
         });
 
-        serviciosBoton.setBackground(new java.awt.Color(141, 153, 174));
         serviciosBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         serviciosBoton.setText("Servicios");
         serviciosBoton.setBorder(null);
@@ -95,7 +91,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
             }
         });
 
-        habitacionesBoton.setBackground(new java.awt.Color(141, 153, 174));
         habitacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         habitacionesBoton.setText("Habitaciones");
         habitacionesBoton.setBorder(null);
@@ -110,7 +105,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
             }
         });
 
-        consultarBoton.setBackground(new java.awt.Color(141, 153, 174));
         consultarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         consultarBoton.setText("Consultar");
         consultarBoton.setBorder(null);
@@ -125,7 +119,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
             }
         });
 
-        finanzasBoton.setBackground(new java.awt.Color(141, 153, 174));
         finanzasBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         finanzasBoton.setText("Finanzas");
         finanzasBoton.setActionCommand("");
@@ -179,8 +172,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
         );
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 120));
-
-        content.setBackground(new java.awt.Color(221, 221, 221));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -279,11 +270,11 @@ public class vistaAdministrador extends javax.swing.JFrame {
 
     private void consultarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarBotonActionPerformed
         // TODO add your handling code here:
-        vistaAdministradorReservaciones administradorReservaciones = new vistaAdministradorReservaciones();
-        administradorReservaciones.setSize(1280, 720);
-        administradorReservaciones.setLocation(0, 0);
+        vistaConsultarHuesped consultarHuesped = new vistaConsultarHuesped();
+        consultarHuesped.setSize(1280, 720);
+        consultarHuesped.setLocation(0, 0);
         content.removeAll();
-        content.add(administradorReservaciones, BorderLayout.CENTER);
+        content.add(consultarHuesped, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_consultarBotonActionPerformed

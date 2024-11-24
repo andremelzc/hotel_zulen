@@ -127,7 +127,6 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        verDatos.setBackground(new java.awt.Color(0, 204, 255));
         verDatos.setText("Ver Housekeeper asignado");
         verDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,37 +144,29 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
         JPiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "2", "3", "4", "5", "6", "7", " " }));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(45, 45, 44));
         jLabel5.setText("Datos de habitación");
 
-        jPanel2.setBackground(new java.awt.Color(141, 153, 174));
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(45, 45, 44));
         jLabel6.setText("Tipo:");
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         pisoField.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(45, 45, 44));
         jLabel7.setText("Piso:");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         tipoField.setBackground(new java.awt.Color(221, 221, 221));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setForeground(new java.awt.Color(45, 45, 44));
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         estadoField.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(45, 45, 44));
         jLabel8.setText("Numero de habitacion: ");
 
-        jButton1.setBackground(new java.awt.Color(239, 35, 60));
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

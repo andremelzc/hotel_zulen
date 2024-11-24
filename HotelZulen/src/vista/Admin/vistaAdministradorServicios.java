@@ -87,27 +87,21 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
         setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(45, 45, 44));
         jLabel4.setText("Datos del servicio");
 
-        jPanel1.setBackground(new java.awt.Color(141, 153, 174));
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(45, 45, 44));
         jLabel2.setText("Precio:");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         PrecioField.setBackground(new java.awt.Color(221, 221, 221));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setForeground(new java.awt.Color(45, 45, 44));
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         EstadoField.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(45, 45, 44));
         jLabel5.setText("Nombre del servicio: ");
 
         nombreService.setBackground(new java.awt.Color(221, 221, 221));
@@ -162,7 +156,6 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        registrarBoton.setBackground(new java.awt.Color(239, 35, 60));
         registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         registrarBoton.setText("Registrar");
         registrarBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +164,6 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
             }
         });
 
-        modificarBoton.setBackground(new java.awt.Color(239, 35, 60));
         modificarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         modificarBoton.setText("Modificar");
         modificarBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +172,6 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
             }
         });
 
-        cancelarBoton.setBackground(new java.awt.Color(239, 35, 60));
         cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancelarBoton.setText("Cancelar");
         cancelarBoton.addActionListener(new java.awt.event.ActionListener() {

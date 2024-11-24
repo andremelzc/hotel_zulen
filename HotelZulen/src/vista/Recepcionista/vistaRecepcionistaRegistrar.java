@@ -54,11 +54,9 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         habitacionesBoton = new javax.swing.JButton();
         serviciosBoton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(221, 221, 221));
         setPreferredSize(new java.awt.Dimension(1280, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        huespedesBoton.setBackground(new java.awt.Color(239, 35, 60));
         huespedesBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         huespedesBoton.setText("Huéspedes");
         huespedesBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -67,8 +65,6 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
             }
         });
         add(huespedesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 260, 50));
-
-        subcontent.setBackground(new java.awt.Color(221, 221, 221));
 
         javax.swing.GroupLayout subcontentLayout = new javax.swing.GroupLayout(subcontent);
         subcontent.setLayout(subcontentLayout);
@@ -83,7 +79,6 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
 
         add(subcontent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1280, 440));
 
-        verRegistroBoton.setBackground(new java.awt.Color(239, 35, 60));
         verRegistroBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         verRegistroBoton.setText("Ver Registro");
         verRegistroBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +88,6 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         });
         add(verRegistroBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, 257, 50));
 
-        habitacionesBoton.setBackground(new java.awt.Color(239, 35, 60));
         habitacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         habitacionesBoton.setText("Habitaciones");
         habitacionesBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +97,6 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         });
         add(habitacionesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 270, 50));
 
-        serviciosBoton.setBackground(new java.awt.Color(239, 35, 60));
         serviciosBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         serviciosBoton.setText("Servicios");
         serviciosBoton.addActionListener(new java.awt.event.ActionListener() {

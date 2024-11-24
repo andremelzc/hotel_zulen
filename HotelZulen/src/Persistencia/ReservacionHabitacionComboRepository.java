@@ -332,7 +332,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
             
             
             cs.execute();
-            System.out.println("Datos del Alumno Modificado Exitosamente");
+            System.out.println("Datos  Modificado Exitosamente");
             
         } catch (Exception e) {
             System.out.println("Datos del Alumno No se pudieron modificar, error:");
