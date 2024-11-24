@@ -4,6 +4,7 @@
  */
 package vista.JefeCocina;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import vista.Admin.*;
 
@@ -17,7 +18,7 @@ public class vistaJefeCocinaPrincipal extends javax.swing.JPanel {
      * Creates new form vistaAdministradorPersonal
      */
     public vistaJefeCocinaPrincipal() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 

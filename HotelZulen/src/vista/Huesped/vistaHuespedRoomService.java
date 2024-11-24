@@ -4,8 +4,10 @@
  */
 package vista.Huesped;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import vista.AmaLlaves.*;
 import vista.JefeCocina.*;
 import vista.Admin.*;
@@ -20,7 +22,7 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
      * Creates new form vistaAdministradorPersonal
      */
     public vistaHuespedRoomService(Huesped huesped) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.huesped = huesped;
     }
@@ -43,8 +45,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("room service ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 220, -1, -1));
 
         desayunoBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -110,6 +110,10 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
         subcontent.repaint();
     }//GEN-LAST:event_desayunoBotonActionPerformed
 
+    public JButton getDesayunoBoton() {
+        return desayunoBoton;
+    }
+    
     private void almuerzoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almuerzoBotonActionPerformed
         // TODO add your handling code here:
         vistaHuespedRoomServiceAlmuerzo serviceAlmuerzo = new vistaHuespedRoomServiceAlmuerzo(huesped);

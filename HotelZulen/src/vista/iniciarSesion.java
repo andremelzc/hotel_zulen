@@ -4,10 +4,10 @@
  */
 package vista;
 
-
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
-
+import javax.swing.JButton;
 
 /**
  *
@@ -19,7 +19,7 @@ public class iniciarSesion extends javax.swing.JFrame {
      * Creates new form iniciarSesion
      */
     public iniciarSesion() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         iniciarSesion.setSize(1280, 720);
     }
@@ -227,10 +227,21 @@ public class iniciarSesion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new iniciarSesion().setVisible(true);
+
+                iniciarSesion frame = new iniciarSesion(); // Crear instancia
+                frame.setVisible(true); // Hacer visible el frame
+
+                // Simular el clic en el botón después de mostrar la ventana
+                frame.ingresarPersonal.doClick();
             }
         });
     }
+
+    public JButton getIngresarPersonal() {
+        return ingresarPersonal;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;

@@ -5,6 +5,7 @@
 package vista.Admin;
 
 import Persistencia.ServiciosAdicionalesRepository;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
     public vistaAdministradorServicios() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         modelo = (DefaultTableModel) Tabla.getModel();
         mostrarTabla();
@@ -92,18 +93,18 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
         jLabel2.setText("Precio:");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        PrecioField.setBackground(new java.awt.Color(221, 221, 221));
+        PrecioField.setBackground(new java.awt.Color(60, 63, 65));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        EstadoField.setBackground(new java.awt.Color(221, 221, 221));
+        EstadoField.setBackground(new java.awt.Color(60, 63, 65));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Nombre del servicio: ");
 
-        nombreService.setBackground(new java.awt.Color(221, 221, 221));
+        nombreService.setBackground(new java.awt.Color(60, 63, 65));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

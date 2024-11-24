@@ -5,7 +5,11 @@
 package vista.Recepcionista;
 
 import Persistencia.DatabaseConnection;
+
 import Persistencia.*;
+
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.Font;
 import java.sql.Connection;
@@ -29,6 +33,7 @@ import modelo.ServiciosAdicionales;
 public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
 
     private int huespedDNI;
+
     private int idReservaElegida;
     
     public vistaRecepcionistaFacturar(Recepcionista recepcionista) {

@@ -5,6 +5,7 @@
 package vista;
 
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ public class VistaDatosReservaMODServicios extends javax.swing.JFrame {
     DefaultTableModel modeloServicio;
     
     public VistaDatosReservaMODServicios(List<ServiciosAdicionales> listaServicios) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
         modeloServicio = (DefaultTableModel) TablaServicios.getModel();

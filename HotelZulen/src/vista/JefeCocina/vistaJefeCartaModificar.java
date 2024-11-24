@@ -6,6 +6,7 @@ package vista.JefeCocina;
 
 import Persistencia.ComboConsumibleRepository;
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +28,7 @@ public class vistaJefeCartaModificar extends javax.swing.JFrame {
     private DefaultTableModel modeloMod;
     private Combo combito; 
     public vistaJefeCartaModificar(DefaultTableModel modelo,Combo combo) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.combito = combo;

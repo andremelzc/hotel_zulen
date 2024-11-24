@@ -4,6 +4,7 @@
  */
 package vista;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
     String estado;
     
     public vistaConsultarHabitacion() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         modelo = (DefaultTableModel) habitacionesTable.getModel();
         Object[] Habitaciones = new Object[3];
@@ -106,6 +107,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         btnVerLimpieza = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         habitacionesTable = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 30, 20));
@@ -114,30 +116,20 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         jLabel5.setText("Datos de habitación");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(221, 221, 221));
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Tipo:");
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        pisoField.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Piso:");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        tipoField.setBackground(new java.awt.Color(221, 221, 221));
-
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        estadoField.setBackground(new java.awt.Color(221, 221, 221));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Numero de habitacion: ");
-
-        numHab.setBackground(new java.awt.Color(221, 221, 221));
 
         jButton2.setBackground(new java.awt.Color(239, 35, 60));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -261,6 +253,19 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         jScrollPane1.setViewportView(habitacionesTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 610, 320));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -331,6 +336,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField numHab;
     private javax.swing.JTextField pisoField;

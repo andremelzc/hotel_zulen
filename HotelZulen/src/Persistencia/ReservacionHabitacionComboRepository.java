@@ -27,8 +27,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-
-
 /**
  *
  * @author PC
@@ -54,34 +52,33 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
     public void eliminar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    public Map<Integer, Integer> obtenerCantPedidos(){
+
+    public Map<Integer, Integer> obtenerCantPedidos() {
         // Crear un mapa para almacenar el idCombo y su totalCantidad de pedidos
         Map<Integer, Integer> estadisticasMap = new HashMap<>();
-        
+
         // Consulta SQL para sumar la cantidad de pedidos (cantPedido) agrupados por id del combo (COMBO_idCOMBO)
-        String query = "SELECT COMBO_idCOMBO AS idCombo, SUM(cantPedido) AS totalCantidad " +
-                       "FROM reservaciones_has_habitaciones_has_combo " +
-                       "GROUP BY COMBO_idCOMBO";
-        
+        String query = "SELECT COMBO_idCOMBO AS idCombo, SUM(cantPedido) AS totalCantidad "
+                + "FROM reservaciones_has_habitaciones_has_combo "
+                + "WHERE DATE(FechaPedido) = CURDATE() "
+                + "GROUP BY COMBO_idCOMBO";
+
         // try-with-resources para manejar automáticamente el cierre de la conexión y recursos
-        try(Connection connection = DatabaseConnection.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery()){
-            
-            while(resultSet.next()){ //inicialmente resultSet no apunta a ninguna fila en particular
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(query); ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) { //inicialmente resultSet no apunta a ninguna fila en particular
                 int idCombo = resultSet.getInt("idCombo"); //devolvera cero si es NULL en la db 
-                
+
                 int totalCantidad = resultSet.getInt("totalCantidad");
-                
+
                 //agregar al mapa
                 estadisticasMap.put(idCombo, totalCantidad);
-                
+
             }
-        }catch(SQLException e){
-             e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        
+
         return estadisticasMap;
     }
 
@@ -139,26 +136,25 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
         Tabla.setModel(modelo);
 
         // Consulta SQL con espacios añadidos para evitar errores de sintaxis
-        String consulta = "SELECT " +
-        "    rhhc.id_Pedido AS PedidoID, " +
-        "    h.idhabitaciones AS HabitacionID, " +
-        "    h.Piso AS HabitacionPiso, " +
-        "    h.TIPO_HAB_idCategoria AS HabitacionCategoria, " +
-        "    c.idCOMBO AS ComboID, " +
-        "    c.TipoComida AS ComboTipoComida, " +
-        "    c.Descripcion AS ComboDescripcion, " +
-        "    rhhc.Estado AS EstadoPedido, " +
-        "    rhhc.FechaPedido AS FPedido, " +
-        "    rhhc.FechaEnvio AS FEnvio " +
-        "FROM " +
-        "    reservaciones_has_habitaciones_has_combo rhhc " +
-        "JOIN " +
-        "    habitaciones h ON rhhc.RESERVA_has_HAB_HAB_idhabitaciones = h.idhabitaciones " +
-        "JOIN " +
-        "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO " +
-        "WHERE " +
-        "    rhhc.Estado <> 'Enviado';";
-
+        String consulta = "SELECT "
+                + "    rhhc.id_Pedido AS PedidoID, "
+                + "    h.idhabitaciones AS HabitacionID, "
+                + "    h.Piso AS HabitacionPiso, "
+                + "    h.TIPO_HAB_idCategoria AS HabitacionCategoria, "
+                + "    c.idCOMBO AS ComboID, "
+                + "    c.TipoComida AS ComboTipoComida, "
+                + "    c.Descripcion AS ComboDescripcion, "
+                + "    rhhc.Estado AS EstadoPedido, "
+                + "    rhhc.FechaPedido AS FPedido, "
+                + "    rhhc.FechaEnvio AS FEnvio "
+                + "FROM "
+                + "    reservaciones_has_habitaciones_has_combo rhhc "
+                + "JOIN "
+                + "    habitaciones h ON rhhc.RESERVA_has_HAB_HAB_idhabitaciones = h.idhabitaciones "
+                + "JOIN "
+                + "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO "
+                + "WHERE "
+                + "    rhhc.Estado <> 'Enviado';";
 
         // Ajustamos el tamaño del arreglo 'datos' a 6 columnas
         String[] datos = new String[10];
@@ -181,9 +177,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
                 datos[7] = rs.getString("EstadoPedido");
                 datos[8] = rs.getString("FPedido");
                 datos[9] = rs.getString("FEnvio");
-                
-                modelo.addRow(datos);
-            }
+
 
             // Actualizamos el modelo de la tabla
             Tabla.setModel(modelo);
@@ -261,6 +255,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
                 datos[8] = rs.getString("FPedido");
                 datos[9] = rs.getString("FEnvio");
                 
+
                 modelo.addRow(datos);
             }
 
@@ -272,8 +267,8 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
             e.printStackTrace(); // Imprimir el stack trace para más detalles del error
         }
     }
-    
-    public void mostrarHabitacionComboEnviados(JTable Tabla) {
+
+    public void mostrarHabitacionComboSEnviados(JTable Tabla) {
         DatabaseConnection obj = new DatabaseConnection();
 
         // Configuramos el modelo de la tabla
@@ -297,25 +292,26 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
         Tabla.setModel(modelo);
 
         // Consulta SQL con espacios añadidos para evitar errores de sintaxis
-        String consulta = "SELECT " +
-    "    rhhc.id_Pedido AS PedidoID, " +
-    "    h.idhabitaciones AS HabitacionID, " +
-    "    h.Piso AS HabitacionPiso, " +
-    "    h.TIPO_HAB_idCategoria AS HabitacionCategoria, " +
-    "    c.idCOMBO AS ComboID, " +
-    "    c.TipoComida AS ComboTipoComida, " +
-    "    c.Descripcion AS ComboDescripcion, " +
-    "    rhhc.Estado AS EstadoPedido, " +
-    "    rhhc.FechaPedido AS FPedido, " +
-    "    rhhc.FechaEnvio AS FEnvio " +
-    "FROM " +
-    "    reservaciones_has_habitaciones_has_combo rhhc " +
-    "JOIN " +
-    "    habitaciones h ON rhhc.RESERVA_has_HAB_HAB_idhabitaciones = h.idhabitaciones " +
-    "JOIN " +
-    "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO " +
-    "WHERE " +
-    "    rhhc.Estado = 'Enviado';";
+
+        String consulta = "SELECT "
+                + "    rhhc.id_Pedido AS PedidoID, "
+                + "    h.idhabitaciones AS HabitacionID, "
+                + "    h.Piso AS HabitacionPiso, "
+                + "    h.TIPO_HAB_idCategoria AS HabitacionCategoria, "
+                + "    c.idCOMBO AS ComboID, "
+                + "    c.TipoComida AS ComboTipoComida, "
+                + "    c.Descripcion AS ComboDescripcion, "
+                + "    rhhc.Estado AS EstadoPedido, "
+                + "    rhhc.FechaPedido AS FPedido, "
+                + "    rhhc.FechaEnvio AS FEnvio "
+                + "FROM "
+                + "    reservaciones_has_habitaciones_has_combo rhhc "
+                + "JOIN "
+                + "    habitaciones h ON rhhc.RESERVA_has_HAB_HAB_idhabitaciones = h.idhabitaciones "
+                + "JOIN "
+                + "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO "
+                + "WHERE "
+                + "    rhhc.Estado = 'Enviado';";
 
         // Ajustamos el tamaño del arreglo 'datos' a 6 columnas
         String[] datos = new String[10];
@@ -350,7 +346,6 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
             e.printStackTrace(); // Imprimir el stack trace para más detalles del error
         }
     }
-
     
     public void seleccionarPedido(JTable Tabla, ReservacionHabitacionCombo obj) {
         try {
@@ -368,20 +363,18 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
                 obj.setEstado(Tabla.getValueAt(fila, 7).toString());
                 // Utilizar el método parseDateTime con un formato personalizado para evitar errores de formato
                 Object fecha = Tabla.getValueAt(fila, 8);
-                if(fecha != null){
+                if (fecha != null) {
                     obj.setfPedido(Tabla.getValueAt(fila, 8).toString());
-                }else{
+                } else {
                     obj.setfPedido("NULL");
                 }
                 fecha = Tabla.getValueAt(fila, 9);
-                if(fecha!= null){
+                if (fecha != null) {
                     obj.setfEnvio(Tabla.getValueAt(fila, 9).toString());
-                }else{
+                } else {
                     obj.setfEnvio("NULL");
                 }
-                
-                
-                
+
             } else {
                 System.out.println("No se ha seleccionado ninguna fila.");
             }
@@ -391,35 +384,30 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
         }
     }
 
-    public void modificarEstadoListoS(ReservacionHabitacionCombo obje){
-        
+    public void modificarEstadoListoS(ReservacionHabitacionCombo obje) {
+
         DatabaseConnection obj = new DatabaseConnection();
-        
+
         String consulta = "UPDATE hotel_zulen.reservaciones_has_habitaciones_has_combo hhcc SET  hhcc.Estado = ?, hhcc.FechaEnvio = ? WHERE  hhcc.id_Pedido = ?;";
-        
+
         try {
             CallableStatement cs = DatabaseConnection.getConnection().prepareCall(consulta);
             cs.setString(1, "Enviado");
-            
-            
-            
-            
+
             Timestamp fechaActual = Timestamp.valueOf(LocalDateTime.now());
             cs.setTimestamp(2, fechaActual);
-        
+
             cs.setInt(3, obje.getIdPedido());
-            
-            
+
             cs.execute();
+
             System.out.println("Datos  Modificado Exitosamente");
             
         } catch (Exception e) {
             System.out.println("Datos del Alumno No se pudieron modificar, error:");
             System.out.println("Error al seleccionar la fila: " + e.getMessage());
         }
-        
-        
-        
+
     }
-    
+
 }

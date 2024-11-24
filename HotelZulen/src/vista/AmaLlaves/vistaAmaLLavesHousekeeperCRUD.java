@@ -5,6 +5,7 @@
 package vista.AmaLlaves;
 
 import Persistencia.PersonalRepository;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     private AmaDeLlaves amaLlaves;
     
     public vistaAmaLLavesHousekeeperCRUD(AmaDeLlaves amaLlaves) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.amaLlaves = amaLlaves;
         btnToggle.setSelected(true);
@@ -169,7 +170,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        nombreField.setBackground(new java.awt.Color(200, 200, 200));
+        nombreField.setEditable(false);
         jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -177,7 +178,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        dniField.setBackground(new java.awt.Color(200, 200, 200));
+        dniField.setEditable(false);
         jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 40));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -185,7 +186,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
 
-        apellidoField.setBackground(new java.awt.Color(221, 221, 221));
+        apellidoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 200, 40));
 
         Nombre1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -193,7 +194,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 80, 30));
 
-        telefonoField.setBackground(new java.awt.Color(221, 221, 221));
+        telefonoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 40));
 
         direccin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -201,7 +202,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
-        correoField.setBackground(new java.awt.Color(200, 200, 200));
+        correoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 420, 40));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -209,7 +210,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        estadoField.setBackground(new java.awt.Color(221, 221, 221));
+        estadoField.setBackground(new java.awt.Color(60, 63, 65));
         estadoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoFieldActionPerformed(evt);
@@ -222,7 +223,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 130, -1));
 
-        usuarioField.setBackground(new java.awt.Color(200, 200, 200));
+        usuarioField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 40));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -230,7 +231,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        contrasenaField.setBackground(new java.awt.Color(221, 221, 221));
+        contrasenaField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 40));
 
         btnBuscar.setText("Buscar");

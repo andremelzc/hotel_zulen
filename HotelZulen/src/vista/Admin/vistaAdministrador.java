@@ -4,8 +4,10 @@
  */
 package vista.Admin;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import modelo.Administrador;
 import static modelo.InicioSession.cerrarSesion;
 import vista.Recepcionista.vistaRecepcionistaFacturar;
@@ -23,7 +25,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
      * Creates new form vistaAdministrador
      */
     public vistaAdministrador(Administrador administrador) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.administrador=administrador;
         mostrarInfo();
@@ -56,7 +58,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
@@ -208,7 +209,14 @@ public class vistaAdministrador extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_personalBotonActionPerformed
 
-    private void serviciosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviciosBotonActionPerformed
+
+    public JButton getPersonalBoton() {
+        return personalBoton;
+    }
+    
+    
+    private void serviciosBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serviciosBotonMouseClicked
+
         // TODO add your handling code here:
         vistaAdministradorServicios administradorServicios = new vistaAdministradorServicios();
         administradorServicios.setSize(1280, 720);

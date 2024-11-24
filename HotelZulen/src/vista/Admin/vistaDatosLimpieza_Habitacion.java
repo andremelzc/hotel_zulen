@@ -6,6 +6,7 @@ package vista.Admin;
 
 import Persistencia.LimpiezaRepository;
 import Persistencia.TipoHabitacionRepository;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -28,7 +29,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
     private static Limpieza limpiezaActual;
     
     public vistaDatosLimpieza_Habitacion(int idHabitacion) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         JScrollPane scrollPane = new JScrollPane(jPanel1);
         this.add(scrollPane);

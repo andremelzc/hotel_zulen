@@ -4,8 +4,10 @@
  */
 package vista.AmaLlaves;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import modelo.AmaDeLlaves;
 import static modelo.InicioSession.cerrarSesion;
 
@@ -18,7 +20,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
 
     private AmaDeLlaves amaLlaves;
     public vistaAmaLLaves(AmaDeLlaves amaLlaves) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.amaLlaves = amaLlaves;
     }
@@ -38,7 +40,6 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
@@ -173,6 +174,10 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_principalBotonActionPerformed
 
+    public JButton getPrincipalBoton() {
+        return principalBoton;
+    }
+    
     private void habitacionesBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_habitacionesBotonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_habitacionesBotonMouseClicked
@@ -201,6 +206,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
         content.add(amaLLavesHouseKeeper, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        amaLLavesHouseKeeper.getBtnAsignar().doClick();
     }//GEN-LAST:event_houseKeepersBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed

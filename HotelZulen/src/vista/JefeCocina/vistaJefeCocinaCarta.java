@@ -4,9 +4,11 @@
  */
 package vista.JefeCocina;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import javax.swing.JButton;
 
 
 /**
@@ -17,7 +19,7 @@ public class vistaJefeCocinaCarta extends javax.swing.JPanel {
 
 
     public vistaJefeCocinaCarta() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 
@@ -120,6 +122,11 @@ public class vistaJefeCocinaCarta extends javax.swing.JPanel {
        System.out.println("Panel agregado: " + combo.isVisible());
     }//GEN-LAST:event_btnRegistrarComboActionPerformed
 
+    public JButton getBtnRegistrarCombo() {
+        return btnRegistrarCombo;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificarConsumible;

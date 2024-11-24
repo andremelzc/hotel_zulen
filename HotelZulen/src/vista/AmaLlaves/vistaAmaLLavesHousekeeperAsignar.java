@@ -5,6 +5,7 @@
 package vista.AmaLlaves;
 
 import Persistencia.LimpiezaRepository;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class vistaAmaLLavesHousekeeperAsignar extends javax.swing.JPanel {
     private static AmaDeLlaves amaLlavesActual;
     
     public vistaAmaLLavesHousekeeperAsignar(AmaDeLlaves amaLlaves) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.amaLlavesActual = amaLlaves;
         LimpiezaRepository repoLimpieza = new LimpiezaRepository(); 

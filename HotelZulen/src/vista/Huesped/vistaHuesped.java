@@ -4,9 +4,11 @@
  */
 package vista.Huesped;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import modelo.Huesped;
 import static modelo.InicioSession.cerrarSesion;
 
@@ -22,7 +24,7 @@ public class vistaHuesped extends javax.swing.JFrame {
      * Creates new form vistaAdministrador
      */
     public vistaHuesped(Huesped huesped) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.huesped = huesped;
         
@@ -209,6 +211,12 @@ public class vistaHuesped extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_principalBotonActionPerformed
 
+    public JButton getPrincipalBoton() {
+        return principalBoton;
+    }
+
+    
+    
     private void serviceBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serviceBotonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_serviceBotonMouseClicked
@@ -222,6 +230,7 @@ public class vistaHuesped extends javax.swing.JFrame {
         content.add(huespedRoomService, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        huespedRoomService.getDesayunoBoton().doClick();
     }//GEN-LAST:event_serviceBotonActionPerformed
 
     private void limpiezaBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiezaBotonMouseClicked

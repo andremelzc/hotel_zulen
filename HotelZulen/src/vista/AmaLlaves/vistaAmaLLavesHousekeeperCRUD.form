@@ -182,9 +182,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="nombreField">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new java.awt.Color(200, 200, 200)" type="code"/>
-                </Property>
+                <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -208,9 +206,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="dniField">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new java.awt.Color(200, 200, 200)" type="code"/>
-                </Property>
+                <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
@@ -238,7 +234,7 @@
             <Component class="javax.swing.JTextField" name="apellidoField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -264,7 +260,7 @@
             <Component class="javax.swing.JTextField" name="telefonoField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -289,8 +285,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="correoField">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new java.awt.Color(200, 200, 200)" type="code"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -316,7 +312,7 @@
             <Component class="javax.swing.JTextField" name="estadoField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -344,8 +340,8 @@
             </Component>
             <Component class="javax.swing.JTextField" name="usuarioField">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new java.awt.Color(200, 200, 200)" type="code"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -371,7 +367,7 @@
             <Component class="javax.swing.JPasswordField" name="contrasenaField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>

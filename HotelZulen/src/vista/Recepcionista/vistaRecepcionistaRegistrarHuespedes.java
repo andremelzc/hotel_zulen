@@ -5,6 +5,7 @@
 package vista.Recepcionista;
 
 import Persistencia.HuespedRepository;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.io.IOException;
 import java.lang.System.Logger;
@@ -28,7 +29,7 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaRecepcionistaRegistrarHuespedes() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         
         // PARA LAS TABLAS

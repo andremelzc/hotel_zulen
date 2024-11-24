@@ -4,6 +4,7 @@
  */
 package vista;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -20,7 +21,7 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
      * Creates new form iniciarSesionHuesped
      */
     public iniciarSesionHuesped() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 

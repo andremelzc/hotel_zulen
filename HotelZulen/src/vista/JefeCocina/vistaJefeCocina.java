@@ -5,8 +5,10 @@
 package vista.JefeCocina;
 
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import static modelo.InicioSession.cerrarSesion;
 import modelo.KitchenManager;
 import modelo.ReservacionHabitacionCombo;
@@ -20,7 +22,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
      * Creates new form vistaAdministrador
      */
     public vistaJefeCocina(KitchenManager JefeCocina) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 
@@ -202,6 +204,12 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_principalBotonActionPerformed
 
+    public JButton getPrincipalBoton() {
+        return principalBoton;
+    }
+
+    
+    
     private void pedidosBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pedidosBotonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_pedidosBotonMouseClicked
@@ -234,6 +242,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         content.add(jefeCocinaCarta, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        jefeCocinaCarta.getBtnRegistrarCombo();
     }//GEN-LAST:event_cartaBotonActionPerformed
 
     private void estadisticasBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadisticasBotonMouseClicked
