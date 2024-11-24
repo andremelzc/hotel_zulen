@@ -211,7 +211,7 @@ public class Reservacion   {
         this.repoReserva = repoReserva;
     }
 
-    public void crearReservacion(Reservacion reservacion, List<Huesped> listaHuespedes, List<Habitacion> listaHabitaciones, List<ServiciosAdicionales> listaServicios) {
+    public int crearReservacion(Reservacion reservacion, List<Huesped> listaHuespedes, List<Habitacion> listaHabitaciones, List<ServiciosAdicionales> listaServicios) {
 
         repoHuesped.crearHuespedes(listaHuespedes);
         int idReservacion = repoReserva.crearReserva(reservacion);
@@ -223,8 +223,10 @@ public class Reservacion   {
             repoHab.setOcupados(listaHabitaciones);
 
             System.out.println("Reserva generada satisfactoriamente!");
+            return idReservacion;
 
         }
+        return 0;
     }
 
     public void reservarAhora(Reservacion reservacion, List<Huesped> listaHuespedes, List<Habitacion> listaHabitaciones, List<ServiciosAdicionales> listaServicios) {

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.Habitacion;
 import modelo.ServiciosAdicionales;
 
 public class vistaAdministradorServicios extends javax.swing.JPanel {

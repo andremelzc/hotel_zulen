@@ -83,7 +83,7 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
                 
             } else {
                 System.out.println("No se encontró el combo con ID " + row[0]);
-                row[2] = 0.0f;
+               
             }
         }
         

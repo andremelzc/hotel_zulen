@@ -2,7 +2,6 @@ package Persistencia;
 
 
 import java.util.List;
-import modelo.Habitacion;
 import modelo.Huesped;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -200,6 +199,7 @@ public void actualizar(Huesped huesped) {
         int dni= obtenerDniHuespedTitularXidReserva(id);
         return obtener(dni);
     }
+    
 }
 
 
