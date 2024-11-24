@@ -171,7 +171,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        nombreField.setBackground(new java.awt.Color(221, 221, 221));
+        nombreField.setBackground(new java.awt.Color(200, 200, 200));
         jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -180,7 +180,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        dniField.setBackground(new java.awt.Color(221, 221, 221));
+        dniField.setBackground(new java.awt.Color(200, 200, 200));
         jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 40));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -207,7 +207,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
-        correoField.setBackground(new java.awt.Color(221, 221, 221));
+        correoField.setBackground(new java.awt.Color(200, 200, 200));
         jPanel1.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 420, 40));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -217,6 +217,11 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         estadoField.setBackground(new java.awt.Color(221, 221, 221));
+        estadoField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoFieldActionPerformed(evt);
+            }
+        });
         jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 200, 40));
 
         Nombre3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -225,7 +230,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 130, -1));
 
-        usuarioField.setBackground(new java.awt.Color(221, 221, 221));
+        usuarioField.setBackground(new java.awt.Color(200, 200, 200));
         jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 40));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -438,7 +443,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
         PersonalRepository personalRepository = new PersonalRepository();
         personalRepository.eliminar(DNI);
-
+        estadoField.setText("Inactivo");
         //resetearTabla();
     }//GEN-LAST:event_deshabilitarBotonActionPerformed
 
@@ -484,6 +489,10 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     private void MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MouseClicked
         int idHousekeeper = seleccionarPedido(Tabla);
     }//GEN-LAST:event_MouseClicked
+
+    private void estadoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
