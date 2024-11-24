@@ -194,7 +194,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
         }
     }
     
-    public void mostrarHabitacionComboSNoEnviados(JTable Tabla) {
+    public void mostrarHabitacionComboSEnviados(JTable Tabla) {
         DatabaseConnection obj = new DatabaseConnection();
 
         // Configuramos el modelo de la tabla
