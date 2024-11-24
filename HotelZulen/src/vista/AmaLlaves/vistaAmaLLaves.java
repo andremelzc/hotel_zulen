@@ -4,6 +4,7 @@
  */
 package vista.AmaLlaves;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import vista.JefeCocina.*;
 import vista.Admin.*;
 import java.awt.BorderLayout;
@@ -20,6 +21,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
 
     private AmaDeLlaves amaLlaves;
     public vistaAmaLLaves(AmaDeLlaves amaLlaves) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         this.amaLlaves = amaLlaves;
     }

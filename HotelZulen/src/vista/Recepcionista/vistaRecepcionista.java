@@ -5,6 +5,7 @@
 package vista.Recepcionista;
 
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import modelo.InicioSession;
 import static modelo.InicioSession.cerrarSesion;
@@ -23,6 +24,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
      * Creates new form vistaRecepcionista
      */
     public vistaRecepcionista(Recepcionista recepcionista) {
+        FlatNightOwlIJTheme.setup();
         this.recepcionista=recepcionista;
         initComponents();
         mostrarInfo();

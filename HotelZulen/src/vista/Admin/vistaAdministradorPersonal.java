@@ -7,6 +7,7 @@ package vista.Admin;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Persistencia.*;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDateTime;
 import modelo.*;
 import java.util.ArrayList;
@@ -21,8 +22,8 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
     DefaultTableModel mt = new DefaultTableModel();
 
     public vistaAdministradorPersonal() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
-
         String ids[] = {"DNI", "Cargo", "Nombres", "Apellidos", "Telefono", "Direccion", "Estado", "Usuario", "Contraseña"};
         mt.setColumnIdentifiers(ids);
 

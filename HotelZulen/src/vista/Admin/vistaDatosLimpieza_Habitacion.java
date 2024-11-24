@@ -6,6 +6,7 @@ package vista.Admin;
 
 import Persistencia.LimpiezaRepository;
 import Persistencia.TipoHabitacionRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -27,18 +28,24 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
     private static Limpieza limpiezaActual;
     
     public vistaDatosLimpieza_Habitacion(int idHabitacion) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         JScrollPane scrollPane = new JScrollPane(jPanel1);
         this.add(scrollPane);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         limpiezaActual = obtenerLimpiezaxidHabitacion(idHabitacion);
-        System.out.println("DNI del housekeeper asignado: "+limpiezaActual.getPersonalDNI());
-        System.out.println("ID de la habitacion: "+limpiezaActual.getIdHabitacion());
-        imprimirLimpieza();
-        Housekeeper house = new Housekeeper();
-        house = house.obtener(limpiezaActual.getPersonalDNI());
-        System.out.println("DNI del housekeeper : "+house.getDNI());
-        imprimirHousekeeper(house);
+        if( limpiezaActual==null){
+            System.out.println("No se han asignado limpiezas el dia de hoy");
+        }else{
+            System.out.println("DNI del housekeeper asignado: "+limpiezaActual.getPersonalDNI());
+            System.out.println("ID de la habitacion: "+limpiezaActual.getIdHabitacion());
+            imprimirLimpieza();
+            Housekeeper house = new Housekeeper();
+            house = house.obtener(limpiezaActual.getPersonalDNI());
+            System.out.println("DNI del housekeeper : "+house.getDNI());
+            imprimirHousekeeper(house);
+        }
+        
     }
     private Limpieza obtenerLimpiezaxidHabitacion(int idHabitacion){
         LimpiezaRepository repoLimpieza = new LimpiezaRepository();

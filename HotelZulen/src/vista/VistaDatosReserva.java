@@ -7,6 +7,7 @@ package vista;
 import Persistencia.ReservacionHabitacionesRepository;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionServicioRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -29,6 +30,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
     private static Reservacion reservaActual;
     
     public VistaDatosReserva(int idReserva) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JScrollPane scrollPane = new JScrollPane(jPanel1);
@@ -342,11 +344,9 @@ public class VistaDatosReserva extends javax.swing.JFrame {
 
         // Acción del botón "Modificar"
         btnModificar.addActionListener(e -> {
-           /* huesped.setNombre(txtNombre.getText());
-            huesped.setDNI(txtDni.getText());
-            huesped.setCorreo(txtCorreo.getText());
-            huesped.setTelefono(txtDireccion.getText());
-            */JOptionPane.showMessageDialog(null, "Datos actualizados para " + huesped.getNombre());
+           Huesped hue = new Huesped();
+           hue.actualizar(huesped);
+           JOptionPane.showMessageDialog(null, "Datos actualizados para " + huesped.getNombre(),"Éxito",JOptionPane.INFORMATION_MESSAGE);
         });
 
         return panel;
@@ -432,19 +432,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         panelPiso.add(txtPiso);
         panel.add(panelPiso);
 
-        // Botón "Modificar"
-        JButton btnModificar = new JButton("Modificar");
-        panel.add(btnModificar);
-
-        // Acción del botón "Modificar"
-        btnModificar.addActionListener(e -> {
-           /* huesped.setNombre(txtNombre.getText());
-            huesped.setDNI(txtDni.getText());
-            huesped.setCorreo(txtCorreo.getText());
-            huesped.setTelefono(txtDireccion.getText());
-            */JOptionPane.showMessageDialog(null, "Datos actualizados para " + hab.getId());
-        });
-
+        
         return panel;
         
         
@@ -472,18 +460,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         panelTipoHab.add(txtNombre);
         panel.add(panelTipoHab);
 
-        // Botón "Modificar"
-        JButton btnModificar = new JButton("Modificar");
-        panel.add(btnModificar);
-
-        // Acción del botón "Modificar"
-        btnModificar.addActionListener(e -> {
-           /* huesped.setNombre(txtNombre.getText());
-            huesped.setDNI(txtDni.getText());
-            huesped.setCorreo(txtCorreo.getText());
-            huesped.setTelefono(txtDireccion.getText());
-            */JOptionPane.showMessageDialog(null, "Datos actualizados para " + servicio.getConcepto());
-        });
+        
 
         return panel;
         
@@ -519,6 +496,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         List<Huesped > listaHuesped = repoReservaHuesped.obtenerHuespedesPorReserva(idReserva);
         System.out.println("Cantidad de huespedes encontrados: " + listaHuesped.size());
         panelHuesped.setLayout((new BoxLayout(panelHuesped, BoxLayout.Y_AXIS)));
+        panelHuesped.setBorder(BorderFactory.createTitledBorder("HUESPEDES ASIGNADOS"));
         for (Huesped huesped : listaHuesped) {
             JPanel panelIndividual = crearPanelHuesped(huesped);
             panelHuesped.add(panelIndividual);
@@ -529,6 +507,20 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         List<Habitacion > listaHabitacion = repoReservaHab.obtenerHabitacionesPorReservacion(idReserva);
         System.out.println("Cantidad de servicios encontrados: " + listaHabitacion.size());
         panelHabitacion.setLayout((new BoxLayout(panelHabitacion, BoxLayout.Y_AXIS)));
+        panelHabitacion.setBorder(BorderFactory.createTitledBorder("HABITACIONES ASIGNADAS"));
+        
+        JPanel panelBtn = new JPanel();
+        panelBtn.setLayout(new BoxLayout(panelBtn, BoxLayout.X_AXIS));
+        
+        JButton botonModificar = new JButton("Modificar registros");
+        
+        botonModificar.addActionListener(e -> {
+            System.out.println("Botón 'Modificar registros' presionado.");
+            
+        });
+        panelBtn.add(botonModificar);
+        panelHabitacion.add(panelBtn);
+        
         for (Habitacion habitacion : listaHabitacion) {
             JPanel panelIndividual = crearPanelHabitacion(habitacion);
             panelHabitacion.add(panelIndividual);
@@ -538,7 +530,22 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         ReservacionServicioRepository repoReservaServicio = new ReservacionServicioRepository();
         List<ServiciosAdicionales> listaServicios =repoReservaServicio.obtenerServiciosXIdReserva(idReserva);
         System.out.println("Cantidad de servicios encontrados: " + listaServicios.size());
-        panelServicios.setLayout((new BoxLayout(panelServicios, BoxLayout.Y_AXIS)));
+        panelServicios.setLayout((new BoxLayout(panelServicios, BoxLayout.Y_AXIS)));        
+        panelServicios.setBorder(BorderFactory.createTitledBorder("SERVICIOS ASIGNADAS"));
+        
+        JPanel panelBtn = new JPanel();
+        panelBtn.setLayout(new BoxLayout(panelBtn, BoxLayout.X_AXIS));
+        
+        JButton botonModificar = new JButton("Modificar registros");
+        
+        botonModificar.addActionListener(e -> {
+            System.out.println("Botón 'Modificar registros' presionado.");
+            VistaDatosReservaMODServicios vistaMod = new VistaDatosReservaMODServicios(listaServicios);
+            vistaMod.setVisible(true);
+        });
+        panelBtn.add(botonModificar);
+        panelServicios.add(panelBtn);
+        
         for (ServiciosAdicionales servicios : listaServicios) {
             JPanel panelIndividual = crearPanelServicios(servicios);
         panelServicios.add(panelIndividual);

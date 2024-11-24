@@ -134,8 +134,20 @@ public void actualizar(Huesped huesped) {
     }
     
     public void crearHuespedes(List<Huesped> huespedes) {
-        String sql = "INSERT INTO huespedes (DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular,FechaCrea,FechaMod) VALUES (?, ?, ?, ?, ?, ?,?,?, ?, ?, ?)";
-
+        String sql = """
+            INSERT INTO huespedes (DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, EsTitular, FechaCrea, FechaMod)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE
+                Nombre = VALUES(Nombre),
+                Apellidos = VALUES(Apellidos),
+                Telefono = VALUES(Telefono),
+                Direccion = VALUES(Direccion),
+                Usuario = VALUES(Usuario),
+                Contraseña = VALUES(Contraseña),
+                Estado = VALUES(Estado),
+                EsTitular = VALUES(EsTitular),
+                FechaMod = VALUES(FechaMod);
+        """;
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 

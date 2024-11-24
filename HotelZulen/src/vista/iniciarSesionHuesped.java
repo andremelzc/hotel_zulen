@@ -4,6 +4,7 @@
  */
 package vista;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
      * Creates new form iniciarSesionHuesped
      */
     public iniciarSesionHuesped() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
     }
 
@@ -40,7 +42,6 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         borrar = new javax.swing.JButton();
         iniciarSesion = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

@@ -4,6 +4,7 @@
  */
 package vista.Recepcionista;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +23,7 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrarServicios
      */
     public vistaRecepcionistaRegistrarServicios() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         String ids[] = {"Servicio Adquirido", "Costo del servicio"};
         mt.setColumnIdentifiers(ids);

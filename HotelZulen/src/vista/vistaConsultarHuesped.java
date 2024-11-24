@@ -4,6 +4,7 @@
  */
 package vista;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import vista.VistaDatosReserva;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaConsultarHuesped() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         modelo = (DefaultTableModel) Tabla.getModel();
         Object[] reserva = new Object[4];

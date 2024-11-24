@@ -4,6 +4,8 @@
  */
 package vista;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import javax.swing.*;
 
@@ -17,7 +19,9 @@ public class iniciarSesion extends javax.swing.JFrame {
      * Creates new form iniciarSesion
      */
     public iniciarSesion() {
+        FlatLightOwlIJTheme.setup();
         initComponents();
+        
         iniciarSesion.setSize(1280, 720);
     }
 
@@ -43,10 +47,7 @@ public class iniciarSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        panelIzquierda.setBackground(new java.awt.Color(43, 45, 66));
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -58,7 +59,6 @@ public class iniciarSesion extends javax.swing.JFrame {
         iniciarSesion1.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSesion1.setText("INICIO DE SESIÓN");
 
-        ingresarPersonal.setBackground(new java.awt.Color(141, 153, 174));
         ingresarPersonal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ingresarPersonal.setText("Ingresar como personal");
         ingresarPersonal.setBorder(null);
@@ -73,7 +73,6 @@ public class iniciarSesion extends javax.swing.JFrame {
             }
         });
 
-        ingresarHuesped.setBackground(new java.awt.Color(141, 153, 174));
         ingresarHuesped.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ingresarHuesped.setText("Ingresar como huesped");
         ingresarHuesped.setBorder(null);
@@ -106,14 +105,14 @@ public class iniciarSesion extends javax.swing.JFrame {
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(190, 190, 190)
                         .addComponent(iniciarSesion)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         panelIzquierdaLayout.setVerticalGroup(
             panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdaLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(iniciarSesion1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 438, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 435, Short.MAX_VALUE)
                 .addComponent(iniciarSesion)
                 .addGap(66, 66, 66)
                 .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -123,8 +122,6 @@ public class iniciarSesion extends javax.swing.JFrame {
         );
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 720));
-
-        content.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -140,17 +137,16 @@ public class iniciarSesion extends javax.swing.JFrame {
         background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, 560, 470));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(45, 45, 44));
         jLabel2.setText("¡Bienvenido al Hotel Zulen!");
         background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("En el panel de la izquierda puede seleccionar con");
         background.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(45, 45, 44));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("qué tipo de cuenta ingresará al sistema.");
         background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, -1, -1));
 

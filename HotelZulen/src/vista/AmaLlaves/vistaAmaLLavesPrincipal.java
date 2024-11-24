@@ -4,6 +4,7 @@
  */
 package vista.AmaLlaves;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import vista.JefeCocina.*;
 import vista.Admin.*;
 
@@ -17,6 +18,7 @@ public class vistaAmaLLavesPrincipal extends javax.swing.JPanel {
      * Creates new form vistaAdministradorPersonal
      */
     public vistaAmaLLavesPrincipal() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
     }
 

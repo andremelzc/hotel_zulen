@@ -4,6 +4,7 @@
  */
 package vista.Recepcionista;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import vista.vistaConsultarHuesped;
 import vista.vistaConsultarHabitacion;
 import java.awt.BorderLayout;
@@ -17,6 +18,7 @@ public class vistaRecepcionistaConsultar extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrar
      */
     public vistaRecepcionistaConsultar() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
     }
 

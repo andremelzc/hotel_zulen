@@ -18,6 +18,7 @@ import modelo.Huesped;
 import modelo.Reservacion;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionHabitacionesRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import modelo.Habitacion;
@@ -36,6 +37,7 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaHuespedRoomServiceDesayuno(Huesped huesped) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         this.huesped = huesped;
 

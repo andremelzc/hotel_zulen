@@ -6,6 +6,7 @@ package vista.JefeCocina;
 
 import vista.Admin.*;
 import Persistencia.ReservacionHabitacionComboRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -25,6 +26,7 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
     }
     
     public vistaJefeCocinaPedidos() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         btnToggle.setSelected(false);
         obj.mostrarHabitacionComboSNoEnviados(jTable1);

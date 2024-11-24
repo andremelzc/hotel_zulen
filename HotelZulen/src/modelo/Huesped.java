@@ -164,5 +164,8 @@ public class Huesped   {
     public Huesped obtenerXDni(int DNI){
         return repo.obtener(DNI);
     }
+    public void actualizar(Huesped huesped){
+        repo.actualizar(huesped);
+    }
 
 }
