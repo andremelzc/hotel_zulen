@@ -89,7 +89,6 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        btn_Enviado.setBackground(new java.awt.Color(239, 35, 60));
         btn_Enviado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_Enviado.setText("Marcar como Enviado");
         btn_Enviado.addActionListener(new java.awt.event.ActionListener() {

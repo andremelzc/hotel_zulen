@@ -5,9 +5,8 @@
 package vista.Huesped;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
-import vista.AmaLlaves.*;
-import vista.JefeCocina.*;
-import vista.Admin.*;
+import modelo.Huesped;
+
 
 /**
  *
@@ -18,7 +17,7 @@ public class vistaHuespedLimpieza extends javax.swing.JPanel {
     /**
      * Creates new form vistaAdministradorPersonal
      */
-    public vistaHuespedLimpieza() {
+    public vistaHuespedLimpieza(Huesped huesped) {
         FlatNightOwlIJTheme.setup();
         initComponents();
     }

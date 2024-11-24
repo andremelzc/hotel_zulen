@@ -111,7 +111,7 @@ public class ReservacionHabitacionesRepository implements IRepository<Resevacion
                    + "r.FechaCreacion, r.FechaMod, r.CheckIn, r.CheckOut "
                    + "FROM reservaciones r "
                    + "JOIN reservaciones_has_habitaciones rh ON r.idReservaciones = rh.RESERVACIONES_idReservaciones "
-                   + "WHERE rh.HABITACIONES_idHabitaciones = ? AND r.Estado != 'Disponible'";  // Filtrar solo reservas no disponibles
+                   + "WHERE rh.HABITACIONES_idHabitaciones = ? AND r.Estado != 'Disponible'"; 
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {

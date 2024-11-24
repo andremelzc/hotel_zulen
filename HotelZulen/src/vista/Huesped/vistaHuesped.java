@@ -5,14 +5,11 @@
 package vista.Huesped;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
-import vista.AmaLlaves.*;
-import vista.JefeCocina.*;
-import vista.Admin.*;
+
 import java.awt.BorderLayout;
 import modelo.Huesped;
 import static modelo.InicioSession.cerrarSesion;
-import vista.Recepcionista.vistaRecepcionistaFacturar;
-import vista.Recepcionista.vistaRecepcionistaRegistrar;
+
 
 /**
  *
@@ -64,14 +61,10 @@ public class vistaHuesped extends javax.swing.JFrame {
         background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(43, 45, 66));
-
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setText("Hotel Zulen");
 
-        principalBoton.setBackground(new java.awt.Color(141, 153, 174));
         principalBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         principalBoton.setText("Principal");
         principalBoton.setBorder(null);
@@ -86,7 +79,6 @@ public class vistaHuesped extends javax.swing.JFrame {
             }
         });
 
-        serviceBoton.setBackground(new java.awt.Color(141, 153, 174));
         serviceBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         serviceBoton.setText("Room Service");
         serviceBoton.setBorder(null);
@@ -101,7 +93,6 @@ public class vistaHuesped extends javax.swing.JFrame {
             }
         });
 
-        limpiezaBoton.setBackground(new java.awt.Color(141, 153, 174));
         limpiezaBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         limpiezaBoton.setText("Limpieza");
         limpiezaBoton.setBorder(null);
@@ -116,7 +107,6 @@ public class vistaHuesped extends javax.swing.JFrame {
             }
         });
 
-        cuentaBoton.setBackground(new java.awt.Color(141, 153, 174));
         cuentaBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cuentaBoton.setText("Cuenta");
         cuentaBoton.setBorder(null);
@@ -167,8 +157,6 @@ public class vistaHuesped extends javax.swing.JFrame {
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1290, 120));
 
-        content.setBackground(new java.awt.Color(221, 221, 221));
-
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
@@ -212,7 +200,7 @@ public class vistaHuesped extends javax.swing.JFrame {
 
     private void principalBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_principalBotonActionPerformed
         // TODO add your handling code here:
-        vistaHuespedPrincipal huespedPrincipal = new vistaHuespedPrincipal();
+        vistaHuespedPrincipal huespedPrincipal = new vistaHuespedPrincipal(huesped);
         huespedPrincipal.setSize(1280, 720);
         huespedPrincipal.setLocation(0, 0);
         content.removeAll();
@@ -242,7 +230,7 @@ public class vistaHuesped extends javax.swing.JFrame {
 
     private void limpiezaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiezaBotonActionPerformed
         // TODO add your handling code here:
-        vistaHuespedLimpieza huespedLimpieza = new vistaHuespedLimpieza();
+        vistaHuespedLimpieza huespedLimpieza = new vistaHuespedLimpieza(huesped);
         huespedLimpieza.setSize(1280, 720);
         huespedLimpieza.setLocation(0, 0);
         content.removeAll();
@@ -261,7 +249,7 @@ public class vistaHuesped extends javax.swing.JFrame {
 
     private void cuentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuentaBotonActionPerformed
         // TODO add your handling code here:
-        vistaHuespedCuenta huespedCuenta = new vistaHuespedCuenta();
+        vistaHuespedCuenta huespedCuenta = new vistaHuespedCuenta(huesped);
         huespedCuenta.setSize(1280, 720);
         huespedCuenta.setLocation(0, 0);
         content.removeAll();
@@ -270,47 +258,7 @@ public class vistaHuesped extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_cuentaBotonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vistaHuesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vistaHuesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vistaHuesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vistaHuesped.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new vistaHuesped(Hu).setVisible(true);
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;

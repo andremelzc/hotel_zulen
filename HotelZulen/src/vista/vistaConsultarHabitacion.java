@@ -107,40 +107,34 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         habitacionesTable = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 30, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(45, 45, 44));
         jLabel5.setText("Datos de habitación");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(141, 153, 174));
+        jPanel1.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(45, 45, 44));
         jLabel6.setText("Tipo:");
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         pisoField.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(45, 45, 44));
         jLabel7.setText("Piso:");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         tipoField.setBackground(new java.awt.Color(221, 221, 221));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setForeground(new java.awt.Color(45, 45, 44));
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         estadoField.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(45, 45, 44));
         jLabel8.setText("Numero de habitacion: ");
 
         numHab.setBackground(new java.awt.Color(221, 221, 221));
@@ -232,7 +226,6 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         });
         add(filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
 
-        btnVerReserva.setBackground(new java.awt.Color(0, 204, 255));
         btnVerReserva.setText("Ver Reserva");
         btnVerReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +234,6 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         });
         add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 160, -1));
 
-        btnVerLimpieza.setBackground(new java.awt.Color(0, 204, 255));
         btnVerLimpieza.setText("Ver Limpieza");
         btnVerLimpieza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

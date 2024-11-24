@@ -114,8 +114,6 @@ public class vistaJefeCocinaCartaAgregar extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(45, 45, 44));
         jLabel2.setText("Datos del combo");
 
-        jPanel4.setBackground(new java.awt.Color(141, 153, 174));
-
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(45, 45, 44));
         jLabel9.setText("Descripcion : ");
@@ -162,13 +160,10 @@ public class vistaJefeCocinaCartaAgregar extends javax.swing.JFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(141, 153, 174));
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(45, 45, 44));
         jLabel6.setText("Consumible");
 
-        jButton2.setBackground(new java.awt.Color(0, 255, 255));
         jButton2.setText("Registrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,7 +171,6 @@ public class vistaJefeCocinaCartaAgregar extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setText("Quitar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +228,6 @@ public class vistaJefeCocinaCartaAgregar extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        registrarBoton1.setBackground(new java.awt.Color(239, 35, 60));
         registrarBoton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         registrarBoton1.setText("Crear combo");
         registrarBoton1.addActionListener(new java.awt.event.ActionListener() {

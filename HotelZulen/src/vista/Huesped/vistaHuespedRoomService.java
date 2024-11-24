@@ -44,11 +44,9 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
         setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("room service ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 220, -1, -1));
 
-        desayunoBoton.setBackground(new java.awt.Color(239, 35, 60));
         desayunoBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         desayunoBoton.setText("Desayuno");
         desayunoBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +56,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
         });
         add(desayunoBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 260, 50));
 
-        almuerzoBoton.setBackground(new java.awt.Color(239, 35, 60));
         almuerzoBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         almuerzoBoton.setText("Almuerzo");
         almuerzoBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +80,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
 
         add(subcontent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1280, 440));
 
-        verPedidosBoton.setBackground(new java.awt.Color(239, 35, 60));
         verPedidosBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         verPedidosBoton.setText("Mis Pedidos");
         verPedidosBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +89,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
         });
         add(verPedidosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 20, 257, 50));
 
-        cenaBoton.setBackground(new java.awt.Color(239, 35, 60));
         cenaBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cenaBoton.setText("Cena");
         cenaBoton.addActionListener(new java.awt.event.ActionListener() {

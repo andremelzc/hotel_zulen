@@ -159,24 +159,21 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, 330));
 
-        jPanel1.setBackground(new java.awt.Color(141, 153, 174));
+        jPanel1.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(45, 45, 44));
         jLabel2.setText("Combo");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         precioSeleccionadoField.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(45, 45, 44));
         jLabel3.setText("Precio");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         comboSeleccionadoField.setBackground(new java.awt.Color(221, 221, 221));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setForeground(new java.awt.Color(45, 45, 44));
         Reservación.setText("Reservacion");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
@@ -184,7 +181,6 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
         reservacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Reservación1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación1.setForeground(new java.awt.Color(45, 45, 44));
         Reservación1.setText("Habitación");
         Reservación1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
@@ -192,7 +188,6 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
         habitacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Reservación2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación2.setForeground(new java.awt.Color(45, 45, 44));
         Reservación2.setText("Cantidad");
         Reservación2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
@@ -259,11 +254,9 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 500, 260));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(45, 45, 44));
         jLabel4.setText("Seleccione el combo que desee pedir");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
 
-        pedirBoton.setBackground(new java.awt.Color(239, 35, 60));
         pedirBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         pedirBoton.setText("Pedir");
         pedirBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +266,6 @@ public class vistaHuespedRoomServiceCena extends javax.swing.JPanel {
         });
         add(pedirBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 360, 240, 50));
 
-        borrarBoton.setBackground(new java.awt.Color(239, 35, 60));
         borrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         borrarBoton.setText("Borrar");
         borrarBoton.addActionListener(new java.awt.event.ActionListener() {
