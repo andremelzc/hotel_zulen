@@ -5,14 +5,22 @@
 package vista.Recepcionista;
 
 import Persistencia.DatabaseConnection;
+import Persistencia.*;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import modelo.Habitacion;
+import modelo.Huesped;
+import modelo.Recepcionista;
+import modelo.Reservacion;
+import modelo.ServiciosAdicionales;
 
 /**
  *
@@ -21,7 +29,9 @@ import java.time.LocalDateTime;
 public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
 
     private int huespedDNI;
-    public vistaRecepcionistaFacturar() {
+    private int idReservaElegida;
+    
+    public vistaRecepcionistaFacturar(Recepcionista recepcionista) {
         FlatNightOwlIJTheme.setup();
         initComponents();
         jTextArea1.setText("");
@@ -42,6 +52,77 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+    private void cargarPrimeraCuenta(){
+        ReservacionHabitacionesRepository repoRH = new ReservacionHabitacionesRepository();
+        ReservacionHuespedRepository repoRHuesed = new ReservacionHuespedRepository();
+        ReservacionServicioRepository repoRS = new ReservacionServicioRepository();
+        ReservacionRepository repo = new ReservacionRepository();
+ 
+        generarResumen(repo.obtener(idReservaElegida), 
+                                    repoRHuesed.obtenerHuespedesPorReserva(idReservaElegida), 
+                                    repoRH.obtenerHabitacionesPorReservacion(idReservaElegida), 
+                                    repoRS.obtenerServiciosXIdReserva(idReservaElegida));
+     
+    }
+    public Double generarResumen(Reservacion reservacion, List<Huesped> listaHuespedes, List<Habitacion> listaHabitaciones, List<ServiciosAdicionales> listaServicios) {
+    StringBuilder resumen = new StringBuilder();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    double precioTotal = 0;
+
+    // Calcular la duración en días de la reserva
+    long diasDiferencia = ChronoUnit.DAYS.between(reservacion.getIncioHuesped().toLocalDate(), reservacion.getFinHuesped().toLocalDate());
+
+    // Encabezado del resumen
+    resumen.append("-------------------------------------------------------------------------------------------------\n");
+    resumen.append("                                    RESUMEN DE FACTURA\n");
+    resumen.append("-------------------------------------------------------------------------------------------------\n");
+
+    // Información del titular y fechas
+    resumen.append(String.format("Titular: %-40s Fecha de Inicio: %s\n", 
+        listaHuespedes.get(0).getNombre() + " " + listaHuespedes.get(0).getApellido(),
+        reservacion.getIncioHuesped().format(formatter)));
+    resumen.append(String.format("Duración: %-39s Fecha de Fin: %s\n",
+        String.valueOf(diasDiferencia) + " días", reservacion.getFinHuesped().format(formatter)));
+    resumen.append("-------------------------------------------------------------------------------------------------\n");
+
+    // Sección de habitaciones
+    resumen.append("Habitación           Piso        Tipo          Precio Unitario     Días      Subtotal\n");
+    resumen.append("-------------------------------------------------------------------------------------------------\n");
+    for (Habitacion habitacion : listaHabitaciones) {
+        double subtotal = habitacion.getTipoHabitacion().getPrecio() * diasDiferencia;
+        resumen.append(String.format("%-20s %-12d %-12s $%-18.2f %-9s $%-15.2f\n",
+            "NºHabitacion " + habitacion.getId(),
+            habitacion.getPiso(),
+            habitacion.getTipoHabitacion().getConcepto(),
+            habitacion.getTipoHabitacion().getPrecio(),
+            String.valueOf(diasDiferencia),
+            subtotal));
+        precioTotal += subtotal;
+    }
+    resumen.append("-------------------------------------------------------------------------------------------------\n");
+
+    // Sección de servicios
+    resumen.append("Servicios Pagados\n");
+    resumen.append("-------------------------------------------------------------------------------------------------\n");
+    resumen.append("Servicio             Precio\n");
+    resumen.append("-------------------------------------------------------------------------------------------------\n");
+    for (ServiciosAdicionales servicio : listaServicios) {
+        resumen.append(String.format("%-20s $%-15.2f\n", 
+            servicio.getConcepto(), 
+            servicio.getCosto()));
+        precioTotal += servicio.getCosto();
+    }
+    resumen.append("-------------------------------------------------------------------------------------------------\n");
+
+    // Total pagado
+    resumen.append(String.format("%66s $%-14.2f\n", "**Total Pagado:**", precioTotal));
+
+    // Establecer el texto en el JTextArea existente
+    jTextArea1.setText(resumen.toString());
+    return precioTotal;
+}
+
+
     private void cargarCuentaEnJText(int idReservaElegida){
         String encabezados = String.format(
             "%-15s %-10s %-10s %-15s %-20s\n",
@@ -140,7 +221,7 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
                                     .addComponent(jLabel1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(DNIhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(158, 158, 158)
+                            .addGap(275, 275, 275)
                             .addComponent(jButton1))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(366, Short.MAX_VALUE))
@@ -152,20 +233,16 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(DNIhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(desplegableReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(desplegableReservas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         add(jPanel1);
@@ -179,7 +256,9 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        jTextArea1.setText("");
        String reservaSeleccionada = (String) desplegableReservas.getSelectedItem();
-       int idReservaElegida = Integer.parseInt(reservaSeleccionada);
+       idReservaElegida = Integer.parseInt(reservaSeleccionada);
+       
+       cargarPrimeraCuenta();
        cargarCuentaEnJText(idReservaElegida);
     }//GEN-LAST:event_jButton1ActionPerformed
 

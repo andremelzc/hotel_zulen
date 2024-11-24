@@ -20,9 +20,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
     
     private Recepcionista recepcionista; // Almacena el objeto Recepcionista
 
-    /**
-     * Creates new form vistaRecepcionista
-     */
+    
     public vistaRecepcionista(Recepcionista recepcionista) {
         FlatNightOwlIJTheme.setup();
         this.recepcionista=recepcionista;
@@ -214,7 +212,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
 
     private void registrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBotonActionPerformed
         // TODO add your handling code here:
-        vistaRecepcionistaRegistrar recepcionistaRegistrar = new vistaRecepcionistaRegistrar();
+        vistaRecepcionistaRegistrar recepcionistaRegistrar = new vistaRecepcionistaRegistrar(recepcionista);
         recepcionistaRegistrar.setSize(1280, 720);
         recepcionistaRegistrar.setLocation(0, 0);
         content.removeAll();
@@ -243,7 +241,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
 
     private void facturarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facturarBotonMouseClicked
         // TODO add your handling code here:
-        vistaRecepcionistaFacturar recepcionistaFacturar = new vistaRecepcionistaFacturar();
+        vistaRecepcionistaFacturar recepcionistaFacturar = new vistaRecepcionistaFacturar(recepcionista);
         recepcionistaFacturar.setSize(1280 , 720);
         recepcionistaFacturar.setLocation(0,0);
         content.removeAll();
@@ -253,7 +251,8 @@ public class vistaRecepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_facturarBotonMouseClicked
 
     private void facturarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturarBotonActionPerformed
-        // TODO add your handling code here:
+       
+       
     }//GEN-LAST:event_facturarBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed

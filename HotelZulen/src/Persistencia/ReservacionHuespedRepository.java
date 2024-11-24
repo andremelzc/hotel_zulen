@@ -4,19 +4,18 @@
  */
 package Persistencia;
 
-import Persistencia.ConsumibleRepository;
-import Persistencia.DatabaseConnection;
+
 import java.util.List;
 import modelo.Huesped;
 import modelo.Reservacion;
 import modelo.ReservacionHuesped;
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import modelo.Consumible;
+
 
 /**
  *

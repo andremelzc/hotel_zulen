@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import Persistencia.RecepcionistaRepository;
+
 /**
  *
  * @author Fabrizio Mantari
@@ -89,7 +91,11 @@ public class Recepcionista extends Personal{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    
+    public void GenerarBoleta(Boleta boleta){
+        RecepcionistaRepository repo = new RecepcionistaRepository();
+        repo.crearBoleta(boleta);
+    }
     
 }
 

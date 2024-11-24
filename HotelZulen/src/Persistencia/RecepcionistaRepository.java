@@ -4,11 +4,13 @@
  */
 package Persistencia;
 
+import java.sql.Timestamp;
 import modelo.Recepcionista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modelo.Boleta;
 
 /**
  *
@@ -124,5 +126,32 @@ public class RecepcionistaRepository implements IRepository<Recepcionista> {
             System.out.println("Error al eliminar el recepcionista: " + e.getMessage());
         }
     }
- 
+    
+    public void crearBoleta(Boleta boleta) {
+       
+        String sql = "INSERT INTO pago (RESERVA_id, MetodoPagoInicial, PagoInicial, EstadoInicial, FechaPagoInicial) "
+                   + "VALUES (?, ?, ?, ?, ?)";
+
+        
+        try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            // Configurar los valores en la consulta
+            stmt.setInt(1, boleta.getReserva().getIdReserva());
+            stmt.setString(2, boleta.getMetodoPagoInicial());
+            stmt.setDouble(3, boleta.getPagoInicial());
+            stmt.setString(4, boleta.getEstadoInicial());
+            stmt.setTimestamp(5, Timestamp.valueOf(boleta.getFechaPagoInicial()));
+
+            // Ejecutar la consulta
+            int filasInsertadas = stmt.executeUpdate();
+            if (filasInsertadas > 0) {
+                System.out.println("La boleta se registró correctamente.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al registrar la boleta: " + e.getMessage());
+        }
+    }
+
 }

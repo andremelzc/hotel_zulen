@@ -40,8 +40,7 @@ public class ComboConsumibleRepository implements IRepository<ComboConsumible> {
     @Override
     public ComboConsumible obtener(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+    }  
     public int obtenerPrecioCombo (int comboID){
         int precio=0;
         String sql = "SELECT c.Precio " +
