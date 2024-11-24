@@ -4,6 +4,7 @@
  */
 package vista.Recepcionista;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.Habitacion;
 import modelo.Huesped;
@@ -35,7 +37,7 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrar
      */
     public vistaRecepcionistaRegistrar() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 
@@ -119,6 +121,12 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         listaHuespedes = recepcionistaRegistrarHuespedes.getListaHuespedes();
     }//GEN-LAST:event_huespedesBotonActionPerformed
 
+    public JButton getHuespedesBoton() {
+        return huespedesBoton;
+    }
+
+
+    
     private void verRegistroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistroBotonActionPerformed
         // Crear instancia de la vista de recepción
         vistaRecepcionistaRegistrarVerRegistro recepcionistaRegistrarVerRegistro = new vistaRecepcionistaRegistrarVerRegistro();

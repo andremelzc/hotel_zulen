@@ -7,7 +7,7 @@ package vista;
 import Persistencia.ReservacionHabitacionesRepository;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionServicioRepository;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -30,7 +30,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
     private static Reservacion reservaActual;
     
     public VistaDatosReserva(int idReserva) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JScrollPane scrollPane = new JScrollPane(jPanel1);
@@ -95,7 +95,6 @@ public class VistaDatosReserva extends javax.swing.JFrame {
 
         jLabel12.setText("CheckOut: ");
 
-        CheckIn.setBackground(new java.awt.Color(255, 255, 0));
         CheckIn.setText("CheckIn");
         CheckIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +102,6 @@ public class VistaDatosReserva extends javax.swing.JFrame {
             }
         });
 
-        Modificar.setBackground(new java.awt.Color(0, 255, 0));
         Modificar.setText("Modificar");
         Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,7 +181,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CheckIN, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))

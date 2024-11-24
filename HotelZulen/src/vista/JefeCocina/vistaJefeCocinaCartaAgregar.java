@@ -8,6 +8,7 @@ import Persistencia.ComboConsumibleRepository;
 import Persistencia.ComboRepository;
 import Persistencia.ConsumibleRepository;
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class vistaJefeCocinaCartaAgregar extends javax.swing.JFrame {
     DefaultTableModel modelo2;
     
     public vistaJefeCocinaCartaAgregar() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         modelo2= (DefaultTableModel)TablaConsumibles.getModel();

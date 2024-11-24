@@ -6,6 +6,7 @@ package vista.Admin;
 
 import Persistencia.HabitacionRepository;
 import Persistencia.TipoHabitacionRepository;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
     String estado;
     
     public vistaAdministradorHabitaciones() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         modelo = (DefaultTableModel) habitacionesTable.getModel();
         Object[] Habitaciones = new Object[3];
@@ -139,30 +140,28 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         jLabel4.setText("Datos de habitación");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(221, 221, 221));
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Tipo:");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        pisoField.setBackground(new java.awt.Color(221, 221, 221));
+        pisoField.setBackground(new java.awt.Color(60, 63, 65));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Piso:");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        tipoField.setBackground(new java.awt.Color(221, 221, 221));
+        tipoField.setBackground(new java.awt.Color(60, 63, 65));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        estadoField.setBackground(new java.awt.Color(221, 221, 221));
+        estadoField.setBackground(new java.awt.Color(60, 63, 65));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Numero de habitacion: ");
 
-        numHab.setBackground(new java.awt.Color(221, 221, 221));
+        numHab.setBackground(new java.awt.Color(60, 63, 65));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Buscar");

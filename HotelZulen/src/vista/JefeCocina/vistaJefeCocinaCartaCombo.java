@@ -5,6 +5,7 @@
 package vista.JefeCocina;
 
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +27,7 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
     DefaultTableModel modeloConsumible;
     
     public vistaJefeCocinaCartaCombo() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         System.out.println("Ingresando a la pestaña de combos");
         JScrollPane scrollPane = new JScrollPane(jPanel1);
         this.add(scrollPane);

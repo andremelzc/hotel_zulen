@@ -4,6 +4,7 @@
  */
 package vista.AmaLlaves;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
     private AmaDeLlaves amaLlaves;
     
     public vistaAmaLLavesHabitaciones(AmaDeLlaves amaLlaves) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.amaLlaves = amaLlaves;
         modelo = (DefaultTableModel) Tabla.getModel();
@@ -150,19 +151,19 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
         jLabel6.setText("Tipo:");
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        pisoField.setBackground(new java.awt.Color(221, 221, 221));
+        pisoField.setBackground(new java.awt.Color(60, 63, 65));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Piso:");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        tipoField.setBackground(new java.awt.Color(221, 221, 221));
+        tipoField.setBackground(new java.awt.Color(60, 63, 65));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        estadoField.setBackground(new java.awt.Color(221, 221, 221));
+        estadoField.setBackground(new java.awt.Color(60, 63, 65));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Numero de habitacion: ");
@@ -174,7 +175,7 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
             }
         });
 
-        NumHab.setBackground(new java.awt.Color(221, 221, 221));
+        NumHab.setBackground(new java.awt.Color(60, 63, 65));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

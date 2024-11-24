@@ -4,7 +4,7 @@
  */
 package vista;
 
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +19,7 @@ public class VistaDatosReservaMODHabitaciones extends javax.swing.JFrame {
     DefaultTableModel modeloHab;
     
     public VistaDatosReservaMODHabitaciones(List<Habitacion> listaHab) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
         

@@ -151,7 +151,7 @@
             <Component class="javax.swing.JTextField" name="PrecioField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -167,7 +167,7 @@
             <Component class="javax.swing.JTextField" name="EstadoField">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -182,7 +182,7 @@
             <Component class="javax.swing.JTextField" name="nombreService">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="dd" green="dd" red="dd" type="rgb"/>
+                  <Color blue="41" green="3f" red="3c" type="rgb"/>
                 </Property>
               </Properties>
             </Component>

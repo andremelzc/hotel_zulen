@@ -4,8 +4,10 @@
  */
 package vista.AmaLlaves;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import modelo.AmaDeLlaves;
 import vista.JefeCocina.*;
 import vista.Admin.*;
@@ -19,7 +21,7 @@ public class vistaAmaLLavesHouseKeeper extends javax.swing.JPanel {
     private AmaDeLlaves amaLlaves;
     
     public vistaAmaLLavesHouseKeeper(AmaDeLlaves amaLlaves) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.amaLlaves = amaLlaves;
     }
@@ -36,8 +38,6 @@ public class vistaAmaLLavesHouseKeeper extends javax.swing.JPanel {
         btnAsignar = new javax.swing.JButton();
         btnCRUD = new javax.swing.JButton();
         container = new javax.swing.JPanel();
-
-        setBackground(new java.awt.Color(221, 221, 221));
 
         btnAsignar.setText("Asignar habitaciones");
         btnAsignar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,12 @@ public class vistaAmaLLavesHouseKeeper extends javax.swing.JPanel {
         container.repaint();
     }//GEN-LAST:event_btnAsignarActionPerformed
 
+    public JButton getBtnAsignar() {
+        return btnAsignar;
+    }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignar;
     private javax.swing.JButton btnCRUD;

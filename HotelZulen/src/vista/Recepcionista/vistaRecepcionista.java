@@ -5,8 +5,10 @@
 package vista.Recepcionista;
 
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import modelo.InicioSession;
 import static modelo.InicioSession.cerrarSesion;
 import modelo.Recepcionista;
@@ -24,7 +26,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
      * Creates new form vistaRecepcionista
      */
     public vistaRecepcionista(Recepcionista recepcionista) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         this.recepcionista=recepcionista;
         initComponents();
         mostrarInfo();
@@ -208,6 +210,10 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         iniciarSesionPersonal sesionPersonal = new iniciarSesionPersonal();
     }//GEN-LAST:event_principalBotonActionPerformed
 
+    public JButton getPrincipalBoton() {
+        return principalBoton;
+    }
+        
     private void registrarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarBotonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_registrarBotonMouseClicked
@@ -221,7 +227,9 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         content.add(recepcionistaRegistrar, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-        
+        recepcionistaRegistrar.getHuespedesBoton().doClick();
+        recepcionistaRegistrar.getHuespedesBoton().setBorderPainted(true);
+    
         
         
     }//GEN-LAST:event_registrarBotonActionPerformed
@@ -239,6 +247,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         content.add(recepcionistaConsultar, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        recepcionistaConsultar.getHuespedesBoton().doClick();
     }//GEN-LAST:event_consultarBotonActionPerformed
 
     private void facturarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facturarBotonMouseClicked

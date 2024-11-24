@@ -4,6 +4,7 @@
  */
 package vista;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 
 /**
@@ -16,7 +17,7 @@ public class VistaHotel extends javax.swing.JPanel {
      * Creates new form VistaHotel
      */
     public VistaHotel() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 

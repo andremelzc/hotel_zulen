@@ -5,6 +5,7 @@
 package vista.Recepcionista;
 
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -22,7 +23,7 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
 
     private int huespedDNI;
     public vistaRecepcionistaFacturar() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         jTextArea1.setText("");
         jTextArea1.setFont(new Font("Monospaced", Font.PLAIN, 12));

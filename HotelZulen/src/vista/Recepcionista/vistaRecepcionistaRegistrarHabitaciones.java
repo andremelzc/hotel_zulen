@@ -5,6 +5,7 @@
 package vista.Recepcionista;
 
 import Persistencia.HabitacionRepository;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +31,7 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaRecepcionistaRegistrarHabitaciones() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         String ids[] = {"Nº Habitación", "Piso", "Tipo de Habitación"};
         mt.setColumnIdentifiers(ids);

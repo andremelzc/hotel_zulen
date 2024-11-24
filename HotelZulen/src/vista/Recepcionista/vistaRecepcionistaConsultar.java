@@ -4,10 +4,12 @@
  */
 package vista.Recepcionista;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import vista.vistaConsultarHuesped;
 import vista.vistaConsultarHabitacion;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 /**
  *
  * @author PC
@@ -18,7 +20,7 @@ public class vistaRecepcionistaConsultar extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrar
      */
     public vistaRecepcionistaConsultar() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 
@@ -81,6 +83,11 @@ public class vistaRecepcionistaConsultar extends javax.swing.JPanel {
         subcontent.repaint();
     }//GEN-LAST:event_huespedesBotonActionPerformed
 
+    public JButton getHuespedesBoton() {
+        return huespedesBoton;
+    }
+ 
+    
     private void habitacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionesBotonActionPerformed
         // TODO add your handling code here:
         vistaConsultarHabitacion recepcionistaConsultarHabitacion = new vistaConsultarHabitacion();

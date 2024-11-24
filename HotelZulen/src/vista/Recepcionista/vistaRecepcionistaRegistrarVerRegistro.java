@@ -4,6 +4,7 @@
  */
 package vista.Recepcionista;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -75,7 +76,7 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
     }
 
     public vistaRecepcionistaRegistrarVerRegistro() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
 
     }

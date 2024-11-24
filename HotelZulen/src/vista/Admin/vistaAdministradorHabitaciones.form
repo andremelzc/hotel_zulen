@@ -88,11 +88,6 @@
       </Constraints>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="dd" green="dd" red="dd" type="rgb"/>
-        </Property>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="730" y="60" width="490" height="330"/>
@@ -165,7 +160,7 @@
         <Component class="javax.swing.JTextField" name="pisoField">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="dd" green="dd" red="dd" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
           </Properties>
         </Component>
@@ -181,7 +176,7 @@
         <Component class="javax.swing.JTextField" name="tipoField">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="dd" green="dd" red="dd" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
           </Properties>
         </Component>
@@ -197,7 +192,7 @@
         <Component class="javax.swing.JTextField" name="estadoField">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="dd" green="dd" red="dd" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
           </Properties>
         </Component>
@@ -212,7 +207,7 @@
         <Component class="javax.swing.JTextField" name="numHab">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="dd" green="dd" red="dd" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
           </Properties>
         </Component>

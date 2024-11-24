@@ -5,6 +5,7 @@
 package vista.JefeCocina;
 
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ public class vistaJefeCocinaCartaConsumible extends javax.swing.JPanel {
     DefaultTableModel modelo;
     
     public vistaJefeCocinaCartaConsumible() {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         modelo = (DefaultTableModel) Tabla.getModel();
     }

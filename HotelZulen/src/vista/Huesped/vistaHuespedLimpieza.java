@@ -4,6 +4,7 @@
  */
 package vista.Huesped;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import modelo.Huesped;
 
@@ -18,7 +19,7 @@ public class vistaHuespedLimpieza extends javax.swing.JPanel {
      * Creates new form vistaAdministradorPersonal
      */
     public vistaHuespedLimpieza(Huesped huesped) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 

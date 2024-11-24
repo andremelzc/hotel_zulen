@@ -5,6 +5,7 @@
 package vista.Huesped;
 
 import Persistencia.DatabaseConnection;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.Font;
 import java.sql.Connection;
@@ -25,7 +26,7 @@ public class vistaHuespedCuenta extends javax.swing.JPanel {
     private int idReservaElegida;
     
     public vistaHuespedCuenta(Huesped huesped) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         this.huespedActual = huesped;
         cargarJComboBoxDeReservas();
