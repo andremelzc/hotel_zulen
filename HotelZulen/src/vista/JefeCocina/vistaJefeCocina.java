@@ -5,6 +5,7 @@
 package vista.JefeCocina;
 
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import static modelo.InicioSession.cerrarSesion;
 import modelo.KitchenManager;
@@ -19,6 +20,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
      * Creates new form vistaAdministrador
      */
     public vistaJefeCocina(KitchenManager JefeCocina) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
     }
 

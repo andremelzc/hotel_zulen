@@ -8,6 +8,7 @@ package vista.JefeCocina;
 import Persistencia.ComboConsumibleRepository;
 import Persistencia.ReservacionHabitacionComboRepository;
 import Persistencia.ComboRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +27,7 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
      * Creates new form vistaAdministradorPersonal
      */
     public vistaJefeCocinaEstadisticas() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         
         String ids[] = {"ID", "Combo", "Total Ganancias"};

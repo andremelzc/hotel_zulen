@@ -19,6 +19,7 @@ import modelo.Reservacion;
 import vista.Recepcionista.*;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionHabitacionesRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import modelo.Habitacion;
@@ -37,6 +38,7 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaHuespedRoomServiceAlmuerzo(Huesped huesped) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         this.huesped = huesped;
 
@@ -321,7 +323,7 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
                 habitacion.getTipoHabitacion().getId(),
                 idCombo,
                 cantidad, 
-                "Enviado",
+                "Pendiente",
                 fechaActual);
 
     }//GEN-LAST:event_pedirBotonActionPerformed

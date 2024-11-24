@@ -4,6 +4,7 @@
  */
 package vista.AmaLlaves;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -18,6 +19,7 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
     private AmaDeLlaves amaLlaves;
     
     public vistaAmaLLavesHabitaciones(AmaDeLlaves amaLlaves) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         this.amaLlaves = amaLlaves;
         modelo = (DefaultTableModel) Tabla.getModel();

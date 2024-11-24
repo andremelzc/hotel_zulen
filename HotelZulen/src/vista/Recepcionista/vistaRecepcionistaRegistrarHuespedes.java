@@ -5,6 +5,7 @@
 package vista.Recepcionista;
 
 import Persistencia.HuespedRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.time.LocalDateTime;
@@ -27,6 +28,7 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
      * Creates new form vistaRecepcionistaRegistrarHuespedes
      */
     public vistaRecepcionistaRegistrarHuespedes() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         
         // PARA LAS TABLAS

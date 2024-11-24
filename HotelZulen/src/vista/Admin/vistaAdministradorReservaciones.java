@@ -4,6 +4,7 @@
  */
 package vista.Admin;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import vista.vistaConsultarHabitacion;
 import vista.vistaConsultarHuesped;
@@ -18,6 +19,7 @@ public class vistaAdministradorReservaciones extends javax.swing.JPanel {
      * Creates new form vistaAdministradorPersonal
      */
     public vistaAdministradorReservaciones() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
     }
 

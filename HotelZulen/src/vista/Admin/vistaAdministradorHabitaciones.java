@@ -6,6 +6,7 @@ package vista.Admin;
 
 import Persistencia.HabitacionRepository;
 import Persistencia.TipoHabitacionRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -27,6 +28,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
     String estado;
     
     public vistaAdministradorHabitaciones() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         modelo = (DefaultTableModel) habitacionesTable.getModel();
         Object[] Habitaciones = new Object[3];

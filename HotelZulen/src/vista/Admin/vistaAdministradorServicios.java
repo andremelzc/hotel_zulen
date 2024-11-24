@@ -5,6 +5,7 @@
 package vista.Admin;
 
 import Persistencia.ServiciosAdicionalesRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -16,6 +17,7 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
     public vistaAdministradorServicios() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         modelo = (DefaultTableModel) Tabla.getModel();
         mostrarTabla();

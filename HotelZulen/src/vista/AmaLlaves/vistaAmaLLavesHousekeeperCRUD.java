@@ -5,6 +5,7 @@
 package vista.AmaLlaves;
 
 import Persistencia.PersonalRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     private AmaDeLlaves amaLlaves;
     
     public vistaAmaLLavesHousekeeperCRUD(AmaDeLlaves amaLlaves) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         this.amaLlaves = amaLlaves;
         btnToggle.setSelected(true);

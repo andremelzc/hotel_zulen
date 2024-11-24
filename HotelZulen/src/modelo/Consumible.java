@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import Persistencia.ConsumibleRepository;
 import java.io.File;
 
 public class Consumible {
@@ -13,6 +14,10 @@ public class Consumible {
 
     public Consumible(int id, String nombre, float precio) {
         this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+    public Consumible(String nombre, float precio) {
         this.nombre = nombre;
         this.precio = precio;
     }
@@ -44,6 +49,13 @@ public class Consumible {
         this.precio = precio;
     }
     
-    
+    public void crear(Consumible consumible){
+        ConsumibleRepository repoC= new ConsumibleRepository();
+        repoC.crear(consumible);
+    }
+    public void actualizar (Consumible objeto){
+        ConsumibleRepository repoC= new ConsumibleRepository();
+        repoC.actualizar(objeto);
+    }
     
 }

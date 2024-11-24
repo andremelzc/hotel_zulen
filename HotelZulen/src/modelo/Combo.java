@@ -4,10 +4,10 @@
  */
 package modelo;
 
-/**
- *
- * @author PC
- */
+import Persistencia.ComboRepository;
+import java.util.List;
+
+
 public class Combo {
     private int id;
     private String tipoComida;
@@ -47,7 +47,11 @@ public class Combo {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+    public List<Combo> obtenerComboXTipo (String tipo){
+        ComboRepository repoCombo = new ComboRepository ();
+        return repoCombo.obtenerListaXTipo(tipo);
+        
+    }
     
     
 }

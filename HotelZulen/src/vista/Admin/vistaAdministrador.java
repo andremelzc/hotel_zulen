@@ -4,6 +4,7 @@
  */
 package vista.Admin;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import modelo.Administrador;
 import static modelo.InicioSession.cerrarSesion;
@@ -21,6 +22,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
      * Creates new form vistaAdministrador
      */
     public vistaAdministrador(Administrador administrador) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         this.administrador=administrador;
         mostrarInfo();

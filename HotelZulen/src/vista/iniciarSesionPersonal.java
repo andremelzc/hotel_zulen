@@ -4,6 +4,7 @@
  */
 package vista;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
      * Creates new form iniciarSesionHuesped
      */ 
     public iniciarSesionPersonal() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
     }
 
@@ -40,7 +42,6 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
         iniciarSesion = new javax.swing.JButton();
         borrar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -72,7 +73,6 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 420, 20));
 
-        iniciarSesion.setBackground(new java.awt.Color(239, 35, 60));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         iniciarSesion.setText("Iniciar Sesión");
         iniciarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +82,6 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
         });
         add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 200, 50));
 
-        borrar.setBackground(new java.awt.Color(239, 35, 60));
         borrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         borrar.setText("Borrar");
         borrar.addActionListener(new java.awt.event.ActionListener() {

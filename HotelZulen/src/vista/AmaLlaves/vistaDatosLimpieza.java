@@ -7,6 +7,7 @@ package vista.AmaLlaves;
 import Persistencia.LimpiezaRepository;
 import Persistencia.PersonalRepository;
 import Persistencia.TipoHabitacionRepository;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -31,6 +32,7 @@ public class vistaDatosLimpieza extends javax.swing.JFrame {
     private static Housekeeper housekeeperActual;
     
     public vistaDatosLimpieza(int idHousekeeper) {
+        FlatNightOwlIJTheme.setup();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         housekeeperActual = obtenerHousekeeper(idHousekeeper);

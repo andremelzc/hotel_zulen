@@ -4,6 +4,8 @@
  */
 package vista.Admin;
 
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+
 /**
  *
  * @author PC
@@ -12,6 +14,7 @@ public class vistaAdministradorFinanzas extends javax.swing.JPanel {
 
 
     public vistaAdministradorFinanzas() {
+        FlatNightOwlIJTheme.setup();
         initComponents();
     }
 
