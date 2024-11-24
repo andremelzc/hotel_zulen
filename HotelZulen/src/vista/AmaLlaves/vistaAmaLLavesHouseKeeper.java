@@ -39,7 +39,6 @@ public class vistaAmaLLavesHouseKeeper extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(221, 221, 221));
 
-        btnAsignar.setBackground(new java.awt.Color(255, 51, 102));
         btnAsignar.setText("Asignar habitaciones");
         btnAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,7 +46,6 @@ public class vistaAmaLLavesHouseKeeper extends javax.swing.JPanel {
             }
         });
 
-        btnCRUD.setBackground(new java.awt.Color(255, 51, 102));
         btnCRUD.setText("Personal");
         btnCRUD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

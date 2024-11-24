@@ -54,7 +54,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ae" green="99" red="8d" type="rgb"/>
+          <Color blue="dd" green="dd" red="dd" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -147,9 +147,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Combo"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
@@ -166,9 +163,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Precio"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
@@ -184,9 +178,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Reservacion"/>
             <Property name="verticalAlignment" type="int" value="1"/>
@@ -215,9 +206,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Habitaci&#xf3;n"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
@@ -245,9 +233,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Cantidad"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
@@ -266,9 +251,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="2c" green="2d" red="2d" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Seleccione el combo que desee pedir"/>
       </Properties>
       <Constraints>
@@ -279,9 +261,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="pedirBoton">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3c" green="23" red="ef" type="rgb"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
@@ -298,9 +277,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="borrarBoton">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3c" green="23" red="ef" type="rgb"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
         </Property>

@@ -73,7 +73,6 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 420, 20));
 
-        borrar.setBackground(new java.awt.Color(239, 35, 60));
         borrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         borrar.setText("Borrar");
         borrar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +82,6 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         });
         add(borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 200, 50));
 
-        iniciarSesion.setBackground(new java.awt.Color(239, 35, 60));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         iniciarSesion.setText("Iniciar Sesión");
         iniciarSesion.addActionListener(new java.awt.event.ActionListener() {

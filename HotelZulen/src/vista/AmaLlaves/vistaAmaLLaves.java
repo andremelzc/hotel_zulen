@@ -44,14 +44,10 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
         background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(43, 45, 66));
-
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setText("Hotel Zulen");
 
-        principalBoton.setBackground(new java.awt.Color(141, 153, 174));
         principalBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         principalBoton.setText("Principal");
         principalBoton.setBorder(null);
@@ -66,7 +62,6 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
             }
         });
 
-        habitacionesBoton.setBackground(new java.awt.Color(141, 153, 174));
         habitacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         habitacionesBoton.setText("Habitaciones");
         habitacionesBoton.setBorder(null);
@@ -81,7 +76,6 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
             }
         });
 
-        houseKeepersBoton.setBackground(new java.awt.Color(141, 153, 174));
         houseKeepersBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         houseKeepersBoton.setText("HouseeKeepers");
         houseKeepersBoton.setBorder(null);
@@ -128,8 +122,6 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
         );
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1290, 120));
-
-        content.setBackground(new java.awt.Color(221, 221, 221));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);

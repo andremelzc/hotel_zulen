@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
-  <Properties>
-    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="dd" green="dd" red="dd" type="rgb"/>
-    </Property>
-  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -35,9 +30,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="2c" green="2d" red="2d" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Datos de habitaci&#xf3;n"/>
       </Properties>
       <Constraints>
@@ -49,7 +41,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ae" green="99" red="8d" type="rgb"/>
+          <Color blue="dd" green="dd" red="dd" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -117,9 +109,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Tipo:"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
@@ -135,9 +124,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Piso:"/>
             <Property name="verticalAlignment" type="int" value="1"/>
@@ -155,9 +141,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Estado:"/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
@@ -173,9 +156,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2c" green="2d" red="2d" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Numero de habitacion: "/>
           </Properties>
@@ -302,9 +282,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnVerReserva">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="0" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Ver Reserva"/>
       </Properties>
       <Events>
@@ -318,9 +295,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnVerLimpieza">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="0" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Ver Limpieza"/>
       </Properties>
       <Events>

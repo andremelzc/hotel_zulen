@@ -214,6 +214,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
         Tabla.setModel(modelo);
 
         // Consulta SQL con espacios añadidos para evitar errores de sintaxis
+<<<<<<< HEAD
         String consulta = "SELECT "
                 + "    rhhc.id_Pedido AS PedidoID, "
                 + "    h.idhabitaciones AS HabitacionID, "
@@ -233,6 +234,106 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
                 + "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO "
                 + "WHERE "
                 + "    rhhc.Estado = 'Enviado';";
+=======
+        String consulta = "SELECT " +
+        "    rhhc.id_Pedido AS PedidoID, " +
+        "    h.idhabitaciones AS HabitacionID, " +
+        "    h.Piso AS HabitacionPiso, " +
+        "    h.TIPO_HAB_idCategoria AS HabitacionCategoria, " +
+        "    c.idCOMBO AS ComboID, " +
+        "    c.TipoComida AS ComboTipoComida, " +
+        "    c.Descripcion AS ComboDescripcion, " +
+        "    rhhc.Estado AS EstadoPedido, " +
+        "    rhhc.FechaPedido AS FPedido, " +
+        "    rhhc.FechaEnvio AS FEnvio " +
+        "FROM " +
+        "    reservaciones_has_habitaciones_has_combo rhhc " +
+        "JOIN " +
+        "    habitaciones h ON rhhc.RESERVA_has_HAB_HAB_idhabitaciones = h.idhabitaciones " +
+        "JOIN " +
+        "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO " +
+        "WHERE " +
+        "    rhhc.Estado <> 'Enviado';";
+
+
+        // Ajustamos el tamaño del arreglo 'datos' a 6 columnas
+        String[] datos = new String[10];
+        Statement st;
+
+        try {
+            // Obtenemos la conexión y ejecutamos la consulta
+            st = DatabaseConnection.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+
+            // Procesamos los resultados
+            while (rs.next()) {
+                datos[0] = rs.getString("PedidoID");
+                datos[1] = rs.getString("HabitacionID");
+                datos[2] = rs.getString("HabitacionPiso");
+                datos[3] = rs.getString("HabitacionCategoria");
+                datos[4] = rs.getString("ComboID");
+                datos[5] = rs.getString("ComboTipoComida");
+                datos[6] = rs.getString("ComboDescripcion");
+                datos[7] = rs.getString("EstadoPedido");
+                datos[8] = rs.getString("FPedido");
+                datos[9] = rs.getString("FEnvio");
+                
+                modelo.addRow(datos);
+            }
+
+            // Actualizamos el modelo de la tabla
+            Tabla.setModel(modelo);
+
+        } catch (SQLException e) {
+            System.out.println("No se pudo Mostrar la Tabla Habitacion-Combo");
+            e.printStackTrace(); // Imprimir el stack trace para más detalles del error
+        }
+    }
+    
+    public void mostrarHabitacionComboEnviados(JTable Tabla) {
+        DatabaseConnection obj = new DatabaseConnection();
+
+        // Configuramos el modelo de la tabla
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        TableRowSorter<TableModel> ordenarTabla = new TableRowSorter<>(modelo);
+        Tabla.setRowSorter(ordenarTabla);
+
+        // Agrego los títulos de las columnas
+        modelo.addColumn("PedidoID");
+        modelo.addColumn("HabID");
+        modelo.addColumn("HabPiso");
+        modelo.addColumn("HabCategoria");
+        modelo.addColumn("CombID");
+        modelo.addColumn("CombTipo");
+        modelo.addColumn("CombDescripcion");
+        modelo.addColumn("Estado");
+        modelo.addColumn("FPedido");
+        modelo.addColumn("FEnvio");
+
+        Tabla.setModel(modelo);
+
+        // Consulta SQL con espacios añadidos para evitar errores de sintaxis
+        String consulta = "SELECT " +
+    "    rhhc.id_Pedido AS PedidoID, " +
+    "    h.idhabitaciones AS HabitacionID, " +
+    "    h.Piso AS HabitacionPiso, " +
+    "    h.TIPO_HAB_idCategoria AS HabitacionCategoria, " +
+    "    c.idCOMBO AS ComboID, " +
+    "    c.TipoComida AS ComboTipoComida, " +
+    "    c.Descripcion AS ComboDescripcion, " +
+    "    rhhc.Estado AS EstadoPedido, " +
+    "    rhhc.FechaPedido AS FPedido, " +
+    "    rhhc.FechaEnvio AS FEnvio " +
+    "FROM " +
+    "    reservaciones_has_habitaciones_has_combo rhhc " +
+    "JOIN " +
+    "    habitaciones h ON rhhc.RESERVA_has_HAB_HAB_idhabitaciones = h.idhabitaciones " +
+    "JOIN " +
+    "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO " +
+    "WHERE " +
+    "    rhhc.Estado = 'Enviado';";
+>>>>>>> d621d4a8ff1f019e0a038efd12012ac5d0f856de
 
         // Ajustamos el tamaño del arreglo 'datos' a 6 columnas
         String[] datos = new String[10];
@@ -321,8 +422,13 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
             cs.setInt(3, obje.getIdPedido());
 
             cs.execute();
+<<<<<<< HEAD
             System.out.println("Datos del Alumno Modificado Exitosamente");
 
+=======
+            System.out.println("Datos  Modificado Exitosamente");
+            
+>>>>>>> d621d4a8ff1f019e0a038efd12012ac5d0f856de
         } catch (Exception e) {
             System.out.println("Datos del Alumno No se pudieron modificar, error:");
             System.out.println("Error al seleccionar la fila: " + e.getMessage());

@@ -97,11 +97,9 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
         jTextAreaResumen = new javax.swing.JTextArea();
         jButtonRegistrar = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(221, 221, 221));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelHabitacion1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelHabitacion1.setText("Resumen de la Reserva:");
         jPanel1.add(jLabelHabitacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 270, 40));
 
