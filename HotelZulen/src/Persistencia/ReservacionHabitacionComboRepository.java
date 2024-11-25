@@ -179,15 +179,17 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
                 datos[9] = rs.getString("FEnvio");
 
 
+
             // Actualizamos el modelo de la tabla
             Tabla.setModel(modelo);
             } 
+
         } catch (SQLException e) {
             System.out.println("No se pudo Mostrar la Tabla Habitacion-Combo");
             e.printStackTrace(); // Imprimir el stack trace para más detalles del error
         }
     }
-    
+
     public void mostrarHabitacionComboSEnviados(JTable Tabla) {
         DatabaseConnection obj = new DatabaseConnection();
 
@@ -254,7 +256,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
                 datos[7] = rs.getString("EstadoPedido");
                 datos[8] = rs.getString("FPedido");
                 datos[9] = rs.getString("FEnvio");
-                
+
                 modelo.addRow(datos);
             }
 
@@ -266,7 +268,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
             e.printStackTrace(); // Imprimir el stack trace para más detalles del error
         }
     }
-    
+
     public void seleccionarPedido(JTable Tabla, ReservacionHabitacionCombo obj) {
         try {
             int fila = Tabla.getSelectedRow();
@@ -322,7 +324,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
             cs.execute();
 
             System.out.println("Datos  Modificado Exitosamente");
-            
+
         } catch (Exception e) {
             System.out.println("Datos del Alumno No se pudieron modificar, error:");
             System.out.println("Error al seleccionar la fila: " + e.getMessage());

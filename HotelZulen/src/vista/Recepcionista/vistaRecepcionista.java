@@ -59,7 +59,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelIzquierda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 204)));

@@ -35,10 +35,8 @@ public class vistaHuespedPrincipal extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("principaal");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 220, -1, -1));
     }// </editor-fold>//GEN-END:initComponents

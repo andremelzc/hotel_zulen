@@ -84,8 +84,6 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
         modificarBoton = new javax.swing.JButton();
         cancelarBoton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(221, 221, 221));
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Datos del servicio");
 
@@ -93,18 +91,12 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
         jLabel2.setText("Precio:");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        PrecioField.setBackground(new java.awt.Color(60, 63, 65));
-
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        EstadoField.setBackground(new java.awt.Color(60, 63, 65));
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Nombre del servicio: ");
-
-        nombreService.setBackground(new java.awt.Color(60, 63, 65));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -217,7 +209,7 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
                     .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

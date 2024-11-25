@@ -122,16 +122,12 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         dni.setText("DNI:");
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        nombreField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre.setText("Nombre:");
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-
-        dniField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 40));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -139,7 +135,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
 
-        apellidoField.setBackground(new java.awt.Color(60, 63, 65));
+        apellidoField.setBackground(new java.awt.Color(70, 73, 75));
         apellidoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apellidoFieldActionPerformed(evt);
@@ -151,40 +147,30 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         dni1.setText("Cargo");
         dni1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 70, -1));
-
-        cargoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(cargoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 200, 40));
 
         Nombre1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre1.setText("Estado:");
         Nombre1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 80, 30));
-
-        telefonoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 40));
 
         direccin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         direccin.setText("Direccion:");
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
-
-        direccionField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(direccionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 420, 40));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre2.setText("Telefono:");
         Nombre2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
-
-        estadoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 200, 40));
 
         Nombre3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre3.setText("Contraseña:");
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 130, -1));
-
-        usuarioField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 40));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -192,7 +178,6 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         Nombre4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        contrasenaField.setBackground(new java.awt.Color(60, 63, 65));
         contrasenaField.setText("jPasswordField1");
         jPanel1.add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 40));
 

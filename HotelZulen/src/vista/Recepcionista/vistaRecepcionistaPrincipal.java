@@ -20,7 +20,7 @@ public class vistaRecepcionistaPrincipal extends javax.swing.JPanel {
      */
 
     public vistaRecepcionistaPrincipal(Recepcionista recepcionista) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
     }
 

@@ -4,13 +4,17 @@
  */
 package vista.AmaLlaves;
 
+import Persistencia.LimpiezaRepository;
 import Persistencia.PersonalRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 import modelo.AmaDeLlaves;
 import modelo.Housekeeper;
@@ -24,7 +28,6 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
     private AmaDeLlaves amaLlaves;
-    
     public vistaAmaLLavesHousekeeperCRUD(AmaDeLlaves amaLlaves) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
@@ -32,6 +35,12 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         btnToggle.setSelected(true);
         modelo = (DefaultTableModel) Tabla.getModel();
         Object[] houseKeeper = new Object[8];
+      
+        LimpiezaRepository repoLimpieza = new LimpiezaRepository(); 
+        if(repoLimpieza.registroHechoHoyParaHabitacion1()){
+            System.out.println("Ya se han asignado limpiezas el dia de hoy");
+             btnAsignar.setEnabled(false);
+        }
     }
     
     public int seleccionarPedido(JTable Tabla) {
@@ -119,9 +128,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         dni = new javax.swing.JLabel();
-        nombreField = new javax.swing.JTextField();
         Nombre = new javax.swing.JLabel();
-        dniField = new javax.swing.JTextField();
         Reservación = new javax.swing.JLabel();
         apellidoField = new javax.swing.JTextField();
         Nombre1 = new javax.swing.JLabel();
@@ -135,12 +142,15 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre4 = new javax.swing.JLabel();
         contrasenaField = new javax.swing.JPasswordField();
         btnBuscar = new javax.swing.JButton();
+        dniField = new javax.swing.JTextField();
+        nombreField = new javax.swing.JTextField();
         registrarBoton = new javax.swing.JButton();
         modificarBoton = new javax.swing.JButton();
         deshabilitarBoton = new javax.swing.JButton();
         cancelarBoton = new javax.swing.JButton();
         btnToggle = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
+        btnAsignar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1280, 520));
 
@@ -170,39 +180,27 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        nombreField.setEditable(false);
-        jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
-
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre.setText("Nombre:");
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        dniField.setEditable(false);
-        jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 40));
-
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setText("Apellido:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
-
-        apellidoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 200, 40));
 
         Nombre1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre1.setText("Estado:");
         Nombre1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 80, 30));
-
-        telefonoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 40));
 
         direccin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         direccin.setText("Correo");
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
-
-        correoField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 420, 40));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -210,7 +208,6 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        estadoField.setBackground(new java.awt.Color(60, 63, 65));
         estadoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoFieldActionPerformed(evt);
@@ -222,16 +219,12 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre3.setText("Contraseña:");
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 130, -1));
-
-        usuarioField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 40));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre4.setText("Usuario:");
         Nombre4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
-
-        contrasenaField.setBackground(new java.awt.Color(60, 63, 65));
         jPanel1.add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 40));
 
         btnBuscar.setText("Buscar");
@@ -241,6 +234,8 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
+        jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 200, 40));
+        jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
 
         registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         registrarBoton.setText("Registrar");
@@ -288,22 +283,31 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
             }
         });
 
+        btnAsignar.setText("Asignar Reservas");
+        btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(btnToggle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(64, 64, 64)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(134, 134, 134)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -335,21 +339,21 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
                             .addComponent(deshabilitarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(btnToggle))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(jButton1)))
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnToggle)
+                            .addComponent(jButton1))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel4)
-                    .addContainerGap(485, Short.MAX_VALUE)))
+                    .addContainerGap(454, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -360,9 +364,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -466,6 +468,11 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnToggleActionPerformed
 
+    public JToggleButton getBtnToggle() {
+        return btnToggle;
+    }
+
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int idHousekeeper = seleccionarPedido(Tabla);
         vistaDatosLimpieza vistaLimpiezas = new vistaDatosLimpieza(idHousekeeper);
@@ -480,6 +487,20 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_estadoFieldActionPerformed
 
+    private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        int resultado = JOptionPane.showConfirmDialog(null, "¿Deseas continuar?", "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {    
+            amaLlaves.asignarLimpiezas();
+            JOptionPane.showMessageDialog(null, "Las limpiezas han sido asignadas correctamente en la BD.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            btnAsignar.setEnabled(false); 
+        }
+    }//GEN-LAST:event_btnAsignarActionPerformed
+
+    public JButton getBtnAsignar() {
+        return btnAsignar;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nombre;
@@ -490,6 +511,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     private javax.swing.JLabel Reservación;
     private javax.swing.JTable Tabla;
     private javax.swing.JTextField apellidoField;
+    private javax.swing.JButton btnAsignar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JToggleButton btnToggle;
     private javax.swing.JButton cancelarBoton;

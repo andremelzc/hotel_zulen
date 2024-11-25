@@ -67,8 +67,6 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1200, 10));
 
-        jButtonRegistrarCliente.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonRegistrarCliente.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegistrarCliente.setText("Registrar");
         jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

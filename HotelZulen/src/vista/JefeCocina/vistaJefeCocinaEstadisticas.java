@@ -118,7 +118,6 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(221, 221, 221));
 
-        background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cerrarSesion.setBackground(new java.awt.Color(239, 35, 60));
@@ -149,8 +148,6 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
 
         title2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         title2.setText("(De más a menos ganancias)");
-
-        content.setBackground(new java.awt.Color(221, 221, 221));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);

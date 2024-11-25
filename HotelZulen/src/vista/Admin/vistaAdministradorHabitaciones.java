@@ -144,24 +144,16 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         jLabel2.setText("Tipo:");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        pisoField.setBackground(new java.awt.Color(60, 63, 65));
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Piso:");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        tipoField.setBackground(new java.awt.Color(60, 63, 65));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setText("Estado:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        estadoField.setBackground(new java.awt.Color(60, 63, 65));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Numero de habitacion: ");
-
-        numHab.setBackground(new java.awt.Color(60, 63, 65));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Buscar");

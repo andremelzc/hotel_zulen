@@ -10,6 +10,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJThem
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 import modelo.Consumible;
 
@@ -220,6 +221,11 @@ public class vistaJefeCocinaCartaConsumible extends javax.swing.JPanel {
        }
     }//GEN-LAST:event_MostrarTablaActionPerformed
 
+    public JToggleButton getMostrarTabla() {
+        return MostrarTabla;
+    }
+
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int id = seleccionarPedido();
         Consumible con = new Consumible();

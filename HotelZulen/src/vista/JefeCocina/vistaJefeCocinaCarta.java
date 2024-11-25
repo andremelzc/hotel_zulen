@@ -106,6 +106,7 @@ public class vistaJefeCocinaCarta extends javax.swing.JPanel {
         contenedor.revalidate();
         contenedor.repaint();
         System.out.println("Panel agregado: " + consumible.isVisible());
+        consumible.getMostrarTabla().doClick();
     }//GEN-LAST:event_btnModificarConsumibleActionPerformed
 
     private void btnRegistrarComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarComboActionPerformed
@@ -121,7 +122,7 @@ public class vistaJefeCocinaCarta extends javax.swing.JPanel {
        contenedor.repaint();
        System.out.println("Panel agregado: " + combo.isVisible());
     }//GEN-LAST:event_btnRegistrarComboActionPerformed
-
+     
     public JButton getBtnRegistrarCombo() {
         return btnRegistrarCombo;
     }

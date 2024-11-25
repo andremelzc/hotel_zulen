@@ -96,8 +96,6 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         });
         add(jTextFieldNumHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 70, 30));
 
-        jButtonComprobarHabitacion.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonComprobarHabitacion.setForeground(new java.awt.Color(255, 255, 255));
         jButtonComprobarHabitacion.setText("Asignar Habitación");
         jButtonComprobarHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,8 +104,6 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         });
         add(jButtonComprobarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, 30));
 
-        jButtonRegistrarHabitación.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonRegistrarHabitación.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegistrarHabitación.setText("Guardar fecha de reserva");
         jButtonRegistrarHabitación.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

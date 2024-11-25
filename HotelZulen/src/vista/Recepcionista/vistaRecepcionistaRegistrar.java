@@ -37,7 +37,7 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
     private Recepcionista recepcionistaActual;
     
     public vistaRecepcionistaRegistrar(Recepcionista recepcionista) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
 
         initComponents();
         this.recepcionistaActual = recepcionista;

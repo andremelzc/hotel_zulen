@@ -124,14 +124,12 @@ public class vistaJefeCocinaCartaAgregar extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(45, 45, 44));
         jLabel10.setText("Tipo :");
 
-        Descripcion1.setBackground(new java.awt.Color(221, 221, 221));
         Descripcion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Descripcion1ActionPerformed(evt);
             }
         });
 
-        jComboBox2.setBackground(new java.awt.Color(221, 221, 221));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Desayuno", "Almuerzo", "Cena" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

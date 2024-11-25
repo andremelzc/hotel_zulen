@@ -10,6 +10,7 @@ import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JToggleButton;
 import javax.swing.Timer;
 import modelo.ReservacionHabitacionCombo;
 /**
@@ -69,8 +70,6 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         btn_Enviado = new javax.swing.JButton();
         btnToggle = new javax.swing.JToggleButton();
-
-        setBackground(new java.awt.Color(221, 221, 221));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,6 +155,9 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnToggleActionPerformed
 
+    public JToggleButton getBtnToggle() {
+        return btnToggle;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnToggle;
