@@ -4,14 +4,20 @@
  */
 package vista;
 
+import Persistencia.DatabaseConnection;
+
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Habitacion;
 import modelo.Reservacion;
+
 import vista.Admin.vistaDatosLimpieza_Habitacion;
 
 /**
@@ -32,22 +38,48 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         btnVerReserva.setEnabled(false);
         configurar(habitacionesTable);
     }
-
-    private void mostrarTabla(List<Habitacion> listaHab){
-        
+    
+    public void mostrarTabla (String Piso,String Tipo){
         modelo.setRowCount(0);
-        
-        for (Habitacion hab : listaHab) {
-            Object[] fila = {
-                hab.getId(),
-                hab.getTipoHabitacion().getConcepto(),
-                hab.getPiso(),
-                hab.getEstado()
-            };
-            modelo.addRow(fila);
+        StringBuilder sql = new StringBuilder("SELECT * FROM habitaciones WHERE 1=1");
+
+        // Construcción dinámica de la consulta
+        if (!"Ninguno".equalsIgnoreCase(Piso)) {
+            sql.append(" AND Piso = ?");
+        }
+        if (!"Ninguno".equalsIgnoreCase(Tipo)) {
+            sql.append(" AND TIPO_HAB_idCategoria = (SELECT idCategoria FROM tipo_hab WHERE Concepto = ?)");
         }
 
-        habitacionesTable.setModel(modelo);
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
+
+            int paramIndex = 1;
+
+            // Seteo de parámetros en PreparedStatement
+            if (!"ninguno".equalsIgnoreCase(Piso)) {
+                stmt.setInt(paramIndex++, Integer.parseInt(Piso));
+            }
+            if (!"ninguno".equalsIgnoreCase(Tipo)) {
+                stmt.setString(paramIndex++, Tipo);
+            }
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Object filas [] = {
+                    rs.getInt("idHabitaciones"),
+                        rs.getInt("TIPO_HAB_idCategoria"),
+                        rs.getString("Piso"),
+                        rs.getString("Estado")
+                };
+                modelo.addRow(filas);
+            }
+            habitacionesTable.setModel(modelo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
     private void MostrarTabla(Habitacion habitacion){
@@ -207,7 +239,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         jLabel10.setText("Tipo: ");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
 
-        tipoHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Estandard", "Doble", "Suite", "Business" }));
+        tipoHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Estandar", "Doble", "Suite", "Business" }));
         add(tipoHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
         filtro.setText("Filtrar");
@@ -283,10 +315,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelarBotonActionPerformed
 
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
-        Habitacion hab = new Habitacion();
-        List<Habitacion> listaHab = new ArrayList<>();
-        listaHab = hab.obtenerListaXPisoANDTipo((String) JPiso.getSelectedItem(),(String) tipoHab.getSelectedItem());
-        mostrarTabla(listaHab);
+        mostrarTabla((String) JPiso.getSelectedItem(),(String) tipoHab.getSelectedItem());
     }//GEN-LAST:event_filtroActionPerformed
 
     private void btnVerReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReservaActionPerformed
@@ -306,7 +335,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         // TODO add your handling code here:
         int fila = habitacionesTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) habitacionesTable.getModel();
-
+        numHab.setText(model.getValueAt(fila, 0).toString());
         tipoField.setText(model.getValueAt(fila, 1).toString());
         pisoField.setText(model.getValueAt(fila, 2).toString());
         estadoField.setText(model.getValueAt(fila, 3).toString());

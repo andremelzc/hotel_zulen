@@ -5,13 +5,12 @@
 package vista.Admin;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import modelo.Administrador;
 import static modelo.InicioSession.cerrarSesion;
-import vista.Recepcionista.vistaRecepcionistaFacturar;
-import vista.Recepcionista.vistaRecepcionistaRegistrar;
+
 import vista.vistaConsultarHuesped;
 
 /**
@@ -213,20 +212,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
     public JButton getPersonalBoton() {
         return personalBoton;
     }
-    
-    
-    private void serviciosBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serviciosBotonMouseClicked
-
-        // TODO add your handling code here:
-        vistaAdministradorServicios administradorServicios = new vistaAdministradorServicios();
-        administradorServicios.setSize(1280, 720);
-        administradorServicios.setLocation(0, 0);
-        content.removeAll();
-        content.add(administradorServicios, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_serviciosBotonActionPerformed
-
+  
     private void habitacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionesBotonActionPerformed
         // TODO add your handling code here:
         vistaAdministradorHabitaciones administradorHabitaciones = new vistaAdministradorHabitaciones();
@@ -271,6 +257,17 @@ public class vistaAdministrador extends javax.swing.JFrame {
     private void habitacionesBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_habitacionesBotonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_habitacionesBotonMouseClicked
+
+    private void serviciosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviciosBotonActionPerformed
+        // TODO add your handling code here:
+        vistaAdministradorServicios administradorServicios = new vistaAdministradorServicios();
+        administradorServicios.setSize(1280, 720);
+        administradorServicios.setLocation(0, 0);
+        content.removeAll();
+        content.add(administradorServicios, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_serviciosBotonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -96,6 +96,13 @@ public class Recepcionista extends Personal{
         RecepcionistaRepository repo = new RecepcionistaRepository();
         repo.crearBoleta(boleta);
     }
-    
+    public Boleta obtenerBoleta (int idReserva){
+        RecepcionistaRepository repo = new RecepcionistaRepository();
+        return repo.obtenerBoleta(idReserva);
+    }
+    public void actualizarBoleta(Boleta boleta){
+        RecepcionistaRepository repo = new RecepcionistaRepository();
+        repo.actualizarBoleta(boleta);
+    }
 }
 
