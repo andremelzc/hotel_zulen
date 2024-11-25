@@ -57,9 +57,13 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         jTableServiciosAdquiridos = new javax.swing.JTable();
         jLabelNombre1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Servicios Adicionales");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 240, 30));
 
@@ -67,13 +71,16 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1200, 10));
 
+        jButtonRegistrarCliente.setBackground(new java.awt.Color(255, 127, 17));
+        jButtonRegistrarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonRegistrarCliente.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegistrarCliente.setText("Registrar");
         jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarClienteActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, 30));
+        jPanel2.add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 140, 30));
         jPanel2.add(jLabelEstaRegistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 210, 30));
 
         jComboBoxServicios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FitnessCenter", "Masaje Tantrico", "Piscina", "Sauna" }));
@@ -82,7 +89,7 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
                 jComboBoxServiciosActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBoxServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 280, 30));
+        jPanel2.add(jComboBoxServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 280, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,7 +104,7 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 370, 110));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 520, 140));
 
         jTableServiciosAdquiridos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,10 +119,12 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTableServiciosAdquiridos);
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 700, 190));
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 560, 300));
 
+        jLabelNombre1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelNombre1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre1.setText("Servicio:");
-        jPanel2.add(jLabelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, 20));
+        jPanel2.add(jLabelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

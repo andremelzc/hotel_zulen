@@ -72,17 +72,22 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
         jLabelEstaRegistrado = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableHuespedes = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(221, 221, 221));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(1240, 420));
+        setPreferredSize(new java.awt.Dimension(1240, 420));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("Datos Cliente:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Datos Cliente");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 170, 30));
 
+        jLabelNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre.setText("Nombres:");
-        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(75, 76, 73));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -93,43 +98,59 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
                 jTextFieldNombreActionPerformed(evt);
             }
         });
-        add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 240, 30));
+        add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 230, 30));
 
+        jLabelApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelApellidoPaterno.setForeground(new java.awt.Color(0, 0, 0));
         jLabelApellidoPaterno.setText("Apellido Paterno:");
-        add(jLabelApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
-        add(jTextFieldApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 230, 30));
+        add(jLabelApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, -1, -1));
+        add(jTextFieldApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 230, 30));
 
+        jLabelApelldoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelApelldoPaterno.setForeground(new java.awt.Color(0, 0, 0));
         jLabelApelldoPaterno.setText("Apellido Materno:");
-        add(jLabelApelldoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, -1, -1));
-        add(jTextFieldApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, 230, 30));
+        add(jLabelApelldoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 130, -1, -1));
+        add(jTextFieldApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 130, 230, 30));
 
+        jLabelCelular.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelCelular.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCelular.setText("Celular:");
-        add(jLabelCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, -1, -1));
-        add(jTextFieldCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 230, 30));
+        add(jLabelCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        add(jTextFieldCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 230, 30));
 
+        jLabelCorreo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelCorreo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCorreo.setText("Correo:");
-        add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, -1, -1));
-        add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 150, 240, 30));
+        add(jLabelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, -1, -1));
+        add(jTextFieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 230, 30));
 
+        jLabelDNI.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelDNI.setForeground(new java.awt.Color(0, 0, 0));
         jLabelDNI.setText("DNI:");
-        add(jLabelDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
-        add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 230, 30));
+        add(jLabelDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+        add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 230, 30));
 
+        jButtonComprobarRegistroPrevio.setBackground(new java.awt.Color(255, 127, 17));
+        jButtonComprobarRegistroPrevio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonComprobarRegistroPrevio.setForeground(new java.awt.Color(255, 255, 255));
         jButtonComprobarRegistroPrevio.setText("Comprobar Registro");
         jButtonComprobarRegistroPrevio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonComprobarRegistroPrevioActionPerformed(evt);
             }
         });
-        add(jButtonComprobarRegistroPrevio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
+        add(jButtonComprobarRegistroPrevio, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, 30));
 
+        jButtonRegistrarCliente.setBackground(new java.awt.Color(255, 127, 17));
+        jButtonRegistrarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonRegistrarCliente.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegistrarCliente.setText("Registrar");
         jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarClienteActionPerformed(evt);
             }
         });
-        add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 150, -1, -1));
+        add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, 390, 30));
         add(jLabelEstaRegistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 210, 30));
 
         jTableHuespedes.setModel(new javax.swing.table.DefaultTableModel(
@@ -145,8 +166,7 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableHuespedes);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 990, 210));
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 440));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 1190, 160));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonComprobarRegistroPrevioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprobarRegistroPrevioActionPerformed
@@ -233,7 +253,6 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelDNI;
     private javax.swing.JLabel jLabelEstaRegistrado;
     private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableHuespedes;

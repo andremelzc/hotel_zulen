@@ -73,44 +73,56 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         jTextFieldHasta = new javax.swing.JTextField();
         jTextFieldDesde = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelHabitacion1.setText("Datos Habitacion:");
+        jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabelHabitacion1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelHabitacion1.setText("Datos Habitacion");
         add(jLabelHabitacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 210, 30));
 
+        jLabelTipoHabitacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelTipoHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTipoHabitacion.setText("Tipo Habitación:");
-        add(jLabelTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+        add(jLabelTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
         jSeparator2.setBackground(new java.awt.Color(75, 76, 73));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1200, 10));
 
+        jLabelNumHabitacion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelNumHabitacion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNumHabitacion.setText("Nº Habitación:");
-        add(jLabelNumHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, -1, 20));
+        add(jLabelNumHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, 20));
 
         jTextFieldNumHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNumHabitacionActionPerformed(evt);
             }
         });
-        add(jTextFieldNumHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 70, 30));
+        add(jTextFieldNumHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 240, 30));
 
+        jButtonComprobarHabitacion.setBackground(new java.awt.Color(255, 127, 17));
+        jButtonComprobarHabitacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonComprobarHabitacion.setForeground(new java.awt.Color(255, 255, 255));
         jButtonComprobarHabitacion.setText("Asignar Habitación");
         jButtonComprobarHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonComprobarHabitacionActionPerformed(evt);
             }
         });
-        add(jButtonComprobarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, 30));
+        add(jButtonComprobarHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 390, 30));
 
+        jButtonRegistrarHabitación.setBackground(new java.awt.Color(255, 127, 17));
+        jButtonRegistrarHabitación.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButtonRegistrarHabitación.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegistrarHabitación.setText("Guardar fecha de reserva");
         jButtonRegistrarHabitación.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarHabitaciónActionPerformed(evt);
             }
         });
-        add(jButtonRegistrarHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, -1, -1));
+        add(jButtonRegistrarHabitación, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 390, 30));
 
         jTableHabitacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,17 +137,21 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         ));
         jScrollPane1.setViewportView(jTableHabitacion);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 990, 210));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 680, 290));
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         jComboBoxTipoHabitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estandar", "Doble", "Suite", "Business" }));
-        add(jComboBoxTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 130, 20));
+        add(jComboBoxTipoHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 240, 30));
 
+        jLabelNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre.setText("Hasta:");
-        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, -1));
+        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
+        jLabelNombre2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelNombre2.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre2.setText("Desde:");
-        add(jLabelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+        add(jLabelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
         jTextFieldHasta.setText("2024-11-20 09:30:00");
         jTextFieldHasta.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +159,7 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
                 jTextFieldHastaActionPerformed(evt);
             }
         });
-        add(jTextFieldHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 140, 30));
+        add(jTextFieldHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 320, 30));
 
         jTextFieldDesde.setText("2024-11-11 09:30:00");
         jTextFieldDesde.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +167,7 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
                 jTextFieldDesdeActionPerformed(evt);
             }
         });
-        add(jTextFieldDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 130, -1));
+        add(jTextFieldDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 320, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonComprobarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprobarHabitacionActionPerformed

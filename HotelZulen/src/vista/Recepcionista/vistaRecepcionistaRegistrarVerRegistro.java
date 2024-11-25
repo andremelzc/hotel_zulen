@@ -88,10 +88,12 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
         jTextAreaResumen = new javax.swing.JTextArea();
         jButtonRegistrar = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelHabitacion1.setText("Resumen de la Reserva:");
+        jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabelHabitacion1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelHabitacion1.setText("Resumen de la Reserva");
         jPanel1.add(jLabelHabitacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 270, 40));
 
         jSeparator2.setBackground(new java.awt.Color(75, 76, 73));
@@ -103,8 +105,10 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
         jTextAreaResumen.setRows(5);
         jScrollPane2.setViewportView(jTextAreaResumen);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 410, 360));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 410, 350));
 
+        jButtonRegistrar.setBackground(new java.awt.Color(255, 127, 17));
+        jButtonRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButtonRegistrar.setText("Confirmar y Pagar");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

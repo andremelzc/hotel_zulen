@@ -61,9 +61,11 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         habitacionesBoton = new javax.swing.JButton();
         serviciosBoton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1280, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        huespedesBoton.setBackground(new java.awt.Color(190, 183, 164));
         huespedesBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         huespedesBoton.setText("Huéspedes");
         huespedesBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +75,8 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         });
         add(huespedesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 260, 50));
 
+        subcontent.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout subcontentLayout = new javax.swing.GroupLayout(subcontent);
         subcontent.setLayout(subcontentLayout);
         subcontentLayout.setHorizontalGroup(
@@ -81,11 +85,12 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         );
         subcontentLayout.setVerticalGroup(
             subcontentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
 
-        add(subcontent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1280, 440));
+        add(subcontent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1280, 420));
 
+        verRegistroBoton.setBackground(new java.awt.Color(190, 183, 164));
         verRegistroBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         verRegistroBoton.setText("Ver Registro");
         verRegistroBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +100,7 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         });
         add(verRegistroBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, 257, 50));
 
+        habitacionesBoton.setBackground(new java.awt.Color(190, 183, 164));
         habitacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         habitacionesBoton.setText("Habitaciones");
         habitacionesBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +110,7 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         });
         add(habitacionesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 270, 50));
 
+        serviciosBoton.setBackground(new java.awt.Color(190, 183, 164));
         serviciosBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         serviciosBoton.setText("Servicios");
         serviciosBoton.addActionListener(new java.awt.event.ActionListener() {
