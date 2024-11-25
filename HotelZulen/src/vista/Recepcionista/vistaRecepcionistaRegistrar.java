@@ -9,18 +9,26 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJThem
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import modelo.Boleta;
 import modelo.Habitacion;
 import modelo.Huesped;
 import modelo.Recepcionista;
 import modelo.Reservacion;
 import modelo.ServiciosAdicionales;
+import static vista.Recepcionista.vistaRecepcionistaFacturar.crearArchivo;
 
 /**
  *
@@ -35,7 +43,7 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
 
     private Double PrecioTotal;
     private Recepcionista recepcionistaActual;
-    
+
     public vistaRecepcionistaRegistrar(Recepcionista recepcionista) {
         FlatArcOrangeIJTheme.setup();
 
@@ -43,7 +51,6 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         this.recepcionistaActual = recepcionista;
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -124,7 +131,6 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
     }
 
 
-    
     private void verRegistroBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verRegistroBotonActionPerformed
         // Crear instancia de la vista de recepción
         vistaRecepcionistaRegistrarVerRegistro recepcionistaRegistrarVerRegistro = new vistaRecepcionistaRegistrarVerRegistro();
@@ -138,44 +144,67 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
         subcontent.repaint();
 
         // Generar el resumen en la vista de recepción
-        PrecioTotal =   recepcionistaRegistrarVerRegistro.generarResumen(reservacion, listaHuespedes, listaHabitaciones, listaServicios);
+        PrecioTotal = recepcionistaRegistrarVerRegistro.generarResumen(reservacion, listaHuespedes, listaHabitaciones, listaServicios);
 
         // Añadir el ActionListener al botón de registrar en la vista de recepción
         recepcionistaRegistrarVerRegistro.jButtonRegistrar.addActionListener((ActionEvent evt1) -> {
-            ConfirmarPago vistaConfirmar = new ConfirmarPago(listaHuespedes,PrecioTotal);
+            ConfirmarPago vistaConfirmar = new ConfirmarPago(listaHuespedes, PrecioTotal);
             vistaConfirmar.setVisible(true);
             // Agregar listener al botón de ConfirmarPago
             vistaConfirmar.addConfirmarPagoListener((ActionEvent evt2) -> {
-                
+
                 // Llamada a la función cuando se presiona el botón
-                int resultado = JOptionPane.showConfirmDialog(null, "¿Deseas continuar=?", "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
+                int resultado = JOptionPane.showConfirmDialog(null, "¿Deseas continuar?", "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
                 if (resultado == JOptionPane.YES_OPTION) {
-                    
+
                     int idReserva = reservacion.crearReservacion(reservacion, listaHuespedes, listaHabitaciones, listaServicios);
                     reservacion.setIdReserva(idReserva);
-                    Boleta boleta = new Boleta (reservacion,"Efectivo", PrecioTotal, "Pagado", LocalDateTime.now(), null, null, null, null);
+                    Boleta boleta = new Boleta(reservacion, "Efectivo", PrecioTotal, "Pagado", LocalDateTime.now(), null, null, null, null);
                     recepcionistaActual.GenerarBoleta(boleta);
                     JOptionPane.showMessageDialog(null, "La reserva se ha registrado correctamente en la base de datos.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     JOptionPane.showMessageDialog(null, "La boleta se ha generado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                    
+
                     System.out.println("Pago confirmado");
-                    vistaConfirmar.dispose(); 
-                    
+
+                    try {
+                        crearArchivo(String.valueOf(listaHuespedes.getFirst().getDNI()), String.valueOf(idReserva) ,recepcionistaRegistrarVerRegistro.jTextAreaResumen.getText() , "1");
+                        System.out.println("Boleta generada en .txt");
+                    } catch (IOException ex) {
+                        Logger.getLogger(vistaRecepcionistaFacturar.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    vistaConfirmar.dispose();
+
+                } else {
+                    vistaConfirmar.dispose();
                 }
-                else{
-                    vistaConfirmar.dispose(); 
-                }
-                
-                
+
             });
 
             vistaConfirmar.addCancelarReservaListener((ActionEvent evt3) -> {
                 System.out.println("Reserva cancelada");
                 vistaConfirmar.dispose(); // Cierra la ventana de ConfirmarPago
             });
-   
+
         });
     }//GEN-LAST:event_verRegistroBotonActionPerformed
+
+    public static void crearArchivo(String dni, String numeroReserva, String contenido, String momento) throws IOException {
+        // Define el nombre del archivo
+        String nombreArchivo = "src/txt/" + dni + "_" + numeroReserva + "_" + momento + ".txt";
+
+        // Define la ubicación donde se creará el archivo
+        File archivo = new File(nombreArchivo);
+
+        // Usa FileWriter y BufferedWriter para escribir en el archivo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            writer.write(contenido); // Escribe el contenido
+            System.out.println("Archivo creado con éxito: " + archivo.getAbsolutePath());
+        } catch (IOException e) {
+            throw new IOException("Error al crear o escribir en el archivo: " + e.getMessage(), e);
+        }
+    }
+
 
     private void habitacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionesBotonActionPerformed
         // TODO add your handling code here:

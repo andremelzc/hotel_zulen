@@ -1,0 +1,19 @@
+Nombre del titular: Andre Alexander Cuenca Echevarria
+
+Acompañantes:
+Acompañante1: Norma Alciai Zevallos Echevarria
+Acompañante2: Vitaliano Federico Cuenca Ore
+
+Habitaciones:
+NºHabitacion 68 - Piso 4 - Tipo Suite - Precio 200.0
+NºHabitacion 2 - Piso 2 - Tipo Estandar - Precio 150.0
+
+Servicios asignados:
+Piscina - Precio 15.0
+Sauna - Precio 40.0
+FitnessCenter - Precio 100.0
+
+Fecha de inicio de la reserva: 2024-11-24 09:30:00
+Fecha de fin de la reserva: 2024-12-01 09:30:00
+Duración de la reserva: 7 días
+Precio Total: 2605.0

@@ -72,7 +72,6 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         Nombre = new javax.swing.JLabel();
         dniField = new javax.swing.JTextField();
         Reservación = new javax.swing.JLabel();
-        apellidoField = new javax.swing.JTextField();
         dni1 = new javax.swing.JLabel();
         cargoField = new javax.swing.JTextField();
         Nombre1 = new javax.swing.JLabel();
@@ -85,6 +84,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         usuarioField = new javax.swing.JTextField();
         Nombre4 = new javax.swing.JLabel();
         contrasenaField = new javax.swing.JPasswordField();
+        apellidoField = new javax.swing.JTextField();
         registrarBoton = new javax.swing.JButton();
         cancelarBoton = new javax.swing.JButton();
         modificarBoton = new javax.swing.JButton();
@@ -135,14 +135,6 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
 
-        apellidoField.setBackground(new java.awt.Color(70, 73, 75));
-        apellidoField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidoFieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 200, 40));
-
         dni1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         dni1.setText("Cargo");
         dni1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -180,6 +172,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
 
         contrasenaField.setText("jPasswordField1");
         jPanel1.add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 40));
+        jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 200, 40));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 460, 380));
 
@@ -297,11 +290,6 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         personalRepository.actualizar(personalNuevo);
         resetearTabla();
     }//GEN-LAST:event_modificarBotonActionPerformed
-
-    private void apellidoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoFieldActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_apellidoFieldActionPerformed
 
     private void deshabilitarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deshabilitarBotonActionPerformed
         // TODO add your handling code here:

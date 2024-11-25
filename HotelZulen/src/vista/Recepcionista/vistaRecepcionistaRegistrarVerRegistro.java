@@ -6,6 +6,10 @@ package vista.Recepcionista;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -18,7 +22,7 @@ import modelo.ServiciosAdicionales;
 
 public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
 
-
+    
 
     public Double generarResumen(Reservacion reservacion, List<Huesped> listaHuespedes, List<Habitacion> listaHabitaciones, List<ServiciosAdicionales> listaServicios) {
         StringBuilder resumen = new StringBuilder();
@@ -132,10 +136,10 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabel1;

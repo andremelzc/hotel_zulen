@@ -155,6 +155,12 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Numero de habitacion: ");
 
+        numHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numHabActionPerformed(evt);
+            }
+        });
+
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -315,7 +321,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         // TODO add your handling code here:
         int fila = habitacionesTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) habitacionesTable.getModel();
-
+        numHab.setText(model.getValueAt(fila, 0).toString());
         tipoField.setText(model.getValueAt(fila, 1).toString());
         pisoField.setText(model.getValueAt(fila, 2).toString());
         estadoField.setText(model.getValueAt(fila, 3).toString());
@@ -352,6 +358,10 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
        vistaDatosLimpieza_Habitacion vistaHabLimpie = new vistaDatosLimpieza_Habitacion(idHabitacione);
        vistaHabLimpie.setVisible(true);
     }//GEN-LAST:event_btnVerLimpiezaActionPerformed
+
+    private void numHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numHabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numHabActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

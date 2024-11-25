@@ -12,12 +12,19 @@ import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 
 
 import java.awt.Font;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import modelo.Boleta;
@@ -425,9 +432,30 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
             ReservacionRepository repo = new ReservacionRepository();
             repo.setFechaCheckOut(idReservaElegida);
             repo.setFinalizada(idReservaElegida);
+            try {
+                crearArchivo(DNIhuesped.getText(), String.valueOf(desplegableReservas.getSelectedItem()), jTextArea1.getText(), "2");
+                System.out.println("Boleta generada en .txt");
+            } catch (IOException ex) {
+                Logger.getLogger(vistaRecepcionistaFacturar.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }            
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public static void crearArchivo(String dni, String numeroReserva, String contenido, String momento) throws IOException {
+        // Define el nombre del archivo
+        String nombreArchivo = "src/txt/" + dni + "_" + numeroReserva + "_"+ momento + ".txt";
+
+        // Define la ubicación donde se creará el archivo
+        File archivo = new File(nombreArchivo);
+
+        // Usa FileWriter y BufferedWriter para escribir en el archivo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            writer.write(contenido); // Escribe el contenido
+            System.out.println("Archivo creado con éxito: " + archivo.getAbsolutePath());
+        } catch (IOException e) {
+            throw new IOException("Error al crear o escribir en el archivo: " + e.getMessage(), e);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DNIhuesped;

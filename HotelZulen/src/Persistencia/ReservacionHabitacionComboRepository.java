@@ -154,7 +154,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
                 + "JOIN "
                 + "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO "
                 + "WHERE "
-                + "    rhhc.Estado <> 'Enviado';";
+                + "    rhhc.Estado = 'Pedido';";
 
         // Ajustamos el tamaño del arreglo 'datos' a 6 columnas
         String[] datos = new String[10];
