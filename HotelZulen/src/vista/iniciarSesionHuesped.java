@@ -43,6 +43,8 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         borrar = new javax.swing.JButton();
         iniciarSesion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 252));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,9 +52,14 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 127, 17));
         jLabel3.setText("Usuario");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 7, 160, 30));
 
         usuarioField.setText("Ingrese su usuario...");
+        usuarioField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuarioFieldMouseClicked(evt);
+            }
+        });
         usuarioField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuarioFieldActionPerformed(evt);
@@ -61,12 +68,17 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 430, 40));
 
         contrasenaField.setText("jPasswordField1");
+        contrasenaField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contrasenaFieldActionPerformed(evt);
+            }
+        });
         add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 430, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 127, 17));
         jLabel4.setText("Contraseña");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 160, 30));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 107, 160, 30));
 
         jSeparator2.setBackground(new java.awt.Color(75, 76, 73));
         jSeparator2.setForeground(new java.awt.Color(255, 127, 17));
@@ -95,6 +107,12 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
             }
         });
         add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 200, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/userLogin.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrasenaLogin.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void usuarioFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioFieldActionPerformed
@@ -115,6 +133,7 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         
         if(usuario.equals("Ingrese su usuario...")){
             JOptionPane.showMessageDialog(null, "Por favor, ingrese sus credenciales", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
         
         InicioSession usuarioActual = new InicioSession();
@@ -126,11 +145,30 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_iniciarSesionActionPerformed
 
+    private void usuarioFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioFieldMouseClicked
+        // TODO add your handling code here:
+        usuarioField.setText("");
+        
+        
+        
+    }//GEN-LAST:event_usuarioFieldMouseClicked
+
+    private void contrasenaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrasenaFieldActionPerformed
+        // TODO add your handling code here:
+        contrasenaField.setText("");
+        
+        if(usuarioField.getText().equals("")){
+            usuarioField.setText("Ingrese su usuario...");
+        }
+    }//GEN-LAST:event_contrasenaFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrar;
     private javax.swing.JPasswordField contrasenaField;
     private javax.swing.JButton iniciarSesion;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator2;

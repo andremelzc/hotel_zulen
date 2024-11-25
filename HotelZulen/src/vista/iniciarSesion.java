@@ -109,7 +109,6 @@ public class iniciarSesion extends javax.swing.JFrame {
         });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hotel_logo.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout panelIzquierdaLayout = new javax.swing.GroupLayout(panelIzquierda);
         panelIzquierda.setLayout(panelIzquierdaLayout);
@@ -123,25 +122,24 @@ public class iniciarSesion extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(ingresarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(hotelZulen))
+                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(iniciarSesion1))
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(hotelZulen)))
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel4)))
                 .addContainerGap(48, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(158, 158, 158))
         );
         panelIzquierdaLayout.setVerticalGroup(
             panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdaLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(iniciarSesion1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addGap(92, 92, 92)
                 .addComponent(jLabel4)
-                .addGap(96, 96, 96)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(hotelZulen)
                 .addGap(66, 66, 66)
                 .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

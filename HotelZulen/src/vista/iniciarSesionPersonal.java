@@ -35,24 +35,26 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         usuarioField = new javax.swing.JTextField();
         contrasenaField = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         iniciarSesion = new javax.swing.JButton();
         borrar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 252));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 127, 17));
-        jLabel3.setText("Usuario");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 30));
-
         usuarioField.setText("Ingrese su usuario...");
+        usuarioField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuarioFieldMouseClicked(evt);
+            }
+        });
         usuarioField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuarioFieldActionPerformed(evt);
@@ -61,12 +63,12 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
         add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 430, 40));
 
         contrasenaField.setText("jPasswordField1");
+        contrasenaField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contrasenaFieldMouseClicked(evt);
+            }
+        });
         add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 430, 40));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 127, 17));
-        jLabel4.setText("Contraseña");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 160, 30));
 
         jSeparator2.setBackground(new java.awt.Color(75, 76, 73));
         jSeparator2.setForeground(new java.awt.Color(255, 127, 17));
@@ -95,6 +97,22 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
             }
         });
         add(borrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 200, 50));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 127, 17));
+        jLabel4.setText("Contraseña");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 107, 160, 30));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrasenaLogin.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 127, 17));
+        jLabel3.setText("Usuario");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 7, 160, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/userLogin.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void usuarioFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioFieldActionPerformed
@@ -109,6 +127,7 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
         
         if(usuario.equals("Ingrese su usuario...")){
             JOptionPane.showMessageDialog(null, "Por favor, ingrese sus credenciales", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
         
         
@@ -126,11 +145,27 @@ public class iniciarSesionPersonal extends javax.swing.JPanel {
         contrasenaField.setText("");
     }//GEN-LAST:event_borrarActionPerformed
 
+    private void contrasenaFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contrasenaFieldMouseClicked
+        // TODO add your handling code here:
+        contrasenaField.setText("");
+        
+        if(usuarioField.getText().equals("")){
+            usuarioField.setText("Ingrese su usuario...");
+        }
+    }//GEN-LAST:event_contrasenaFieldMouseClicked
+
+    private void usuarioFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioFieldMouseClicked
+        // TODO add your handling code here:
+        usuarioField.setText("");
+    }//GEN-LAST:event_usuarioFieldMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrar;
     private javax.swing.JPasswordField contrasenaField;
     private javax.swing.JButton iniciarSesion;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator2;
