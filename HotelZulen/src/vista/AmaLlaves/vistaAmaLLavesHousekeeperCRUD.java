@@ -4,12 +4,15 @@
  */
 package vista.AmaLlaves;
 
+import Persistencia.LimpiezaRepository;
 import Persistencia.PersonalRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +28,6 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
     private AmaDeLlaves amaLlaves;
-    
     public vistaAmaLLavesHousekeeperCRUD(AmaDeLlaves amaLlaves) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
@@ -33,6 +35,12 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         btnToggle.setSelected(true);
         modelo = (DefaultTableModel) Tabla.getModel();
         Object[] houseKeeper = new Object[8];
+      
+        LimpiezaRepository repoLimpieza = new LimpiezaRepository(); 
+        if(repoLimpieza.registroHechoHoyParaHabitacion1()){
+            System.out.println("Ya se han asignado limpiezas el dia de hoy");
+             btnAsignar.setEnabled(false);
+        }
     }
     
     public int seleccionarPedido(JTable Tabla) {
@@ -142,6 +150,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         cancelarBoton = new javax.swing.JButton();
         btnToggle = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
+        btnAsignar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1280, 520));
 
@@ -274,22 +283,31 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
             }
         });
 
+        btnAsignar.setText("Asignar Reservas");
+        btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(btnToggle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(64, 64, 64)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(134, 134, 134)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -321,15 +339,15 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
                             .addComponent(deshabilitarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(jButton1))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(btnToggle)))
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnToggle)
+                            .addComponent(jButton1))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -469,6 +487,20 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_estadoFieldActionPerformed
 
+    private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        int resultado = JOptionPane.showConfirmDialog(null, "¿Deseas continuar?", "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {    
+            amaLlaves.asignarLimpiezas();
+            JOptionPane.showMessageDialog(null, "Las limpiezas han sido asignadas correctamente en la BD.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            btnAsignar.setEnabled(false); 
+        }
+    }//GEN-LAST:event_btnAsignarActionPerformed
+
+    public JButton getBtnAsignar() {
+        return btnAsignar;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nombre;
@@ -479,6 +511,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     private javax.swing.JLabel Reservación;
     private javax.swing.JTable Tabla;
     private javax.swing.JTextField apellidoField;
+    private javax.swing.JButton btnAsignar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JToggleButton btnToggle;
     private javax.swing.JButton cancelarBoton;
