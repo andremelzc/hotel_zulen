@@ -116,8 +116,10 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         BebidasName = new javax.swing.JLabel();
         BebidasName1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(221, 221, 221));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(255, 255, 255));
 
+        background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cerrarSesion.setBackground(new java.awt.Color(239, 35, 60));
@@ -130,8 +132,12 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         });
         background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 220, 50));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         title1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         title1.setText("Resumen de pedidos del día");
+        jPanel1.add(title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 27, -1, -1));
 
         contentTableEst.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,8 +152,13 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(contentTableEst);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 139, 499, 275));
+
         title2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         title2.setText("(De más a menos ganancias)");
+        jPanel1.add(title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 77, -1, -1));
+
+        content.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -160,59 +171,15 @@ public class vistaJefeCocinaEstadisticas extends javax.swing.JPanel {
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
+        jPanel1.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(863, 0, -1, -1));
+
         BebidasName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         BebidasName.setText("Combos más");
+        jPanel1.add(BebidasName, new org.netbeans.lib.awtextra.AbsoluteConstraints(146, 220, -1, -1));
 
         BebidasName1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         BebidasName1.setText("pedidos");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BebidasName)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(BebidasName1)
-                                .addGap(23, 23, 23)))
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(title2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(title1)))))
-                .addGap(79, 79, 79)
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(930, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(title1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(BebidasName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BebidasName1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 185, Short.MAX_VALUE))
-        );
+        jPanel1.add(BebidasName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 254, -1, -1));
 
         background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 

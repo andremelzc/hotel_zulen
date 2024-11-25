@@ -31,30 +31,52 @@ public class vistaJefeCocinaPrincipal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        bienvenidoLabel = new javax.swing.JLabel();
+        bienvenidoLabel3 = new javax.swing.JLabel();
+        bienvenidoLabel2 = new javax.swing.JLabel();
+        bienvenidoLabel4 = new javax.swing.JLabel();
+        bienvenidoLabel5 = new javax.swing.JLabel();
 
-        jLabel1.setText("pricipaal");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(616, 616, 616)
-                .addComponent(jLabel1)
-                .addContainerGap(619, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabel1)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cocinaPrincipal.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+
+        bienvenidoLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel.setText("Bienvenido, \"nombre jefe\"");
+        add(bienvenidoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, -1, -1));
+
+        bienvenidoLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel3.setText("recursos que se tienen actualmente.");
+        add(bienvenidoLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, 30));
+
+        bienvenidoLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel2.setText("Por favor, distribuya los pedidos con su equipo");
+        add(bienvenidoLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, -1, -1));
+
+        bienvenidoLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel4.setText("de cocina en la brevedad posible.");
+        add(bienvenidoLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 180, -1, 30));
+
+        bienvenidoLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel5.setText("También, modifique la carta en base a los");
+        add(bienvenidoLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel bienvenidoLabel;
+    private javax.swing.JLabel bienvenidoLabel2;
+    private javax.swing.JLabel bienvenidoLabel3;
+    private javax.swing.JLabel bienvenidoLabel4;
+    private javax.swing.JLabel bienvenidoLabel5;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

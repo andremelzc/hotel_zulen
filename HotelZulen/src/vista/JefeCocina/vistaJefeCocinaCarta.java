@@ -33,21 +33,34 @@ public class vistaJefeCocinaCarta extends javax.swing.JPanel {
         btnModificarConsumible = new javax.swing.JButton();
         contenedor = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(221, 221, 221));
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnRegistrarCombo.setBackground(new java.awt.Color(255, 127, 17));
+        btnRegistrarCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegistrarCombo.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarCombo.setText("Registrar Combo");
         btnRegistrarCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarComboActionPerformed(evt);
             }
         });
+        jPanel1.add(btnRegistrarCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 220, 30));
 
-        btnModificarConsumible.setText("Consumible");
+        btnModificarConsumible.setBackground(new java.awt.Color(255, 127, 17));
+        btnModificarConsumible.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnModificarConsumible.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificarConsumible.setText("Registrar Consumible");
         btnModificarConsumible.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarConsumibleActionPerformed(evt);
             }
         });
+        jPanel1.add(btnModificarConsumible, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 220, 30));
+
+        contenedor.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
@@ -60,28 +73,7 @@ public class vistaJefeCocinaCarta extends javax.swing.JPanel {
             .addGap(0, 475, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(btnRegistrarCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(211, 211, 211)
-                .addComponent(btnModificarConsumible, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(463, Short.MAX_VALUE))
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarCombo)
-                    .addComponent(btnModificarConsumible))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 1280, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -47,11 +47,16 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelIzquierda.setBackground(new java.awt.Color(255, 127, 17));
+        panelIzquierda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         iniciarSesion.setText("Hotel Zulen");
+        panelIzquierda.add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 25, -1, -1));
 
         principalBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         principalBoton.setText("Principal");
@@ -66,6 +71,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
                 principalBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(principalBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, 180, 45));
 
         pedidosBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         pedidosBoton.setText("Ver pedidos");
@@ -80,6 +86,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
                 pedidosBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(pedidosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 25, 180, 45));
 
         cartaBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cartaBoton.setText("Modificar carta");
@@ -94,6 +101,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
                 cartaBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(cartaBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 25, 180, 45));
 
         estadisticasBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         estadisticasBoton.setText("Ver estadísticas");
@@ -108,55 +116,24 @@ public class vistaJefeCocina extends javax.swing.JFrame {
                 estadisticasBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(estadisticasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 25, 180, 45));
 
-        javax.swing.GroupLayout panelIzquierdaLayout = new javax.swing.GroupLayout(panelIzquierda);
-        panelIzquierda.setLayout(panelIzquierdaLayout);
-        panelIzquierdaLayout.setHorizontalGroup(
-            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(iniciarSesion)
-                .addGap(67, 67, 67)
-                .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(pedidosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(cartaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(estadisticasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
-        );
-        panelIzquierdaLayout.setVerticalGroup(
-            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pedidosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cartaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(estadisticasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(iniciarSesion)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
 
-        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 120));
+        content.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1280, 520));
+        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1250, 520));
 
         cerrarSesion1.setBackground(new java.awt.Color(239, 35, 60));
         cerrarSesion1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -172,10 +149,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

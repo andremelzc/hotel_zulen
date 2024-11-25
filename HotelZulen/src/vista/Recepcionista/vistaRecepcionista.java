@@ -144,14 +144,14 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGap(0, 1240, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1280, 520));
+        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 1240, 520));
 
         cerrarSesion.setBackground(new java.awt.Color(239, 35, 60));
         cerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

@@ -71,6 +71,9 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
         btn_Enviado = new javax.swing.JButton();
         btnToggle = new javax.swing.JToggleButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -89,47 +92,29 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 106, 1211, 258));
+
+        btn_Enviado.setBackground(new java.awt.Color(255, 127, 17));
         btn_Enviado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_Enviado.setForeground(new java.awt.Color(255, 255, 255));
         btn_Enviado.setText("Marcar como Enviado");
         btn_Enviado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_EnviadoActionPerformed(evt);
             }
         });
+        add(btn_Enviado, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 40, 240, 30));
 
-        btnToggle.setText("Solo enviados");
+        btnToggle.setBackground(new java.awt.Color(255, 127, 17));
+        btnToggle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnToggle.setForeground(new java.awt.Color(255, 255, 255));
+        btnToggle.setText("Alternar filtro");
         btnToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnToggleActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(btnToggle)
-                .addGap(302, 302, 302)
-                .addComponent(btn_Enviado, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Enviado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnToggle))
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
+        add(btnToggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 34, 180, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
