@@ -97,6 +97,7 @@ public class vistaAmaLLavesHouseKeeper extends javax.swing.JPanel {
         container.add(amaLLavesCRUD, BorderLayout.CENTER);
         container.revalidate();
         container.repaint();
+        amaLLavesCRUD.getBtnToggle().doClick();
     }//GEN-LAST:event_btnCRUDActionPerformed
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
