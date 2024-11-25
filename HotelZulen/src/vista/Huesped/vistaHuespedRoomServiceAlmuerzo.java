@@ -132,7 +132,6 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         pedirBoton = new javax.swing.JButton();
         borrarBoton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaCombos.setModel(new javax.swing.table.DefaultTableModel(
@@ -155,28 +154,21 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, 330));
 
-        jPanel1.setBackground(new java.awt.Color(141, 153, 174));
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(45, 45, 44));
         jLabel2.setText("Combo");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        precioSeleccionadoField.setBackground(new java.awt.Color(221, 221, 221));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(45, 45, 44));
         jLabel3.setText("Precio");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        comboSeleccionadoField.setBackground(new java.awt.Color(221, 221, 221));
-
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación.setForeground(new java.awt.Color(45, 45, 44));
         Reservación.setText("Reservacion");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        reservacionesCombo.setBackground(new java.awt.Color(221, 221, 221));
         reservacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Reservación1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -184,10 +176,7 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         Reservación1.setText("Habitación");
         Reservación1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        habitacionesCombo.setBackground(new java.awt.Color(221, 221, 221));
         habitacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cantidadField.setBackground(new java.awt.Color(221, 221, 221));
 
         Reservación2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Reservación2.setForeground(new java.awt.Color(45, 45, 44));

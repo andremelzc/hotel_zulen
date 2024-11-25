@@ -19,18 +19,19 @@ import vista.vistaConsultarHuesped;
  * @author PC
  */
 public class vistaAdministrador extends javax.swing.JFrame {
-    
+
     private Administrador administrador;
+
     /**
      * Creates new form vistaAdministrador
      */
     public vistaAdministrador(Administrador administrador) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
-        this.administrador=administrador;
+        this.administrador = administrador;
         mostrarInfo();
     }
-    
+
     // Método para mostrar la información del recepcionista
     private void mostrarInfo() {
         // Ejemplo: mostrar el nombre y el ID del recepcionista en etiquetas o campos de la interfaz
@@ -41,6 +42,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
             System.out.println("ID del recepcionista: " + administrador.getDNI());
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,13 +211,11 @@ public class vistaAdministrador extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_personalBotonActionPerformed
 
-
     public JButton getPersonalBoton() {
         return personalBoton;
     }
-    
-    
-    private void serviciosBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_serviciosBotonMouseClicked
+
+    private void serviciosBotonMouseClicked(java.awt.event.MouseEvent evt) {
 
         // TODO add your handling code here:
         vistaAdministradorServicios administradorServicios = new vistaAdministradorServicios();
@@ -225,7 +225,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
         content.add(administradorServicios, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-    }//GEN-LAST:event_serviciosBotonActionPerformed
+    }
 
     private void habitacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionesBotonActionPerformed
         // TODO add your handling code here:
@@ -265,12 +265,23 @@ public class vistaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_finanzasBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
-       cerrarSesion();
+        cerrarSesion();
     }//GEN-LAST:event_cerrarSesionActionPerformed
 
     private void habitacionesBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_habitacionesBotonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_habitacionesBotonMouseClicked
+
+    private void serviciosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviciosBotonActionPerformed
+        // TODO add your handling code here:
+        vistaAdministradorServicios administradorServicios = new vistaAdministradorServicios();
+        administradorServicios.setSize(1280, 720);
+        administradorServicios.setLocation(0, 0);
+        content.removeAll();
+        content.add(administradorServicios, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_serviciosBotonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

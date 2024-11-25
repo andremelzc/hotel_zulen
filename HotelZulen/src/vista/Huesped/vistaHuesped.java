@@ -60,7 +60,6 @@ public class vistaHuesped extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));

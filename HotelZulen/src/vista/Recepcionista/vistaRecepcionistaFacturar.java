@@ -37,7 +37,7 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
     private int idReservaElegida;
     
     public vistaRecepcionistaFacturar(Recepcionista recepcionista) {
-        FlatNightOwlIJTheme.setup();
+        FlatArcOrangeIJTheme.setup();
         initComponents();
         jTextArea1.setText("");
         jTextArea1.setFont(new Font("Monospaced", Font.PLAIN, 12));

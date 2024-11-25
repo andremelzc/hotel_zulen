@@ -101,8 +101,6 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 410, 360));
 
-        jButtonRegistrar.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegistrar.setText("Confirmar y Pagar");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

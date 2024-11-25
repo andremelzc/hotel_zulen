@@ -47,7 +47,6 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        background.setBackground(new java.awt.Color(221, 221, 221));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
@@ -224,6 +223,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         content.add(jefeCocinaPedidos, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        jefeCocinaPedidos.getBtnToggle().doClick();
     }//GEN-LAST:event_pedidosBotonActionPerformed
 
     private void cartaBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cartaBotonMouseClicked
@@ -242,7 +242,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         content.add(jefeCocinaCarta, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-        jefeCocinaCarta.getBtnRegistrarCombo();
+        jefeCocinaCarta.getBtnRegistrarCombo().doClick();
     }//GEN-LAST:event_cartaBotonActionPerformed
 
     private void estadisticasBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadisticasBotonMouseClicked

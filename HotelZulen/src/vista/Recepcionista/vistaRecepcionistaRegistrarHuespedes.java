@@ -115,8 +115,6 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
         add(jLabelDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
         add(jTextFieldDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 230, 30));
 
-        jButtonComprobarRegistroPrevio.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonComprobarRegistroPrevio.setForeground(new java.awt.Color(255, 255, 255));
         jButtonComprobarRegistroPrevio.setText("Comprobar Registro");
         jButtonComprobarRegistroPrevio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,8 +123,6 @@ public class vistaRecepcionistaRegistrarHuespedes extends javax.swing.JPanel {
         });
         add(jButtonComprobarRegistroPrevio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
 
-        jButtonRegistrarCliente.setBackground(new java.awt.Color(0, 102, 204));
-        jButtonRegistrarCliente.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegistrarCliente.setText("Registrar");
         jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

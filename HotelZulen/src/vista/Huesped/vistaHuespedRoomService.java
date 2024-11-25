@@ -43,7 +43,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
         verPedidosBoton = new javax.swing.JButton();
         cenaBoton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(221, 221, 221));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 220, -1, -1));
 
@@ -64,8 +63,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
             }
         });
         add(almuerzoBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 257, 50));
-
-        subcontent.setBackground(new java.awt.Color(221, 221, 221));
 
         javax.swing.GroupLayout subcontentLayout = new javax.swing.GroupLayout(subcontent);
         subcontent.setLayout(subcontentLayout);

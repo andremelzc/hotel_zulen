@@ -34,9 +34,6 @@ public class vistaAmaLLavesPrincipal extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(221, 221, 221));
-
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("pricipaal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
