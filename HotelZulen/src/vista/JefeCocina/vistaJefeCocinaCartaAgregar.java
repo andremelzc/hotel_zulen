@@ -33,6 +33,7 @@ public class vistaJefeCocinaCartaAgregar extends javax.swing.JFrame {
     public vistaJefeCocinaCartaAgregar() {
         FlatArcOrangeIJTheme.setup();
         initComponents();
+        this.setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         modelo2= (DefaultTableModel)TablaConsumibles.getModel();
         ConsumibleRepository consumible = new  ConsumibleRepository();
@@ -229,7 +230,7 @@ public class vistaJefeCocinaCartaAgregar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

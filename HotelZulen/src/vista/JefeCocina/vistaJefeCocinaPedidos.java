@@ -72,6 +72,7 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
         btnToggle = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1250, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -92,7 +93,7 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 106, 1211, 258));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 1160, 258));
 
         btn_Enviado.setBackground(new java.awt.Color(255, 127, 17));
         btn_Enviado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -103,7 +104,7 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
                 btn_EnviadoActionPerformed(evt);
             }
         });
-        add(btn_Enviado, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 40, 240, 30));
+        add(btn_Enviado, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 100, 260, 30));
 
         btnToggle.setBackground(new java.awt.Color(255, 127, 17));
         btnToggle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -114,7 +115,7 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
                 btnToggleActionPerformed(evt);
             }
         });
-        add(btnToggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 34, 180, 30));
+        add(btnToggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 280, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

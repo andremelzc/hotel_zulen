@@ -39,6 +39,8 @@ public class vistaJefeCocinaPrincipal extends javax.swing.JPanel {
         bienvenidoLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(1260, 520));
+        setPreferredSize(new java.awt.Dimension(1250, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cocinaPrincipal.png"))); // NOI18N

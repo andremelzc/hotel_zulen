@@ -34,11 +34,12 @@ public class vistaJefeCocinaCarta extends javax.swing.JPanel {
         contenedor = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1260, 520));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnRegistrarCombo.setBackground(new java.awt.Color(255, 127, 17));
+        btnRegistrarCombo.setBackground(new java.awt.Color(190, 183, 164));
         btnRegistrarCombo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRegistrarCombo.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarCombo.setText("Registrar Combo");
@@ -49,7 +50,7 @@ public class vistaJefeCocinaCarta extends javax.swing.JPanel {
         });
         jPanel1.add(btnRegistrarCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 220, 30));
 
-        btnModificarConsumible.setBackground(new java.awt.Color(255, 127, 17));
+        btnModificarConsumible.setBackground(new java.awt.Color(190, 183, 164));
         btnModificarConsumible.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnModificarConsumible.setForeground(new java.awt.Color(255, 255, 255));
         btnModificarConsumible.setText("Registrar Consumible");

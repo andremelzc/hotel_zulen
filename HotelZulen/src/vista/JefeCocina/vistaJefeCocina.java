@@ -24,6 +24,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
     public vistaJefeCocina(KitchenManager JefeCocina) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -46,6 +47,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         cerrarSesion1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,6 +57,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        iniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setText("Hotel Zulen");
         panelIzquierda.add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 25, -1, -1));
 
@@ -121,19 +124,20 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setPreferredSize(new java.awt.Dimension(1260, 520));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1250, Short.MAX_VALUE)
+            .addGap(0, 1260, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1250, 520));
+        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1260, 520));
 
         cerrarSesion1.setBackground(new java.awt.Color(239, 35, 60));
         cerrarSesion1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -143,7 +147,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
                 cerrarSesion1ActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 220, 50));
+        background.add(cerrarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 650, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

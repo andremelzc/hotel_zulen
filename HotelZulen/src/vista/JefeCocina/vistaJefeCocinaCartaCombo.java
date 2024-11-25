@@ -233,16 +233,18 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
                 .addGap(23, 23, 23))
         );
 
+        setPreferredSize(new java.awt.Dimension(1260, 520));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Tipo de combo");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         filtroTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Desayuno", "Almuerzo", "Cena" }));
-        jPanel1.add(filtroTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 160, -1));
+        jPanel1.add(filtroTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 260, -1));
 
         FIltrar.setBackground(new java.awt.Color(255, 127, 17));
         FIltrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -253,7 +255,7 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
                 FIltrarActionPerformed(evt);
             }
         });
-        jPanel1.add(FIltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(346, 30, 130, -1));
+        jPanel1.add(FIltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 160, -1));
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -270,12 +272,12 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 443, 330));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 590, 330));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Datos del combo");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, -1, -1));
 
         modificarBtn.setBackground(new java.awt.Color(255, 127, 17));
         modificarBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -286,7 +288,7 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
                 modificarBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(modificarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 210, 30));
+        jPanel1.add(modificarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, 260, 30));
 
         registrarBoton1.setBackground(new java.awt.Color(255, 127, 17));
         registrarBoton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -297,7 +299,7 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
                 registrarBoton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(registrarBoton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 210, 30));
+        jPanel1.add(registrarBoton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 300, 30));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -318,16 +320,16 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
                 Tipo1ActionPerformed(evt);
             }
         });
-        jPanel4.add(Tipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 360, 30));
+        jPanel4.add(Tipo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 380, 30));
 
         Descripcion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Descripcion1ActionPerformed(evt);
             }
         });
-        jPanel4.add(Descripcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 310, 30));
+        jPanel4.add(Descripcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 330, 30));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 440, 100));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, 450, 100));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -338,32 +340,32 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "Nombre del consumible", "Precio"
+                "ID", "Nombre", "Precio"
             }
         ));
         jScrollPane2.setViewportView(TablaConsumibles);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 420, 130));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, 130));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Consumibles");
         jLabel11.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, -1, 180));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, 480, 180));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 440, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 580, 20));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 410, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, 430, 20));
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 440, 20));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 580, 20));
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 410, 20));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 440, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -373,7 +375,7 @@ public class vistaJefeCocinaCartaCombo extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
