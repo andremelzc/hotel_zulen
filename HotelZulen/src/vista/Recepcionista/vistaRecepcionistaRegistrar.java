@@ -159,11 +159,11 @@ public class vistaRecepcionistaRegistrar extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "La boleta se ha generado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     
                     System.out.println("Pago confirmado");
-                    vistaConfirmar.dispose(); // Cierra la ventana de ConfirmarPago
+                    vistaConfirmar.dispose(); 
                     
                 }
                 else{
-                    vistaConfirmar.dispose(); // Cierra la ventana de ConfirmarPago
+                    vistaConfirmar.dispose(); 
                 }
                 
                 

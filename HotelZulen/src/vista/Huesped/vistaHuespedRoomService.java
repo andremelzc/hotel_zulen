@@ -40,7 +40,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
         desayunoBoton = new javax.swing.JButton();
         almuerzoBoton = new javax.swing.JButton();
         subcontent = new javax.swing.JPanel();
-        verPedidosBoton = new javax.swing.JButton();
         cenaBoton = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,7 +52,7 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
                 desayunoBotonActionPerformed(evt);
             }
         });
-        add(desayunoBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 260, 50));
+        add(desayunoBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 260, 50));
 
         almuerzoBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         almuerzoBoton.setText("Almuerzo");
@@ -62,7 +61,7 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
                 almuerzoBotonActionPerformed(evt);
             }
         });
-        add(almuerzoBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 257, 50));
+        add(almuerzoBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 257, 50));
 
         javax.swing.GroupLayout subcontentLayout = new javax.swing.GroupLayout(subcontent);
         subcontent.setLayout(subcontentLayout);
@@ -77,15 +76,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
 
         add(subcontent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1280, 440));
 
-        verPedidosBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        verPedidosBoton.setText("Mis Pedidos");
-        verPedidosBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verPedidosBotonActionPerformed(evt);
-            }
-        });
-        add(verPedidosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 20, 257, 50));
-
         cenaBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cenaBoton.setText("Cena");
         cenaBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +83,7 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
                 cenaBotonActionPerformed(evt);
             }
         });
-        add(cenaBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 257, 50));
+        add(cenaBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 20, 257, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void desayunoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desayunoBotonActionPerformed
@@ -133,10 +123,6 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
         subcontent.repaint();
     }//GEN-LAST:event_cenaBotonActionPerformed
 
-    private void verPedidosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verPedidosBotonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_verPedidosBotonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton almuerzoBoton;
@@ -144,6 +130,5 @@ public class vistaHuespedRoomService extends javax.swing.JPanel {
     private javax.swing.JButton desayunoBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel subcontent;
-    private javax.swing.JButton verPedidosBoton;
     // End of variables declaration//GEN-END:variables
 }
