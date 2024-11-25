@@ -45,11 +45,11 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
 
         ReservacionHuespedRepository reseHueRepo = new ReservacionHuespedRepository();
         List<Reservacion> reservaciones = reseHueRepo.obtenerReservasPorHuesped(huesped.getDNI());
-        
+
         ReservacionHabitacionesRepository reseHaRepo = new ReservacionHabitacionesRepository();
         // Sacar todas las habitaciones
         List<Habitacion> habitaciones = new ArrayList<>();
-        for(Reservacion reservacion : reservaciones){
+        for (Reservacion reservacion : reservaciones) {
             List<Habitacion> subHabitaciones = reseHaRepo.obtenerHabitacionesPorReservacion(reservacion.getIdReserva());
             habitaciones.addAll(subHabitaciones);
         }
@@ -61,10 +61,10 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         for (Reservacion rese : reservaciones) {
             reservacionesCombo.addItem(String.valueOf(rese.getIdReserva()));
         }
-        
+
         // COMBO BOX PARA SELECCIONAR HABITACION
         habitacionesCombo.removeAllItems();
-        for (Habitacion habi : habitaciones){
+        for (Habitacion habi : habitaciones) {
             habitacionesCombo.addItem(String.valueOf(habi.getId()));
         }
 
@@ -128,10 +128,12 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         habitacionesCombo = new javax.swing.JComboBox<>();
         cantidadField = new javax.swing.JTextField();
         Reservación2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         pedirBoton = new javax.swing.JButton();
         borrarBoton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaCombos.setModel(new javax.swing.table.DefaultTableModel(
@@ -152,103 +154,62 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaCombos);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, 330));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, 320));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(45, 45, 44));
         jLabel2.setText("Combo");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, -1));
+        jPanel1.add(precioSeleccionadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 110, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(45, 45, 44));
         jLabel3.setText("Precio");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPanel1.add(comboSeleccionadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 360, 30));
 
-        Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Reservación.setForeground(new java.awt.Color(45, 45, 44));
         Reservación.setText("Reservacion");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         reservacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(reservacionesCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 300, 30));
 
-        Reservación1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Reservación1.setForeground(new java.awt.Color(45, 45, 44));
         Reservación1.setText("Habitación");
         Reservación1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(Reservación1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         habitacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(habitacionesCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 300, 30));
+        jPanel1.add(cantidadField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 100, 30));
 
-        Reservación2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Reservación2.setForeground(new java.awt.Color(45, 45, 44));
         Reservación2.setText("Cantidad");
         Reservación2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(Reservación2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(191, 191, 191)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Reservación2)
-                                    .addComponent(cantidadField)))
-                            .addComponent(jLabel2)
-                            .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Reservación)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Reservación1)
-                        .addGap(129, 129, 129))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(reservacionesCombo, javax.swing.GroupLayout.Alignment.LEADING, 0, 212, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(habitacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(precioSeleccionadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Reservación2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cantidadField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Reservación)
-                    .addComponent(Reservación1))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reservacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(habitacionesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 440, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 500, 260));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 540, 210));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(45, 45, 44));
         jLabel4.setText("Seleccione el combo que desee pedir");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, -1, -1));
 
-        pedirBoton.setBackground(new java.awt.Color(239, 35, 60));
+        pedirBoton.setBackground(new java.awt.Color(255, 127, 17));
         pedirBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         pedirBoton.setText("Pedir");
         pedirBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -256,9 +217,9 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
                 pedirBotonActionPerformed(evt);
             }
         });
-        add(pedirBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 360, 240, 50));
+        add(pedirBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 200, 30));
 
-        borrarBoton.setBackground(new java.awt.Color(239, 35, 60));
+        borrarBoton.setBackground(new java.awt.Color(255, 127, 17));
         borrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         borrarBoton.setText("Borrar");
         borrarBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -266,45 +227,50 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
                 borrarBotonActionPerformed(evt);
             }
         });
-        add(borrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 360, 240, 50));
+        add(borrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 330, 200, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void pedirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedirBotonActionPerformed
         // TODO add your handling code here:
-  
+
         int fila = tablaCombos.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tablaCombos.getModel();
         int idCombo = Integer.parseInt(model.getValueAt(fila, 0).toString());
-        
+
         int cantidad = Integer.parseInt(cantidadField.getText());
-        
+        if (cantidadField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar la cantidad que desea pedir del combo.", "Error", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         ReservacionHabitacionComboRepository rhcr = new ReservacionHabitacionComboRepository();
         int idReservacion = Integer.parseInt((String) reservacionesCombo.getSelectedItem());
         int idHabitacion = Integer.parseInt((String) habitacionesCombo.getSelectedItem());
-        
+
         // Verificamos si hay relacion entre la habitacion y la reserva
         ReservacionHabitacionesRepository rhr = new ReservacionHabitacionesRepository();
-        if(!(rhr.relacionHabitacionReserva(idHabitacion, idReservacion))){
+        if (!(rhr.relacionHabitacionReserva(idHabitacion, idReservacion))) {
             JOptionPane.showMessageDialog(null, "La habitación escodiga no correspondo a la reserva echa");
             return;
         }
-        
+
         HabitacionRepository habirepo = new HabitacionRepository();
-        
+
         LocalDateTime fechaActual = LocalDateTime.now();
-        
+
         Habitacion habitacion = habirepo.obtener(idHabitacion);
-        
+
         //  idReserva, idHabitacion, huesped, idTipoHabitacion, idCombo, cantidad, estado, fechaPedido, fechaEnvio: SERÁ NULL
         rhcr.asociarReservacionCombo(
-                idReservacion, 
-                idHabitacion, 
-                huesped, 
+                idReservacion,
+                idHabitacion,
+                huesped,
                 habitacion.getTipoHabitacion().getId(),
                 idCombo,
-                cantidad, 
+                cantidad,
                 "Pedido",
                 fechaActual);
+        JOptionPane.showMessageDialog(null, "Combo asociado exitosamente.", "Éxitom", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_pedirBotonActionPerformed
 
@@ -338,6 +304,7 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton pedirBoton;
     private javax.swing.JTextField precioSeleccionadoField;
     private javax.swing.JComboBox<String> reservacionesCombo;

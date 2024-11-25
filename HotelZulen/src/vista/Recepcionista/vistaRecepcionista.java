@@ -67,6 +67,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
 
         panelIzquierda.setBackground(new java.awt.Color(255, 127, 17));
         panelIzquierda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 63, 0)));
+        panelIzquierda.setForeground(new java.awt.Color(255, 255, 255));
         panelIzquierda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));

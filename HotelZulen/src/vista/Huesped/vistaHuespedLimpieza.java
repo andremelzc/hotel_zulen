@@ -33,15 +33,30 @@ public class vistaHuespedLimpieza extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        bienvenidoLabel4 = new javax.swing.JLabel();
+        bienvenidoLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("limpiezaa");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 220, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/huespedLimpieza.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+
+        bienvenidoLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel4.setText("Se le atenderá a la brevedad posible!");
+        add(bienvenidoLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, -1, -1));
+
+        bienvenidoLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel5.setText("Marque 5 en el télefono");
+        add(bienvenidoLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bienvenidoLabel4;
+    private javax.swing.JLabel bienvenidoLabel5;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
