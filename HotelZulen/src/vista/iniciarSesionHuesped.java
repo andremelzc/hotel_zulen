@@ -9,6 +9,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJThem
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.InicioSession;
 
 /**
@@ -43,10 +44,11 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         borrar = new javax.swing.JButton();
         iniciarSesion = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 252));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(75, 76, 73));
+        jLabel3.setForeground(new java.awt.Color(255, 127, 17));
         jLabel3.setText("Usuario");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 30));
 
@@ -62,20 +64,21 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
         add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 430, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(75, 76, 73));
+        jLabel4.setForeground(new java.awt.Color(255, 127, 17));
         jLabel4.setText("Contraseña");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 160, 30));
 
         jSeparator2.setBackground(new java.awt.Color(75, 76, 73));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(255, 127, 17));
         add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 420, 20));
 
         jSeparator3.setBackground(new java.awt.Color(75, 76, 73));
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(255, 127, 17));
         add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 420, 20));
 
         borrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         borrar.setText("Borrar");
+        borrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 borrarActionPerformed(evt);
@@ -85,6 +88,7 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
 
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         iniciarSesion.setText("Iniciar Sesión");
+        iniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarSesionActionPerformed(evt);
@@ -99,12 +103,20 @@ public class iniciarSesionHuesped extends javax.swing.JPanel {
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         // TODO add your handling code here:
+        usuarioField.setText("");
+        contrasenaField.setText("");
     }//GEN-LAST:event_borrarActionPerformed
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
         // TODO add your handling code here:
+        
         String usuario = usuarioField.getText();
         String contrasena = contrasenaField.getText();
+        
+        if(usuario.equals("Ingrese su usuario...")){
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese sus credenciales", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
         InicioSession usuarioActual = new InicioSession();
         
         try {

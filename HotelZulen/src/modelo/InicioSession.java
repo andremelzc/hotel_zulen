@@ -6,6 +6,7 @@ package modelo;
 
 import Persistencia.InicioSesionRepository;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import vista.Admin.vistaAdministrador;
 import vista.AmaLlaves.vistaAmaLLaves;
 import vista.Huesped.vistaHuesped;
@@ -32,6 +33,7 @@ public class InicioSession {
             mostrarVistaCorrespondiente();
         } else {
             System.out.println("Usuario o contraseña incorrectos.");
+            JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -47,6 +49,7 @@ public class InicioSession {
             vistaHuesped.getPrincipalBoton().doClick();
         } else {
             System.out.println("Usuario o contraseña incorrectos.");
+            JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

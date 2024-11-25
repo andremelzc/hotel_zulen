@@ -21,7 +21,8 @@ public class iniciarSesion extends javax.swing.JFrame {
     public iniciarSesion() {
         FlatArcOrangeIJTheme.setup();
         initComponents();
-        iniciarSesion.setSize(1280, 720);
+        hotelZulen.setSize(1280, 720);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,10 +36,11 @@ public class iniciarSesion extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         panelIzquierda = new javax.swing.JPanel();
-        iniciarSesion = new javax.swing.JLabel();
+        hotelZulen = new javax.swing.JLabel();
         iniciarSesion1 = new javax.swing.JLabel();
         ingresarPersonal = new javax.swing.JButton();
         ingresarHuesped = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,22 +48,35 @@ public class iniciarSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        background.setBackground(new java.awt.Color(255, 255, 252));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
-        iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        iniciarSesion.setText("Hotel Zulen");
+        panelIzquierda.setBackground(new java.awt.Color(255, 127, 17));
+
+        hotelZulen.setBackground(new java.awt.Color(255, 255, 255));
+        hotelZulen.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        hotelZulen.setForeground(new java.awt.Color(255, 255, 252));
+        hotelZulen.setText("Hotel Zulen");
 
         iniciarSesion1.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        iniciarSesion1.setForeground(new java.awt.Color(255, 255, 252));
         iniciarSesion1.setText("INICIO DE SESIÓN");
 
         ingresarPersonal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ingresarPersonal.setText("Ingresar como personal");
-        ingresarPersonal.setBorder(null);
+        ingresarPersonal.setBorder(new javax.swing.border.LineBorder(java.awt.Color.decode("#FF7F11"), 2, true)
+        );
+        ingresarPersonal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ingresarPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ingresarPersonalMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ingresarPersonalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ingresarPersonalMouseExited(evt);
             }
         });
         ingresarPersonal.addActionListener(new java.awt.event.ActionListener() {
@@ -72,10 +87,19 @@ public class iniciarSesion extends javax.swing.JFrame {
 
         ingresarHuesped.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ingresarHuesped.setText("Ingresar como huesped");
-        ingresarHuesped.setBorder(null);
+        ingresarHuesped.setBorder(new javax.swing.border.LineBorder(java.awt.Color.decode("#FF7F11"), 2, true)
+        );
+        ingresarHuesped.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ingresarHuesped.setPreferredSize(new java.awt.Dimension(215, 33));
         ingresarHuesped.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ingresarHuespedMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ingresarHuespedMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ingresarHuespedMouseExited(evt);
             }
         });
         ingresarHuesped.addActionListener(new java.awt.event.ActionListener() {
@@ -84,33 +108,41 @@ public class iniciarSesion extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hotel_logo.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+
         javax.swing.GroupLayout panelIzquierdaLayout = new javax.swing.GroupLayout(panelIzquierda);
         panelIzquierda.setLayout(panelIzquierdaLayout);
         panelIzquierdaLayout.setHorizontalGroup(
             panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(ingresarPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(ingresarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
                 .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(ingresarPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(ingresarHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(iniciarSesion1))
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(190, 190, 190)
-                        .addComponent(iniciarSesion)))
-                .addContainerGap(149, Short.MAX_VALUE))
+                        .addComponent(hotelZulen)))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(158, 158, 158))
         );
         panelIzquierdaLayout.setVerticalGroup(
             panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdaLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(iniciarSesion1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 435, Short.MAX_VALUE)
-                .addComponent(iniciarSesion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(96, 96, 96)
+                .addComponent(hotelZulen)
                 .addGap(66, 66, 66)
                 .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ingresarPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,6 +151,8 @@ public class iniciarSesion extends javax.swing.JFrame {
         );
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 720));
+
+        content.setBackground(new java.awt.Color(190, 183, 164));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -196,6 +230,30 @@ public class iniciarSesion extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_ingresarPersonalActionPerformed
 
+    private void ingresarPersonalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarPersonalMouseEntered
+        // TODO add your handling code here:
+        ingresarPersonal.setBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 2, true));
+
+
+    }//GEN-LAST:event_ingresarPersonalMouseEntered
+
+    private void ingresarPersonalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarPersonalMouseExited
+        // TODO add your handling code here:
+        ingresarPersonal.setBorder(new javax.swing.border.LineBorder(java.awt.Color.decode("#FF7F11"), 2, true));
+
+
+    }//GEN-LAST:event_ingresarPersonalMouseExited
+
+    private void ingresarHuespedMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarHuespedMouseEntered
+        // TODO add your handling code here:
+        ingresarHuesped.setBorder(new javax.swing.border.LineBorder(java.awt.Color.WHITE, 2, true));
+    }//GEN-LAST:event_ingresarHuespedMouseEntered
+
+    private void ingresarHuespedMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarHuespedMouseExited
+        // TODO add your handling code here:
+        ingresarHuesped.setBorder(new javax.swing.border.LineBorder(java.awt.Color.decode("#FF7F11"), 2, true));
+    }//GEN-LAST:event_ingresarHuespedMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -246,13 +304,14 @@ public class iniciarSesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JPanel content;
+    private javax.swing.JLabel hotelZulen;
     private javax.swing.JButton ingresarHuesped;
     private javax.swing.JButton ingresarPersonal;
-    private javax.swing.JLabel iniciarSesion;
     private javax.swing.JLabel iniciarSesion1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel panelIzquierda;
     // End of variables declaration//GEN-END:variables
 }
