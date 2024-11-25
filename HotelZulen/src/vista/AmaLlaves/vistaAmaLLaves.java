@@ -42,6 +42,8 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
 
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelIzquierda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17), 2));
+
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         iniciarSesion.setText("Hotel Zulen");
@@ -97,7 +99,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
                 .addComponent(iniciarSesion)
                 .addGap(119, 119, 119)
                 .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(140, 140, 140)
                 .addComponent(houseKeepersBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,7 +118,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(iniciarSesion)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1290, 120));
@@ -148,7 +150,9 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 1274, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

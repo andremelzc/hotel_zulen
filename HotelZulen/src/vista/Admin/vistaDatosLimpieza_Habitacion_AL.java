@@ -7,16 +7,17 @@ package vista.Admin;
 import Persistencia.LimpiezaRepository;
 import Persistencia.TipoHabitacionRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import modelo.Housekeeper;
 import modelo.Limpieza;
 
@@ -24,11 +25,11 @@ import modelo.Limpieza;
  *
  * @author Suyco
  */
-public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
+public class vistaDatosLimpieza_Habitacion_AL extends javax.swing.JFrame {
 
     private static Limpieza limpiezaActual;
     
-    public vistaDatosLimpieza_Habitacion(int idHabitacion) {
+     public vistaDatosLimpieza_Habitacion_AL(int idHabitacion) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
         JScrollPane scrollPane = new JScrollPane(jPanel1);
@@ -60,7 +61,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         //Campos para la habitacion
         JPanel panelHabitacion = new JPanel();
         JLabel lblHabitacion = new JLabel("Habitacion:");
-        JTextField txtIdHabitacion = new JTextField(String.valueOf(limpieza.getIdHabitacion()), 20);
+        JLabel txtIdHabitacion = new JLabel(String.valueOf(limpieza.getIdHabitacion()));
         panelHabitacion.add(lblHabitacion);
         panelHabitacion.add(txtIdHabitacion);
         panelLimpiezaas.add(panelHabitacion);
@@ -69,7 +70,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         JPanel panelTipo = new JPanel();
         JLabel lblTipo = new JLabel("Tipo de habitacion:");
         TipoHabitacionRepository repoTipo = new TipoHabitacionRepository();
-        JTextField txtTipo = new JTextField(repoTipo.obtener(limpieza.getCategoriaHab()).getConcepto(), 20);
+        JLabel txtTipo = new JLabel(repoTipo.obtener(limpieza.getCategoriaHab()).getConcepto());
         panelTipo.add(lblTipo);
         panelTipo.add(txtTipo);
         panelLimpiezaas.add(panelTipo);
@@ -77,7 +78,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         // Campos para el TipoLimpieza
         JPanel panelTipoLimpieza = new JPanel();
         JLabel lblTipoLimpieza = new JLabel("Tipo limpieza:");
-        JTextField txtTipoLimpieza = new JTextField(limpieza.getTipoLimpieza(), 20);
+        JLabel txtTipoLimpieza = new JLabel(limpieza.getTipoLimpieza());
         panelTipoLimpieza.add(lblTipoLimpieza);
         panelTipoLimpieza.add(txtTipoLimpieza);
         panelLimpiezaas.add(panelTipoLimpieza);
@@ -85,9 +86,15 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         // Campos para el estado de la limpieza
         JPanel panelEstadoLimpieza = new JPanel();
         JLabel lblEstadoLimpieza = new JLabel("Estado de la limpieza:");
-        JTextField txtEstadoLimpieza = new JTextField(String.valueOf(limpieza.getEstadoLimpieza()), 20);
+        // Crear un JComboBox con las opciones de estado de limpieza
+        String[] estadosLimpieza = {"asignada", "Finalizado"};
+        JComboBox<String> comboEstadoLimpieza = new JComboBox<>(estadosLimpieza);
+
+        // Seleccionar el estado actual basado en el valor de limpieza.getEstadoLimpieza()
+        comboEstadoLimpieza.setSelectedItem(limpieza.getEstadoLimpieza());
+        
         panelEstadoLimpieza.add(lblEstadoLimpieza);
-        panelEstadoLimpieza.add(txtEstadoLimpieza);
+        panelEstadoLimpieza.add(comboEstadoLimpieza);
         panelLimpiezaas.add(panelEstadoLimpieza);
 
         // Botón "Modificar"
@@ -97,7 +104,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         // Acción del botón "Modificar"
         btnModificarLimpieza.addActionListener(e -> {
           
-            JOptionPane.showMessageDialog(null, "Datos actualizados para " + limpieza.getPersonalDNI());
+            JOptionPane.showMessageDialog(null, "Estado de la limpieza actualizado" + limpieza.getPersonalDNI());
         });
 
         return panelLimpiezaas;
@@ -112,7 +119,8 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         // Campos para el DNI
         JPanel panelDNI = new JPanel();
         JLabel lblDNI = new JLabel("DNI:");
-        JTextField txtDNI = new JTextField(String.valueOf(housekeeper.getDNI()), 20);
+        JLabel txtDNI = new JLabel(String.valueOf(housekeeper.getDNI()));
+        
         panelDNI.add(lblDNI );
         panelDNI.add(txtDNI);
         panel.add(panelDNI);
@@ -120,7 +128,8 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         // Campos para el nombre
         JPanel panelNombre = new JPanel();
         JLabel lblNombre = new JLabel("Nombre:");
-        JTextField txtNombre = new JTextField(housekeeper.getNombre(), 20);
+        JTextField txtNombre = new JTextField(housekeeper.getNombre()+" "+housekeeper.getApellido(), 20);
+        txtNombre.setEditable(false);
         panelNombre.add(lblNombre);
         panelNombre.add(txtNombre);
         panel.add(panelNombre);
@@ -129,14 +138,16 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         JPanel panelCorreo = new JPanel();
         JLabel lblCorreo = new JLabel("Correo:");
         JTextField txtCorreo = new JTextField(housekeeper.getDireccion(), 20);
+        txtCorreo.setEditable(false);
         panelCorreo.add(lblCorreo);
         panelCorreo.add(txtCorreo);
         panel.add(panelCorreo);
         
-        // Campos para la dirección (Telefono)
+        // Campos  (Telefono)
         JPanel panelDireccion = new JPanel();
         JLabel lblDireccion = new JLabel("Telefono:");
         JTextField txtDireccion = new JTextField(String.valueOf(housekeeper.getTelefono()), 20);
+        txtDireccion.setEditable(false);
         panelDireccion.add(lblDireccion);
         panelDireccion.add(txtDireccion);
         panel.add(panelDireccion);
@@ -147,11 +158,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
 
         // Acción del botón "Modificar"
         btnModificar.addActionListener(e -> {
-           /* huesped.setNombre(txtNombre.getText());
-            huesped.setDNI(txtDni.getText());
-            huesped.setCorreo(txtCorreo.getText());
-            huesped.setTelefono(txtDireccion.getText());
-            */JOptionPane.showMessageDialog(null, "Datos actualizados para " + housekeeper.getDNI());
+           JOptionPane.showMessageDialog(null, "Datos actualizados para " + housekeeper.getDNI());
         });
 
         return panel;
@@ -186,11 +193,13 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
+        PanelLimpieza.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17)));
+
         javax.swing.GroupLayout PanelLimpiezaLayout = new javax.swing.GroupLayout(PanelLimpieza);
         PanelLimpieza.setLayout(PanelLimpiezaLayout);
         PanelLimpiezaLayout.setHorizontalGroup(
             PanelLimpiezaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
         PanelLimpiezaLayout.setVerticalGroup(
             PanelLimpiezaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,6 +207,8 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         );
 
         jScrollPane1.setViewportView(PanelLimpieza);
+
+        PanelHousekeeper.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17)));
 
         javax.swing.GroupLayout PanelHousekeeperLayout = new javax.swing.GroupLayout(PanelHousekeeper);
         PanelHousekeeper.setLayout(PanelHousekeeperLayout);
@@ -217,9 +228,9 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

@@ -87,6 +87,8 @@ public class vistaAdministradorServicios extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Datos del servicio");
 
+        jPanel1.setBackground(new java.awt.Color(255, 127, 17));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Precio:");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);

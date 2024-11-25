@@ -8,13 +8,18 @@ import Persistencia.LimpiezaRepository;
 import Persistencia.PersonalRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+import java.awt.BorderLayout;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 import modelo.AmaDeLlaves;
 import modelo.Housekeeper;
@@ -43,7 +48,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         }
     }
     
-    public int seleccionarPedido(JTable Tabla) {
+    private int seleccionarPedido(JTable Tabla) {
         try {
             int fila = Tabla.getSelectedRow();
             // Verificar si se ha seleccionado una fila
@@ -117,7 +122,21 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
         Tabla.setModel(modelo);
     }
-    
+    private static JDialog createLoadingDialog() {
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Cargando...");
+        dialog.setSize(200, 100);
+        dialog.setLocationRelativeTo(null);
+        dialog.setLayout(new BorderLayout());
+        JLabel label = new JLabel("Asignando limpiezas, por favor espere...", JLabel.CENTER);
+        JProgressBar progressBar = new JProgressBar();
+        progressBar.setIndeterminate(true); // Indicador de progreso continuo
+        dialog.add(label, BorderLayout.CENTER);
+        dialog.add(progressBar, BorderLayout.SOUTH);
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE); // Impide cerrar manualmente
+        dialog.setModal(true); // Bloquea la interacción con otras ventanas
+        return dialog;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -173,12 +192,13 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(45, 45, 44));
         jLabel4.setText("Datos de Housekeepers");
 
+        jPanel1.setBackground(new java.awt.Color(255, 127, 17));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dni.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         dni.setText("DNI:");
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Nombre.setText("Nombre:");
@@ -233,8 +253,8 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
-        jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 200, 40));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 90, 30));
+        jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 40));
         jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
 
         registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -283,6 +303,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
             }
         });
 
+        btnAsignar.setBackground(new java.awt.Color(255, 127, 17));
         btnAsignar.setText("Asignar Reservas");
         btnAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,19 +316,18 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btnToggle)
-                        .addGap(64, 64, 64)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btnToggle)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(72, 72, 72)
+                            .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -318,42 +338,32 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
                         .addComponent(deshabilitarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(971, Short.MAX_VALUE)))
+                .addGap(44, 44, 44))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deshabilitarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnToggle)
-                            .addComponent(jButton1))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel4)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(btnToggle)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel4)
-                    .addContainerGap(454, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deshabilitarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -475,7 +485,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int idHousekeeper = seleccionarPedido(Tabla);
-        vistaDatosLimpieza vistaLimpiezas = new vistaDatosLimpieza(idHousekeeper);
+        vistaDatosLimpieza_A vistaLimpiezas = new vistaDatosLimpieza_A(idHousekeeper);
         vistaLimpiezas.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -490,10 +500,39 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
         int resultado = JOptionPane.showConfirmDialog(null, "¿Deseas continuar?", "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
 
-        if (resultado == JOptionPane.YES_OPTION) {    
-            amaLlaves.asignarLimpiezas();
-            JOptionPane.showMessageDialog(null, "Las limpiezas han sido asignadas correctamente en la BD.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            btnAsignar.setEnabled(false); 
+        if (resultado == JOptionPane.YES_OPTION) { 
+            JDialog loadingDialog = createLoadingDialog();
+            
+            // Crear un SwingWorker para manejar la tarea pesada
+                SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        // Simula la tarea pesada
+                        amaLlaves.asignarLimpiezas(); // Aquí va tu lógica que toma tiempo
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        // Cierra el diálogo de carga al terminar
+                        loadingDialog.dispose();
+
+                        // Mostrar mensaje de éxito
+                        JOptionPane.showMessageDialog(null, 
+                            "Las limpiezas han sido asignadas correctamente en la BD.", 
+                            "Éxito", 
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                        // Deshabilitar el botón
+                        btnAsignar.setEnabled(false);
+                    }
+                };
+                worker.execute();
+
+                // Mostrar el diálogo
+                loadingDialog.setVisible(true);
+            
+            
         }
     }//GEN-LAST:event_btnAsignarActionPerformed
 

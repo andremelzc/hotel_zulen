@@ -4,10 +4,15 @@
  */
 package vista.Admin;
 
+import Persistencia.DatabaseConnection;
 import Persistencia.HabitacionRepository;
 import Persistencia.TipoHabitacionRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -16,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Habitacion;
 import modelo.Reservacion;
 import modelo.TipoDeHabitacion;
-import vista.VistaDatosReserva;
+import vista.VistaDatosReserva_RA;
 
 /**
  *
@@ -37,22 +42,47 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         configurar(habitacionesTable);
         
     }
-    
-    private void mostrarTabla(List<Habitacion> listaHab){
-        
+    public void mostrarTabla (String Piso,String Tipo){
         modelo.setRowCount(0);
-        
-        for (Habitacion hab : listaHab) {
-            Object[] fila = {
-                hab.getId(),
-                hab.getTipoHabitacion().getConcepto(),
-                hab.getPiso(),
-                hab.getEstado()
-            };
-            modelo.addRow(fila);
+        StringBuilder sql = new StringBuilder("SELECT * FROM habitaciones WHERE 1=1");
+
+        // Construcción dinámica de la consulta
+        if (!"Ninguno".equalsIgnoreCase(Piso)) {
+            sql.append(" AND Piso = ?");
+        }
+        if (!"Ninguno".equalsIgnoreCase(Tipo)) {
+            sql.append(" AND TIPO_HAB_idCategoria = (SELECT idCategoria FROM tipo_hab WHERE Concepto = ?)");
         }
 
-        habitacionesTable.setModel(modelo);
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
+
+            int paramIndex = 1;
+
+            // Seteo de parámetros en PreparedStatement
+            if (!"ninguno".equalsIgnoreCase(Piso)) {
+                stmt.setInt(paramIndex++, Integer.parseInt(Piso));
+            }
+            if (!"ninguno".equalsIgnoreCase(Tipo)) {
+                stmt.setString(paramIndex++, Tipo);
+            }
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Object filas [] = {
+                    rs.getInt("idHabitaciones"),
+                        rs.getInt("TIPO_HAB_idCategoria"),
+                        rs.getString("Piso"),
+                        rs.getString("Estado")
+                };
+                modelo.addRow(filas);
+            }
+            habitacionesTable.setModel(modelo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
     private void MostrarTabla(Habitacion habitacion){
@@ -76,11 +106,11 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
                 if (filaSeleccionada >= 0) {
                     idHabitacione = Integer.parseInt(habitacionesTable.getValueAt(filaSeleccionada, 0).toString());
                     estado =  habitacionesTable.getValueAt(filaSeleccionada, 3).toString();
-                    if("Disponible".equalsIgnoreCase(estado)){
-                        btnVerReserva.setEnabled(false);
+                    if("Ocupado".equalsIgnoreCase(estado)){
+                        btnVerReserva.setEnabled(true);
                     }
                     else{
-                        btnVerReserva.setEnabled(true);
+                        btnVerReserva.setEnabled(false);
                     }
                 } 
             }
@@ -134,11 +164,13 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(habitacionesTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 610, 320));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 610, 320));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Datos de habitación");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 127, 17));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Tipo:");
@@ -239,16 +271,16 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 410, 150, 50));
 
         jLabel5.setText("Piso: ");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
 
         JPiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "2", "3", "4", "5", "6", "7", " " }));
-        add(JPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        add(JPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
 
         jLabel6.setText("Tipo: ");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
 
         tipoHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Estandard", "Doble", "Suite", "Business" }));
-        add(tipoHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
+        add(tipoHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, -1));
 
         filtro.setText("Filtrar");
         filtro.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +288,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
                 filtroActionPerformed(evt);
             }
         });
-        add(filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
+        add(filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
 
         btnVerReserva.setText("Ver Reserva");
         btnVerReserva.addActionListener(new java.awt.event.ActionListener() {
@@ -264,7 +296,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
                 btnVerReservaActionPerformed(evt);
             }
         });
-        add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 160, -1));
+        add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 160, -1));
 
         btnVerLimpieza.setText("Ver Limpieza");
         btnVerLimpieza.addActionListener(new java.awt.event.ActionListener() {
@@ -272,7 +304,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
                 btnVerLimpiezaActionPerformed(evt);
             }
         });
-        add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 180, -1));
+        add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 180, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBotonActionPerformed
@@ -315,7 +347,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         // TODO add your handling code here:
         int fila = habitacionesTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) habitacionesTable.getModel();
-
+        numHab.setText(model.getValueAt(fila,0).toString());
         tipoField.setText(model.getValueAt(fila, 1).toString());
         pisoField.setText(model.getValueAt(fila, 2).toString());
         estadoField.setText(model.getValueAt(fila, 3).toString());
@@ -328,10 +360,8 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
-        Habitacion hab = new Habitacion();
-        List<Habitacion> listaHab = new ArrayList<>();
-        listaHab = hab.obtenerListaXPisoANDTipo((String) JPiso.getSelectedItem(),(String) tipoHab.getSelectedItem());
-        mostrarTabla(listaHab);
+
+        mostrarTabla((String) JPiso.getSelectedItem(),(String) tipoHab.getSelectedItem());
 
     }//GEN-LAST:event_filtroActionPerformed
 
@@ -340,7 +370,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
        int id = reserva.obteneridReservaXidHabitacion(idHabitacione);
        if(id !=0 ){
            System.out.println("id seleccionado: "+id);
-           VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
+           VistaDatosReserva_RA vistaDatos = new VistaDatosReserva_RA (id);
            vistaDatos.setVisible(true);
        }else{
            System.out.println("No se encuentra reserva asociada");
@@ -349,7 +379,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVerReservaActionPerformed
 
     private void btnVerLimpiezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerLimpiezaActionPerformed
-       vistaDatosLimpieza_Habitacion vistaHabLimpie = new vistaDatosLimpieza_Habitacion(idHabitacione);
+       vistaDatosLimpieza_Habitacion_AL vistaHabLimpie = new vistaDatosLimpieza_Habitacion_AL(idHabitacione);
        vistaHabLimpie.setVisible(true);
     }//GEN-LAST:event_btnVerLimpiezaActionPerformed
 

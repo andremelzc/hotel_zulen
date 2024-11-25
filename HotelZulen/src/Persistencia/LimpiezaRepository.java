@@ -158,6 +158,7 @@ public class LimpiezaRepository implements IRepository<Limpieza> {
                     limpieza.setFechaLimpieza(rs.getDate("FechaLimpieza").toLocalDate());
                     limpieza.setTipoLimpieza(rs.getString("TipoLimpieza"));
                     limpieza.setEstadoLimpieza(rs.getString("estadoLimpieza"));
+                    limpieza.setPersonalDNI(dni);
                     limpiezas.add(limpieza);
                 }
             }

@@ -61,6 +61,8 @@ public class vistaAdministrador extends javax.swing.JFrame {
 
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelIzquierda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17), 2));
+
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         iniciarSesion.setText("Hotel Zulen");
@@ -130,7 +132,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                 .addComponent(iniciarSesion)
                 .addGap(42, 42, 42)
                 .addComponent(personalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(serviciosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,10 +157,10 @@ public class vistaAdministrador extends javax.swing.JFrame {
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(iniciarSesion)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 120));
+        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1290, 120));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);

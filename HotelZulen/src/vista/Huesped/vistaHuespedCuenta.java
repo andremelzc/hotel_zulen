@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import modelo.Huesped;
-import vista.VistaDatosReserva;
+import vista.VistaDatosReserva_RA;
 
 /**
  *
@@ -141,7 +141,7 @@ public class vistaHuespedCuenta extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       VistaDatosReserva vistaDatos = new VistaDatosReserva(idReservaElegida);
+       VistaDatosReserva_RA vistaDatos = new VistaDatosReserva_RA(idReservaElegida);
        vistaDatos.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

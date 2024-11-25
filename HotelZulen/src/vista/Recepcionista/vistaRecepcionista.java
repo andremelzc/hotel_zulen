@@ -61,7 +61,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
 
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelIzquierda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 204)));
+        panelIzquierda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17), 2));
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -132,7 +132,7 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                 .addComponent(iniciarSesion)
                 .addGap(119, 119, 119)
                 .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,23 +154,23 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(iniciarSesion)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 120));
+        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1290, 120));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGap(0, 1290, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1280, 520));
+        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 120, 1290, 520));
 
         cerrarSesion.setBackground(new java.awt.Color(239, 35, 60));
         cerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

@@ -6,13 +6,12 @@ package vista;
 
 import Persistencia.DatabaseConnection;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import javax.swing.JComboBox;
+
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import modelo.ServiciosAdicionales;
@@ -46,6 +45,7 @@ public class VistaDatosReservaMODServicios extends javax.swing.JFrame {
         }
         TablaServicios.setModel(modeloServicio);
     }
+    
     private void mostrarServiciosEnComboBox (){
         String sql = "SELECT NombreServicio FROM servicios_adicionales";
         try (Connection conexion = DatabaseConnection.getConnection();
@@ -60,9 +60,32 @@ public class VistaDatosReservaMODServicios extends javax.swing.JFrame {
             System.err.println("Error al obtener los servicios adicionales: " + e.getMessage());
         }
     }
-    private int seleccionarPedido(){
-        return 0;
+    
+    private void RegistrarServicioEnTabla(String servicio){
+        String sql = "SELECT idSERVICIOS_UNICO, NombreServicio, Costo FROM servicios_adicionales WHERE NombreServicio = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, servicio);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Object fila[] = {
+                    rs.getInt("idSERVICIOS_UNICO"),
+                    rs.getString("NombreServicio"),
+                    rs.getDouble("Costo")
+                    };
+                modeloServicio.addRow(fila);
+            }
+            TablaServicios.setModel(modeloServicio);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+       
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,9 +101,16 @@ public class VistaDatosReservaMODServicios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17)));
+
         jLabel1.setText("Servicio :");
 
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -100,9 +130,9 @@ public class VistaDatosReservaMODServicios extends javax.swing.JFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(jButton2)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +143,7 @@ public class VistaDatosReservaMODServicios extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         TablaServicios.setModel(new javax.swing.table.DefaultTableModel(
@@ -161,8 +191,13 @@ public class VistaDatosReservaMODServicios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        int fila = TablaServicios.getSelectedRow();
+        modeloServicio.removeRow(fila);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        RegistrarServicioEnTabla((String)jComboBox1.getSelectedItem());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 

@@ -19,17 +19,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
+import javax.swing.border.TitledBorder;
 import modelo.Habitacion;
 import modelo.Huesped;
 import modelo.Reservacion;
 import modelo.ServiciosAdicionales;
 
-public class VistaDatosReserva extends javax.swing.JFrame {
+public class VistaDatosReserva_RA extends javax.swing.JFrame {
 
     private static Reservacion reservaActual;
     
-    public VistaDatosReserva(int idReserva) {
+    public VistaDatosReserva_RA(int idReserva) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -37,8 +39,15 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         this.add(scrollPane);
         reservaActual = obtenerReserva(idReserva);
         mostrarDatos(reservaActual);
-        // Crear un JScrollPane que envuelve al JPanel
-        scrollHuesped.setViewportView(panelHuesped);
+        TitledBorder titledBorder1 = BorderFactory.createTitledBorder("HUESPEDES ASIGNADOS");
+        titledBorder1.setTitleJustification(TitledBorder.CENTER);
+        scrollHuesped.setBorder(titledBorder1);
+        TitledBorder titledBorder2 = BorderFactory.createTitledBorder("HABITACIONES ASIGNADAS");
+        titledBorder2.setTitleJustification(TitledBorder.CENTER);
+        scrollHabitacion.setBorder(titledBorder2);
+        TitledBorder titledBorder3 = BorderFactory.createTitledBorder("SERVICIOS ASIGNADAS");
+        titledBorder3.setTitleJustification(TitledBorder.CENTER);
+        scrollServicios.setBorder(titledBorder3);
         imprimirHuespedesEnSegundoPlano(idReserva);
         imprimirHabitacionesEnSegundoPlano(idReserva);
         imprimirServiciosEnSegundoPlano(idReserva);
@@ -76,6 +85,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17)));
         jPanel2.setForeground(new java.awt.Color(255, 51, 51));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -88,6 +98,12 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         jLabel7.setText("Desde : ");
 
         jLabel8.setText("Hasta: ");
+
+        Desde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DesdeActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Número de habitaciones: ");
 
@@ -114,104 +130,109 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(CheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Modificar)
+                            .addComponent(NumHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Titular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(Titular, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(FechaCreacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(NumHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(157, 157, 157))
+                                .addComponent(FechaCreacion, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
+                        .addGap(35, 35, 35)))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(CheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(Modificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(14, 14, 14))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Hasta))
+                                .addGap(22, 22, 22)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(Desde, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Desde, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(4, 4, 4)
+                                .addComponent(Hasta, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
+                        .addContainerGap(37, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CheckIN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(56, 56, 56))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckIN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(Desde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(Hasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CheckIN, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(Titular, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(FechaCreacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(FechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(Desde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(Hasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CheckIN, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(NumHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CheckIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 14, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Modificar)
+                            .addComponent(CheckIn))))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
+        panelHuesped.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17)));
         panelHuesped.setLayout(new javax.swing.BoxLayout(panelHuesped, javax.swing.BoxLayout.Y_AXIS));
         scrollHuesped.setViewportView(panelHuesped);
 
+        panelHabitacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17)));
         panelHabitacion.setLayout(new javax.swing.BoxLayout(panelHabitacion, javax.swing.BoxLayout.Y_AXIS));
         scrollHabitacion.setViewportView(panelHabitacion);
 
+        panelServicios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 127, 17)));
         panelServicios.setLayout(new javax.swing.BoxLayout(panelServicios, javax.swing.BoxLayout.Y_AXIS));
         scrollServicios.setViewportView(panelServicios);
 
@@ -219,7 +240,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 574, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(scrollHabitacion)
             .addComponent(scrollHuesped)
             .addComponent(scrollServicios)
@@ -227,17 +248,17 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(37, 37, 37)
-                .addComponent(scrollHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scrollHuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -262,6 +283,10 @@ public class VistaDatosReserva extends javax.swing.JFrame {
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ModificarActionPerformed
+
+    private void DesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DesdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DesdeActionPerformed
     private Reservacion obtenerReserva(int idReserva){
         Reservacion reserva = new Reservacion();
         return reserva.obtenerReserva(idReserva);
@@ -284,7 +309,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         // Campos para el DNI
         JPanel panelDni = new JPanel();
         JLabel lblDni = new JLabel("DNI:");
-        JTextField txtDni = new JTextField(String.valueOf(huesped.getDNI()), 20);
+        JLabel txtDni = new JLabel(String.valueOf(huesped.getDNI()));
         panelDni.add(lblDni);
         panelDni.add(txtDni);
         panel.add(panelDni);
@@ -359,16 +384,14 @@ public class VistaDatosReserva extends javax.swing.JFrame {
 
         // Acción del botón "Modificar"
         btnModificar.addActionListener(e -> {
-           /* huesped.setNombre(txtNombre.getText());
-            huesped.setDNI(txtDni.getText());
-            huesped.setCorreo(txtCorreo.getText());
-            huesped.setTelefono(txtDireccion.getText());
-            */JOptionPane.showMessageDialog(null, "Datos actualizados para " + huesped.getNombre());
+          
+            JOptionPane.showMessageDialog(null, "Datos actualizados para " + huesped.getNombre());
         });
 
         return panel;
     }
 }
+    
     private JPanel crearPanelHabitacion (Habitacion hab){
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -378,7 +401,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         // Campos para el Numero de habitacion
         JPanel panelNumHab = new JPanel();
         JLabel lblNum = new JLabel("Numero de habitacion:");
-        JTextField txtNum = new JTextField(String.valueOf(hab.getId()), 20);
+        JLabel txtNum = new JLabel(String.valueOf(hab.getId()));
         panelNumHab.add(lblNum);
         panelNumHab.add(txtNum);
         panel.add(panelNumHab);
@@ -386,7 +409,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         // Campos para el tipo de Habitacion
         JPanel panelTipoHab = new JPanel();
         JLabel lblNombre = new JLabel("Tipo habitacion:");
-        JTextField txtNombre = new JTextField(hab.getTipoHabitacion().getConcepto(), 20);
+        JLabel txtNombre = new JLabel(hab.getTipoHabitacion().getConcepto());
         panelTipoHab.add(lblNombre);
         panelTipoHab.add(txtNombre);
         panel.add(panelTipoHab);
@@ -394,7 +417,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         // Campos para el Piso
         JPanel panelPiso = new JPanel();
         JLabel lblPiso = new JLabel("Piso:");
-        JTextField txtPiso = new JTextField(String.valueOf(hab.getPiso()), 20);
+        JLabel txtPiso = new JLabel(String.valueOf(hab.getPiso()));
         panelPiso.add(lblPiso);
         panelPiso.add(txtPiso);
         panel.add(panelPiso);
@@ -414,7 +437,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         // Campos para el concepto
         JPanel panelNumHab = new JPanel();
         JLabel lblNum = new JLabel("Concepto:");
-        JTextField txtNum = new JTextField(servicio.getConcepto(), 20);
+        JLabel txtNum = new JLabel(servicio.getConcepto());
         panelNumHab.add(lblNum);
         panelNumHab.add(txtNum);
         panel.add(panelNumHab);
@@ -422,7 +445,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         // Campos para el costo
         JPanel panelTipoHab = new JPanel();
         JLabel lblNombre = new JLabel("Costo:");
-        JTextField txtNombre = new JTextField(String.valueOf(servicio.getCosto()), 20);
+        JLabel txtNombre = new JLabel(String.valueOf(servicio.getCosto()));
         panelTipoHab.add(lblNombre);
         panelTipoHab.add(txtNombre);
         panel.add(panelTipoHab);
@@ -432,6 +455,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         return panel;
         
     }
+    
     private void mostrarDatos(Reservacion reserva){
         Huesped huespedTitular = new Huesped();
         
@@ -463,10 +487,12 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         List<Huesped > listaHuesped = repoReservaHuesped.obtenerHuespedesPorReserva(idReserva);
         System.out.println("Cantidad de huespedes encontrados: " + listaHuesped.size());
         panelHuesped.setLayout((new BoxLayout(panelHuesped, BoxLayout.Y_AXIS)));
-        panelHuesped.setBorder(BorderFactory.createTitledBorder("HUESPEDES ASIGNADOS"));
+        
         for (Huesped huesped : listaHuesped) {
             JPanel panelIndividual = crearPanelHuesped(huesped);
             panelHuesped.add(panelIndividual);
+            panelHuesped.revalidate(); // Reorganiza el diseño
+            panelHuesped.repaint();    // Redibuja para reflejar los cambios
         }
     }
     private void ImprimirHabitaciones(int idReserva){
@@ -474,7 +500,6 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         List<Habitacion > listaHabitacion = repoReservaHab.obtenerHabitacionesPorReservacion(idReserva);
         System.out.println("Cantidad de servicios encontrados: " + listaHabitacion.size());
         panelHabitacion.setLayout((new BoxLayout(panelHabitacion, BoxLayout.Y_AXIS)));
-        panelHabitacion.setBorder(BorderFactory.createTitledBorder("HABITACIONES ASIGNADAS"));
         
         JPanel panelBtn = new JPanel();
         panelBtn.setLayout(new BoxLayout(panelBtn, BoxLayout.X_AXIS));
@@ -483,6 +508,8 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         
         botonModificar.addActionListener(e -> {
             System.out.println("Botón 'Modificar registros' presionado.");
+            VistaDatosReservaMODHabitaciones vistaMod = new VistaDatosReservaMODHabitaciones(listaHabitacion);
+            vistaMod.setVisible(true);
             
         });
         panelBtn.add(botonModificar);
@@ -491,6 +518,8 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         for (Habitacion habitacion : listaHabitacion) {
             JPanel panelIndividual = crearPanelHabitacion(habitacion);
             panelHabitacion.add(panelIndividual);
+            panelHabitacion.revalidate(); // Reorganiza el diseño
+            panelHabitacion.repaint();    // Redibuja para reflejar los cambios
         }
     }
     private void ImprimirServicios(int idReserva){
@@ -498,7 +527,7 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         List<ServiciosAdicionales> listaServicios =repoReservaServicio.obtenerServiciosXIdReserva(idReserva);
         System.out.println("Cantidad de servicios encontrados: " + listaServicios.size());
         panelServicios.setLayout((new BoxLayout(panelServicios, BoxLayout.Y_AXIS)));        
-        panelServicios.setBorder(BorderFactory.createTitledBorder("SERVICIOS ASIGNADAS"));
+        
         
         JPanel panelBtn = new JPanel();
         panelBtn.setLayout(new BoxLayout(panelBtn, BoxLayout.X_AXIS));
@@ -515,7 +544,10 @@ public class VistaDatosReserva extends javax.swing.JFrame {
         
         for (ServiciosAdicionales servicios : listaServicios) {
             JPanel panelIndividual = crearPanelServicios(servicios);
-        panelServicios.add(panelIndividual);
+            panelServicios.add(panelIndividual);
+            panelServicios.revalidate(); // Reorganiza el diseño
+            panelServicios.repaint();    // Redibuja para reflejar los cambios
+            
         }
         
     }

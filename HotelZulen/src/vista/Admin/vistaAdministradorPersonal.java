@@ -116,6 +116,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         jLabel4.setText("Datos de personal");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, 241, -1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 127, 17));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dni.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -135,7 +136,6 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
 
-        apellidoField.setBackground(new java.awt.Color(70, 73, 75));
         apellidoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apellidoFieldActionPerformed(evt);

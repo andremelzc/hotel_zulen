@@ -62,8 +62,8 @@ public class Habitacion  {
         this.estado = estado;
     }
 
-    public Habitacion obtenerxTipo(int tipoHabitacion){
-        return repo.obtenerxTipo(tipoHabitacion);
+    public Habitacion obtenerxTipo(int tipoHabitacion,String FechaInicio,String FechaFinal){
+        return repo.obtenerxTipo(tipoHabitacion,FechaInicio,FechaFinal);
     }
     
     public List<Habitacion> obtenerListaXPisoANDTipo(String piso,String tipoHab){

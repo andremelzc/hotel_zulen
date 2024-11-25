@@ -6,7 +6,7 @@ package vista;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
-import vista.VistaDatosReserva;
+import vista.VistaDatosReserva_RA;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -74,10 +74,10 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Filtro:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, -1, -1));
 
         jLabel2.setText("Nombre");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,7 +96,7 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 1050, 240));
 
         desplegable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "confirmada", "vigente", "cancelada", "finalizada" }));
-        add(desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 130, -1));
+        add(desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 130, -1));
 
         jLabel3.setText("DNI del huesped: ");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
@@ -116,8 +116,8 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 250, -1, -1));
-        add(nombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 180, 20));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, -1, -1));
+        add(nombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 180, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -128,7 +128,7 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
        Reservacion reserva = new Reservacion();
        int id = reserva.seleccionarReserva(Tabla);
        System.out.println("id seleccionado: "+id);
-       VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
+       VistaDatosReserva_RA vistaDatos = new VistaDatosReserva_RA (id);
        vistaDatos.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

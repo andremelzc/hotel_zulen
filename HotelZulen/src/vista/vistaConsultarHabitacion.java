@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Habitacion;
 import modelo.Reservacion;
 
-import vista.Admin.vistaDatosLimpieza_Habitacion;
+import vista.Admin.vistaDatosLimpieza_Habitacion_AL;
 
 /**
  *
@@ -146,7 +146,9 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Datos de habitación");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 127, 17));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Tipo:");
@@ -163,7 +165,6 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Numero de habitacion: ");
 
-        jButton2.setBackground(new java.awt.Color(239, 35, 60));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -218,9 +219,8 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
                 .addGap(23, 23, 23))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 490, 330));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 490, 330));
 
-        cancelarBoton.setBackground(new java.awt.Color(239, 35, 60));
         cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancelarBoton.setText("Cancelar");
         cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +228,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
                 cancelarBotonActionPerformed(evt);
             }
         });
-        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 390, 150, 50));
+        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 400, 150, 50));
 
         jLabel9.setText("Piso: ");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
@@ -256,7 +256,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
                 btnVerReservaActionPerformed(evt);
             }
         });
-        add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 160, -1));
+        add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 160, -1));
 
         btnVerLimpieza.setText("Ver Limpieza");
         btnVerLimpieza.addActionListener(new java.awt.event.ActionListener() {
@@ -264,7 +264,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
                 btnVerLimpiezaActionPerformed(evt);
             }
         });
-        add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 180, -1));
+        add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 180, -1));
 
         habitacionesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -284,7 +284,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(habitacionesTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 610, 320));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 580, 280));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -327,7 +327,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
             System.out.println("No se encuentra reserva asociada");
         }
 
-        VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
+        VistaDatosReserva_RA vistaDatos = new VistaDatosReserva_RA (id);
         vistaDatos.setVisible(true);
     }//GEN-LAST:event_btnVerReservaActionPerformed
 
@@ -342,7 +342,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
     }//GEN-LAST:event_habitacionesTableMouseClicked
 
     private void btnVerLimpiezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerLimpiezaActionPerformed
-        vistaDatosLimpieza_Habitacion vistaHabLimpie = new vistaDatosLimpieza_Habitacion(idHabitacione);
+        vistaDatosLimpieza_Habitacion_AL vistaHabLimpie = new vistaDatosLimpieza_Habitacion_AL(idHabitacione);
        vistaHabLimpie.setVisible(true);
     }//GEN-LAST:event_btnVerLimpiezaActionPerformed
 

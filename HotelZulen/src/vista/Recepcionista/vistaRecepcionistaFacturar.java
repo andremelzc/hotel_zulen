@@ -52,7 +52,7 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
     String sql = "SELECT reservaciones.idReservaciones " +
                  "FROM reservaciones_has_huespedes " +
                  "JOIN reservaciones ON reservaciones_has_huespedes.RESERVACIONES_idReservaciones = reservaciones.idReservaciones " +
-                 "WHERE reservaciones_has_huespedes.HUESPEDES_DNI = ? AND reservaciones.CheckIn IS NOT NULL";
+                 "WHERE reservaciones_has_huespedes.HUESPEDES_DNI = ? AND reservaciones.CheckIn IS NOT NULL AND reservaciones.Estado <> 'finalizada' ";
 
     try (Connection connection = DatabaseConnection.getConnection();
          PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -105,56 +105,58 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         try (ResultSet rs = stmt.executeQuery()) {
             if (rs.next()) {
                 StringBuilder resumen = new StringBuilder();
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-                resumen.append("                                    BOLETA\n");
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-
+                 // Encabezado del Hotel
+                resumen.append("===========================================\n");
+                resumen.append("                  Hotel Zulen\n");
+                resumen.append("                  Av. Amezaga\n");
+                resumen.append("               RUC: 69435678901\n");
+                resumen.append("-------------------------------------------\n");
+                resumen.append("               BOLETA DE VENTA\n");
+                resumen.append("-------------------------------------------\n");
+                
                 // Información del titular y fechas
-                resumen.append(String.format("Titular: %-40s Fecha de Inicio: %s\n",
-                    rs.getString("NombreHuesped") + " " + rs.getString("ApellidosHuesped"),
+                resumen.append(String.format("Titular: %s %s\n", 
+                    rs.getString("NombreHuesped"), rs.getString("ApellidosHuesped")));
+                resumen.append(String.format("Fecha de Inicio: %s\n", 
                     rs.getTimestamp("FechaInicio").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
-                resumen.append(String.format("Fecha de Fin: %s\n",
+                resumen.append(String.format("Fecha de Fin: %s\n", 
                     rs.getTimestamp("FechaFinal").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
+                resumen.append("-------------------------------------------\n");
 
-                // Detalle de Habitaciones
+               // Detalle de Habitaciones
                 resumen.append("Detalle de Habitaciones\n");
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-                resumen.append(String.format("%-15s %-10s %-12s %-12s\n", "Habitación", "Piso", "Tipo", "Precio"));
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
+                resumen.append("-------------------------------------------\n");
+                resumen.append(String.format("%-5s %-5s %-10s %-8s\n", "Hab", "Piso", "Tipo", "Precio"));
                 String detalleHabitaciones = rs.getString("DetalleHabitaciones");
                 if (detalleHabitaciones != null) {
-                    String[] habitaciones = detalleHabitaciones.split("\n");
-                    for (String habitacion : habitaciones) {
+                    for (String habitacion : detalleHabitaciones.split("\n")) {
                         String[] parts = habitacion.split(" ");
-                        if (parts.length == 4) {
-                            resumen.append(String.format("%-15s %-10s %-12s %-12s\n", parts[0], parts[1], parts[2], parts[3]));
-                        }
+                        resumen.append(String.format("%-5s %-5s %-10s %-8s\n", parts[0], parts[1], parts[2], parts[3]));
                     }
                 } else {
                     resumen.append("No hay habitaciones asociadas a esta reserva\n");
                 }
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-
+                resumen.append("-------------------------------------------\n");
+                
                 // Detalle de Servicios
                 resumen.append("Detalle de Servicios\n");
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-                resumen.append(String.format("%-20s %-10s\n", "Servicio", "Costo"));
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
+                resumen.append("-------------------------------------------\n");
+                resumen.append(String.format("%-15s %-10s\n", "Servicio", "Costo"));
                 String detalleServicios = rs.getString("DetalleServicios");
                 if (detalleServicios != null) {
-                    String[] Servicios = detalleServicios.split("\n");
-                    for (String servicio : Servicios) {
-                        String[] partecitas = servicio.split(" ");
-                        if (partecitas.length == 2) {
-                            resumen.append(String.format("%-20s %-10s\n", partecitas[0], partecitas[1]));
-                        }
+                    for (String servicio : detalleServicios.split("\n")) {
+                        String[] parts = servicio.split(" ");
+                        resumen.append(String.format("%-15s %-10s\n", parts[0], parts[1]));
                     }
                 } else {
-                    resumen.append("No hay habitaciones asociadas a esta reserva\n");
+                    resumen.append("No hay servicios adicionales asociados a esta reserva\n");
                 }
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-
+                resumen.append("-------------------------------------------\n");
+                // Totales
+                resumen.append("Saldo a pagar: $0.00\n");
+                resumen.append("-------------------------------------------\n");
+                resumen.append("               DETALLE DE CONSUMOS\n");
+                resumen.append("-------------------------------------------\n");
                 // Mostrar en el JTextArea
                 jTextArea1.setText(resumen.toString());
             } else {
@@ -172,8 +174,8 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
     private int cargarCuentaEnJText(int idReservaElegida){
         int PagoCheckOut = 0;
         String encabezados = String.format(
-            "%-15s %-20s %-10s %-20s %-15s %-15s\n",
-            "Fecha de Envío", "Combo Descripción", "Habitación", "Cantidad", "Precio unitario", "Total"
+            " %-25s %-8s %-8s %-12s %-10s\n",
+            "Combo", "Hab.", "Cant", "Pre-unit", "Total"
         );
         jTextArea1.append(encabezados);
         jTextArea1.append("------------------------------------------------------------\n");
@@ -208,14 +210,17 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
                 double precioTotalCombo = rs.getDouble("PrecioTotalCombo");
 
                 String fila = String.format(
-                    "%-15s %-20s %-10d %-20s %-15.2f %-15.2f\n",
-                    fechaEnvio.toString(), descripcionCombo, idHabitacion, cantidad, precioTotalCombo, precioTotalCombo * cantidad
+                    " %-25s %-8d %-8d %-12.2f %-10.2f\n",
+                    descripcionCombo, idHabitacion, cantidad, precioTotalCombo, precioTotalCombo * cantidad
                 );
                 PagoCheckOut = (int) (PagoCheckOut + (precioTotalCombo * cantidad)); 
                 jTextArea1.append(fila);
             }
-            
-            System.out.println("\tTOTAL A PAGAR: "+PagoCheckOut);
+             jTextArea1.append("------------------------------------------------------------\n");
+             jTextArea1.append(String.format("Total a pagar: $%.2f\n", (double) PagoCheckOut));
+             jTextArea1.append(String.format("IGV (18%%):     $%.2f\n", PagoCheckOut * 0.18));
+             jTextArea1.append(String.format("Total Final:   $%.2f\n", PagoCheckOut * 1.18));
+             jTextArea1.append("===========================================\n");
 
         } catch (SQLException e) {
             System.out.println("Error al obtener los pedidos: " + e.getMessage());
@@ -257,6 +262,12 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         });
 
         jLabel2.setText("Reserva");
+
+        desplegableReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desplegableReservasActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -427,6 +438,10 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
             repo.setFinalizada(idReservaElegida);
         }            
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void desplegableReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desplegableReservasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_desplegableReservasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
