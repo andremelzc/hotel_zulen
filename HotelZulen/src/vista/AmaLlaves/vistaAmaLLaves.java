@@ -199,14 +199,14 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
 
     private void houseKeepersBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseKeepersBotonActionPerformed
         // TODO add your handling code here:
-        vistaAmaLLavesHouseKeeper amaLLavesHouseKeeper = new vistaAmaLLavesHouseKeeper(amaLlaves);
+        vistaAmaLLavesHousekeeperCRUD amaLLavesHouseKeeper = new vistaAmaLLavesHousekeeperCRUD(amaLlaves);
         amaLLavesHouseKeeper.setSize(1280, 720);
         amaLLavesHouseKeeper.setLocation(0, 0);
         content.removeAll();
         content.add(amaLLavesHouseKeeper, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-        amaLLavesHouseKeeper.getBtnAsignar().doClick();
+        amaLLavesHouseKeeper.getBtnToggle().doClick();
     }//GEN-LAST:event_houseKeepersBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
