@@ -65,6 +65,11 @@ public class ConfirmarPago extends javax.swing.JFrame {
         jLabel4.setText("Metodo de pago > ");
 
         desplegable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Transferencia Bancaria", "Yape", "Plin" }));
+        desplegable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desplegableActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Pagar ahora");
 
@@ -122,6 +127,10 @@ public class ConfirmarPago extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void desplegableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desplegableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_desplegableActionPerformed
 
     
 

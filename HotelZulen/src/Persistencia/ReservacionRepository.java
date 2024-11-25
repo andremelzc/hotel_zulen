@@ -288,7 +288,42 @@ public class ReservacionRepository implements IRepository <Reservacion>{
         return reservas;
     }
     
+    public void setFinalizada(int idReserva) {
+        String sql = "UPDATE reservaciones SET Estado = 'Finalizada' WHERE idReservaciones = ?";
 
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            // Establecer el valor de idReserva en la consulta
+            stmt.setInt(1, idReserva);
+            // Ejecutar la actualización
+            int filasAfectadas = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+    
+    public void setFechaCheckOut(int idReserva) {
+        String sql = "UPDATE reservaciones SET CheckOut = CURDATE() WHERE idReservaciones = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            // Establecer el valor de idReserva en la consulta
+            stmt.setInt(1, idReserva);
+
+            // Ejecutar la actualización
+            int filasAfectadas = stmt.executeUpdate();
+
+            // Verificar si la actualización fue exitosa
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
 
 }
 

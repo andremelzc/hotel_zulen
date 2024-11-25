@@ -178,9 +178,12 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
                 datos[8] = rs.getString("FPedido");
                 datos[9] = rs.getString("FEnvio");
 
-                // Actualizamos el modelo de la tabla
-                Tabla.setModel(modelo);
-            }
+
+
+            // Actualizamos el modelo de la tabla
+            Tabla.setModel(modelo);
+            } 
+
         } catch (SQLException e) {
             System.out.println("No se pudo Mostrar la Tabla Habitacion-Combo");
             e.printStackTrace(); // Imprimir el stack trace para más detalles del error
@@ -211,6 +214,7 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
         Tabla.setModel(modelo);
 
         // Consulta SQL con espacios añadidos para evitar errores de sintaxis
+
         String consulta = "SELECT "
                 + "    rhhc.id_Pedido AS PedidoID, "
                 + "    h.idhabitaciones AS HabitacionID, "
@@ -327,5 +331,79 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
         }
 
     }
+    public void mostrarPedidoXReservacion(JTable Tabla, int idReservacion) {
+    // Configuramos el modelo de la tabla
+    DefaultTableModel modelo = new DefaultTableModel();
+    TableRowSorter<TableModel> ordenarTabla = new TableRowSorter<>(modelo);
+    Tabla.setRowSorter(ordenarTabla);
+
+    // Agrego los títulos de las columnas
+    modelo.addColumn("fechaPedido");
+    modelo.addColumn("ComboSolicitado");
+    modelo.addColumn("Habitacion");
+    modelo.addColumn("Cantidad");
+    modelo.addColumn("precioUnitario");
+    modelo.addColumn("Subtotal");
+
+    Tabla.setModel(modelo);
+
+    // Consulta SQL corregida
+    String consulta = "SELECT " +
+                      "    rhhc.FechaPedido AS fechaPedido, " +
+                      "    c.Descripcion AS ComboSolicitado, " +
+                      "    rhhc.RESERVA_has_HAB_HAB_idHabitaciones AS Habitacion, " +
+                      "    rhhc.cantPedido AS Cantidad, " +
+                      "    precioCombo.precioUnitario AS precioUnitario, " +
+                      "    rhhc.cantPedido * precioCombo.precioUnitario AS Subtotal " +
+                      "FROM " +
+                      "    reservaciones_has_habitaciones_has_combo rhhc " +
+                      "JOIN " +
+                      "    combo c ON rhhc.COMBO_idCOMBO = c.idCOMBO " +
+                      "JOIN " +
+                      "    (SELECT " +
+                      "         cc.COMBO_idCOMBO, " +
+                      "         SUM(consumibles.Precio) AS precioUnitario " +
+                      "     FROM " +
+                      "         combo_has_consumible cc " +
+                      "     JOIN " +
+                      "         consumible consumibles ON cc.CONSUMIBLE_idCONSUMIBLE = consumibles.idCONSUMIBLE " +
+                      "     GROUP BY cc.COMBO_idCOMBO) AS precioCombo " +
+                      "ON " +
+                      "    c.idCOMBO = precioCombo.COMBO_idCOMBO " +
+                      "WHERE " +
+                      "    rhhc.RESERVA_has_HAB_RESERVA_idReserva = ?;";
+
+    // Ajustamos el tamaño del arreglo 'datos' a 6 columnas
+    String[] datos = new String[6];
+
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(consulta)) {
+
+        // Pasar el parámetro dinámico a la consulta
+        stmt.setInt(1, idReservacion);
+
+        // Ejecutar la consulta
+        ResultSet rs = stmt.executeQuery();
+
+        // Procesamos los resultados
+        while (rs.next()) {
+            datos[0] = rs.getString("fechaPedido");
+            datos[1] = rs.getString("ComboSolicitado");
+            datos[2] = rs.getString("Habitacion");
+            datos[3] = rs.getString("Cantidad");
+            datos[4] = rs.getString("precioUnitario");
+            datos[5] = rs.getString("Subtotal");
+
+            modelo.addRow(datos);
+        }
+
+        // Actualizamos el modelo de la tabla
+        Tabla.setModel(modelo);
+
+    } catch (SQLException e) {
+        System.out.println("No se pudo Mostrar la Tabla Habitacion-Combo");
+        e.printStackTrace();
+    }
+}
 
 }

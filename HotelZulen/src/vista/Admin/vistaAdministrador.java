@@ -5,13 +5,12 @@
 package vista.Admin;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import modelo.Administrador;
 import static modelo.InicioSession.cerrarSesion;
-import vista.Recepcionista.vistaRecepcionistaFacturar;
-import vista.Recepcionista.vistaRecepcionistaRegistrar;
+
 import vista.vistaConsultarHuesped;
 
 /**
@@ -214,6 +213,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
     public JButton getPersonalBoton() {
         return personalBoton;
     }
+
 
     private void serviciosBotonMouseClicked(java.awt.event.MouseEvent evt) {
 

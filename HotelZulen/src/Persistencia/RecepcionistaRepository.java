@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import modelo.Boleta;
+import modelo.Reservacion;
 
 /**
  *
@@ -153,5 +154,88 @@ public class RecepcionistaRepository implements IRepository<Recepcionista> {
             System.out.println("Error al registrar la boleta: " + e.getMessage());
         }
     }
+    public Boleta obtenerBoleta(int idReserva) {
+    String sql = """
+        SELECT
+            MetodoPagoInicial,
+            PagoInicial,
+            EstadoInicial,
+            FechaPagoInicial
+        FROM pago
+        WHERE RESERVA_id = ?;
+    """;
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+        stmt.setInt(1, idReserva);  // Establecer el parámetro de idReserva
+        ResultSet rs = stmt.executeQuery();
+
+        // Verificar si la consulta devuelve un resultado
+        if (rs.next()) {
+            Boleta boleta = new Boleta();
+            Reservacion reservacion = new Reservacion(); 
+            reservacion.setIdReserva(idReserva); 
+            boleta.setReserva(reservacion); 
+            boleta.setMetodoPagoInicial(rs.getString("MetodoPagoInicial"));
+            boleta.setPagoInicial(rs.getDouble("PagoInicial"));
+            boleta.setEstadoInicial(rs.getString("EstadoInicial"));
+            boleta.setFechaPagoInicial(rs.getTimestamp("FechaPagoInicial").toLocalDateTime());
+            boleta.setMetodoPagoCheckOut(null);
+            boleta.setFechaPagoCheckOut(null);
+            boleta.setPagoCheckOut(null);
+            boleta.setEstadoPagoCheckOut(null);
+            return boleta;
+        } else {
+            System.out.println("No se encontró la boleta para la reserva con ID: " + idReserva);
+            return null;
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error al obtener la boleta: " + e.getMessage());
+        return null;
+    }
+}
+    public void actualizarBoleta(Boleta boleta) {
+    String sql = """
+        UPDATE pago
+        SET
+            MetodoPagoInicial = ?,
+            PagoInicial = ?,
+            EstadoInicial = ?,
+            FechaPagoInicial = ?,
+            MetodoPagoCheckOut = ?,
+            PagoCheckOut = ?,
+            EstadoPagoCheckOut = ?,
+            FechaPagoCheckOut = ?
+        WHERE RESERVA_id = ?;
+    """;
+
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+        // Establecer los valores de los parámetros del PreparedStatement
+        stmt.setString(1, boleta.getMetodoPagoInicial()); // MetodoPagoInicial
+        stmt.setDouble(2, boleta.getPagoInicial()); // PagoInicial
+        stmt.setString(3, boleta.getEstadoInicial()); // EstadoInicial
+        stmt.setTimestamp(4, Timestamp.valueOf(boleta.getFechaPagoInicial())); // FechaPagoInicial
+        stmt.setString(5, boleta.getMetodoPagoCheckOut()); // MetodoPagoCheckOut
+        stmt.setDouble(6, boleta.getPagoCheckOut()); // PagoCheckOut
+        stmt.setString(7, boleta.getEstadoPagoCheckOut()); // EstadoPagoCheckOut
+        stmt.setTimestamp(8, Timestamp.valueOf(boleta.getFechaPagoCheckOut())); // FechaPagoCheckOut
+        stmt.setInt(9, boleta.getReserva().getIdReserva()); // RESERVA_id
+
+        // Ejecutar la actualización
+        int filasActualizadas = stmt.executeUpdate();
+
+        if (filasActualizadas > 0) {
+            System.out.println("La boleta se actualizó correctamente.");
+        } else {
+            System.out.println("No se encontró la reserva para actualizar.");
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error al actualizar la boleta: " + e.getMessage());
+    }
+}
 
 }
