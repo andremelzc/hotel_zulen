@@ -61,9 +61,7 @@ public class vistaHuesped extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
@@ -141,7 +139,7 @@ public class vistaHuesped extends javax.swing.JFrame {
         });
         panelIzquierda.add(cuentaBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 25, 180, 45));
 
-        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 100));
+        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -166,7 +164,7 @@ public class vistaHuesped extends javax.swing.JFrame {
                 cerrarSesionActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 650, 220, 50));
+        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 650, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -35,6 +35,7 @@ public class vistaDatosLimpieza extends javax.swing.JFrame {
     public vistaDatosLimpieza(int idHousekeeper) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
+        this.setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         housekeeperActual = obtenerHousekeeper(idHousekeeper);
         JScrollPane scrollPane = new JScrollPane(jPanel1);
@@ -161,6 +162,12 @@ public class vistaDatosLimpieza extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel1.setBackground(null);
+
+        jScrollHousekeeper.setBackground(null);
+
+        PanelHousekeeper.setBackground(null);
+
         javax.swing.GroupLayout PanelHousekeeperLayout = new javax.swing.GroupLayout(PanelHousekeeper);
         PanelHousekeeper.setLayout(PanelHousekeeperLayout);
         PanelHousekeeperLayout.setHorizontalGroup(
@@ -174,6 +181,8 @@ public class vistaDatosLimpieza extends javax.swing.JFrame {
 
         jScrollHousekeeper.setViewportView(PanelHousekeeper);
 
+        jScrollPane2.setBackground(null);
+
         javax.swing.GroupLayout PanelLimpiezasLayout = new javax.swing.GroupLayout(PanelLimpiezas);
         PanelLimpiezas.setLayout(PanelLimpiezasLayout);
         PanelLimpiezasLayout.setHorizontalGroup(
@@ -186,6 +195,8 @@ public class vistaDatosLimpieza extends javax.swing.JFrame {
         );
 
         jScrollPane2.setViewportView(PanelLimpiezas);
+
+        PanelDatos.setBackground(null);
 
         javax.swing.GroupLayout PanelDatosLayout = new javax.swing.GroupLayout(PanelDatos);
         PanelDatos.setLayout(PanelDatosLayout);

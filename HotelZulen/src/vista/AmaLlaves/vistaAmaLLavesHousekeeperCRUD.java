@@ -144,15 +144,23 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         btnBuscar = new javax.swing.JButton();
         dniField = new javax.swing.JTextField();
         nombreField = new javax.swing.JTextField();
-        registrarBoton = new javax.swing.JButton();
-        modificarBoton = new javax.swing.JButton();
-        deshabilitarBoton = new javax.swing.JButton();
-        cancelarBoton = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
         btnToggle = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
         btnAsignar = new javax.swing.JButton();
+        registrarBoton = new javax.swing.JButton();
+        deshabilitarBoton = new javax.swing.JButton();
+        cancelarBoton = new javax.swing.JButton();
+        modificarBoton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1280, 520));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -169,203 +177,186 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Tabla);
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 770, 370));
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(45, 45, 44));
         jLabel4.setText("Datos de Housekeepers");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 288, -1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dni.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        dni.setText("DNI:");
+        dni.setForeground(new java.awt.Color(0, 0, 0));
+        dni.setText("DNI");
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre.setText("Nombre:");
+        Nombre.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre.setText("Nombre");
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setText("Apellido:");
+        Reservación.setForeground(new java.awt.Color(0, 0, 0));
+        Reservación.setText("Apellido");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
-        jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 200, 40));
+        jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 90, -1));
+        jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 250, 30));
 
         Nombre1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre1.setText("Estado:");
+        Nombre1.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre1.setText("Estado");
         Nombre1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 80, 30));
-        jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 40));
+        jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 80, 30));
+        jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 250, 30));
 
         direccin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        direccin.setForeground(new java.awt.Color(0, 0, 0));
         direccin.setText("Correo");
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
-        jPanel1.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 420, 40));
+        jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jPanel1.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 250, 30));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre2.setText("Telefono:");
+        Nombre2.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre2.setText("Telefono");
         Nombre2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         estadoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 200, 40));
+        jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 250, 30));
 
         Nombre3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre3.setText("Contraseña:");
+        Nombre3.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre3.setText("Contraseña");
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 130, -1));
-        jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 40));
+        jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 130, -1));
+
+        usuarioField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 250, 30));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre4.setText("Usuario:");
+        Nombre4.setForeground(new java.awt.Color(0, 0, 0));
+        Nombre4.setText("Usuario");
         Nombre4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
-        jPanel1.add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 200, 40));
+        jPanel1.add(contrasenaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 250, 30));
 
+        btnBuscar.setBackground(new java.awt.Color(255, 127, 17));
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
-        jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 200, 40));
-        jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 90, -1));
+        jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 210, 30));
+        jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 250, 30));
 
-        registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        registrarBoton.setText("Registrar");
-        registrarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarBotonActionPerformed(evt);
-            }
-        });
+        jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 370, 10));
 
-        modificarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        modificarBoton.setText("Modificar");
-        modificarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarBotonActionPerformed(evt);
-            }
-        });
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 40, 410, 350));
 
-        deshabilitarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        deshabilitarBoton.setText("Deshabilitar");
-        deshabilitarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deshabilitarBotonActionPerformed(evt);
-            }
-        });
-
-        cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cancelarBoton.setText("Cancelar");
-        cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarBotonActionPerformed(evt);
-            }
-        });
-
+        btnToggle.setBackground(new java.awt.Color(255, 127, 17));
+        btnToggle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnToggle.setForeground(new java.awt.Color(255, 255, 255));
         btnToggle.setText("Solo activos");
         btnToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnToggleActionPerformed(evt);
             }
         });
+        jPanel2.add(btnToggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 180, 30));
 
+        jButton1.setBackground(new java.awt.Color(255, 127, 17));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ver Limpiezas asignadas");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 180, 30));
 
+        btnAsignar.setBackground(new java.awt.Color(255, 127, 17));
+        btnAsignar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnAsignar.setForeground(new java.awt.Color(255, 255, 255));
         btnAsignar.setText("Asignar Reservas");
         btnAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignarActionPerformed(evt);
             }
         });
+        jPanel2.add(btnAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 180, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btnToggle)
-                        .addGap(64, 64, 64)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(modificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(deshabilitarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(971, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(registrarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deshabilitarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnToggle)
-                            .addComponent(jButton1))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel4)
-                    .addContainerGap(454, Short.MAX_VALUE)))
-        );
+        registrarBoton.setBackground(new java.awt.Color(255, 127, 17));
+        registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        registrarBoton.setForeground(new java.awt.Color(255, 255, 255));
+        registrarBoton.setText("Registrar");
+        registrarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarBotonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(registrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 410, 170, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        deshabilitarBoton.setBackground(new java.awt.Color(255, 127, 17));
+        deshabilitarBoton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        deshabilitarBoton.setForeground(new java.awt.Color(255, 255, 255));
+        deshabilitarBoton.setText("Deshabilitar");
+        deshabilitarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deshabilitarBotonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(deshabilitarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 450, 170, 30));
+
+        cancelarBoton.setBackground(new java.awt.Color(255, 127, 17));
+        cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cancelarBoton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarBoton.setText("Cancelar");
+        cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBotonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 450, 170, 30));
+
+        modificarBoton.setBackground(new java.awt.Color(255, 127, 17));
+        modificarBoton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        modificarBoton.setForeground(new java.awt.Color(255, 255, 255));
+        modificarBoton.setText("Modificar");
+        modificarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarBotonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 410, 170, 30));
+
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 700, 10));
+
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 390, 370, 10));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 520));
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBotonActionPerformed
@@ -497,6 +488,10 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
+    private void usuarioFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioFieldActionPerformed
+
     public JButton getBtnAsignar() {
         return btnAsignar;
     }
@@ -527,6 +522,9 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton modificarBoton;
     private javax.swing.JTextField nombreField;
     private javax.swing.JButton registrarBoton;

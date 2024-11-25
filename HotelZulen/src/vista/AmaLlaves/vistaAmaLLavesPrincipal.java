@@ -32,30 +32,38 @@ public class vistaAmaLLavesPrincipal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        bienvenidoLabel4 = new javax.swing.JLabel();
+        bienvenidoLabel = new javax.swing.JLabel();
+        bienvenidoLabel5 = new javax.swing.JLabel();
 
-        jLabel1.setText("pricipaal");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(616, 616, 616)
-                .addComponent(jLabel1)
-                .addContainerGap(619, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jLabel1)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiezaPrincipal.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+
+        bienvenidoLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel4.setText("para todas las habitaciones antes de las 12 pm.");
+        add(bienvenidoLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 180, -1, -1));
+
+        bienvenidoLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel.setText("Bienvenido, \"nombre personal\"");
+        add(bienvenidoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, -1, -1));
+
+        bienvenidoLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bienvenidoLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        bienvenidoLabel5.setText("Por favor, organice la limpieza de las habitaciones");
+        add(bienvenidoLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel bienvenidoLabel;
+    private javax.swing.JLabel bienvenidoLabel4;
+    private javax.swing.JLabel bienvenidoLabel5;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

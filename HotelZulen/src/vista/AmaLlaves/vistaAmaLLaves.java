@@ -22,6 +22,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
     public vistaAmaLLaves(AmaDeLlaves amaLlaves) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
+        this.setLocationRelativeTo(null);
         this.amaLlaves = amaLlaves;
     }
 
@@ -39,12 +40,20 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
         cerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
+        background.setBackground(new java.awt.Color(255, 255, 255));
+        background.setPreferredSize(new java.awt.Dimension(1280, 720));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelIzquierda.setBackground(new java.awt.Color(255, 127, 17));
+        panelIzquierda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         iniciarSesion.setText("Hotel Zulen");
+        panelIzquierda.add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 25, -1, -1));
 
         principalBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         principalBoton.setText("Principal");
@@ -59,6 +68,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
                 principalBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(principalBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 25, 250, 45));
 
         habitacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         habitacionesBoton.setText("Habitaciones");
@@ -73,6 +83,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
                 habitacionesBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(habitacionesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 25, 250, 45));
 
         houseKeepersBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         houseKeepersBoton.setText("HouseeKeepers");
@@ -87,39 +98,11 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
                 houseKeepersBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(houseKeepersBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 25, 250, 45));
 
-        javax.swing.GroupLayout panelIzquierdaLayout = new javax.swing.GroupLayout(panelIzquierda);
-        panelIzquierda.setLayout(panelIzquierdaLayout);
-        panelIzquierdaLayout.setHorizontalGroup(
-            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(iniciarSesion)
-                .addGap(119, 119, 119)
-                .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140)
-                .addComponent(houseKeepersBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134))
-        );
-        panelIzquierdaLayout.setVerticalGroup(
-            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(principalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(houseKeepersBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(iniciarSesion)))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
 
-        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1290, 120));
+        content.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -132,7 +115,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1280, 520));
+        background.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1280, 520));
 
         cerrarSesion.setBackground(new java.awt.Color(239, 35, 60));
         cerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -142,7 +125,7 @@ public class vistaAmaLLaves extends javax.swing.JFrame {
                 cerrarSesionActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 640, 220, 50));
+        background.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 650, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
