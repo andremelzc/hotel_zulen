@@ -1,0 +1,20 @@
+Nombre del titular: Andre Alexander Echevarria Cuenca
+
+Acompañantes:
+Acompañante1: Norma Alciai Echevarria Zevallos
+Acompañante2: Vitaliano Federico Ore Cuenca
+Acompañante3: David  Piñarreta Rojas
+
+Habitaciones:
+NºHabitacion 18 - Piso 2 - Tipo Doble - Precio 170.0
+NºHabitacion 92 - Piso 6 - Tipo Business - Precio 250.0
+
+Servicios asignados:
+FitnessCenter - Precio 100.0
+Piscina - Precio 15.0
+Sauna - Precio 40.0
+
+Fecha de inicio de la reserva: 2024-11-20 09:30:00
+Fecha de fin de la reserva: 2024-12-20 09:30:00
+Duración de la reserva: 30 días
+Precio Total: 12755.0

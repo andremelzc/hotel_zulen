@@ -57,7 +57,7 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         String sql = "SELECT reservaciones.idReservaciones "
                 + "FROM reservaciones_has_huespedes "
                 + "JOIN reservaciones ON reservaciones_has_huespedes.RESERVACIONES_idReservaciones = reservaciones.idReservaciones "
-                + "WHERE reservaciones_has_huespedes.HUESPEDES_DNI = ? AND reservaciones.CheckIn IS NOT NULL AND reservaciones.Estado <> 'finalizada' ";
+                + "WHERE reservaciones_has_huespedes.HUESPEDES_DNI = ? AND reservaciones.CheckIn IS NOT NULL AND reservaciones.Estado <> 'finalizada' ";
 
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, huespedDNI);
@@ -169,7 +169,7 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
     private int cargarCuentaEnJText(int idReservaElegida) {
         int PagoCheckOut = 0;
         String encabezados = String.format(
-                " %-25s %-8s %-8s %-12s %-10s\n",
+                " %-15s %-8s %-8s %-12s %-10s\n",
                 "Combo", "Hab.", "Cant", "Pre-unit", "Total"
         );
         jTextArea1.append(encabezados);
@@ -199,7 +199,7 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
                 double precioTotalCombo = rs.getDouble("PrecioTotalCombo");
 
                 String fila = String.format(
-                        " %-25s %-8d %-8d %-12.2f %-10.2f\n",
+                        " %-15s %-8d %-8d %-12.2f %-10.2f\n",
                         descripcionCombo, idHabitacion, cantidad, precioTotalCombo, precioTotalCombo * cantidad
                 );
                 PagoCheckOut = (int) (PagoCheckOut + (precioTotalCombo * cantidad));

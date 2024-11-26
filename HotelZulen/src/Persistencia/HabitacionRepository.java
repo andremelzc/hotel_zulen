@@ -55,7 +55,7 @@ public class HabitacionRepository implements IRepository<Habitacion> {
         return null; // Si no se encuentra, retorna null
     }
 
-    public Habitacion obtenerxTipo(int tipoHabitacion, String fechaInicio, String fechaFinal){
+    public Habitacion obtenerxTipo(int tipoHabitacion,String fechaInicio,String fechaFinal) {
         String sql = """
                 SELECT h.*
                 FROM habitaciones h
@@ -66,12 +66,15 @@ public class HabitacionRepository implements IRepository<Habitacion> {
                 WHERE h.TIPO_HAB_idCategoria = ? 
                   AND (r.idReservaciones IS NULL OR (r.FechaFinal < ? OR r.FechaInicio > ?))
                 LIMIT 1;
-                """;
-        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+                """;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
+            // Setear los parámetros en la consulta
             stmt.setInt(1, tipoHabitacion);
             stmt.setString(2, fechaInicio);
             stmt.setString(3, fechaFinal);
+
             ResultSet rs = stmt.executeQuery();
 
             // Recorrer los resultados
@@ -79,17 +82,19 @@ public class HabitacionRepository implements IRepository<Habitacion> {
                 TipoHabitacionRepository repoTipo = new TipoHabitacionRepository();
                 return new Habitacion(
                         rs.getInt("idHabitaciones"),
-                        
                         repoTipo.obtener(rs.getInt("TIPO_HAB_idCategoria")),
                         rs.getString("Piso"),
                         rs.getString("Estado")
                 );
+                
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return null;
     }
+
 
     @Override
     public void actualizar(Habitacion objeto) {
