@@ -70,12 +70,19 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
         dniHuesped = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         nombreHuesped = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Filtro:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
@@ -93,31 +100,47 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
             Tabla.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 1050, 240));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 1030, 240));
 
         desplegable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "confirmada", "vigente", "cancelada", "finalizada" }));
-        add(desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 130, -1));
+        add(desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 130, 30));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("DNI del huesped: ");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 127, 17));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Aplicar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 50, -1, -1));
-        add(dniHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 100, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, 300, -1));
+        add(dniHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 200, 30));
 
+        jButton2.setBackground(new java.awt.Color(255, 127, 17));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Ver Reserva");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 250, -1, -1));
-        add(nombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 180, 20));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 160, -1, 50));
+
+        nombreHuesped.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        add(nombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 180, 30));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 1030, 13));
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 1030, 13));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -143,6 +166,8 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel nombreHuesped;
     // End of variables declaration//GEN-END:variables
 }

@@ -130,6 +130,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         numHab = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         cancelarBoton = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         JPiso = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -139,29 +140,49 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         btnVerLimpieza = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         habitacionesTable = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 30, 20));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 30, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Datos de habitación");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 110, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("Tipo:");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Tipo");
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel1.add(pisoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 370, 30));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("Piso:");
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Piso");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        jPanel1.add(tipoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 370, 30));
 
-        Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setText("Estado:");
+        Reservación.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Reservación.setForeground(new java.awt.Color(0, 0, 0));
+        Reservación.setText("Estado");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+        jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 370, 30));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Numero de habitacion: ");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Numero de habitacion");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 15, -1, -1));
+        jPanel1.add(numHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 220, 30));
 
         jButton2.setBackground(new java.awt.Color(239, 35, 60));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -171,54 +192,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(tipoField, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                    .addComponent(pisoField)
-                    .addComponent(Reservación)
-                    .addComponent(estadoField)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(numHab, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numHab, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tipoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pisoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Reservación)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(estadoField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 490, 330));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 30));
 
         cancelarBoton.setBackground(new java.awt.Color(239, 35, 60));
         cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -228,43 +202,61 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
                 cancelarBotonActionPerformed(evt);
             }
         });
-        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 390, 150, 50));
+        jPanel1.add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 200, 30));
 
-        jLabel9.setText("Piso: ");
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 460, 13));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 490, 260));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Piso");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         JPiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "2", "3", "4", "5", "6", "7", " " }));
-        add(JPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+        add(JPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 160, 30));
 
-        jLabel10.setText("Tipo: ");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Tipo");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
 
         tipoHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Estandar", "Doble", "Suite", "Business" }));
-        add(tipoHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+        add(tipoHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 150, 30));
 
+        filtro.setBackground(new java.awt.Color(255, 127, 17));
+        filtro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        filtro.setForeground(new java.awt.Color(255, 255, 255));
         filtro.setText("Filtrar");
         filtro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtroActionPerformed(evt);
             }
         });
-        add(filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
+        add(filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 130, 30));
 
+        btnVerReserva.setBackground(new java.awt.Color(255, 127, 17));
+        btnVerReserva.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnVerReserva.setForeground(new java.awt.Color(255, 255, 255));
         btnVerReserva.setText("Ver Reserva");
         btnVerReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerReservaActionPerformed(evt);
             }
         });
-        add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 160, -1));
+        add(btnVerReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 290, 30));
 
+        btnVerLimpieza.setBackground(new java.awt.Color(255, 127, 17));
+        btnVerLimpieza.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnVerLimpieza.setForeground(new java.awt.Color(255, 255, 255));
         btnVerLimpieza.setText("Ver Limpieza");
         btnVerLimpieza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerLimpiezaActionPerformed(evt);
             }
         });
-        add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 180, -1));
+        add(btnVerLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 290, 30));
 
         habitacionesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -284,20 +276,16 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(habitacionesTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 610, 320));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 610, 290));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 600, 13));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, -1, -1));
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 600, 13));
+
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 140, 460, 13));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -365,8 +353,11 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField numHab;
     private javax.swing.JTextField pisoField;
     private javax.swing.JTextField tipoField;

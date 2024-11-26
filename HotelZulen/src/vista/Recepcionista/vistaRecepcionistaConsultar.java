@@ -37,17 +37,22 @@ public class vistaRecepcionistaConsultar extends javax.swing.JPanel {
         subcontent = new javax.swing.JPanel();
         habitacionesBoton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1280, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        huespedesBoton.setBackground(new java.awt.Color(190, 183, 164));
         huespedesBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        huespedesBoton.setForeground(new java.awt.Color(255, 255, 255));
         huespedesBoton.setText("Huesped");
         huespedesBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 huespedesBotonActionPerformed(evt);
             }
         });
-        add(huespedesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 260, 50));
+        add(huespedesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 260, 30));
+
+        subcontent.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout subcontentLayout = new javax.swing.GroupLayout(subcontent);
         subcontent.setLayout(subcontentLayout);
@@ -62,14 +67,16 @@ public class vistaRecepcionistaConsultar extends javax.swing.JPanel {
 
         add(subcontent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1280, 440));
 
+        habitacionesBoton.setBackground(new java.awt.Color(190, 183, 164));
         habitacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        habitacionesBoton.setForeground(new java.awt.Color(255, 255, 255));
         habitacionesBoton.setText("Habitación");
         habitacionesBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 habitacionesBotonActionPerformed(evt);
             }
         });
-        add(habitacionesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 257, 50));
+        add(habitacionesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 257, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void huespedesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huespedesBotonActionPerformed
