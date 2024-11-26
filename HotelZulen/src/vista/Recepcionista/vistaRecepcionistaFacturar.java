@@ -10,7 +10,6 @@ import Persistencia.*;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 
-
 import java.awt.Font;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,7 +31,6 @@ import modelo.Boleta;
 import modelo.Huesped;
 import modelo.Recepcionista;
 
-
 /**
  *
  * @author PC
@@ -42,40 +40,39 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
     private int huespedDNI;
 
     private int idReservaElegida;
-    
+
     private int PagoCheckOut;
-    
+
     private Recepcionista recepcionistaActual;
-    
+
     public vistaRecepcionistaFacturar(Recepcionista recepcionista) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
-        this.recepcionistaActual=recepcionista;
+        this.recepcionistaActual = recepcionista;
         jTextArea1.setText("");
         jTextArea1.setFont(new Font("Monospaced", Font.PLAIN, 12));
     }
 
     private void cargarJComboBoxDeReservas() {
-    String sql = "SELECT reservaciones.idReservaciones " +
-                 "FROM reservaciones_has_huespedes " +
-                 "JOIN reservaciones ON reservaciones_has_huespedes.RESERVACIONES_idReservaciones = reservaciones.idReservaciones " +
-                 "WHERE reservaciones_has_huespedes.HUESPEDES_DNI = ? AND reservaciones.CheckIn IS NOT NULL";
+        String sql = "SELECT reservaciones.idReservaciones "
+                + "FROM reservaciones_has_huespedes "
+                + "JOIN reservaciones ON reservaciones_has_huespedes.RESERVACIONES_idReservaciones = reservaciones.idReservaciones "
+                + "WHERE reservaciones_has_huespedes.HUESPEDES_DNI = ? AND reservaciones.CheckIn IS NOT NULL AND reservaciones.Estado <> 'finalizada' ";
 
-    try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement stmt = connection.prepareStatement(sql)) {
-        stmt.setInt(1, huespedDNI);
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            int idReservacion = rs.getInt("idReservaciones");
-            desplegableReservas.addItem(String.valueOf(idReservacion));
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, huespedDNI);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idReservacion = rs.getInt("idReservaciones");
+                desplegableReservas.addItem(String.valueOf(idReservacion));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
 
     private void cargarPrimeraCuenta() {
-    String sql = """
+        String sql = """
         SELECT
             r.idReservaciones,
             h.Nombre AS NombreHuesped,
@@ -103,111 +100,98 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         WHERE r.idReservaciones = ?
         GROUP BY r.idReservaciones, h.Nombre, h.Apellidos, r.FechaInicio, r.FechaFinal;
     """;
-
-    try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement stmt = connection.prepareStatement(sql)) {
-
-        stmt.setInt(1, idReservaElegida);
-
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                StringBuilder resumen = new StringBuilder();
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-                resumen.append("                                    BOLETA\n");
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-
-                // Información del titular y fechas
-                resumen.append(String.format("Titular: %-40s Fecha de Inicio: %s\n",
-                    rs.getString("NombreHuesped") + " " + rs.getString("ApellidosHuesped"),
-                    rs.getTimestamp("FechaInicio").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
-                resumen.append(String.format("Fecha de Fin: %s\n",
-                    rs.getTimestamp("FechaFinal").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-
-                // Detalle de Habitaciones
-                resumen.append("Detalle de Habitaciones\n");
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-                resumen.append(String.format("%-15s %-10s %-12s %-12s\n", "Habitación", "Piso", "Tipo", "Precio"));
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-                String detalleHabitaciones = rs.getString("DetalleHabitaciones");
-                if (detalleHabitaciones != null) {
-                    String[] habitaciones = detalleHabitaciones.split("\n");
-                    for (String habitacion : habitaciones) {
-                        String[] parts = habitacion.split(" ");
-                        if (parts.length == 4) {
-                            resumen.append(String.format("%-15s %-10s %-12s %-12s\n", parts[0], parts[1], parts[2], parts[3]));
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idReservaElegida);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    StringBuilder resumen = new StringBuilder();
+                    // Encabezado del Hotel
+                    resumen.append("===========================================\n");
+                    resumen.append("                  Hotel Zulen\n");
+                    resumen.append("                  Av. Amezaga\n");
+                    resumen.append("               RUC: 69435678901\n");
+                    resumen.append("-------------------------------------------\n");
+                    resumen.append("               BOLETA DE VENTA\n");
+                    resumen.append("-------------------------------------------\n");
+                    resumen.append(String.format("Titular: %s %s\n",
+                            rs.getString("NombreHuesped"), rs.getString("ApellidosHuesped")));
+                    resumen.append(String.format("Fecha de Inicio: %s\n",
+                            rs.getTimestamp("FechaInicio").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+                    resumen.append(String.format("Fecha de Fin: %s\n",
+                            rs.getTimestamp("FechaFinal").toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+                    resumen.append("-------------------------------------------\n");
+                    resumen.append("Detalle de Habitaciones\n");
+                    resumen.append("-------------------------------------------\n");
+                    resumen.append(String.format("%-5s %-5s %-10s %-8s\n", "Hab", "Piso", "Tipo", "Precio"));
+                    String detalleHabitaciones = rs.getString("DetalleHabitaciones");
+                    if (detalleHabitaciones != null) {
+                        for (String habitacion : detalleHabitaciones.split("\n")) {
+                            String[] parts = habitacion.split(" ");
+                            resumen.append(String.format("%-5s %-5s %-10s %-8s\n", parts[0], parts[1], parts[2], parts[3]));
                         }
+                    } else {
+                        resumen.append("No hay habitaciones asociadas a esta reserva\n");
                     }
-                } else {
-                    resumen.append("No hay habitaciones asociadas a esta reserva\n");
-                }
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
+                    resumen.append("-------------------------------------------\n");
 
-                // Detalle de Servicios
-                resumen.append("Detalle de Servicios\n");
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-                resumen.append(String.format("%-20s %-10s\n", "Servicio", "Costo"));
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-                String detalleServicios = rs.getString("DetalleServicios");
-                if (detalleServicios != null) {
-                    String[] Servicios = detalleServicios.split("\n");
-                    for (String servicio : Servicios) {
-                        String[] partecitas = servicio.split(" ");
-                        if (partecitas.length == 2) {
-                            resumen.append(String.format("%-20s %-10s\n", partecitas[0], partecitas[1]));
+                    // Detalle de Servicios
+                    resumen.append("Detalle de Servicios\n");
+                    resumen.append("-------------------------------------------\n");
+                    resumen.append(String.format("%-15s %-10s\n", "Servicio", "Costo"));
+                    String detalleServicios = rs.getString("DetalleServicios");
+                    if (detalleServicios != null) {
+                        for (String servicio : detalleServicios.split("\n")) {
+                            String[] parts = servicio.split(" ");
+                            resumen.append(String.format("%-15s %-10s\n", parts[0], parts[1]));
                         }
+                    } else {
+                        resumen.append("No hay servicios adicionales asociados a esta reserva\n");
                     }
+                    resumen.append("-------------------------------------------\n");
+                    // Totales
+                    resumen.append("Saldo a pagar: $0.00\n");
+                    resumen.append("-------------------------------------------\n");
+                    resumen.append("               DETALLE DE CONSUMOS\n");
+                    resumen.append("-------------------------------------------\n");
+                    // Mostrar en el JTextArea
+                    jTextArea1.setText(resumen.toString());
                 } else {
-                    resumen.append("No hay habitaciones asociadas a esta reserva\n");
+                    jTextArea1.setText("No se encontró la reserva con el ID especificado.");
                 }
-                resumen.append("-------------------------------------------------------------------------------------------------\n");
-
-                // Mostrar en el JTextArea
-                jTextArea1.setText(resumen.toString());
-            } else {
-                jTextArea1.setText("No se encontró la reserva con el ID especificado.");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al cargar la cuenta: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Error al cargar la cuenta: " + e.getMessage(),
-                "Error", JOptionPane.ERROR_MESSAGE);
     }
-}
 
-
-    private int cargarCuentaEnJText(int idReservaElegida){
+    private int cargarCuentaEnJText(int idReservaElegida) {
         int PagoCheckOut = 0;
         String encabezados = String.format(
-            "%-15s %-20s %-10s %-20s %-15s %-15s\n",
-            "Fecha de Envío", "Combo Descripción", "Habitación", "Cantidad", "Precio unitario", "Total"
+                " %-25s %-8s %-8s %-12s %-10s\n",
+                "Combo", "Hab.", "Cant", "Pre-unit", "Total"
         );
         jTextArea1.append(encabezados);
         jTextArea1.append("------------------------------------------------------------\n");
-
-        String sql = "SELECT " +
-                     "rh.RESERVA_has_HAB_HAB_idHabitaciones, " +
-                     "c.Descripcion AS DescripcionCombo, " +
-                     "rh.cantPedido, " +
-                     "rh.FechaEnvio, " +
-                     "SUM(co.Precio * rh.cantPedido) AS PrecioTotalCombo " +
-                     "FROM reservaciones_has_habitaciones_has_combo rh " +
-                     "JOIN combo c ON rh.COMBO_idCOMBO = c.idCOMBO " +
-                     "JOIN combo_has_consumible ch ON c.idCOMBO = ch.COMBO_idCOMBO " +
-                     "JOIN consumible co ON ch.CONSUMIBLE_idCONSUMIBLE = co.idCONSUMIBLE " +
-                     "WHERE rh.RESERVA_has_HAB_RESERVA_idReserva = ? " +
-                     "AND rh.Estado = 'Enviado' " +
-                     "AND rh.FechaEnvio IS NOT NULL " +
-                     "GROUP BY rh.RESERVA_has_HAB_HAB_idHabitaciones, c.Descripcion, rh.cantPedido, rh.FechaEnvio";
-
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
-
+        String sql = "SELECT "
+                + "rh.RESERVA_has_HAB_HAB_idHabitaciones, "
+                + "c.Descripcion AS DescripcionCombo, "
+                + "rh.cantPedido, "
+                + "rh.FechaEnvio, "
+                + "SUM(co.Precio * rh.cantPedido) AS PrecioTotalCombo "
+                + "FROM reservaciones_has_habitaciones_has_combo rh "
+                + "JOIN combo c ON rh.COMBO_idCOMBO = c.idCOMBO "
+                + "JOIN combo_has_consumible ch ON c.idCOMBO = ch.COMBO_idCOMBO "
+                + "JOIN consumible co ON ch.CONSUMIBLE_idCONSUMIBLE = co.idCONSUMIBLE "
+                + "WHERE rh.RESERVA_has_HAB_RESERVA_idReserva = ? "
+                + "AND rh.Estado = 'Enviado' "
+                + "AND rh.FechaEnvio IS NOT NULL "
+                + "GROUP BY rh.RESERVA_has_HAB_HAB_idHabitaciones, c.Descripcion, rh.cantPedido, rh.FechaEnvio";
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, idReservaElegida); // Establecer el parámetro de idReserva
             ResultSet rs = stmt.executeQuery();
-
             while (rs.next()) {
-
                 int idHabitacion = rs.getInt("RESERVA_has_HAB_HAB_idHabitaciones");
                 String descripcionCombo = rs.getString("DescripcionCombo");
                 int cantidad = rs.getInt("cantPedido");
@@ -215,19 +199,24 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
                 double precioTotalCombo = rs.getDouble("PrecioTotalCombo");
 
                 String fila = String.format(
-                    "%-15s %-20s %-10d %-20s %-15.2f %-15.2f\n",
-                    fechaEnvio.toString(), descripcionCombo, idHabitacion, cantidad, precioTotalCombo, precioTotalCombo * cantidad
+                        " %-25s %-8d %-8d %-12.2f %-10.2f\n",
+                        descripcionCombo, idHabitacion, cantidad, precioTotalCombo, precioTotalCombo * cantidad
                 );
-                PagoCheckOut = (int) (PagoCheckOut + (precioTotalCombo * cantidad)); 
+                PagoCheckOut = (int) (PagoCheckOut + (precioTotalCombo * cantidad));
                 jTextArea1.append(fila);
             }
-            
-            System.out.println("\tTOTAL A PAGAR: "+PagoCheckOut);
+            jTextArea1.append("------------------------------------------------------------\n");
+            jTextArea1.append(String.format("Total a pagar: $%.2f\n", (double) PagoCheckOut));
+            jTextArea1.append(String.format("IGV (18%%):     $%.2f\n", PagoCheckOut * 0.18));
+            jTextArea1.append(String.format("Total Final:   $%.2f\n", PagoCheckOut * 1.18));
+            jTextArea1.append("===========================================\n");
 
         } catch (SQLException e) {
             System.out.println("Error al obtener los pedidos: " + e.getMessage());
         }
         return PagoCheckOut;
+    
+
     }
     
     @SuppressWarnings("unchecked")
@@ -398,37 +387,37 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
     }//GEN-LAST:event_DNIhuespedActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       jTextArea1.setText("");
-       String reservaSeleccionada = (String) desplegableReservas.getSelectedItem();
-       idReservaElegida = Integer.parseInt(reservaSeleccionada);
-       cargarPrimeraCuenta();
-       PagoCheckOut = cargarCuentaEnJText(idReservaElegida);
-       jLabel10.setText(String.valueOf(PagoCheckOut));
-       HuespedRepository hue = new HuespedRepository();
-       Huesped huesped = new Huesped();
-       huesped = hue.obtener(Integer.parseInt(DNIhuesped.getText()));
-       jLabel5.setText(huesped.getNombre()+" "+huesped.getApellido());
-       
+        jTextArea1.setText("");
+        String reservaSeleccionada = (String) desplegableReservas.getSelectedItem();
+        idReservaElegida = Integer.parseInt(reservaSeleccionada);
+        cargarPrimeraCuenta();
+        PagoCheckOut = cargarCuentaEnJText(idReservaElegida);
+        jLabel10.setText(String.valueOf(PagoCheckOut));
+        HuespedRepository hue = new HuespedRepository();
+        Huesped huesped = new Huesped();
+        huesped = hue.obtener(Integer.parseInt(DNIhuesped.getText()));
+        jLabel5.setText(huesped.getNombre() + " " + huesped.getApellido());
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         Boleta boleta = new Boleta();
         boleta = recepcionistaActual.obtenerBoleta(idReservaElegida);
-        boleta.setMetodoPagoCheckOut((String)jComboBox1.getSelectedItem());
+        boleta.setMetodoPagoCheckOut((String) jComboBox1.getSelectedItem());
         boleta.setEstadoPagoCheckOut("Pagado");
         boleta.setFechaPagoCheckOut(LocalDateTime.now());
-        boleta.setPagoCheckOut((double)PagoCheckOut);
+        boleta.setPagoCheckOut((double) PagoCheckOut);
         int respuesta = JOptionPane.showConfirmDialog(
-                null, 
-                "¿Desea continuar con el pago?", 
-                "Continuar con el pago", 
+                null,
+                "¿Desea continuar con el pago?",
+                "Continuar con el pago",
                 JOptionPane.YES_NO_OPTION
-            );
+        );
         if (respuesta == JOptionPane.YES_OPTION) {
             System.out.println("El usuario desea continuar con el pago.");
             recepcionistaActual.actualizarBoleta(boleta);
-            JOptionPane.showMessageDialog(null, "Boleta generada correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);         
+            JOptionPane.showMessageDialog(null, "Boleta generada correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             ReservacionRepository repo = new ReservacionRepository();
             repo.setFechaCheckOut(idReservaElegida);
             repo.setFinalizada(idReservaElegida);
@@ -438,12 +427,12 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
             } catch (IOException ex) {
                 Logger.getLogger(vistaRecepcionistaFacturar.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }            
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void crearArchivo(String dni, String numeroReserva, String contenido, String momento) throws IOException {
         // Define el nombre del archivo
-        String nombreArchivo = "src/txt/" + dni + "_" + numeroReserva + "_"+ momento + ".txt";
+        String nombreArchivo = "src/txt/" + dni + "_" + numeroReserva + "_" + momento + ".txt";
 
         // Define la ubicación donde se creará el archivo
         File archivo = new File(nombreArchivo);

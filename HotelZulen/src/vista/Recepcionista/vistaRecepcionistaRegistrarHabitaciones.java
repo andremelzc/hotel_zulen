@@ -36,6 +36,7 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         String ids[] = {"Nº Habitación", "Piso", "Tipo de Habitación"};
         mt.setColumnIdentifiers(ids);
         jTableHabitacion.setModel(mt);
+        jButtonComprobarHabitacion.setEnabled(false);
     }
 
     public Reservacion getReservacion() {
@@ -70,8 +71,8 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         jComboBoxTipoHabitacion = new javax.swing.JComboBox<>();
         jLabelNombre = new javax.swing.JLabel();
         jLabelNombre2 = new javax.swing.JLabel();
-        jTextFieldHasta = new javax.swing.JTextField();
-        jTextFieldDesde = new javax.swing.JTextField();
+        fechaHastaField = new javax.swing.JTextField();
+        fechaDesdeField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -153,21 +154,21 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         jLabelNombre2.setText("Desde:");
         add(jLabelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
-        jTextFieldHasta.setText("2024-11-20 09:30:00");
-        jTextFieldHasta.addActionListener(new java.awt.event.ActionListener() {
+        fechaHastaField.setText("2024-11-20 09:30:00");
+        fechaHastaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHastaActionPerformed(evt);
+                fechaHastaFieldActionPerformed(evt);
             }
         });
-        add(jTextFieldHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 320, 30));
+        add(fechaHastaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 320, 30));
 
-        jTextFieldDesde.setText("2024-11-11 09:30:00");
-        jTextFieldDesde.addActionListener(new java.awt.event.ActionListener() {
+        fechaDesdeField.setText("2024-11-11 09:30:00");
+        fechaDesdeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDesdeActionPerformed(evt);
+                fechaDesdeFieldActionPerformed(evt);
             }
         });
-        add(jTextFieldDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 320, 30));
+        add(fechaDesdeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 320, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonComprobarHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprobarHabitacionActionPerformed
@@ -187,7 +188,7 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
 
         }
 
-        habitacion = habitacion.obtenerxTipo(intHabitacionSeleccionada);
+        habitacion = habitacion.obtenerxTipo(intHabitacionSeleccionada, fechaDesdeField.getText(), fechaHastaField.getText());
         int idHabitacion = habitacion.getId();
         habitacion.setId(habitacion.getId() + contador);
         
@@ -204,16 +205,16 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNumHabitacionActionPerformed
 
-    private void jTextFieldDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDesdeActionPerformed
+    private void fechaDesdeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaDesdeFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDesdeActionPerformed
+    }//GEN-LAST:event_fechaDesdeFieldActionPerformed
 
     private void jButtonRegistrarHabitaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarHabitaciónActionPerformed
         // TODO add your handling code here:
     
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime fechaHoraDesde = LocalDateTime.parse(jTextFieldDesde.getText(), formatter);
-        LocalDateTime fechaHoraHasta = LocalDateTime.parse(jTextFieldHasta.getText(), formatter);
+        LocalDateTime fechaHoraDesde = LocalDateTime.parse(fechaDesdeField.getText(), formatter);
+        LocalDateTime fechaHoraHasta = LocalDateTime.parse(fechaHastaField.getText(), formatter);
         reservacion.setIncioHuesped(fechaHoraDesde);
         reservacion.setFinHuesped(fechaHoraHasta);
         
@@ -221,16 +222,18 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         reservacion.setFechaCrea(LocalDateTime.now());
         reservacion.setCheckIn(LocalDateTime.now());
         reservacion.setCheckOut(LocalDateTime.now());
-        
+        jButtonComprobarHabitacion.setEnabled(true);
 
     }//GEN-LAST:event_jButtonRegistrarHabitaciónActionPerformed
 
-    private void jTextFieldHastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHastaActionPerformed
+    private void fechaHastaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaHastaFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldHastaActionPerformed
+    }//GEN-LAST:event_fechaHastaFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField fechaDesdeField;
+    private javax.swing.JTextField fechaHastaField;
     private javax.swing.JButton jButtonComprobarHabitacion;
     private javax.swing.JButton jButtonRegistrarHabitación;
     private javax.swing.JComboBox<String> jComboBoxTipoHabitacion;
@@ -243,8 +246,6 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableHabitacion;
-    private javax.swing.JTextField jTextFieldDesde;
-    private javax.swing.JTextField jTextFieldHasta;
     private javax.swing.JTextField jTextFieldNumHabitacion;
     // End of variables declaration//GEN-END:variables
 }

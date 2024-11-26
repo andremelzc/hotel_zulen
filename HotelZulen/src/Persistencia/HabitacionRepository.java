@@ -4,6 +4,8 @@
  */
 package Persistencia;
 
+import Persistencia.DatabaseConnection;
+import Persistencia.TipoHabitacionRepository;
 import modelo.Habitacion;
 import modelo.TipoDeHabitacion;
 import java.sql.Connection;
@@ -13,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Combo;
+
 
 public class HabitacionRepository implements IRepository<Habitacion> {
 
@@ -52,21 +55,32 @@ public class HabitacionRepository implements IRepository<Habitacion> {
         return null; // Si no se encuentra, retorna null
     }
 
-    public Habitacion obtenerxTipo(int tipoHabitacion) {
-        String sql = "SELECT * FROM habitaciones \n"
-                + "WHERE TIPO_HAB_idCategoria = ? \n"
-                + "AND Estado = 'Disponible' \n"
-                + "LIMIT 1;";
+    public Habitacion obtenerxTipo(int tipoHabitacion, String fechaInicio, String fechaFinal){
+        String sql = """
+                SELECT h.*
+                FROM habitaciones h
+                LEFT JOIN reservaciones_has_habitaciones rhh
+                ON h.idHabitaciones = rhh.HABITACIONES_idHabitaciones
+                LEFT JOIN reservaciones r
+                ON rhh.RESERVACIONES_idReservaciones = r.idReservaciones
+                WHERE h.TIPO_HAB_idCategoria = ? 
+                  AND (r.idReservaciones IS NULL OR (r.FechaFinal < ? OR r.FechaInicio > ?))
+                LIMIT 1;
+                """;
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setInt(1, tipoHabitacion);
+            stmt.setString(2, fechaInicio);
+            stmt.setString(3, fechaFinal);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                TipoDeHabitacion tipo = new TipoHabitacionRepository().obtener(rs.getInt("TIPO_HAB_idCategoria"));
+            // Recorrer los resultados
+            while (rs.next()) {
+                TipoHabitacionRepository repoTipo = new TipoHabitacionRepository();
                 return new Habitacion(
                         rs.getInt("idHabitaciones"),
-                        tipo,
+                        
+                        repoTipo.obtener(rs.getInt("TIPO_HAB_idCategoria")),
                         rs.getString("Piso"),
                         rs.getString("Estado")
                 );
@@ -74,7 +88,7 @@ public class HabitacionRepository implements IRepository<Habitacion> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null; // Si no se encuentra, retorna null
+        return null;
     }
 
     @Override
@@ -175,8 +189,7 @@ public class HabitacionRepository implements IRepository<Habitacion> {
             sql.append(" AND TIPO_HAB_idCategoria = (SELECT idCategoria FROM tipo_hab WHERE Concepto = ?)");
         }
 
-        try (Connection connection = DatabaseConnection.getConnection(); 
-             PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
 
             int paramIndex = 1;
 

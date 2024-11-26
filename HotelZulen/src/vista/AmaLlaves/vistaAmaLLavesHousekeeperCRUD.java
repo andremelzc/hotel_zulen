@@ -8,13 +8,18 @@ import Persistencia.LimpiezaRepository;
 import Persistencia.PersonalRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+import java.awt.BorderLayout;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 import modelo.AmaDeLlaves;
 import modelo.Housekeeper;
@@ -28,6 +33,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
     private AmaDeLlaves amaLlaves;
+
     public vistaAmaLLavesHousekeeperCRUD(AmaDeLlaves amaLlaves) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
@@ -35,14 +41,14 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         btnToggle.setSelected(true);
         modelo = (DefaultTableModel) Tabla.getModel();
         Object[] houseKeeper = new Object[8];
-      
-        LimpiezaRepository repoLimpieza = new LimpiezaRepository(); 
-        if(repoLimpieza.registroHechoHoyParaHabitacion1()){
+
+        LimpiezaRepository repoLimpieza = new LimpiezaRepository();
+        if (repoLimpieza.registroHechoHoyParaHabitacion1()) {
             System.out.println("Ya se han asignado limpiezas el dia de hoy");
-             btnAsignar.setEnabled(false);
+            btnAsignar.setEnabled(false);
         }
     }
-    
+
     public int seleccionarPedido(JTable Tabla) {
         try {
             int fila = Tabla.getSelectedRow();
@@ -57,27 +63,27 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
                 correoField.setText(Tabla.getValueAt(fila, 4).toString());
                 usuarioField.setText(Tabla.getValueAt(fila, 5).toString());
                 contrasenaField.setText(Tabla.getValueAt(fila, 6).toString());
-               return id;
-                
+                return id;
+
             } else {
                 System.out.println("No se ha seleccionado ninguna fila.");
                 return -1;
             }
         } catch (Exception e) {
             System.out.println("Error al seleccionar la fila: " + e.getMessage());
-            e.printStackTrace(); 
+            e.printStackTrace();
             return -1;
         }
     }
+
     private void mostrarTablaActivos() {
-        
+
         modelo.setRowCount(0);
 
         List<Housekeeper> house = new ArrayList<>();
-        
+
         house = amaLlaves.obtenerListaHouseActivos();
 
-        
         for (Housekeeper housekeeper : house) {
             Object[] fila = {
                 housekeeper.getDNI(),
@@ -95,10 +101,11 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
         Tabla.setModel(modelo);
     }
-    private void mostrarTablaInactivos(){
+
+    private void mostrarTablaInactivos() {
         modelo.setRowCount(0);
         List<Housekeeper> house = new ArrayList<>();
-        
+
         house = amaLlaves.obtenerListaHouseInactivos();
         for (Housekeeper housekeeper : house) {
             Object[] fila = {
@@ -117,7 +124,23 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
         Tabla.setModel(modelo);
     }
-    
+
+    private static JDialog createLoadingDialog() {
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Cargando...");
+        dialog.setSize(200, 100);
+        dialog.setLocationRelativeTo(null);
+        dialog.setLayout(new BorderLayout());
+        JLabel label = new JLabel("Asignando limpiezas, por favor espere...", JLabel.CENTER);
+        JProgressBar progressBar = new JProgressBar();
+        progressBar.setIndeterminate(true); // Indicador de progreso continuo
+        dialog.add(label, BorderLayout.CENTER);
+        dialog.add(progressBar, BorderLayout.SOUTH);
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE); // Impide cerrar manualmente
+        dialog.setModal(true); // Bloquea la interacción con otras ventanas
+        return dialog;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -238,12 +261,6 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         Nombre3.setText("Contraseña");
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 130, -1));
-
-        usuarioField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioFieldActionPerformed(evt);
-            }
-        });
         jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 250, 30));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -378,9 +395,9 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         personalRepository.crear(personalNuevo);
 
         Object[] filaNueva = {
-            DNI, nombre, apellido, telefono, direccion, usuario, contrasena,estado,fechaCrea
+            DNI, nombre, apellido, telefono, direccion, usuario, contrasena, estado, fechaCrea
         };
-        
+
         modelo.addRow(filaNueva);
     }//GEN-LAST:event_registrarBotonActionPerformed
 
@@ -402,18 +419,17 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
         String contrasena = personal.getContrasena();
 
-        
-        Personal personalNuevo = new Personal(DNI, funcionalidad, nombre, apellido, telefono, direccion, usuario, contrasena, estado,house.getFechaCrea(),house.getFechaMod()) {
+        Personal personalNuevo = new Personal(DNI, funcionalidad, nombre, apellido, telefono, direccion, usuario, contrasena, estado, house.getFechaCrea(), house.getFechaMod()) {
         };
 
         personalRepository.actualizar(personalNuevo);
-        
-        if("Inactivo".equals(estado)){
+
+        if ("Inactivo".equals(estado)) {
             mostrarTablaInactivos();
-        }else{
+        } else {
             mostrarTablaActivos();
         }
-        
+
     }//GEN-LAST:event_modificarBotonActionPerformed
 
     private void deshabilitarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deshabilitarBotonActionPerformed
@@ -452,9 +468,9 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToggleActionPerformed
-        if(btnToggle.isSelected()){
+        if (btnToggle.isSelected()) {
             mostrarTablaActivos();
-        }else{
+        } else {
             mostrarTablaInactivos();
         }
     }//GEN-LAST:event_btnToggleActionPerformed
@@ -463,7 +479,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         return btnToggle;
     }
 
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int idHousekeeper = seleccionarPedido(Tabla);
         vistaDatosLimpieza vistaLimpiezas = new vistaDatosLimpieza(idHousekeeper);
@@ -481,21 +497,46 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
         int resultado = JOptionPane.showConfirmDialog(null, "¿Deseas continuar?", "Confirmación", JOptionPane.YES_NO_CANCEL_OPTION);
 
-        if (resultado == JOptionPane.YES_OPTION) {    
-            amaLlaves.asignarLimpiezas();
-            JOptionPane.showMessageDialog(null, "Las limpiezas han sido asignadas correctamente en la BD.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            btnAsignar.setEnabled(false); 
+        if (resultado == JOptionPane.YES_OPTION) {
+            JDialog loadingDialog = createLoadingDialog();
+
+            // Crear un SwingWorker para manejar la tarea pesada
+            SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    // Simula la tarea pesada
+                    amaLlaves.asignarLimpiezas(); // Aquí va tu lógica que toma tiempo
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    // Cierra el diálogo de carga al terminar
+                    loadingDialog.dispose();
+
+                    // Mostrar mensaje de éxito
+                    JOptionPane.showMessageDialog(null,
+                            "Las limpiezas han sido asignadas correctamente en la BD.",
+                            "Éxito",
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                    // Deshabilitar el botón
+                    btnAsignar.setEnabled(false);
+                }
+            };
+            worker.execute();
+
+            // Mostrar el diálogo
+            loadingDialog.setVisible(true);
         }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
-    private void usuarioFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioFieldActionPerformed
+    
 
     public JButton getBtnAsignar() {
         return btnAsignar;
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nombre;

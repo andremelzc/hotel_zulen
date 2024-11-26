@@ -38,6 +38,7 @@ public class vistaAmaLLavesPrincipal extends javax.swing.JPanel {
         bienvenidoLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1280, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiezaPrincipal.png"))); // NOI18N

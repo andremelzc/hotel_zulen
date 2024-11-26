@@ -13,6 +13,11 @@ import javax.swing.table.DefaultTableModel;
 import modelo.AmaDeLlaves;
 import modelo.Habitacion;
 import vista.Admin.vistaDatosLimpieza_Habitacion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import Persistencia.DatabaseConnection;
 
 public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
 
@@ -50,22 +55,52 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
             return -1;
         }
     }
-    private void mostrarTabla(List<Habitacion> listaHab){
-        
+    public void mostrarTabla (String Piso,String Tipo){
         modelo.setRowCount(0);
-        
-        for (Habitacion hab : listaHab) {
-            Object[] fila = {
-                hab.getId(),
-                hab.getTipoHabitacion().getConcepto(),
-                hab.getPiso(),
-                hab.getEstado()
-            };
-            modelo.addRow(fila);
+
+       
+        StringBuilder sql = new StringBuilder("SELECT * FROM habitaciones WHERE 1=1");
+
+        // Construcción dinámica de la consulta
+        if (!"Ninguno".equalsIgnoreCase(Piso)) {
+            sql.append(" AND Piso = ?");
+        }
+        if (!"Ninguno".equalsIgnoreCase(Tipo)) {
+            sql.append(" AND TIPO_HAB_idCategoria = (SELECT idCategoria FROM tipo_hab WHERE Concepto = ?)");
         }
 
-        Tabla.setModel(modelo);
+      
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
+
+            int paramIndex = 1;
+
+            // Seteo de parámetros en PreparedStatement
+            if (!"ninguno".equalsIgnoreCase(Piso)) {
+                stmt.setInt(paramIndex++, Integer.parseInt(Piso));
+            }
+            if (!"ninguno".equalsIgnoreCase(Tipo)) {
+                stmt.setString(paramIndex++, Tipo);
+            }
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Object filas [] = {
+                    rs.getInt("idHabitaciones"),
+                        rs.getInt("TIPO_HAB_idCategoria"),
+                        rs.getString("Piso"),
+                        rs.getString("Estado")
+                };
+                modelo.addRow(filas);
+            }
+            Tabla.setModel(modelo);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+    
     private void MostrarTabla(Habitacion habitacion){
         modelo.setRowCount(0);
         Object[] fila = {
@@ -109,6 +144,7 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1280, 520));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -241,7 +277,7 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
         Habitacion hab = new Habitacion();
         List<Habitacion> listaHab = new ArrayList<>();
         listaHab = hab.obtenerListaXPisoANDTipo((String) JPiso.getSelectedItem(),(String) tipoHab.getSelectedItem());
-        mostrarTabla(listaHab);
+        mostrarTabla((String)JPiso.getSelectedItem(), (String) tipoHab.getSelectedItem());
         
     }//GEN-LAST:event_filtroActionPerformed
 
