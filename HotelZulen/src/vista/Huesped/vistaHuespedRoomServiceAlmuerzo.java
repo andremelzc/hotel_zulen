@@ -270,7 +270,7 @@ public class vistaHuespedRoomServiceAlmuerzo extends javax.swing.JPanel {
                 cantidad,
                 "Pedido",
                 fechaActual);
-        JOptionPane.showMessageDialog(null, "Combo asociado exitosamente.", "Éxitom", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Combo asociado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_pedirBotonActionPerformed
 

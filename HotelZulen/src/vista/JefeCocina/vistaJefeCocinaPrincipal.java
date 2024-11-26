@@ -48,7 +48,7 @@ public class vistaJefeCocinaPrincipal extends javax.swing.JPanel {
 
         bienvenidoLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bienvenidoLabel.setForeground(new java.awt.Color(0, 0, 0));
-        bienvenidoLabel.setText("Bienvenido, \"nombre jefe\"");
+        bienvenidoLabel.setText("Bienvenido,");
         add(bienvenidoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, -1, -1));
 
         bienvenidoLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N

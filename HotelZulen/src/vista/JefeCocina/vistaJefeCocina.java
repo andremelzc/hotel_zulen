@@ -47,7 +47,6 @@ public class vistaJefeCocina extends javax.swing.JFrame {
         cerrarSesion1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -147,7 +146,7 @@ public class vistaJefeCocina extends javax.swing.JFrame {
                 cerrarSesion1ActionPerformed(evt);
             }
         });
-        background.add(cerrarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 650, 220, 50));
+        background.add(cerrarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 620, 220, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

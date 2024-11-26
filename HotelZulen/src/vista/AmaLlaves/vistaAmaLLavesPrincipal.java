@@ -21,6 +21,7 @@ public class vistaAmaLLavesPrincipal extends javax.swing.JPanel {
     public vistaAmaLLavesPrincipal() {
         FlatArcOrangeIJTheme.setup();
         initComponents();
+        
     }
 
     /**
@@ -51,7 +52,7 @@ public class vistaAmaLLavesPrincipal extends javax.swing.JPanel {
 
         bienvenidoLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bienvenidoLabel.setForeground(new java.awt.Color(0, 0, 0));
-        bienvenidoLabel.setText("Bienvenido, \"nombre personal\"");
+        bienvenidoLabel.setText("Bienvenido, ");
         add(bienvenidoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, -1, -1));
 
         bienvenidoLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N

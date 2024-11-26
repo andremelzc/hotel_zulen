@@ -152,7 +152,7 @@
                   <Table columnCount="3" rowCount="4">
                     <Column editable="true" title="Servicio" type="java.lang.Object">
                       <Data value="FitnessCenter"/>
-                      <Data value="Masaje Tantrico"/>
+                      <Data value="Masaje"/>
                       <Data value="Piscina"/>
                       <Data value="Sauna"/>
                     </Column>

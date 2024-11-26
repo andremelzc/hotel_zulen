@@ -53,7 +53,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
         serviciosBoton = new javax.swing.JButton();
         habitacionesBoton = new javax.swing.JButton();
         consultarBoton = new javax.swing.JButton();
-        finanzasBoton = new javax.swing.JButton();
         content = new javax.swing.JPanel();
         cerrarSesion = new javax.swing.JButton();
 
@@ -111,16 +110,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
             }
         });
 
-        finanzasBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        finanzasBoton.setText("Finanzas");
-        finanzasBoton.setActionCommand("");
-        finanzasBoton.setBorder(null);
-        finanzasBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finanzasBotonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelIzquierdaLayout = new javax.swing.GroupLayout(panelIzquierda);
         panelIzquierda.setLayout(panelIzquierdaLayout);
         panelIzquierdaLayout.setHorizontalGroup(
@@ -136,9 +125,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                 .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(finanzasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(234, 234, 234))
         );
         panelIzquierdaLayout.setVerticalGroup(
             panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,8 +137,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                             .addComponent(personalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(serviciosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(finanzasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelIzquierdaLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(iniciarSesion)))
@@ -253,17 +239,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_consultarBotonActionPerformed
 
-    private void finanzasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finanzasBotonActionPerformed
-        // TODO add your handling code here:
-        vistaAdministradorFinanzas administradorFinanzas = new vistaAdministradorFinanzas();
-        administradorFinanzas.setSize(1280, 720);
-        administradorFinanzas.setLocation(0, 0);
-        content.removeAll();
-        content.add(administradorFinanzas, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
-    }//GEN-LAST:event_finanzasBotonActionPerformed
-
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
         cerrarSesion();
     }//GEN-LAST:event_cerrarSesionActionPerformed
@@ -289,7 +264,6 @@ public class vistaAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton cerrarSesion;
     private javax.swing.JButton consultarBoton;
     private javax.swing.JPanel content;
-    private javax.swing.JButton finanzasBoton;
     private javax.swing.JButton habitacionesBoton;
     private javax.swing.JLabel iniciarSesion;
     private javax.swing.JPanel panelIzquierda;

@@ -94,7 +94,7 @@ public class vistaRecepcionistaRegistrarServicios extends javax.swing.JPanel {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"FitnessCenter", "100", "Activo"},
-                {"Masaje Tantrico", "30", "Activo"},
+                {"Masaje", "30", "Activo"},
                 {"Piscina", "15", "Activo"},
                 {"Sauna", "40", "Activo"}
             },
