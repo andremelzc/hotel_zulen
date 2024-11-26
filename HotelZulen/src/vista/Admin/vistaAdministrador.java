@@ -58,11 +58,17 @@ public class vistaAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelIzquierda.setBackground(new java.awt.Color(255, 127, 17));
+        panelIzquierda.setForeground(new java.awt.Color(255, 255, 255));
+        panelIzquierda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
         iniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         iniciarSesion.setText("Hotel Zulen");
+        panelIzquierda.add(iniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 25, -1, -1));
 
         personalBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         personalBoton.setText("Personal");
@@ -72,6 +78,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                 personalBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(personalBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 25, 210, 45));
 
         serviciosBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         serviciosBoton.setText("Servicios");
@@ -81,6 +88,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                 serviciosBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(serviciosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 25, 210, 45));
 
         habitacionesBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         habitacionesBoton.setText("Habitaciones");
@@ -95,6 +103,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
                 habitacionesBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(habitacionesBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 25, 210, 45));
 
         consultarBoton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         consultarBoton.setText("Consultar");
@@ -109,42 +118,11 @@ public class vistaAdministrador extends javax.swing.JFrame {
                 consultarBotonActionPerformed(evt);
             }
         });
+        panelIzquierda.add(consultarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 25, 210, 45));
 
-        javax.swing.GroupLayout panelIzquierdaLayout = new javax.swing.GroupLayout(panelIzquierda);
-        panelIzquierda.setLayout(panelIzquierdaLayout);
-        panelIzquierdaLayout.setHorizontalGroup(
-            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(iniciarSesion)
-                .addGap(42, 42, 42)
-                .addComponent(personalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(serviciosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234))
-        );
-        panelIzquierdaLayout.setVerticalGroup(
-            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(personalBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(serviciosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(habitacionesBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(consultarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelIzquierdaLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(iniciarSesion)))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1290, 100));
 
-        background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 120));
+        content.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
@@ -173,9 +151,7 @@ public class vistaAdministrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 1274, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

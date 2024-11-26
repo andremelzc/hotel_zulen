@@ -90,6 +90,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         modificarBoton = new javax.swing.JButton();
         deshabilitarBoton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         personalTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -113,59 +114,70 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 750, 427));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Datos de personal");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, 241, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 241, -1));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dni.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        dni.setForeground(new java.awt.Color(0, 0, 0));
         dni.setText("DNI:");
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
         jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Nombre.setForeground(new java.awt.Color(0, 0, 0));
         Nombre.setText("Nombre:");
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
         jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 40));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Reservación.setForeground(new java.awt.Color(0, 0, 0));
         Reservación.setText("Apellido:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
 
         dni1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        dni1.setForeground(new java.awt.Color(0, 0, 0));
         dni1.setText("Cargo");
         dni1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 70, -1));
         jPanel1.add(cargoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 200, 40));
 
         Nombre1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Nombre1.setForeground(new java.awt.Color(0, 0, 0));
         Nombre1.setText("Estado:");
         Nombre1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 80, 30));
         jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 40));
 
         direccin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        direccin.setForeground(new java.awt.Color(0, 0, 0));
         direccin.setText("Direccion:");
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
         jPanel1.add(direccionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 420, 40));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Nombre2.setForeground(new java.awt.Color(0, 0, 0));
         Nombre2.setText("Telefono:");
         Nombre2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
         jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 200, 40));
 
         Nombre3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Nombre3.setForeground(new java.awt.Color(0, 0, 0));
         Nombre3.setText("Contraseña:");
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 130, -1));
         jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 40));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Nombre4.setForeground(new java.awt.Color(0, 0, 0));
         Nombre4.setText("Usuario:");
         Nombre4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
@@ -176,41 +188,49 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, 460, 380));
 
+        registrarBoton.setBackground(new java.awt.Color(255, 127, 17));
         registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        registrarBoton.setForeground(new java.awt.Color(255, 255, 255));
         registrarBoton.setText("Registrar");
         registrarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrarBotonActionPerformed(evt);
             }
         });
-        add(registrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 450, 110, 50));
+        add(registrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, 200, 30));
 
+        cancelarBoton.setBackground(new java.awt.Color(255, 127, 17));
         cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cancelarBoton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarBoton.setText("Cancelar");
         cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarBotonActionPerformed(evt);
             }
         });
-        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 450, 100, 50));
+        add(cancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 470, 190, 30));
 
+        modificarBoton.setBackground(new java.awt.Color(255, 127, 17));
         modificarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        modificarBoton.setForeground(new java.awt.Color(255, 255, 255));
         modificarBoton.setText("Modificar");
         modificarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modificarBotonActionPerformed(evt);
             }
         });
-        add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 450, 100, 50));
+        add(modificarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 440, 190, 30));
 
+        deshabilitarBoton.setBackground(new java.awt.Color(255, 127, 17));
         deshabilitarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deshabilitarBoton.setForeground(new java.awt.Color(255, 255, 255));
         deshabilitarBoton.setText("Deshabilitar");
         deshabilitarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deshabilitarBotonActionPerformed(evt);
             }
         });
-        add(deshabilitarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 450, 120, 50));
+        add(deshabilitarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 470, 200, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void personalTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personalTableMouseClicked
