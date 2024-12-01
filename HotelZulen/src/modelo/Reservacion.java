@@ -271,10 +271,7 @@ public class Reservacion   {
        List<Habitacion> listaHabitaciones = repoReservaHab.obtenerHabitacionesPorReservacion(id);
        return listaHabitaciones;
    }
-   /*public List<ServiciosAdicionales> obtenerServiciosPorReservacion(int id){
-       List<ServiciosAdicionales> listaServicios = repoReservaServ.obtener(id);
-       return listaServicios
-   }*/
+  
     public List<Huesped> obtenerHuespedesXReserva(int id){
        List<Huesped> listaHuespedes = repoReservaHuesped.obtenerHuespedesPorReserva(idReserva);
        return listaHuespedes;

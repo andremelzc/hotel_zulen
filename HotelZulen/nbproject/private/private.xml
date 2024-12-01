@@ -3,9 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Admin/vistaDatosLimpieza_Habitacion_AL.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Admin/vistaAdministradorHabitaciones.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Persistencia/RecepcionistaRepository.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/AmaDeLlaves.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Recepcionista/vistaRecepcionistaRegistrarHabitaciones.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Recepcionista/vistaRecepcionistaFacturar.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/JefeCocina/vistaJefeCocinaEstadisticas.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Recepcionista/vistaRecepcionistaRegistrarVerRegistro.java</file>
             <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Recepcionista/vistaRecepcionistaRegistrarHuespedes.java</file>
-
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/VistaDatosReserva_RA.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Habitacion.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Persistencia/ReservacionRepository.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Reservacion.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/JefeCocina/vistaJefeCocinaPedidos.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Persistencia/LimpiezaRepository.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/JefeCocina/vistaJefeCocinaCartaConsumible.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Persistencia/HabitacionRepository.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/modelo/Limpieza.java</file>
         </group>
     </open-files>
 </project-private>
