@@ -290,7 +290,7 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         habitacion = mostrarTabla(jTextFieldNumHabitacion.getText(), intHabitacionSeleccionada, fechaDesdeField.getText(), fechaHastaField.getText());
         if(habitacion != null){
           int idHabitacion = habitacion.getId();
-            habitacion.setId(habitacion.getId() + contador);
+            //habitacion.setId(habitacion.getId() + contador);
 
             listaHabitaciones.add(habitacion);
 

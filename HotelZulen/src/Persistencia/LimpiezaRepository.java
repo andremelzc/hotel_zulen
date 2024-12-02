@@ -195,21 +195,21 @@ public class LimpiezaRepository implements IRepository<Limpieza> {
         return null; 
     }
     public boolean registroHechoHoyParaHabitacion1() {
-    String sql = "SELECT COUNT(*) AS cuenta FROM Limpiezas WHERE FechaLimpieza = CURDATE() AND HABITACIONES_idHabitaciones = 1";
-    try (Connection connection = DatabaseConnection.getConnection();
-         PreparedStatement stmt = connection.prepareStatement(sql)) {
+        String sql = "SELECT * FROM Limpiezas WHERE FechaLimpieza = CURDATE() AND HABITACIONES_idHabitaciones = 201";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-        try (ResultSet resultSet = stmt.executeQuery()) {
-            if (resultSet.next()) {
-                int cuenta = resultSet.getInt("cuenta");
-                return cuenta > 0; 
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                }
             }
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        return false;
     }
-    return false; 
-}
     public Housekeeper obtenerHousekeeperxidHabitacion(int idHabitacion) {
         String sql = "SELECT PERSONAL_DNI FROM Limpiezas " +
                      "WHERE HABITACIONES_idHabitaciones = ? AND FechaLimpieza = CURDATE()";

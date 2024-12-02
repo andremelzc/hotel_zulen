@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/iniciarSesionPersonal.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Recepcionista/vistaRecepcionistaRegistrarVerRegistro.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/iniciarSesion.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Recepcionista/vistaRecepcionistaRegistrarHabitaciones.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/AmaLlaves/vistaAmaLLavesHousekeeperCRUD.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Recepcionista/vistaRecepcionistaRegistrar.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/Persistencia/LimpiezaRepository.java</file>
+            <file>file:/C:/Users/Suyco/Documents/NetBeansProjects/hotel_zulen/HotelZulen/src/vista/Recepcionista/vistaRecepcionistaPrincipal.java</file>
         </group>
     </open-files>
 </project-private>

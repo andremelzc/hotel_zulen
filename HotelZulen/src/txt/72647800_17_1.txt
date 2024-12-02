@@ -1,0 +1,18 @@
+Nombre del titular: Nancy Frida Caceres
+
+Acompañantes:
+Acompañante1: Pablo Mamani Gonzales
+
+Habitaciones:
+NºHabitacion 606 - Piso 6 - Tipo Business - Precio 250.0
+NºHabitacion 606 - Piso 6 - Tipo Suite - Precio 200.0
+
+Servicios asignados:
+FitnessCenter - Precio 100.0
+Sauna - Precio 40.0
+Piscina - Precio 15.0
+
+Fecha de inicio de la reserva: 2024-12-22 09:30:00
+Fecha de fin de la reserva: 2024-12-29 12:00:00
+Duración de la reserva: 7 días
+Precio Total: 3305.0
