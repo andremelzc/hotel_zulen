@@ -1,0 +1,14 @@
+Nombre del titular: Alexandra Bocanegra Alfaro
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 418 - Piso 4 - Tipo Suite - Precio 200.0
+
+Servicios asignados:
+Piscina - Precio 15.0
+
+Fecha de inicio de la reserva: 2024-12-01 09:30:00
+Fecha de fin de la reserva: 2024-12-24 12:00:00
+Duración de la reserva: 23 días
+Precio Total: 4615.0

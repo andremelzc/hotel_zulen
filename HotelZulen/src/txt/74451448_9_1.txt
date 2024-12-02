@@ -1,0 +1,14 @@
+Nombre del titular: Rodrigo De la Torre Sur
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 417 - Piso 4 - Tipo Suite - Precio 200.0
+
+Servicios asignados:
+Sauna - Precio 40.0
+
+Fecha de inicio de la reserva: 2024-12-01 09:30:00
+Fecha de fin de la reserva: 2024-12-20 12:00:00
+Duración de la reserva: 19 días
+Precio Total: 3840.0

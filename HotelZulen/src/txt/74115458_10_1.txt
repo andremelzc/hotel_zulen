@@ -1,0 +1,14 @@
+Nombre del titular: Tadeo Cruz Gonzales
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 216 - Piso 2 - Tipo Doble - Precio 170.0
+
+Servicios asignados:
+FitnessCenter - Precio 100.0
+
+Fecha de inicio de la reserva: 2025-01-03 09:30:00
+Fecha de fin de la reserva: 2025-01-20 12:00:00
+Duración de la reserva: 17 días
+Precio Total: 2990.0

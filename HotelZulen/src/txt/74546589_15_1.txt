@@ -1,0 +1,14 @@
+Nombre del titular: Giancarlo Villavicencio Davila
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 612 - Piso 6 - Tipo Business - Precio 250.0
+
+Servicios asignados:
+FitnessCenter - Precio 100.0
+
+Fecha de inicio de la reserva: 2024-12-01 09:30:00
+Fecha de fin de la reserva: 2024-12-20 12:00:00
+Duración de la reserva: 19 días
+Precio Total: 4850.0

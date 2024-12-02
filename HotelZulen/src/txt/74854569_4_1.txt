@@ -1,0 +1,14 @@
+Nombre del titular: Sergio Cava Melendez
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 216 - Piso 2 - Tipo Doble - Precio 170.0
+
+Servicios asignados:
+Piscina - Precio 15.0
+
+Fecha de inicio de la reserva: 2024-12-01 09:30:00
+Fecha de fin de la reserva: 2024-12-30 12:00:00
+Duración de la reserva: 29 días
+Precio Total: 4945.0

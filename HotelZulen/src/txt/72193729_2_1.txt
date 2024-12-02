@@ -1,0 +1,14 @@
+Nombre del titular: Ivan Melendez Luyo
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 201 - Piso 2 - Tipo Estandar - Precio 150.0
+
+Servicios asignados:
+FitnessCenter - Precio 100.0
+
+Fecha de inicio de la reserva: 2024-12-01 09:30:00
+Fecha de fin de la reserva: 2024-12-25 12:00:00
+Duración de la reserva: 24 días
+Precio Total: 3700.0

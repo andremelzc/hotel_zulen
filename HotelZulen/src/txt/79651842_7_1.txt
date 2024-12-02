@@ -1,0 +1,14 @@
+Nombre del titular: Demetrio Luyo Melendez
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 201 - Piso 2 - Tipo Estandar - Precio 150.0
+
+Servicios asignados:
+Piscina - Precio 15.0
+
+Fecha de inicio de la reserva: 2025-01-01 09:30:00
+Fecha de fin de la reserva: 2025-01-20 12:00:00
+Duración de la reserva: 19 días
+Precio Total: 2865.0

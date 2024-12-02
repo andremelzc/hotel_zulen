@@ -1,0 +1,15 @@
+Nombre del titular: Vania Melendez Cava
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 607 - Piso 6 - Tipo Business - Precio 250.0
+
+Servicios asignados:
+FitnessCenter - Precio 100.0
+Sauna - Precio 40.0
+
+Fecha de inicio de la reserva: 2024-12-01 09:30:00
+Fecha de fin de la reserva: 2024-12-15 12:00:00
+Duración de la reserva: 14 días
+Precio Total: 3640.0

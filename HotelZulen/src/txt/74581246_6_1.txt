@@ -1,0 +1,16 @@
+Nombre del titular: Alicia Guerra Cava
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 609 - Piso 6 - Tipo Business - Precio 250.0
+
+Servicios asignados:
+Sauna - Precio 40.0
+FitnessCenter - Precio 100.0
+Piscina - Precio 15.0
+
+Fecha de inicio de la reserva: 2024-12-01 09:30:00
+Fecha de fin de la reserva: 2024-12-27 12:00:00
+Duración de la reserva: 26 días
+Precio Total: 6655.0
