@@ -1,0 +1,15 @@
+Nombre del titular: Yudi Montez Guzman
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 606 - Piso 6 - Tipo Business - Precio 250.0
+NºHabitacion 608 - Piso 6 - Tipo Business - Precio 250.0
+
+Servicios asignados:
+FitnessCenter - Precio 100.0
+
+Fecha de inicio de la reserva: 2024-12-02 09:30:00
+Fecha de fin de la reserva: 2024-12-20 12:00:00
+Duración de la reserva: 18 días
+Precio Total: 9100.0
