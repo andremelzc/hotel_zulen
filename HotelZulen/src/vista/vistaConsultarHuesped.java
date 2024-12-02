@@ -5,6 +5,7 @@
 package vista;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +31,7 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
     }
 
     public void consultar(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         Reservacion reserva = new Reservacion();
         List<Reservacion> listaReserva = new ArrayList<>();
         listaReserva = reserva.obtenerXDniYEstado(Integer.parseInt(dniHuesped.getText()),(String) desplegable.getSelectedItem());
@@ -45,9 +47,9 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
             Object[] reservaData = new Object[5];
             reservaData[0] = r.getIdReserva();
             reservaData[1] = r.getNumHabitaciones();
-            reservaData[2] = r.getIncioHuesped();
-            reservaData[3] = r.getFinHuesped();
-            reservaData[4] = r.getFechaCrea();
+            reservaData[2] = r.getIncioHuesped().format(formatter);
+            reservaData[3] = r.getFinHuesped().format(formatter);
+            reservaData[4] = r.getFechaCrea().format(formatter);
 
         // Agregar la fila al modelo de la tabla
         modelo.addRow(reservaData);

@@ -98,7 +98,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
                     rs.getString("Direccion"),
                     rs.getString("Usuario"),
                     rs.getString("Contraseña"),
-                    rs.getTimestamp("FechaCrea").toLocalDateTime(),
+                    rs.getString("Estado"),
                     rs.getTimestamp("FechaMod").toLocalDateTime()
                 };
                  modelo.addRow(fila);   
@@ -129,7 +129,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
                     rs.getString("Direccion"),
                     rs.getString("Usuario"),
                     rs.getString("Contraseña"),
-                    rs.getTimestamp("FechaCrea").toLocalDateTime(),
+                    rs.getString("Estado"),
                     rs.getTimestamp("FechaMod").toLocalDateTime()
                 };
                  modelo.addRow(fila);    

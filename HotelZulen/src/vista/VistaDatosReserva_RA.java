@@ -34,7 +34,7 @@ import modelo.ServiciosAdicionales;
 import javax.swing.border.TitledBorder;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
-import static vista.Recepcionista.NewMain.verificarSolapamientosReservas;
+
 
 
 
@@ -186,6 +186,7 @@ public class VistaDatosReserva_RA extends javax.swing.JFrame {
         Modificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         scrollHuesped = new javax.swing.JScrollPane();
         panelHuesped = new javax.swing.JPanel();
         scrollHabitacion = new javax.swing.JScrollPane();
@@ -265,6 +266,17 @@ public class VistaDatosReserva_RA extends javax.swing.JFrame {
         jLabel1.setText("Dias reservados:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 60, 20));
+
+        jButton1.setBackground(new java.awt.Color(255, 127, 17));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Restablecer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
 
         panelHuesped.setBackground(new java.awt.Color(255, 255, 255));
         panelHuesped.setLayout(new javax.swing.BoxLayout(panelHuesped, javax.swing.BoxLayout.Y_AXIS));
@@ -537,6 +549,13 @@ public class VistaDatosReserva_RA extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_DesdeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        Desde.setText(reservaActual.getIncioHuesped().format(formatter));
+        Hasta.setText(reservaActual.getFinHuesped().format(formatter));
+                
+    }//GEN-LAST:event_jButton1ActionPerformed
     private Reservacion obtenerReserva(int idReserva){
         Reservacion reserva = new Reservacion();
         return reserva.obtenerReserva(idReserva);
@@ -870,6 +889,7 @@ public class VistaDatosReserva_RA extends javax.swing.JFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JLabel NumHabitaciones;
     private javax.swing.JLabel Titular;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
