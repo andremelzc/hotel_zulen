@@ -139,9 +139,10 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
                 TipoHabitacionRepository repoTipo = new TipoHabitacionRepository();
                 Object filas[] = {
                     rs.getInt("idHabitaciones"),
-                    rs.getInt("TIPO_HAB_idCategoria"),
                     rs.getString("Piso"),
-                    rs.getString("Estado")
+                    rs.getInt("TIPO_HAB_idCategoria")
+                    
+                    
                 };
                 Habitacion habitacion = new Habitacion(rs.getInt("idHabitaciones"),
                                         repoTipo.obtener(rs.getInt("TIPO_HAB_idCategoria")),
@@ -261,7 +262,7 @@ public class vistaRecepcionistaRegistrarHabitaciones extends javax.swing.JPanel 
         fechaHastaField.setText("2024-12-20 12:00:00");
         add(fechaHastaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 320, 30));
 
-        fechaDesdeField.setText("2024-12-2 09:30:00");
+        fechaDesdeField.setText("2024-12-02 09:30:00");
         add(fechaDesdeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 320, 30));
     }// </editor-fold>//GEN-END:initComponents
 

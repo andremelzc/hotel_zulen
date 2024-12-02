@@ -148,7 +148,7 @@ public class HabitacionRepository implements IRepository<Habitacion> {
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             for (Habitacion habitacion : listaHabitaciones) {
-                stmt.setString(1, "Ocupado"); // Configura el estado a "ocupado"
+                stmt.setString(1, "Reservado"); // Configura el estado a "ocupado"
                 stmt.setInt(2, habitacion.getId());
                 stmt.executeUpdate();
             }

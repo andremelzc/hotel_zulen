@@ -92,7 +92,6 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelHabitacion1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabelHabitacion1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelHabitacion1.setText("Resumen de la Reserva");
         jPanel1.add(jLabelHabitacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 270, 40));
 
@@ -110,12 +109,7 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
         jButtonRegistrar.setBackground(new java.awt.Color(255, 127, 17));
         jButtonRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButtonRegistrar.setText("Confirmar y Pagar");
-        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 310, -1, 30));
+        jPanel1.add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 390, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,10 +132,6 @@ public class vistaRecepcionistaRegistrarVerRegistro extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        
-    }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
