@@ -7,7 +7,7 @@ package vista.Recepcionista;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import vista.vistaConsultarHuesped;
-import vista.vistaConsultarHabitacion;
+import vista.vistaConsultarHabitacion_AL;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 /**
@@ -97,7 +97,7 @@ public class vistaRecepcionistaConsultar extends javax.swing.JPanel {
     
     private void habitacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habitacionesBotonActionPerformed
         // TODO add your handling code here:
-        vistaConsultarHabitacion recepcionistaConsultarHabitacion = new vistaConsultarHabitacion();
+        vistaConsultarHabitacion_AL recepcionistaConsultarHabitacion = new vistaConsultarHabitacion_AL();
         recepcionistaConsultarHabitacion.setSize(1280, 720);
         recepcionistaConsultarHabitacion.setLocation(0, 0);
         subcontent.removeAll();

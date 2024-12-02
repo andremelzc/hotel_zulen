@@ -22,7 +22,7 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
     private ReservacionHabitacionCombo objPedido1 = new ReservacionHabitacionCombo();
     private ReservacionHabitacionComboRepository obj = new ReservacionHabitacionComboRepository();
     private Timer autoUpdateTimer;  // Variable para almacenar el Timer
-
+    
     public void setAutoUpdateTimer() {
         this.autoUpdateTimer = null;
     }
@@ -124,7 +124,7 @@ public class vistaJefeCocinaPedidos extends javax.swing.JPanel {
         obj.seleccionarPedido(jTable1, objPedido1);
         objPedido1.mostrarInfos();
     }//GEN-LAST:event_jTable1MouseClicked
-
+    
     private void btn_EnviadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EnviadoActionPerformed
         // TODO add your handling code here:
         ReservacionHabitacionComboRepository obj = new ReservacionHabitacionComboRepository();

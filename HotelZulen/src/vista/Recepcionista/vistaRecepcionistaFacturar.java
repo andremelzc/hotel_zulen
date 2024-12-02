@@ -44,6 +44,8 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
     private int PagoCheckOut;
 
     private Recepcionista recepcionistaActual;
+    
+    private int PagoAdicional;
 
     public vistaRecepcionistaFacturar(Recepcionista recepcionista) {
         FlatArcOrangeIJTheme.setup();
@@ -57,20 +59,30 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         String sql = "SELECT reservaciones.idReservaciones "
                 + "FROM reservaciones_has_huespedes "
                 + "JOIN reservaciones ON reservaciones_has_huespedes.RESERVACIONES_idReservaciones = reservaciones.idReservaciones "
-                + "WHERE reservaciones_has_huespedes.HUESPEDES_DNI = ? AND reservaciones.CheckIn IS NOT NULL AND reservaciones.Estado <> 'finalizada' ";
+                + "WHERE reservaciones_has_huespedes.HUESPEDES_DNI = ? AND reservaciones.CheckIn IS NOT NULL AND reservaciones.Estado <> 'Finalizada' ";
 
         try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, huespedDNI);
             ResultSet rs = stmt.executeQuery();
+            boolean hasRecords = false; // Bandera para verificar si hay registros
             while (rs.next()) {
                 int idReservacion = rs.getInt("idReservaciones");
                 desplegableReservas.addItem(String.valueOf(idReservacion));
+                hasRecords=true;
+            }
+            if (hasRecords!=false) {
+                desplegableReservas.setEnabled(true); // Deshabilitamos el JComboBox
+                jButton1.setEnabled(true);
+            }else{ // Si no se encontró ningún registro
+                JOptionPane.showMessageDialog(null, "No se encontraron reservaciones vigentes para este huésped.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                desplegableReservas.setEnabled(false); // Deshabilitamos el JComboBox
+                jButton1.setEnabled(false);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
+    
     private void cargarPrimeraCuenta() {
         String sql = """
         SELECT
@@ -165,11 +177,40 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    private Double obtenerPagoAdicional(int idReserva) {
+        String sql = "SELECT PagoCheckOut FROM pago WHERE RESERVA_id = ?";
+        Double pagoAdicional = null; // Por defecto, será null
 
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Configura el parámetro para el ID de reserva
+            stmt.setInt(1, idReserva);
+
+            // Ejecuta la consulta
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    pagoAdicional = rs.getDouble("PagoCheckOut");
+                    // Si el campo es NULL, `rs.getDouble` devolverá 0.0, pero podemos verificarlo con:
+                    if (rs.wasNull()) {
+                        pagoAdicional = null; // Si era NULL en la base de datos
+                    }
+                } else {
+                    System.out.println("No se encontró la reserva con ID: " + idReserva);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al obtener el pago adicional.");
+        }
+
+        return pagoAdicional; // Devuelve el valor o null si no existía
+    }
     private int cargarCuentaEnJText(int idReservaElegida) {
         int PagoCheckOut = 0;
         String encabezados = String.format(
-                " %-15s %-8s %-8s %-12s %-10s\n",
+                " %-20s %-8s %-8s %-12s %-10s\n",
                 "Combo", "Hab.", "Cant", "Pre-unit", "Total"
         );
         jTextArea1.append(encabezados);
@@ -199,14 +240,22 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
                 double precioTotalCombo = rs.getDouble("PrecioTotalCombo");
 
                 String fila = String.format(
-                        " %-15s %-8d %-8d %-12.2f %-10.2f\n",
+                        " %-20s %-8d %-8d %-12.2f %-10.2f\n",
                         descripcionCombo, idHabitacion, cantidad, precioTotalCombo, precioTotalCombo * cantidad
                 );
                 PagoCheckOut = (int) (PagoCheckOut + (precioTotalCombo * cantidad));
                 jTextArea1.append(fila);
             }
+            
+            Double PagoXAmpliacion = obtenerPagoAdicional(idReservaElegida);
+            if(PagoXAmpliacion!=null){
+                 jTextArea1.append("\n\nDetalles adicionales:\n");
+                jTextArea1.append(String.format("Pago por ampliación detectado: $%.2f\n", PagoXAmpliacion));
+                PagoCheckOut += PagoXAmpliacion; // Sumar al total general
+            }
+            
             jTextArea1.append("------------------------------------------------------------\n");
-            jTextArea1.append(String.format("Total a pagar: $%.2f\n", (double) PagoCheckOut));
+            jTextArea1.append(String.format("Subtotal: $%.2f\n", (double) PagoCheckOut));
             jTextArea1.append(String.format("IGV (18%%):     $%.2f\n", PagoCheckOut * 0.18));
             jTextArea1.append(String.format("Total Final:   $%.2f\n", PagoCheckOut * 1.18));
             jTextArea1.append("===========================================\n");
@@ -250,7 +299,6 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("DNI del huesped");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
@@ -262,7 +310,6 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         jPanel1.add(DNIhuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 210, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Reserva");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
 
@@ -289,7 +336,6 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Metodo de pago ");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
@@ -297,16 +343,13 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 220, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre del titular");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 183, 22));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Saldo pendiente");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
@@ -322,16 +365,15 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 380, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 150, 16));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 455, 13));
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 455, 13));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 455, 13));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 140, 384, 296));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, 384, 296));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 770, 13));
@@ -348,9 +390,13 @@ public class vistaRecepcionistaFacturar extends javax.swing.JPanel {
         jTextArea1.setText("");
         String reservaSeleccionada = (String) desplegableReservas.getSelectedItem();
         idReservaElegida = Integer.parseInt(reservaSeleccionada);
+        
+        
+        //-------------------------------------------------------
         cargarPrimeraCuenta();
         PagoCheckOut = cargarCuentaEnJText(idReservaElegida);
-        jLabel10.setText(String.valueOf(PagoCheckOut));
+        //-------------------------------------------------------
+        jLabel10.setText(String.valueOf(PagoCheckOut * 1.18));
         HuespedRepository hue = new HuespedRepository();
         Huesped huesped = new Huesped();
         huesped = hue.obtener(Integer.parseInt(DNIhuesped.getText()));

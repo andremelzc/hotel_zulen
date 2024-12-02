@@ -24,13 +24,13 @@ import vista.Admin.vistaDatosLimpieza_Habitacion;
  *
  * @author PC
  */
-public class vistaConsultarHabitacion extends javax.swing.JPanel {
+public class vistaConsultarHabitacion_AL extends javax.swing.JPanel {
 
     DefaultTableModel modelo; 
     int idHabitacione;
     String estado;
     
-    public vistaConsultarHabitacion() {
+    public vistaConsultarHabitacion_AL() {
         FlatArcOrangeIJTheme.setup();
         initComponents();
         modelo = (DefaultTableModel) habitacionesTable.getModel();
@@ -149,7 +149,6 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 30, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Datos de habitación");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 110, -1, -1));
 
@@ -158,33 +157,29 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Tipo");
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
         jPanel1.add(pisoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 370, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Piso");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
         jPanel1.add(tipoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 370, 30));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Reservación.setForeground(new java.awt.Color(0, 0, 0));
         Reservación.setText("Estado");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
         jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 370, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Numero de habitacion");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 15, -1, -1));
         jPanel1.add(numHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 220, 30));
 
-        jButton2.setBackground(new java.awt.Color(239, 35, 60));
+        jButton2.setBackground(new java.awt.Color(255, 127, 17));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +189,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 30));
 
-        cancelarBoton.setBackground(new java.awt.Color(239, 35, 60));
+        cancelarBoton.setBackground(new java.awt.Color(255, 127, 17));
         cancelarBoton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancelarBoton.setText("Cancelar");
         cancelarBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +205,6 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 490, 260));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Piso");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
@@ -218,7 +212,6 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
         add(JPiso, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 160, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Tipo");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
 
@@ -315,7 +308,7 @@ public class vistaConsultarHabitacion extends javax.swing.JPanel {
             System.out.println("No se encuentra reserva asociada");
         }
 
-        VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
+        VistaDatosReserva_RA vistaDatos = new VistaDatosReserva_RA (id);
         vistaDatos.setVisible(true);
     }//GEN-LAST:event_btnVerReservaActionPerformed
 

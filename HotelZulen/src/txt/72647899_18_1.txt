@@ -1,0 +1,14 @@
+Nombre del titular: Yudi Montez Guzman
+
+Acompañantes:
+
+Habitaciones:
+NºHabitacion 69 - Piso 4 - Tipo Suite - Precio 200.0
+
+Servicios asignados:
+FitnessCenter - Precio 100.0
+
+Fecha de inicio de la reserva: 2024-11-25 09:30:00
+Fecha de fin de la reserva: 2024-12-20 12:00:00
+Duración de la reserva: 25 días
+Precio Total: 5100.0

@@ -129,11 +129,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
                 facturarBotonMouseClicked(evt);
             }
         });
-        facturarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                facturarBotonActionPerformed(evt);
-            }
-        });
         panelIzquierda.add(facturarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 25, 180, 45));
 
         background.add(panelIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
@@ -242,11 +237,6 @@ public class vistaRecepcionista extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_facturarBotonMouseClicked
-
-    private void facturarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturarBotonActionPerformed
-       
-       
-    }//GEN-LAST:event_facturarBotonActionPerformed
 
     private void cerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionActionPerformed
         cerrarSesion();

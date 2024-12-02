@@ -91,10 +91,103 @@ public class ReservacionRepository implements IRepository <Reservacion>{
         }
         return null; // Si no se encuentra, retorna null
     }
-
+    //Estado debe ser vigente , oseam se activo el checkIn del huesped
+    public Reservacion obtenerParaRoomService(int id) {
+        String sql = "SELECT * FROM reservaciones WHERE idReservaciones = ? AND Estado = 'vigente'";
+        try (Connection connection = DatabaseConnection.getConnection(); 
+            PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                
+                Timestamp fechaComienzoSQL = rs.getTimestamp("FechaInicio");
+                LocalDateTime fechaComienzo = fechaComienzoSQL.toLocalDateTime();
+                
+                Timestamp fechaFinSQL = rs.getTimestamp("FechaFinal");
+                LocalDateTime fechaFin = fechaFinSQL.toLocalDateTime();
+                
+                Timestamp fechaCreacionSQL = rs.getTimestamp("FechaCreacion");
+                LocalDateTime fechaCreacion = fechaCreacionSQL.toLocalDateTime();
+                // Verificar si CheckIn y CheckOut son null
+                Timestamp checkInTimestamp = rs.getTimestamp("CheckIn");
+                Timestamp checkOutTimestamp = rs.getTimestamp("CheckOut");
+                LocalDateTime FechaMod = rs.getTimestamp("FechaMod") != null ? rs.getTimestamp("FechaMod").toLocalDateTime() : null;
+                
+                
+                if(checkInTimestamp != null && checkOutTimestamp != null){
+                    LocalDateTime checkIn = checkInTimestamp.toLocalDateTime();
+                    LocalDateTime checkOut = checkOutTimestamp.toLocalDateTime();
+                    return new Reservacion(
+                        rs.getInt("idReservaciones"), 
+                        rs.getInt("NumeroHabitaciones"), 
+                        rs.getString("Estado"), 
+                        fechaComienzo, 
+                        fechaFin, 
+                        fechaCreacion,
+                        FechaMod,
+                        checkIn,
+                        checkOut
+                    );
+                }else if (checkInTimestamp != null && checkOutTimestamp ==null ){
+                    LocalDateTime checkIn = checkInTimestamp.toLocalDateTime();
+                    return new Reservacion(
+                        rs.getInt("idReservaciones"),
+                        rs.getInt("NumeroHabitaciones"),
+                        rs.getString("Estado"),
+                        fechaComienzo,
+                        fechaFin,
+                        fechaCreacion,
+                        FechaMod,
+                        checkIn, 
+                        null
+                    );
+                }else {
+                    return new Reservacion(
+                    rs.getInt("idReservaciones"),
+                    rs.getInt("NumeroHabitaciones"),
+                    rs.getString("Estado"),
+                    fechaComienzo,
+                    fechaFin,
+                    fechaCreacion,
+                    FechaMod,
+                    null,
+                    null
+                    );
+                }
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Si no se encuentra, retorna null
+    }
+    
     @Override
     public void actualizar(Reservacion objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Consulta SQL para actualizar la fecha de inicio y final de la reservación
+        String query = "UPDATE reservaciones SET FechaInicio = ?, FechaFinal = ? WHERE idReservaciones = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            // Establecer los parámetros de la consulta
+            stmt.setObject(1, objeto.getIncioHuesped());  // Establecer FechaInicio
+            stmt.setObject(2, objeto.getFinHuesped());   // Establecer FechaFinal
+            stmt.setInt(3, objeto.getIdReserva()); // Establecer idReservaciones
+
+            // Ejecutar la actualización
+            int filasAfectadas = stmt.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                System.out.println("La reserva se actualizó correctamente.");
+            } else {
+                System.out.println("No se encontró la reserva con el ID especificado.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al actualizar la reserva.");
+        }
     }
 
     public void actualizarCheckIn(Reservacion reserva) {

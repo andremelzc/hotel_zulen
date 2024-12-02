@@ -6,6 +6,7 @@ package vista.Huesped;
 
 import Persistencia.ComboConsumibleRepository;
 import Persistencia.ComboRepository;
+import Persistencia.DatabaseConnection;
 import Persistencia.HabitacionRepository;
 import Persistencia.ReservacionHabitacionComboRepository;
 import java.util.ArrayList;
@@ -18,10 +19,15 @@ import modelo.Huesped;
 import modelo.Reservacion;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionHabitacionesRepository;
+import Persistencia.ReservacionRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 import modelo.Habitacion;
 
 /**
@@ -34,101 +40,125 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
     DefaultTableModel mt = new DefaultTableModel();
     JComboBox<String> comboBox = new JComboBox<>();
 
-    /**
-     * Creates new form vistaRecepcionistaRegistrarHuespedes
-     */
+   
     public vistaHuespedRoomServiceDesayuno(Huesped huesped) {
         FlatArcOrangeIJTheme.setup();
         initComponents();
         this.huesped = huesped;
-
-        ReservacionHuespedRepository reseHueRepo = new ReservacionHuespedRepository();
-        List<Reservacion> reservaciones = reseHueRepo.obtenerReservasPorHuesped(huesped.getDNI());
-        System.out.println("Tamano lista " + reservaciones.size());
-        ReservacionHabitacionesRepository reseHaRepo = new ReservacionHabitacionesRepository();
-        // Sacar todas las habitaciones
-        List<Habitacion> habitaciones = new ArrayList<>();
-        for (Reservacion reservacion : reservaciones) {
-            List<Habitacion> subHabitaciones = reseHaRepo.obtenerHabitacionesPorReservacion(reservacion.getIdReserva());
-            habitaciones.addAll(subHabitaciones);
-        }
-
+        habitacionesCombo.removeAllItems();
+        reservacionesCombo.removeAllItems();
+        
         System.out.println(huesped.getNombre());
 
-        // COMBO BOX PARA SELECCIONAR RESERVA
-        reservacionesCombo.removeAllItems();
-        for (Reservacion rese : reservaciones) {
-            System.out.println("reservacion id > " + rese.getIdReserva());
-            reservacionesCombo.addItem(String.valueOf(rese.getIdReserva()));
-        }
-
-        // COMBO BOX PARA SELECCIONAR HABITACION
-        habitacionesCombo.removeAllItems();
-        for (Habitacion habi : habitaciones) {
-            System.out.println("habitacion id> " + habi.getId());
-            habitacionesCombo.addItem(String.valueOf(habi.getId()));
-        }
-        System.out.println("Evade");
         // PARA LAS TABLAS
         String ids[] = {"ID", "Combo", "Precio"};
         mt.setColumnIdentifiers(ids);
         System.out.println("Tabla creada");
         tablaCombos.setModel(mt);
 
-        // Inicializar para tener todos los combos
-        List<Combo> combos = new ArrayList<>();
-        System.out.println("Creacion de tabla");
-        ComboRepository comborepo = new ComboRepository();
-        ComboConsumibleRepository comboconsurepo = new ComboConsumibleRepository();
+        CargarTablaDesayuno();
+        CargarBoxReservasSegundoPlano(huesped);
+    }
 
-        // Todos los combos
-        combos = comborepo.obtenerTodosCombos();
-
+    private void CargarTablaDesayuno(){
         // Matriz para almacenar los datos del coste por combo
-        Object[][] datosCombos = new Object[combos.size()][3];
-
-        int index = 0;
-
-        for (Combo combo : combos) {
-
-            // Solo combos del almuerzo
-            if (combo.getTipoComida().equals("Desayuno")) {
-
+        Object[][] datosCombos = new Object[10][3];
+        int index=0;
+        
+        String sql = "SELECT * FROM combo WHERE TipoComida = 'Desayuno'";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                
+                ComboConsumibleRepository comboconsurepo = new ComboConsumibleRepository();
+                
                 // Inicializar para tener todos los consumibles por cada combo
-                List<Consumible> consumibles = comboconsurepo.obtenerConsumiblesPorCombo(combo.getId());
-
+                List<Consumible> consumibles = comboconsurepo.obtenerConsumiblesPorCombo(rs.getInt("idCOMBO"));
                 // Hallamos el precio del combo
                 float precio = 0;
-
                 // Iteramos los consumibles del combo
                 for (Consumible consumible : consumibles) {
                     precio = precio + consumible.getPrecio();
                 }
-
-                System.out.println(combo.getId());
-                System.out.println(combo.getDescripcion());
+                System.out.println(rs.getInt("idCOMBO"));
+                System.out.println(rs.getString("Descripcion"));
                 System.out.println(precio);
-
                 // Almacenar los valores en la matriz
-                datosCombos[index][0] = combo.getId();
-                datosCombos[index][1] = combo.getDescripcion();
-                datosCombos[index][2] = precio; // Aquí sería el total de ganancias si tienes los datos de cantidad de ventas
-
-                index++;
-
-                Object[] fila = {combo.getId(), combo.getDescripcion(), precio};
+                datosCombos[index][0] = rs.getInt("idCOMBO");
+                datosCombos[index][1] = rs.getString("Descripcion");
+                datosCombos[index][2] = precio;
+                
+                Object[] fila = {rs.getInt("idCOMBO"), rs.getString("Descripcion"), precio};
                 mt.addRow(fila);
+                tablaCombos.setModel(mt);
+                index++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void CargarComboBoxReservas(Huesped huespedActual){
+        String sql = "SELECT * FROM reservaciones_has_huespedes WHERE HUESPEDES_DNI = ? ";
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, huespedActual.getDNI());
+            ResultSet rs = stmt.executeQuery();
+            reservacionesCombo.removeAllItems();
+            while (rs.next()) {
+                ReservacionRepository rev = new ReservacionRepository();
+                Reservacion reservacion = rev.obtenerParaRoomService(rs.getInt("RESERVACIONES_idReservaciones"));
+                if(reservacion == null){
+                    
+                }else{
+                    System.out.println("reservacion id > " + reservacion.getIdReserva());
+                    reservacionesCombo.addItem(String.valueOf(reservacion.getIdReserva()));
+                }
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void CargarBoxReservasSegundoPlano(Huesped huespedActual){
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                
+                CargarComboBoxReservas(huespedActual);
+                // Mostrar el JOptionPane con el mensaje "Cargando completo"
+                if(reservacionesCombo.getSelectedItem()==null){
+                    JOptionPane.showMessageDialog(null, "No tienes reservas vigentes por el momento", "Información", JOptionPane.INFORMATION_MESSAGE);
+                }
+                    System.out.println("Carga completa");
+                return null;
             }
 
-        }
-
+            @Override
+            protected void done() {
+                
+            }
+        };
+        worker.execute();
     }
+    private void CargarComboBoxHabitaciones(int idReservacion){
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+        
+        String sql = "SELECT * FROM reservaciones_has_habitaciones WHERE RESERVACIONES_idReservaciones = ?";
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idReservacion);
+            ResultSet rs = stmt.executeQuery();
+            habitacionesCombo.removeAllItems();
+            while (rs.next()) {
+                habitacionesCombo.addItem(String.valueOf(rs.getInt("HABITACIONES_idHabitaciones")));
+   
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -225,6 +255,11 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         reservacionesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        reservacionesCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservacionesComboActionPerformed(evt);
+            }
+        });
         jPanel1.add(reservacionesCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 300, 30));
 
         Reservación1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -306,6 +341,15 @@ public class vistaHuespedRoomServiceDesayuno extends javax.swing.JPanel {
         comboSeleccionadoField.setText(model.getValueAt(fila, 1).toString());
         precioSeleccionadoField.setText(model.getValueAt(fila, 2).toString());
     }//GEN-LAST:event_tablaCombosMouseClicked
+
+    private void reservacionesComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservacionesComboActionPerformed
+        if(reservacionesCombo.getSelectedItem()== null){
+            
+        }else{
+            CargarComboBoxHabitaciones(Integer.parseInt((String) reservacionesCombo.getSelectedItem()));
+        }
+        
+    }//GEN-LAST:event_reservacionesComboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

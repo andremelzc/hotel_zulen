@@ -8,6 +8,7 @@ import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /**
  *
@@ -23,6 +24,7 @@ public class iniciarSesion extends javax.swing.JFrame {
         initComponents();
         hotelZulen.setSize(1280, 720);
         this.setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**

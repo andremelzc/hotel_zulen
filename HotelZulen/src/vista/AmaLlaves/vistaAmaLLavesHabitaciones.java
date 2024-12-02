@@ -274,9 +274,7 @@ public class vistaAmaLLavesHabitaciones extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
-        Habitacion hab = new Habitacion();
-        List<Habitacion> listaHab = new ArrayList<>();
-        listaHab = hab.obtenerListaXPisoANDTipo((String) JPiso.getSelectedItem(),(String) tipoHab.getSelectedItem());
+
         mostrarTabla((String)JPiso.getSelectedItem(), (String) tipoHab.getSelectedItem());
         
     }//GEN-LAST:event_filtroActionPerformed

@@ -237,5 +237,6 @@ public class RecepcionistaRepository implements IRepository<Recepcionista> {
         System.out.println("Error al actualizar la boleta: " + e.getMessage());
     }
 }
-
+    
+    
 }

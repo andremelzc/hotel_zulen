@@ -4,14 +4,16 @@
  */
 package vista.AmaLlaves;
 
+import Persistencia.DatabaseConnection;
 import Persistencia.LimpiezaRepository;
 import Persistencia.PersonalRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -80,49 +82,62 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
         modelo.setRowCount(0);
 
-        List<Housekeeper> house = new ArrayList<>();
+        String sql = "SELECT DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, FechaCrea, FechaMod "
+                   + "FROM personal WHERE TipoPersonal = 'Housekeeper' AND Estado = 'Activo'";
 
-        house = amaLlaves.obtenerListaHouseActivos();
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement pst = connection.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
 
-        for (Housekeeper housekeeper : house) {
-            Object[] fila = {
-                housekeeper.getDNI(),
-                housekeeper.getNombre(),
-                housekeeper.getApellido(),
-                housekeeper.getTelefono(),
-                housekeeper.getDireccion(),
-                housekeeper.getUsuario(),
-                housekeeper.getContrasena(),
-                housekeeper.getEstado(),
-                housekeeper.getFechaCrea()
-            };
-            modelo.addRow(fila);
+            while (rs.next()) {
+                Object[] fila = {
+                    rs.getInt("DNI"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellidos"),
+                    rs.getInt("Telefono"),
+                    rs.getString("Direccion"),
+                    rs.getString("Usuario"),
+                    rs.getString("Contraseña"),
+                    rs.getTimestamp("FechaCrea").toLocalDateTime(),
+                    rs.getTimestamp("FechaMod").toLocalDateTime()
+                };
+                 modelo.addRow(fila);   
+   
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        Tabla.setModel(modelo);
     }
 
     private void mostrarTablaInactivos() {
         modelo.setRowCount(0);
-        List<Housekeeper> house = new ArrayList<>();
+        
+        String sql = "SELECT DNI, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, FechaCrea, FechaMod "
+                   + "FROM personal WHERE TipoPersonal = 'Housekeeper' AND Estado = 'Inactivo'";
 
-        house = amaLlaves.obtenerListaHouseInactivos();
-        for (Housekeeper housekeeper : house) {
-            Object[] fila = {
-                housekeeper.getDNI(),
-                housekeeper.getNombre(),
-                housekeeper.getApellido(),
-                housekeeper.getTelefono(),
-                housekeeper.getDireccion(),
-                housekeeper.getUsuario(),
-                housekeeper.getContrasena(),
-                housekeeper.getEstado(),
-                housekeeper.getFechaCrea()
-            };
-            modelo.addRow(fila);
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement pst = connection.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+                Object[] fila = {
+                    rs.getInt("DNI"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellidos"),
+                    rs.getInt("Telefono"),
+                    rs.getString("Direccion"),
+                    rs.getString("Usuario"),
+                    rs.getString("Contraseña"),
+                    rs.getTimestamp("FechaCrea").toLocalDateTime(),
+                    rs.getTimestamp("FechaMod").toLocalDateTime()
+                };
+                 modelo.addRow(fila);    
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        Tabla.setModel(modelo);
+        
     }
 
     private static JDialog createLoadingDialog() {
@@ -211,40 +226,34 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dni.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        dni.setForeground(new java.awt.Color(0, 0, 0));
         dni.setText("DNI");
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre.setForeground(new java.awt.Color(0, 0, 0));
         Nombre.setText("Nombre");
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setForeground(new java.awt.Color(0, 0, 0));
         Reservación.setText("Apellido");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 90, -1));
         jPanel1.add(apellidoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 250, 30));
 
         Nombre1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre1.setForeground(new java.awt.Color(0, 0, 0));
         Nombre1.setText("Estado");
         Nombre1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 80, 30));
         jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 250, 30));
 
         direccin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        direccin.setForeground(new java.awt.Color(0, 0, 0));
         direccin.setText("Correo");
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
         jPanel1.add(correoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 250, 30));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre2.setForeground(new java.awt.Color(0, 0, 0));
         Nombre2.setText("Telefono");
         Nombre2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
@@ -257,14 +266,12 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 250, 30));
 
         Nombre3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre3.setForeground(new java.awt.Color(0, 0, 0));
         Nombre3.setText("Contraseña");
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 130, -1));
         jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 250, 30));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre4.setForeground(new java.awt.Color(0, 0, 0));
         Nombre4.setText("Usuario");
         Nombre4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
@@ -310,16 +317,16 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 180, 30));
 
-        btnAsignar.setBackground(new java.awt.Color(255, 127, 17));
+        btnAsignar.setBackground(new java.awt.Color(255, 63, 0));
         btnAsignar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnAsignar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAsignar.setText("Asignar Reservas");
+        btnAsignar.setText("Asignar limpieza diaria");
         btnAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 180, 30));
+        jPanel2.add(btnAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 220, 50));
 
         registrarBoton.setBackground(new java.awt.Color(255, 127, 17));
         registrarBoton.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -482,7 +489,7 @@ public class vistaAmaLLavesHousekeeperCRUD extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int idHousekeeper = seleccionarPedido(Tabla);
-        vistaDatosLimpieza vistaLimpiezas = new vistaDatosLimpieza(idHousekeeper);
+        vistaDatosLimpieza_A vistaLimpiezas = new vistaDatosLimpieza_A(idHousekeeper);
         vistaLimpiezas.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

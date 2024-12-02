@@ -302,29 +302,27 @@ public class ReservacionHabitacionComboRepository implements IRepository<Reserva
     }
 
     public void modificarEstadoListoS(ReservacionHabitacionCombo obje) {
+        String consulta = "UPDATE hotel_zulen.reservaciones_has_habitaciones_has_combo hhcc "
+                        + "SET hhcc.Estado = 'Enviado', hhcc.FechaEnvio = NOW() "
+                        + "WHERE hhcc.id_Pedido = ?";
 
-        DatabaseConnection obj = new DatabaseConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(consulta)) {
 
-        String consulta = "UPDATE hotel_zulen.reservaciones_has_habitaciones_has_combo hhcc SET  hhcc.Estado = ?, hhcc.FechaEnvio = ? WHERE  hhcc.id_Pedido = ?;";
+            // Establecer valores en la consulta
+            stmt.setInt(1, obje.getIdPedido());
 
-        try {
-            CallableStatement cs = DatabaseConnection.getConnection().prepareCall(consulta);
-            cs.setString(1, "Enviado");
+            // Ejecutar consulta y verificar filas afectadas
+            int filasAfectadas = stmt.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Datos modificados exitosamente.");
+            } else {
+                System.out.println("No se encontró un registro con id_Pedido: " + obje.getIdPedido());
+            }
 
-            Timestamp fechaActual = Timestamp.valueOf(LocalDateTime.now());
-            cs.setTimestamp(2, fechaActual);
-
-            cs.setInt(3, obje.getIdPedido());
-
-            cs.execute();
-
-            System.out.println("Datos  Modificado Exitosamente");
-
-        } catch (Exception e) {
-            System.out.println("Datos del Alumno No se pudieron modificar, error:");
-            System.out.println("Error al seleccionar la fila: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error al modificar los datos: " + e.getMessage());
         }
-
     }
 
     public void mostrarPedidoXReservacion(JTable Tabla, int idReservacion) {

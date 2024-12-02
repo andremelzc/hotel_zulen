@@ -7,8 +7,8 @@ package vista.Admin;
 import Persistencia.LimpiezaRepository;
 import Persistencia.TipoHabitacionRepository;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -61,6 +61,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         JPanel panelHabitacion = new JPanel();
         JLabel lblHabitacion = new JLabel("Habitacion:");
         JTextField txtIdHabitacion = new JTextField(String.valueOf(limpieza.getIdHabitacion()), 20);
+        txtIdHabitacion.setEditable(false);
         panelHabitacion.add(lblHabitacion);
         panelHabitacion.add(txtIdHabitacion);
         panelLimpiezaas.add(panelHabitacion);
@@ -70,6 +71,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         JLabel lblTipo = new JLabel("Tipo de habitacion:");
         TipoHabitacionRepository repoTipo = new TipoHabitacionRepository();
         JTextField txtTipo = new JTextField(repoTipo.obtener(limpieza.getCategoriaHab()).getConcepto(), 20);
+        txtTipo.setEditable(false);
         panelTipo.add(lblTipo);
         panelTipo.add(txtTipo);
         panelLimpiezaas.add(panelTipo);
@@ -78,6 +80,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         JPanel panelTipoLimpieza = new JPanel();
         JLabel lblTipoLimpieza = new JLabel("Tipo limpieza:");
         JTextField txtTipoLimpieza = new JTextField(limpieza.getTipoLimpieza(), 20);
+        txtTipoLimpieza.setEditable(false);
         panelTipoLimpieza.add(lblTipoLimpieza);
         panelTipoLimpieza.add(txtTipoLimpieza);
         panelLimpiezaas.add(panelTipoLimpieza);
@@ -85,9 +88,14 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         // Campos para el estado de la limpieza
         JPanel panelEstadoLimpieza = new JPanel();
         JLabel lblEstadoLimpieza = new JLabel("Estado de la limpieza:");
-        JTextField txtEstadoLimpieza = new JTextField(String.valueOf(limpieza.getEstadoLimpieza()), 20);
+         // Crear un JComboBox con las opciones de estado de limpieza
+        String[] estadosLimpieza = {"asignada", "Finalizado"};
+        JComboBox<String> comboEstadoLimpieza = new JComboBox<>(estadosLimpieza);
+        // Seleccionar el estado actual basado en el valor de limpieza.getEstadoLimpieza()
+        comboEstadoLimpieza.setSelectedItem(limpieza.getEstadoLimpieza());
+        
         panelEstadoLimpieza.add(lblEstadoLimpieza);
-        panelEstadoLimpieza.add(txtEstadoLimpieza);
+        panelEstadoLimpieza.add(comboEstadoLimpieza);
         panelLimpiezaas.add(panelEstadoLimpieza);
 
         // Botón "Modificar"
@@ -97,7 +105,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         // Acción del botón "Modificar"
         btnModificarLimpieza.addActionListener(e -> {
           
-            JOptionPane.showMessageDialog(null, "Datos actualizados para " + limpieza.getPersonalDNI());
+            JOptionPane.showMessageDialog(null, "Estado de la limpieza actualizado para " + limpieza.getPersonalDNI());
         });
 
         return panelLimpiezaas;
@@ -113,6 +121,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         JPanel panelDNI = new JPanel();
         JLabel lblDNI = new JLabel("DNI:");
         JTextField txtDNI = new JTextField(String.valueOf(housekeeper.getDNI()), 20);
+        txtDNI.setEditable(false);
         panelDNI.add(lblDNI );
         panelDNI.add(txtDNI);
         panel.add(panelDNI);
@@ -133,7 +142,7 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
         panelCorreo.add(txtCorreo);
         panel.add(panelCorreo);
         
-        // Campos para la dirección (Telefono)
+        // Campos  (Telefono)
         JPanel panelDireccion = new JPanel();
         JLabel lblDireccion = new JLabel("Telefono:");
         JTextField txtDireccion = new JTextField(String.valueOf(housekeeper.getTelefono()), 20);
@@ -147,11 +156,8 @@ public class vistaDatosLimpieza_Habitacion extends javax.swing.JFrame {
 
         // Acción del botón "Modificar"
         btnModificar.addActionListener(e -> {
-           /* huesped.setNombre(txtNombre.getText());
-            huesped.setDNI(txtDni.getText());
-            huesped.setCorreo(txtCorreo.getText());
-            huesped.setTelefono(txtDireccion.getText());
-            */JOptionPane.showMessageDialog(null, "Datos actualizados para " + housekeeper.getDNI());
+           
+            JOptionPane.showMessageDialog(null, "Datos actualizados para " + housekeeper.getDNI());
         });
 
         return panel;

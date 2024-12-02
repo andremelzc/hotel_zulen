@@ -5,8 +5,6 @@
 package vista;
 
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
-import vista.VistaDatosReserva;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -151,7 +149,7 @@ public class vistaConsultarHuesped extends javax.swing.JPanel {
        Reservacion reserva = new Reservacion();
        int id = reserva.seleccionarReserva(Tabla);
        System.out.println("id seleccionado: "+id);
-       VistaDatosReserva vistaDatos = new VistaDatosReserva (id);
+       VistaDatosReserva_RA vistaDatos = new VistaDatosReserva_RA (id);
        vistaDatos.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

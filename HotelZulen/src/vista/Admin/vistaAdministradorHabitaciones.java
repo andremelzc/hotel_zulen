@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Habitacion;
 import modelo.Reservacion;
 import modelo.TipoDeHabitacion;
-import vista.VistaDatosReserva;
+import vista.VistaDatosReserva_RA;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,15 +56,16 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
             sql.append(" AND TIPO_HAB_idCategoria = (SELECT idCategoria FROM tipo_hab WHERE Concepto = ?)");
         }
 
-        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
+        try (Connection connection = DatabaseConnection.getConnection(); 
+            PreparedStatement stmt = connection.prepareStatement(sql.toString())) {
 
             int paramIndex = 1;
 
             // Seteo de parámetros en PreparedStatement
-            if (!"ninguno".equalsIgnoreCase(Piso)) {
+            if (!"Ninguno".equalsIgnoreCase(Piso)) {
                 stmt.setInt(paramIndex++, Integer.parseInt(Piso));
             }
-            if (!"ninguno".equalsIgnoreCase(Tipo)) {
+            if (!"Ninguno".equalsIgnoreCase(Tipo)) {
                 stmt.setString(paramIndex++, Tipo);
             }
 
@@ -368,7 +369,7 @@ public class vistaAdministradorHabitaciones extends javax.swing.JPanel {
         int id = reserva.obteneridReservaXidHabitacion(idHabitacione);
         if (id != 0) {
             System.out.println("id seleccionado: " + id);
-            VistaDatosReserva vistaDatos = new VistaDatosReserva(id);
+            VistaDatosReserva_RA vistaDatos = new VistaDatosReserva_RA(id);
             vistaDatos.setVisible(true);
         } else {
             System.out.println("No se encuentra reserva asociada");

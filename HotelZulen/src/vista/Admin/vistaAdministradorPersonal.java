@@ -8,11 +8,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Persistencia.*;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatNightOwlIJTheme;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import modelo.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -27,37 +28,67 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         initComponents();
         String ids[] = {"DNI", "Cargo", "Nombres", "Apellidos", "Telefono", "Direccion", "Estado", "Usuario", "Contraseña"};
         mt.setColumnIdentifiers(ids);
-
-        resetearTabla();
+        Toggle.setSelected(true);
+        resetearTablaActivos();
 
     }
 
-   private void resetearTabla() {
+   private void resetearTablaActivos() {
         // Limpiar todas las filas de la tabla
         mt.setRowCount(0);
 
-        // Obtener los datos actualizados de la base de datos o de alguna otra fuente
-        List<Personal> personal = new ArrayList<>();
-        PersonalRepository personalRepository = new PersonalRepository();
-        personal = personalRepository.obtenerTodos();
-
-        // Volver a agregar los datos a la tabla
-        for (Personal personal1 : personal) {
-            Object[] fila = {
-                personal1.getDNI(),
-                personal1.getFuncion(),
-                personal1.getNombre(),
-                personal1.getApellido(),
-                personal1.getTelefono(),
-                personal1.getDireccion(),
-                personal1.getEstado(),
-                personal1.getUsuario(),
-                "*".repeat(personal1.getContrasena().length())};
-            mt.addRow(fila);
+        String sql = "SELECT DNI, TipoPersonal, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, FechaCrea, FechaMod FROM personal WHERE Estado = 'Activo'";
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Object[] fila = {
+                        rs.getInt("DNI"),
+                        rs.getString("TipoPersonal"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
+                        rs.getInt("Telefono"),
+                        rs.getString("Direccion"),
+                        rs.getString("Estado"),
+                        rs.getString("Usuario"),
+                        rs.getString("Contraseña")  
+                    }; 
+                mt.addRow(fila);
+            }
+            personalTable.setModel(mt);
+ 
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        // Refrescar la vista de la tabla (opcional, pero a veces ayuda a garantizar que los cambios se vean reflejados)
-        personalTable.setModel(mt);
+        
+    }
+   private void resetearTablaInactivos() {
+        // Limpiar todas las filas de la tabla
+        mt.setRowCount(0);
+        String sql = "SELECT DNI, TipoPersonal, Nombre, Apellidos, Telefono, Direccion, Usuario, Contraseña, Estado, FechaCrea, FechaMod FROM personal WHERE Estado = 'Inactivo'";
+        
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Object[] fila = {
+                        rs.getInt("DNI"),
+                        rs.getString("TipoPersonal"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
+                        rs.getInt("Telefono"),
+                        rs.getString("Direccion"),
+                        rs.getString("Estado"),
+                        rs.getString("Usuario"),
+                        rs.getString("Contraseña")  
+                    }; 
+                mt.addRow(fila);
+            }
+            personalTable.setModel(mt);
+ 
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -89,6 +120,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         cancelarBoton = new javax.swing.JButton();
         modificarBoton = new javax.swing.JButton();
         deshabilitarBoton = new javax.swing.JButton();
+        Toggle = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,7 +146,6 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 750, 427));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Datos de personal");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 241, -1));
 
@@ -122,62 +153,53 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dni.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        dni.setForeground(new java.awt.Color(0, 0, 0));
         dni.setText("DNI:");
         dni.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
         jPanel1.add(nombreField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, 40));
 
         Nombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre.setForeground(new java.awt.Color(0, 0, 0));
         Nombre.setText("Nombre:");
         Nombre.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
         jPanel1.add(dniField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 40));
 
         Reservación.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Reservación.setForeground(new java.awt.Color(0, 0, 0));
         Reservación.setText("Apellido:");
         Reservación.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Reservación, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 90, -1));
 
         dni1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        dni1.setForeground(new java.awt.Color(0, 0, 0));
         dni1.setText("Cargo");
         dni1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(dni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 70, -1));
         jPanel1.add(cargoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 200, 40));
 
         Nombre1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre1.setForeground(new java.awt.Color(0, 0, 0));
         Nombre1.setText("Estado:");
         Nombre1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 80, 30));
         jPanel1.add(telefonoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 40));
 
         direccin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        direccin.setForeground(new java.awt.Color(0, 0, 0));
         direccin.setText("Direccion:");
         direccin.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(direccin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
         jPanel1.add(direccionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 420, 40));
 
         Nombre2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre2.setForeground(new java.awt.Color(0, 0, 0));
         Nombre2.setText("Telefono:");
         Nombre2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
         jPanel1.add(estadoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 200, 40));
 
         Nombre3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre3.setForeground(new java.awt.Color(0, 0, 0));
         Nombre3.setText("Contraseña:");
         Nombre3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 130, -1));
         jPanel1.add(usuarioField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 40));
 
         Nombre4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Nombre4.setForeground(new java.awt.Color(0, 0, 0));
         Nombre4.setText("Usuario:");
         Nombre4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(Nombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
@@ -231,6 +253,17 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
             }
         });
         add(deshabilitarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 470, 200, 30));
+
+        Toggle.setBackground(new java.awt.Color(255, 127, 17));
+        Toggle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Toggle.setForeground(new java.awt.Color(255, 255, 255));
+        Toggle.setText("Solo Activos");
+        Toggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ToggleActionPerformed(evt);
+            }
+        });
+        add(Toggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 140, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void personalTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personalTableMouseClicked
@@ -308,19 +341,34 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
         
         
         personalRepository.actualizar(personalNuevo);
-        resetearTabla();
+        if(Toggle.isSelected()){
+            resetearTablaActivos();
+        }else{
+            resetearTablaInactivos();
+        }
+        
     }//GEN-LAST:event_modificarBotonActionPerformed
 
     private void deshabilitarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deshabilitarBotonActionPerformed
         // TODO add your handling code here:
         int DNI = Integer.parseInt(dniField.getText());
-        
-        
         PersonalRepository personalRepository = new PersonalRepository();
         personalRepository.eliminar(DNI);
+        if(Toggle.isSelected()){
+            resetearTablaActivos();
+        }else{
+            resetearTablaInactivos();
+        }
         
-        resetearTabla();
     }//GEN-LAST:event_deshabilitarBotonActionPerformed
+
+    private void ToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ToggleActionPerformed
+        if(Toggle.isSelected()){
+            resetearTablaActivos();
+        }else{
+            resetearTablaInactivos();
+        }
+    }//GEN-LAST:event_ToggleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -330,6 +378,7 @@ public class vistaAdministradorPersonal extends javax.swing.JPanel {
     private javax.swing.JLabel Nombre3;
     private javax.swing.JLabel Nombre4;
     private javax.swing.JLabel Reservación;
+    private javax.swing.JToggleButton Toggle;
     private javax.swing.JTextField apellidoField;
     private javax.swing.JButton cancelarBoton;
     private javax.swing.JTextField cargoField;

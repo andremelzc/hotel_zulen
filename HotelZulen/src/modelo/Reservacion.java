@@ -4,12 +4,16 @@
  */
 package modelo;
 
+import Persistencia.DatabaseConnection;
 import Persistencia.HabitacionRepository;
 import Persistencia.HuespedRepository;
 import Persistencia.ReservacionHabitacionesRepository;
 import Persistencia.ReservacionHuespedRepository;
 import Persistencia.ReservacionRepository;
 import Persistencia.ReservacionServicioRepository;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.swing.JTable;
@@ -267,26 +271,46 @@ public class Reservacion   {
         }
         
     }
-   public List<Habitacion> obtenerHabitacionesPorReservacion(int id) {
+    public List<Habitacion> obtenerHabitacionesPorReservacion(int id) {
        List<Habitacion> listaHabitaciones = repoReservaHab.obtenerHabitacionesPorReservacion(id);
        return listaHabitaciones;
-   }
-   /*public List<ServiciosAdicionales> obtenerServiciosPorReservacion(int id){
-       List<ServiciosAdicionales> listaServicios = repoReservaServ.obtener(id);
-       return listaServicios
-   }*/
+    }
+   
     public List<Huesped> obtenerHuespedesXReserva(int id){
        List<Huesped> listaHuespedes = repoReservaHuesped.obtenerHuespedesPorReserva(idReserva);
        return listaHuespedes;
-   }
-   public Reservacion obtenerReserva (int id){
+    }
+    public Reservacion obtenerReserva (int id){
        return repoReserva.obtener(id);
-   }
-   public void actualizarCheckIn (Reservacion obj){
+    }
+    public void actualizarCheckIn (Reservacion obj){
        repoReserva.actualizarCheckIn(obj);
-   }
-   public int obteneridReservaXidHabitacion(int idHabitacion){
+    }
+    public int obteneridReservaXidHabitacion(int idHabitacion){
        return repoReservaHab.obtenerIdReservaXHabitacion(idHabitacion);
-   }
+    }
+    public void setVigente(Reservacion reservaActual){
+        String sql = "UPDATE reservaciones SET Estado = 'vigente' WHERE idReservaciones = ?";
+        try (Connection connection = DatabaseConnection.getConnection(); 
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+        // Configura el parámetro con el ID de la reservación actual
+        stmt.setInt(1, reservaActual.getIdReserva());
+
+        // Ejecuta la actualización
+        int rowsAffected = stmt.executeUpdate();
+
+        if (rowsAffected > 0) {
+            System.out.println("El estado de la reservación se actualizó a 'vigente'.");
+        } else {
+            System.out.println("No se encontró una reservación con el ID proporcionado.");
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        System.out.println("Error al actualizar el estado de la reservación.");
+    }
+        
+    }
 }
 
